@@ -9,8 +9,8 @@ title: 列宁主义
 
 ## Contents
 
-- [列宁著作导读](/knowledge-planet/leninism/列宁著作导读/intro)
-- [深入理解列宁主义](/knowledge-planet/leninism/深入理解列宁主义/intro)
+- [列宁著作导读](/knowledge-planet/leninism/列宁著作导读/)
+- [深入理解列宁主义](/knowledge-planet/leninism/深入理解列宁主义/)
 
 ## References
 

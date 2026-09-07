@@ -19,13 +19,13 @@ title: "沈奕斐的社会学爱情思维课"
 
 ## Contents
 
-- [我们这代人的爱情新问题](/knowledge-planet/sociology-love/chapter1/intro)
-- [新脚本里如何进入爱情](/knowledge-planet/sociology-love/chapter2/intro)
-- [新脚本里，爱的能力等于处理差异的能力](/knowledge-planet/sociology-love/chapter3/intro)
-- [“我们”和我：爱情的连接和自我的独立](/knowledge-planet/sociology-love/chapter4/intro)
-- [爱情新脚本里的长期关系](/knowledge-planet/sociology-love/chapter5/intro)
-- [长期关系里的危机](/knowledge-planet/sociology-love/chapter6/intro)
-- [个体化时代的爱情：最终目的是自我成长](/knowledge-planet/sociology-love/conclusion/intro)
+- [我们这代人的爱情新问题](/knowledge-planet/sociology-love/chapter1/)
+- [新脚本里如何进入爱情](/knowledge-planet/sociology-love/chapter2/)
+- [新脚本里，爱的能力等于处理差异的能力](/knowledge-planet/sociology-love/chapter3/)
+- [“我们”和我：爱情的连接和自我的独立](/knowledge-planet/sociology-love/chapter4/)
+- [爱情新脚本里的长期关系](/knowledge-planet/sociology-love/chapter5/)
+- [长期关系里的危机](/knowledge-planet/sociology-love/chapter6/)
+- [个体化时代的爱情：最终目的是自我成长](/knowledge-planet/sociology-love/conclusion/)
 
 ## References
 

@@ -13,7 +13,7 @@ title: "毛泽东思想"
 
 ## Contents
 
-- [毛泽东著作导读](/knowledge-planet/maoism/毛泽东著作导读/intro)
+- [毛泽东著作导读](/knowledge-planet/maoism/毛泽东著作导读/)
 - [毛主席语录](/knowledge-planet/maoism/毛主席语录)
 
 ## References
