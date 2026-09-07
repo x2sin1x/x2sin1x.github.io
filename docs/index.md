@@ -1,5 +1,7 @@
 ---
 layout: home
+# 关闭 Teek 首页区块（横幅、文章列表、标签卡片），首页仅保留下方 hero 与 features
+teekHome: false
 
 hero:
   name: "Bowen's Home"
