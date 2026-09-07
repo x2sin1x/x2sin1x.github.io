@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- 由 Microsoft Visio, SVG Export 生成 爱情观四象限.svg Page-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="6.80616in" height="4.44395in"
+		viewBox="0 0 490.043 319.965" xml:space="preserve" color-interpolation-filters="sRGB" class="st10">
+	<v:documentProperties v:langID="2052" v:metric="true" v:viewMarkup="false">
+		<v:userDefs>
+			<v:ud v:nameU="msvSubprocessMaster" v:prompt="" v:val="VT4(Rectangle)"/>
+			<v:ud v:nameU="msvNoAutoConnect" v:val="VT0(1):26"/>
+		</v:userDefs>
+	</v:documentProperties>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {marker-end:url(#mrkr13-6);stroke:#4672c4;stroke-linecap:round;stroke-linejoin:round;stroke-width:3}
+		.st2 {fill:#4672c4;fill-opacity:1;stroke:#4672c4;stroke-opacity:1;stroke-width:0.54347826086957}
+		.st3 {fill:#fec000;stroke:#c7c8c8;stroke-width:0.25}
+		.st4 {fill:#feffff;font-family:黑体;font-size:1.99999em}
+		.st5 {fill:#70ad47;stroke:#c7c8c8;stroke-width:0.25}
+		.st6 {fill:#ed7d31;stroke:#c7c8c8;stroke-width:0.25}
+		.st7 {fill:none;stroke:none;stroke-width:0.25}
+		.st8 {fill:#000000;font-family:黑体;font-size:1.5em}
+		.st9 {font-size:1em}
+		.st10 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Markers">
+		<g id="lend13">
+			<path d="M 3 1 L 0 0 L 3 -1 L 3 1 " style="stroke:none"/>
+		</g>
+		<marker id="mrkr13-6" class="st2" v:arrowType="13" v:arrowSize="2" v:setback="5.52" refX="-5.52" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend13" transform="scale(-1.84,-1.84) "/>
+		</marker>
+	</defs>
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<v:userDefs>
+			<v:ud v:nameU="msvThemeOrder" v:val="VT0(0):26"/>
+		</v:userDefs>
+		<title>页-1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394"/>
+		<g id="shape1-1" v:mID="1" v:groupContext="shape" transform="translate(74.9429,-159.982)">
+			<title>工作表.1</title>
+			<path d="M0 319.96 L323.6 319.96" class="st1"/>
+		</g>
+		<g id="shape2-7" v:mID="2" v:groupContext="shape" transform="translate(-74.9429,273.368) rotate(-90)">
+			<title>工作表.2</title>
+			<path d="M0 319.96 L210.21 319.96" class="st1"/>
+		</g>
+		<g id="shape3-12" v:mID="3" v:groupContext="shape" transform="translate(103.289,-188.329)">
+			<title>圆角矩形</title>
+			<desc>现实主义</desc>
+			<v:userDefs>
+				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CornerLockHoriz" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockVert" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockDiag" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="56.6929" cy="298.705" width="113.39" height="42.5197"/>
+			<path d="M11.34 319.96 L102.05 319.96 A11.3384 11.3384 -180 0 0 113.39 308.63 L113.39 288.78 A11.3384 11.3384 -180 0
+						 0 102.05 277.44 L11.34 277.44 A11.3384 11.3384 -180 0 0 0 288.78 L0 308.63 A11.3384 11.3384 -180 0 0 11.34
+						 319.96 Z" class="st3"/>
+			<text x="8.69" y="306.69" class="st4" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>现实主义</text>		</g>
+		<g id="shape4-15" v:mID="4" v:groupContext="shape" transform="translate(273.368,-188.329)">
+			<title>圆角矩形.4</title>
+			<desc>真爱无惧</desc>
+			<v:userDefs>
+				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CornerLockHoriz" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockVert" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockDiag" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="56.6929" cy="298.705" width="113.39" height="42.5197"/>
+			<path d="M11.34 319.96 L102.05 319.96 A11.3384 11.3384 -180 0 0 113.39 308.63 L113.39 288.78 A11.3384 11.3384 -180 0
+						 0 102.05 277.44 L11.34 277.44 A11.3384 11.3384 -180 0 0 0 288.78 L0 308.63 A11.3384 11.3384 -180 0 0 11.34
+						 319.96 Z" class="st5"/>
+			<text x="8.69" y="306.69" class="st4" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>真爱无惧</text>		</g>
+		<g id="shape5-18" v:mID="5" v:groupContext="shape" transform="translate(103.289,-89.1161)">
+			<title>圆角矩形.5</title>
+			<desc>哪有真爱</desc>
+			<v:userDefs>
+				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CornerLockHoriz" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockVert" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockDiag" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="56.6929" cy="298.705" width="113.39" height="42.5197"/>
+			<path d="M11.34 319.96 L102.05 319.96 A11.3384 11.3384 -180 0 0 113.39 308.63 L113.39 288.78 A11.3384 11.3384 -180 0
+						 0 102.05 277.44 L11.34 277.44 A11.3384 11.3384 -180 0 0 0 288.78 L0 308.63 A11.3384 11.3384 -180 0 0 11.34
+						 319.96 Z" class="st6"/>
+			<text x="8.69" y="306.69" class="st4" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>哪有真爱</text>		</g>
+		<g id="shape6-21" v:mID="6" v:groupContext="shape" transform="translate(273.368,-89.1161)">
+			<title>圆角矩形.6</title>
+			<desc>恋爱未满</desc>
+			<v:userDefs>
+				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CornerLockHoriz" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockVert" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockDiag" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="56.6929" cy="298.705" width="113.39" height="42.5197"/>
+			<path d="M11.34 319.96 L102.05 319.96 A11.3384 11.3384 -180 0 0 113.39 308.63 L113.39 288.78 A11.3384 11.3384 -180 0
+						 0 102.05 277.44 L11.34 277.44 A11.3384 11.3384 -180 0 0 0 288.78 L0 308.63 A11.3384 11.3384 -180 0 0 11.34
+						 319.96 Z" class="st3"/>
+			<text x="8.69" y="306.69" class="st4" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>恋爱未满</text>		</g>
+		<g id="shape7-24" v:mID="7" v:groupContext="shape" transform="translate(18.25,-131.636)">
+			<title>工作表.7</title>
+			<desc>不懂爱情</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="28.3465" cy="291.618" width="56.7" height="56.6929"/>
+			<rect x="0" y="263.272" width="56.6929" height="56.6929" class="st7"/>
+			<text x="10.35" y="285.04" class="st8" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>不懂<tspan x="10.35"
+						dy="1.298em" class="st9">爱情</tspan></text>		</g>
+		<g id="shape9-28" v:mID="9" v:groupContext="shape" transform="translate(415.1,-131.636)">
+			<title>工作表.9</title>
+			<desc>相信真爱</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="28.3465" cy="291.618" width="56.7" height="56.6929"/>
+			<rect x="0" y="263.272" width="56.6929" height="56.6929" class="st7"/>
+			<text x="10.35" y="285.04" class="st8" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>相信<tspan x="10.35"
+						dy="1.298em" class="st9">真爱</tspan></text>		</g>
+		<g id="shape10-32" v:mID="10" v:groupContext="shape" transform="translate(202.502,-273.368)">
+			<title>工作表.10</title>
+			<desc>主动争取</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="42.5197" cy="305.791" width="85.04" height="28.3465"/>
+			<rect x="0" y="291.618" width="85.0394" height="28.3465" class="st7"/>
+			<text x="6.52" y="311.78" class="st8" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>主动争取</text>		</g>
+		<g id="shape11-35" v:mID="11" v:groupContext="shape" transform="translate(202.502,-18.25)">
+			<title>工作表.11</title>
+			<desc>被动等候</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="42.5197" cy="305.791" width="85.04" height="28.3465"/>
+			<rect x="0" y="291.618" width="85.0394" height="28.3465" class="st7"/>
+			<text x="6.52" y="311.78" class="st8" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>被动等候</text>		</g>
+	</g>
+</svg>
