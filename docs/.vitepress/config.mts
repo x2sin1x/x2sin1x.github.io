@@ -4,20 +4,21 @@ import { defineTeekConfig } from "vitepress-theme-teek/config";
 // import { sidebar } from "./sidebar";
 
 // Teek 主题配置
-const teekConfig = defineTeekConfig({
-  nav: [
-    { text: "首页", link: "/" },
-    { text: "博客", link: "/blogs/", activeMatch: "/blogs/" },
-    { text: "技术栈", link: "/tech-stack/", activeMatch: "/tech-stack/" },
-    { text: "知识星球", link: "/knowledge-planet/", activeMatch: "/knowledge-planet/" },
-  ],
-  socialLinks: [{ icon: "github", link: "https://github.com/bowenEI" }],
-});
+const teekConfig = defineTeekConfig({});
 
 // VitePress 配置
 export default defineConfig({
   extends: teekConfig,
   lang: "zh-CN",
+  themeConfig: {
+    nav: [
+      { text: "首页", link: "/" },
+      { text: "博客", link: "/blogs/", activeMatch: "/blogs/" },
+      { text: "技术栈", link: "/tech-stack/", activeMatch: "/tech-stack/" },
+      { text: "知识星球", link: "/knowledge-planet/", activeMatch: "/knowledge-planet/" },
+    ],
+    socialLinks: [{ icon: "github", link: "https://github.com/bowenEI" }],
+  },
   title: "Bowen's Home",
   description: "Bowen Zhou 的个人博客、技术笔记与学习资料",
   cleanUrls: true,

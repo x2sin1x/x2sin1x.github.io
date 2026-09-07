@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@types/node": "^26.4.1",
     "vitepress": "^1.6.4",
     "vitepress-theme-teek": "^1.6.2"
   },
