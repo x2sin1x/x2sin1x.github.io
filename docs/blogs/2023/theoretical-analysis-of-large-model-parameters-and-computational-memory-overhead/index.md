@@ -1,6 +1,11 @@
 ---
 title: "大模型的参数量及其计算访存开销的理论分析"
 description: "从 Transformer 结构出发推导大模型的参数量与计算访存开销，为优化推理时延与吞吐量奠定理论基础。"
+date: 2023-11-01
+categories:
+  - Academic
+tags:
+  - LLM
 ---
 
 # 大模型的参数量及其计算访存开销的理论分析

@@ -21,6 +21,9 @@ function findFirstLink(item: DefaultTheme.SidebarItem): string | undefined {
  */
 const splitSectionKeys = ["/tech-stack/", "/knowledge-planet/"];
 
+// 不展示侧边栏的板块（一级目录）：博客文章按时间流浏览，无需目录树
+const hideSidebarKeys = ["/blogs/"];
+
 // Teek 主题配置
 const teekConfig = defineTeekConfig({
   vitePlugins: {
@@ -30,6 +33,11 @@ const teekConfig = defineTeekConfig({
 
         const result: DefaultTheme.SidebarMulti = {};
         for (const [key, value] of Object.entries(sidebar)) {
+          if (hideSidebarKeys.includes(key)) {
+            // 置空以隐藏该板块的侧边栏
+            result[key] = [];
+            continue;
+          }
           if (!splitSectionKeys.includes(key)) {
             result[key] = value;
             continue;

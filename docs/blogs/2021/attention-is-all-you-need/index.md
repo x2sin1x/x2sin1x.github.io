@@ -1,6 +1,12 @@
 ---
 description: "结合李沐论文精读视频整理 Transformer 原始论文，讲解 encoder-decoder 架构与注意力机制在机器翻译中的应用。"
+date: 2021-11-09
 title: "Attention Is All You Need"
+categories:
+  - Academic
+tags:
+  - 论文笔记
+  - Transformer
 ---
 
 # Attention Is All You Need

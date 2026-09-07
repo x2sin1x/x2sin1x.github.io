@@ -1,6 +1,13 @@
 ---
 title: "Serving Large Language Models on Huawei CloudMatrix384"
 description: "解读华为 CloudMatrix384 超节点与 CloudMatrix Infer 推理系统，梳理 UB 架构、PDC 分离与大规模专家并行等创新。"
+date: 2025-10-03
+categories:
+  - Academic
+tags:
+  - LLM
+  - 论文笔记
+  - 前沿科技
 ---
 
 # Serving Large Language Models on Huawei CloudMatrix384

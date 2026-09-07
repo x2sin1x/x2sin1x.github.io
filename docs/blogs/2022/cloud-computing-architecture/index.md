@@ -1,6 +1,11 @@
 ---
 title: "Cloud Computing Architecture"
 description: "以烹饪为例生动讲解云计算体系结构，梳理 IaaS、PaaS、SaaS 三大服务模式与服务管理层的职责。"
+date: 2022-03-07
+categories:
+  - Knowledge
+tags:
+  - 云计算
 ---
 
 # Cloud Computing Architecture

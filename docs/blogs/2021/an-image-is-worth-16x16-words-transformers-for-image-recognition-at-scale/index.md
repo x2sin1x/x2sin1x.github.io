@@ -1,6 +1,12 @@
 ---
 title: "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale"
 description: "结合李沐论文精读系列整理 Vision Transformer 论文笔记，介绍其如何打破 CNN 在计算机视觉的统治地位并打开多模态研究的大门。"
+date: 2021-11-30
+categories:
+  - Academic
+tags:
+  - 论文笔记
+  - Transformer
 ---
 
 # An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale

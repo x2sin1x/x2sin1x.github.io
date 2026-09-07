@@ -1,6 +1,11 @@
 ---
 title: "重装 Windows 系统和软件指南"
 description: "从制作启动盘、系统配置到常用软件与开发环境安装，提供一份完整的 Windows 重装指南。"
+date: 2025-10-27
+categories:
+  - Technique
+tags:
+  - 技术分享
 ---
 
 # 重装 Windows 系统和软件指南

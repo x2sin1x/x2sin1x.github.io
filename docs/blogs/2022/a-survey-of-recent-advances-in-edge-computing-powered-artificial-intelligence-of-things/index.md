@@ -1,6 +1,13 @@
 ---
 title: "A Survey of Recent Advances in Edge-Computing-Powered Artificial Intelligence of Things"
 description: "精读发表于 IEEE IoT Journal 的综述，梳理边缘计算赋能人工智能物联网的研究进展与关键技术。"
+date: 2022-06-06
+categories:
+  - Academic
+tags:
+  - 论文笔记
+  - 综述
+  - 边缘智能
 ---
 
 # A Survey of Recent Advances in Edge-Computing-Powered Artificial Intelligence of Things

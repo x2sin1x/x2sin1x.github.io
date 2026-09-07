@@ -1,6 +1,13 @@
 ---
 title: "Edge Intelligence: Architectures, Challenges, and Applications"
 description: "精读边缘智能综述论文，梳理边缘缓存、边缘训练、边缘推断与边缘卸载四大研究方向的相关工作。"
+date: 2021-07-08
+categories:
+  - Academic
+tags:
+  - 论文笔记
+  - 综述
+  - 边缘智能
 ---
 
 # Edge Intelligence: Architectures, Challenges, and Applications

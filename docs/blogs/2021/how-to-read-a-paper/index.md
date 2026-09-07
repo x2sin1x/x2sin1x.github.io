@@ -1,6 +1,11 @@
 ---
 title: "How to Read a Paper"
 description: "精读 SIGCOMM 上的经典论文，介绍科研文献的三遍阅读法及如何用它进行文献调研。"
+date: 2021-06-29
+categories:
+  - Academic
+tags:
+  - 论文笔记
 ---
 
 # How to Read a Paper

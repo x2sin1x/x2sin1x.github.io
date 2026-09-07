@@ -1,6 +1,14 @@
 ---
 title: "图解 Flash Attention"
 description: "以图解方式讲解 Flash Attention 的 Tiling 与 Recompute 技术，直观呈现其如何降低注意力计算的访存开销。"
+date: 2024-01-27
+categories:
+  - Academic
+tags:
+  - LLM
+  - Attention
+  - Softmax
+  - 算子融合
 ---
 
 # 图解 Flash Attention

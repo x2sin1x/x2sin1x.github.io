@@ -1,6 +1,12 @@
 ---
 title: "在服务器上部署 Overleaf"
 description: "记录在 Ubuntu 服务器上基于 Docker 与 Docker Compose 部署开源 Overleaf 在线协作 LaTeX 环境的全过程。"
+date: 2022-04-15
+categories:
+  - Technique
+tags:
+  - Docker
+  - 技术分享
 ---
 
 # 在服务器上部署 Overleaf

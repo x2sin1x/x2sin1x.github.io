@@ -1,6 +1,13 @@
 ---
 title: "大模型并行策略的通信开销分析"
 description: "图解数据、张量、流水线、专家与序列五大并行策略，并定量分析它们在训练与推理中的通信开销。"
+date: 2025-10-10
+categories:
+  - Academic
+  - Knowledge
+tags:
+  - LLM
+  - Parallelism
 ---
 
 # 大模型并行策略的通信开销分析

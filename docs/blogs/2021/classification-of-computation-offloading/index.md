@@ -1,6 +1,12 @@
 ---
 title: "Classification of Computation Offloading"
 description: "根据李克勤教授的学术报告整理，从用户设备、任务数量等十个维度建立移动边缘计算任务卸载研究的分类框架。"
+date: 2021-07-05
+categories:
+  - Academic
+tags:
+  - 边缘计算
+  - 任务卸载
 ---
 
 # Classification of Computation Offloading

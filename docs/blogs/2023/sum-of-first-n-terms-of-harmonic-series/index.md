@@ -1,6 +1,13 @@
 ---
 title: "调和级数的前 n 项和"
 description: "从大模型注意力算术强度推导中的求和问题出发，借助 Gamma 函数与 Digamma 函数研究调和级数前 n 项和。"
+date: 2023-12-02
+categories:
+  - Knowledge
+tags:
+  - 数学
+  - 无穷级数
+  - 微积分
 ---
 
 # 调和级数的前 n 项和

@@ -1,6 +1,13 @@
 ---
 title: 分布式大模型集合通信
 description: "介绍分布式大模型集合通信，涵盖 MPI 规范、通信模型、集合通信原语及其底层算法的定量分析与比较。"
+date: 2023-11-05
+categories:
+  - Academic
+  - Knowledge
+tags:
+  - 并行计算
+  - 集合通信
 ---
 
 # 分布式大模型集合通信

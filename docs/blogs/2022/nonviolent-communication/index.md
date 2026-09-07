@@ -1,6 +1,12 @@
 ---
 title: "Nonviolent Communication"
 description: "《非暴力沟通》读书笔记，围绕观察、感受、需要、请求四要素梳理非暴力沟通的方法与运用。"
+date: 2022-02-15
+categories:
+  - Read
+tags:
+  - 心理学
+  - 读书笔记
 ---
 
 # Nonviolent Communication

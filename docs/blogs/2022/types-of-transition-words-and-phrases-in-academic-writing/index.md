@@ -1,6 +1,12 @@
 ---
 title: "Types of Transition Words and Phrases in Academic Writing"
 description: "整理学术写作中过渡词与短语的四种类型：递进、转折、因果与顺序，并给出各类常用表达。"
+date: 2022-05-17
+categories:
+  - Knowledge
+  - Academic
+tags:
+  - Academic Writing
 ---
 
 # Types of Transition Words and Phrases in Academic Writing

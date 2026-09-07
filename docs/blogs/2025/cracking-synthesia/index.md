@@ -1,6 +1,13 @@
 ---
 title: "破解 Synthesia"
 description: "记录用 x64dbg 逆向分析钢琴瀑布流程序 Synthesia 并绕开其注册判断的完整过程。"
+date: 2025-05-15
+categories:
+  - Technique
+tags:
+  - 逆向
+  - 汇编语言
+  - 技术分享
 ---
 
 # 破解 Synthesia

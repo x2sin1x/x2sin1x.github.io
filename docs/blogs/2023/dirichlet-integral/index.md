@@ -1,6 +1,12 @@
 ---
 title: "Dirichlet 积分"
 description: "求解 Dirichlet 积分的三种方法：构造含参变量函数、化为二重积分与利用留数定理。"
+date: 2023-11-26
+categories:
+  - Knowledge
+tags:
+  - 数学
+  - 微积分
 ---
 
 # Dirichlet 积分

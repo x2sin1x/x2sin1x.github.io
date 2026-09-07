@@ -1,6 +1,14 @@
 ---
 title: "Towards Efficient Generative Large Language Model Serving: A Survey From Algorithms to Systems"
 description: "精读 CMU Catalyst 团队的 LLM 服务综述，从算法到系统梳理高效生成式大模型推理的研究脉络。"
+date: 2024-01-15
+categories:
+  - Academic
+tags:
+  - LLM
+  - 论文笔记
+  - 综述
+  - Serving
 ---
 
 # Towards Efficient Generative Large Language Model Serving: A Survey From Algorithms to Systems

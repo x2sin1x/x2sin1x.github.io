@@ -1,6 +1,14 @@
 ---
 title: "深度学习中的矩阵求导基础"
 description: "根据视频课程整理深度学习中的矩阵求导基础，涵盖梯度与方向导数、Jacobian 矩阵等内容。"
+date: 2023-12-06
+categories:
+  - Essay
+  - Knowledge
+tags:
+  - 深度学习
+  - 线性代数
+  - 多元函数微分学
 ---
 
 # 深度学习中的矩阵求导基础

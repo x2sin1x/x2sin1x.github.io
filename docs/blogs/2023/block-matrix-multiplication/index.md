@@ -1,6 +1,11 @@
 ---
 title: "分块矩阵的乘法"
 description: "讲解分块矩阵乘法的定义与运算规则，并联系大模型训练推理中的张量切分与 GPU 并行计算场景。"
+date: 2023-11-28
+categories:
+  - Knowledge
+tags:
+  - 线性代数
 ---
 
 # 分块矩阵的乘法
