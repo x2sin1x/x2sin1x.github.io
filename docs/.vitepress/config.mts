@@ -1,12 +1,12 @@
 // .vitepress/config.mts
-import { defineConfig } from "vitepress";
+import { defineConfig, type DefaultTheme } from "vitepress";
 import { defineTeekConfig } from "vitepress-theme-teek/config";
 // import { sidebar } from "./sidebar";
 
 /**
  * 深度优先查找侧边栏树中第一个带 link 的条目
  */
-function findFirstLink(item: any): string | undefined {
+function findFirstLink(item: DefaultTheme.SidebarItem): string | undefined {
   if (item.link) return item.link;
   for (const child of item.items ?? []) {
     const link = findFirstLink(child);
@@ -26,17 +26,23 @@ const teekConfig = defineTeekConfig({
   vitePlugins: {
     sidebarOption: {
       sidebarResolved: (sidebar) => {
-        const result: Record<string, any[]> = {};
+        if (Array.isArray(sidebar)) return sidebar;
+
+        const result: DefaultTheme.SidebarMulti = {};
         for (const [key, value] of Object.entries(sidebar)) {
           if (!splitSectionKeys.includes(key)) {
-            result[key] = value as any[];
+            result[key] = value;
             continue;
           }
           // 兼容两种生成结构：[{ text, items }] 包裹层 / 直接数组
-          const items = value as any[];
+          const items = Array.isArray(value) ? value : value.items;
+          const [rootItem] = items;
           const stacks =
-            items.length === 1 && !items[0].link && items[0].items?.length
-              ? items[0].items
+            items.length === 1 &&
+            rootItem &&
+            !rootItem.link &&
+            rootItem.items?.length
+              ? rootItem.items
               : items;
 
           for (const stack of stacks) {
@@ -47,21 +53,23 @@ const teekConfig = defineTeekConfig({
           }
 
           // 板块落地页只显示各子目录入口，不再展开完整目录树
-          result[key] = stacks
-            .map((stack) => {
+          result[key] = stacks.flatMap(
+            (stack): DefaultTheme.SidebarItem[] => {
               const stackKey = `${key}${stack.text}/`;
-              if (!stack.items?.length) return undefined;
+              if (!stack.items?.length) return [];
               // 优先用该子目录入口页（index.md / intro.md）的标题和链接，
               // 否则回退到目录下第一个页面
-              const indexItem = (stack.items ?? []).find((i: any) =>
-                /^(index|intro)$/.test(i.link?.slice(stackKey.length) ?? "")
+              const indexItem = (stack.items ?? []).find((item) =>
+                /^(index|intro)$/.test(item.link?.slice(stackKey.length) ?? "")
               );
-              return {
-                text: indexItem?.text || stack.text,
-                link: indexItem?.link || findFirstLink(stack),
-              };
-            })
-            .filter(Boolean) as any[];
+              const text = indexItem?.text || stack.text;
+              const link = indexItem?.link || findFirstLink(stack);
+              const sidebarItem: DefaultTheme.SidebarItem = {};
+              if (text) sidebarItem.text = text;
+              if (link) sidebarItem.link = link;
+              return [sidebarItem];
+            }
+          );
         }
         return result;
       },
@@ -86,6 +94,8 @@ export default defineConfig({
   description: "Bowen Zhou 的个人博客、技术笔记与学习资料",
   cleanUrls: true,
   markdown: {
+    // 启用数学公式渲染（行内 $...$ / $\int$，块级 $$...$$），依赖 markdown-it-mathjax3
+    math: true,
     config(md) {
       // 将 ```abcjs 代码块渲染为 AbcScore 组件（乐谱）
       const componentFences: Record<string, string> = {
@@ -94,6 +104,8 @@ export default defineConfig({
       const defaultFence = md.renderer.rules.fence;
       md.renderer.rules.fence = (tokens, idx, options, env, self) => {
         const token = tokens[idx];
+        if (!token) return "";
+
         const component = componentFences[token.info.trim()];
         if (!component) {
           return defaultFence
