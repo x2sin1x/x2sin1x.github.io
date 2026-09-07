@@ -22,7 +22,7 @@ function findFirstLink(item: DefaultTheme.SidebarItem): string | undefined {
 const splitSectionKeys = ["/tech-stack/", "/knowledge-planet/"];
 
 // 不展示侧边栏的板块（一级目录）：博客文章按时间流浏览，无需目录树
-const hideSidebarKeys = ["/blogs/"];
+const hideSidebarKeys = ["/posts/"];
 
 // Teek 主题配置
 const teekConfig = defineTeekConfig({
@@ -92,7 +92,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: "首页", link: "/" },
-      { text: "博客", link: "/blogs/", activeMatch: "/blogs/" },
+      { text: "博客", link: "/posts/", activeMatch: "/posts/" },
       {
         text: "技术栈",
         activeMatch: "/tech-stack/",
@@ -128,6 +128,11 @@ export default defineConfig({
   },
   title: "Bowen's Home",
   description: "Bowen Zhou 的个人博客、技术笔记与学习资料",
+  head: [
+    // 站点图标，与 vp.teek.top 保持一致
+    ["link", { rel: "icon", type: "image/svg+xml", href: "/teek-logo-mini.svg" }],
+    ["link", { rel: "icon", type: "image/png", href: "/teek-logo-mini.png" }],
+  ],
   cleanUrls: true,
   markdown: {
     // 启用数学公式渲染（行内 $...$ / $\int$，块级 $$...$$），依赖 markdown-it-mathjax3

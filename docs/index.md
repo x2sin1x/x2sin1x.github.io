@@ -10,7 +10,7 @@ hero:
   actions:
     - theme: brand
       text: 博客
-      link: /blogs/
+      link: /posts/
     - theme: alt
       text: 技术栈
       link: /tech-stack/
