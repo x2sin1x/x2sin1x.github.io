@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "快速排序"
 ---
 

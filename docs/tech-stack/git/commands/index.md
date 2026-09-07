@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "Git 常用命令一览"
 ---
 

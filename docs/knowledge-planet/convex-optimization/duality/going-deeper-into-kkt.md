@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "深入理解 KKT 条件"
 ---
 

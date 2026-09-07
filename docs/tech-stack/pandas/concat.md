@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "合并与连接"
 ---
 

@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "快速傅里叶变换"
 ---
 

@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "NumPy 广播机制"
 ---
 

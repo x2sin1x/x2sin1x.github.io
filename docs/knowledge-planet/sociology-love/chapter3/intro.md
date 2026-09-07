@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "新脚本里，爱的能力等于处理差异的能力"
 ---
 

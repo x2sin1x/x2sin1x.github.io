@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "大整数乘法"
 ---
 

@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "毛泽东著作导读"
 ---
 

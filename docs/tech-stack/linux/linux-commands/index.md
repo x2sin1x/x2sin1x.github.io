@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "Linux 常用命令一览"
 ---
 

@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "索引和选择"
 ---
 

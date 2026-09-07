@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "重塑和透视"
 ---
 

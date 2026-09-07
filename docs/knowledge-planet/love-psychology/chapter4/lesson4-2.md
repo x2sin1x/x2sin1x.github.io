@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "成人初显期理论"
 ---
 

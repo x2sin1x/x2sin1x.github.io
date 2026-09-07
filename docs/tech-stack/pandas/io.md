@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "输入输出"
 ---
 

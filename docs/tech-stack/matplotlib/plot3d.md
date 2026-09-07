@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "Matplotlib 三维绘图"
 ---
 

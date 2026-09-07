@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "等价的对偶问题"
 ---
 

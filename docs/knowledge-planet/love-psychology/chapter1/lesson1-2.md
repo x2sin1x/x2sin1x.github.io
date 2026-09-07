@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "柏拉图式爱情"
 ---
 

@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "亲密关系中的沟通不良问题"
 ---
 

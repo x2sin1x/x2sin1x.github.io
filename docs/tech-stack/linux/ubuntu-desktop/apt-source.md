@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "更换软件源"
 ---
 

@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "iPython: Python 交互式 Shell"
 ---
 

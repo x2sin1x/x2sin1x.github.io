@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: Python 魔法函数
 ---
 

@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "Matplotlib 绘图样式"
 ---
 

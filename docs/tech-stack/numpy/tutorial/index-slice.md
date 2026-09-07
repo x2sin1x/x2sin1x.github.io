@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "NumPy 索引与切片"
 ---
 

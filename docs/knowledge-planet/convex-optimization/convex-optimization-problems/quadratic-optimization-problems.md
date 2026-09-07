@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "二次优化问题"
 ---
 

@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "择一定理"
 ---
 

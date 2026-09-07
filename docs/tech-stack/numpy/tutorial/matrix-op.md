@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "NumPy 矩阵运算"
 ---
 

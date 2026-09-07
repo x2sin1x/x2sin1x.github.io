@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "恋爱冲突解决的策略选择"
 ---
 

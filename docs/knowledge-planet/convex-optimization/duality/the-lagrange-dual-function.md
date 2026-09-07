@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "Lagrange 对偶函数"
 ---
 

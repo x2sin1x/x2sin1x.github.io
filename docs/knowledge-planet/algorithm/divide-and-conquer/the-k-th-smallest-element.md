@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "求第 k 小元素"
 ---
 

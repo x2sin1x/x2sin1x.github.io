@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "0-1背包问题"
 ---
 

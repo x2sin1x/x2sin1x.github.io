@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "NumPy 随机数函数"
 ---
 

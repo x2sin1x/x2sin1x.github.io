@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "对数凹函数和对数凸函数"
 ---
 

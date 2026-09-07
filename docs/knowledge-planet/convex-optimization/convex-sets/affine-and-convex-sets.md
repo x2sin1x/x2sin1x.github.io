@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "仿射集合和凸集"
 ---
 

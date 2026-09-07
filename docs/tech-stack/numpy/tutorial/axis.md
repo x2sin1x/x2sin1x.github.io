@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "NumPy axis 参数"
 ---
 

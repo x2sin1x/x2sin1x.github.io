@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "Python 装饰器"
 ---
 

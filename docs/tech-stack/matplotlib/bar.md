@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "Matplotlib 条形图"
 ---
 

@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "Python 操作系统调用"
 ---
 

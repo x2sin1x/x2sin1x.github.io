@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "广义不等式约束"
 ---
 

@@ -137,3 +137,22 @@
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
+
+/**
+ * Component: AbcScore
+ * -------------------------------------------------------------------------- */
+
+.abc-score {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 24px 0;
+  padding: 16px;
+  border-radius: 8px;
+  color: var(--vp-c-text-1);
+  background-color: var(--vp-c-bg-soft);
+}
+
+.abc-score svg {
+  max-width: 100%;
+  height: auto;
+}

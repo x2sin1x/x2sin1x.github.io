@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "相似还是互补？"
 ---
 

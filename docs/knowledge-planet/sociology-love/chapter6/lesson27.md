@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "跳出家暴：别把控制当成爱"
 ---
 

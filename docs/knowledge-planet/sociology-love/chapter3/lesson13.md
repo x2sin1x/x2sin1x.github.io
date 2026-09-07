@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "如何减少价值判断带来的伤害？"
 ---
 

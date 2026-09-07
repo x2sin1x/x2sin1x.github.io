@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "福利、自由和德性：爱情不是零和游戏"
 ---
 

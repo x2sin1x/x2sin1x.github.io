@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "日久生倦：除了忍受和分手还有第三条路"
 ---
 

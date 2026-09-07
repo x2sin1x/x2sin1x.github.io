@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "婚姻里的代际关系：从两个人到两个家庭"
 ---
 

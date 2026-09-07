@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "拟凸函数"
 ---
 

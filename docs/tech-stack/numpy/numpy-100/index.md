@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "Numpy 100 题"
 ---
 

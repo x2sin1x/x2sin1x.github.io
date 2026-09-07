@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "弗洛姆：爱的艺术"
 ---
 

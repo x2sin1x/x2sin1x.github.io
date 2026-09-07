@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "亲密关系的集合：两性关系之外的亲密关系"
 ---
 

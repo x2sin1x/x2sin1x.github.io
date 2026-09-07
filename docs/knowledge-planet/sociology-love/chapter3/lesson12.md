@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "差异的价值判断：爱情死得快的本质"
 ---
 

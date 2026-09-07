@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: 列宁著作导读
 ---
 

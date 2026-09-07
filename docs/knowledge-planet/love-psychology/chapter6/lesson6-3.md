@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "爱的活力"
 ---
 

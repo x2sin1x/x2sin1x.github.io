@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "替代成本：今天，爱情让我获得什么？"
 ---
 

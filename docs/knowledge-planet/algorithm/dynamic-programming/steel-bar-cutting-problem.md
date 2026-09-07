@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "钢条切割"
 ---
 

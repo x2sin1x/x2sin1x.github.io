@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "哈夫曼编码"
 ---
 

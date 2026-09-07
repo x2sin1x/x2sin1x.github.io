@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "必备软件"
 ---
 

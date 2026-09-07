@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "扰动和灵敏度分析"
 ---
 

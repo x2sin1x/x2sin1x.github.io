@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "Git 使用教程"
 ---
 

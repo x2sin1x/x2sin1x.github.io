@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "亲密关系中的有效沟通"
 ---
 

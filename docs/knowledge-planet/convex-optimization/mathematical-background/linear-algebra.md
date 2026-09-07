@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "线性代数"
 ---
 

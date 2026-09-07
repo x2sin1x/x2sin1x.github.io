@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "分离与支撑超平面"
 ---
 

@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "底线和琐事的二八原则：长期关系里的冲突"
 ---
 

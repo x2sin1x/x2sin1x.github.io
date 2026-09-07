@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "Ubuntu Desktop 快速部署"
 ---
 

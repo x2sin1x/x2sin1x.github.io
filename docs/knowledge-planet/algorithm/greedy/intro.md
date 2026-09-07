@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "贪心算法"
 ---
 

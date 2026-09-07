@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "Series 对象"
 ---
 

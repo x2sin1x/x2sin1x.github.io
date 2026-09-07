@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "个体化时代的爱情：最终目的是自我成长"
 ---
 

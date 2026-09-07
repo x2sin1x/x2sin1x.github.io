@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "其他注意事项"
 ---
 

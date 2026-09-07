@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "知识星球"
 ---
 

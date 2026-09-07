@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "最小生成树"
 ---
 

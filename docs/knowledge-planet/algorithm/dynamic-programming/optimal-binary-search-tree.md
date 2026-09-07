@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "最优二叉搜索树"
 ---
 

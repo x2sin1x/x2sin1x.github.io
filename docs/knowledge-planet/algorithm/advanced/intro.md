@@ -1,4 +1,5 @@
 ---
+inHomePost: false
 title: "进阶知识"
 ---
 
