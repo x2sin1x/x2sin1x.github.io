@@ -5,6 +5,8 @@ weight: 55
 
 # MongoDB
 
+![](cover.jpg)
+
 本教程面向第一次接触 MongoDB 的开发者。你将使用 MongoDB 8.0、Docker、`mongosh` 和 PyMongo，完成一个可以查询、更新和统计任务的简单数据层。
 
 内容基线：MongoDB 8.0（Docker 镜像 `mongo:8.0`）、`mongosh` 2.x、PyMongo 4.x，最后核对时间为 2026 年 9 月。

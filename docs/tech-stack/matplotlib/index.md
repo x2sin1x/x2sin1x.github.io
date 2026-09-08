@@ -5,7 +5,7 @@ weight: 80
 
 # Matplotlib
 
-![](/tech-stack/matplotlib/logo2_compressed.svg)
+![](cover.jpg)
 
 ## Contents
 

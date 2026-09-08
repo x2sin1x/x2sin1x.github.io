@@ -5,7 +5,7 @@ weight: 50
 
 # Python
 
-![](cover.png)
+![](cover.jpg)
 
 ## Contents
 

@@ -5,7 +5,7 @@ weight: 70
 
 # Pandas
 
-![](pandas_white.svg)
+![](cover.jpg)
 
 Pandas 是 Python 中用于表格数据处理和分析的库。它提供带标签的一维 `Series`、二维 `DataFrame`，以及筛选、清洗、连接、聚合、时间序列和文件读写等工具。
 

@@ -306,6 +306,26 @@ export default defineConfig({
       },
     ],
     socialLinks: [{ icon: "github", link: "https://github.com/bowenEI" }],
+    // 内置本地搜索（基于 MiniSearch，构建时索引全站文本，无需外部服务）。
+    // Teek 主题继承默认主题 Layout 并已适配 VPNavBarSearch 样式，开箱即用
+    search: {
+      provider: "local",
+      options: {
+        locales: {
+          // 本站未启用 i18n，全部页面属于 root locale，这里汉化搜索 UI 文案
+          root: {
+            translations: {
+              button: { buttonText: "搜索文章", buttonAriaLabel: "搜索文章" },
+              modal: {
+                noResultsText: "未找到相关结果",
+                resetButtonTitle: "清除查询条件",
+                footer: { selectText: "选择", navigateText: "切换", closeText: "关闭" },
+              },
+            },
+          },
+        },
+      },
+    },
   },
   title: "Bowen's Home",
   description: "Bowen Zhou 的个人博客、技术笔记与学习资料",

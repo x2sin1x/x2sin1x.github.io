@@ -5,7 +5,7 @@ weight: 30
 
 # Git
 
-![](cover.png)
+![](cover.jpg)
 
 ## Contents
 

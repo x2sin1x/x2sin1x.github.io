@@ -15,11 +15,11 @@ data:
     link: /knowledge-planet/leninism/
     name: 列宁主义
     desc: 著作导读与理论要点
-  - img: /knowledge-planet/maoism/assets/imgs/cover.jpg
+  - img: /knowledge-planet/maoism/cover.jpg
     link: /knowledge-planet/maoism/
     name: 毛泽东思想
     desc: 著作导读与选集节选
-  - img: /knowledge-planet/marxism/assets/imgs/cover.png
+  - img: /knowledge-planet/marxism/cover.jpg
     link: /knowledge-planet/marxism/
     name: 马克思主义
     desc: 哲学、政治经济学与科学社会主义
@@ -37,11 +37,11 @@ data:
     link: /knowledge-planet/finance/
     name: 金融学
     desc: 货币银行学与金融市场
-  - img: /knowledge-planet/algorithm/cover.png
+  - img: /knowledge-planet/algorithm/cover.jpg
     link: /knowledge-planet/algorithm/
     name: 算法分析与设计
     desc: 分治、动态规划与贪心
-  - img: /knowledge-planet/convex-optimization/bv_cvxbook_cover.jpg
+  - img: /knowledge-planet/convex-optimization/cover.jpg
     link: /knowledge-planet/convex-optimization/
     name: 凸优化
     desc: 凸集、凸函数与优化问题
@@ -63,7 +63,7 @@ data:
     link: /knowledge-planet/love-psychology/
     name: 恋爱心理学
     desc: 亲密关系的心理学解读
-  - img: /knowledge-planet/music-theory/cover.svg
+  - img: /knowledge-planet/music-theory/cover.jpg
     link: /knowledge-planet/music-theory/
     name: 乐理
     desc: 音程、和弦与调式

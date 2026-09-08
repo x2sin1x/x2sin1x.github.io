@@ -5,7 +5,7 @@ weight: 60
 
 # NumPy
 
-![](cover.svg)
+![](cover.jpg)
 
 ## Contents
 

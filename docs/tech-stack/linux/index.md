@@ -5,7 +5,7 @@ weight: 40
 
 # Linux
 
-![](linux_logo_icon_171222.png)
+![](cover.jpg)
 
 ## Contents
 

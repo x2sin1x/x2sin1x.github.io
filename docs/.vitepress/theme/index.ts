@@ -2,6 +2,7 @@
 import type { Theme } from "vitepress";
 import Teek from "vitepress-theme-teek";
 import "vitepress-theme-teek/index.css";
+import "./style.css";
 import AbcScore from "./components/AbcScore.vue";
 import NavDropdownLink from "./components/NavDropdownLink.vue";
 
