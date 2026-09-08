@@ -1,5 +1,4 @@
 ---
-inHomePost: false
 title: "作业"
 ---
 

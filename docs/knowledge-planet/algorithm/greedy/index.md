@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "贪心算法"
+weight: 300
 ---
 
 # 贪心算法

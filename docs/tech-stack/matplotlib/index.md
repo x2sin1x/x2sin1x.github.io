@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Matplotlib
+weight: 80
 ---
 
 # Matplotlib

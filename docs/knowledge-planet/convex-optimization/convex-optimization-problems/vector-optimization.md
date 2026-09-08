@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "向量优化"
+weight: 370
 ---
 
 # 向量优化

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Python 包管理器"
+weight: 150
 ---
 
 # Python 包管理器

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Git
+weight: 30
 ---
 
 # Git

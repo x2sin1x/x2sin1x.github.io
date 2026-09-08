@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Python 装饰器"
+weight: 140
 ---
 
 # Python 装饰器

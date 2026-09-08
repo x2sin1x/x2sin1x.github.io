@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "合并与连接"
+weight: 50
 ---
 
 # 合并与连接

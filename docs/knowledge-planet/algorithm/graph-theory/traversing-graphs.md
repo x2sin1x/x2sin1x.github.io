@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "图的遍历"
+weight: 410
 ---
 
 # 图的遍历

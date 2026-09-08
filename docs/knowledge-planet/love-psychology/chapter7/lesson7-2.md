@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "亲密关系中的沟通不良问题"
+weight: 720
 ---
 
 # 亲密关系中的沟通不良问题

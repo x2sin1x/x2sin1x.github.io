@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "对偶锥与广义不等式"
+weight: 160
 ---
 
 # 对偶锥与广义不等式

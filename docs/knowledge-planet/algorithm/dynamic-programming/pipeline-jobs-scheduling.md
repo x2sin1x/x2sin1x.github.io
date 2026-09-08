@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "流水作业调度"
+weight: 250
 ---
 
 # 流水作业调度

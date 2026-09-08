@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "矩阵连乘"
+weight: 210
 ---
 
 # 矩阵连乘

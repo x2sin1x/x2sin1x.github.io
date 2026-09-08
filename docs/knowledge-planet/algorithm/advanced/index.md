@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "进阶知识"
+weight: 500
 ---
 
 # 进阶知识

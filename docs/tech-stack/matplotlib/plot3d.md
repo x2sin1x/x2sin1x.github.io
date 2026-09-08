@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Matplotlib 三维绘图"
+weight: 60
 ---
 
 # Matplotlib 三维绘图

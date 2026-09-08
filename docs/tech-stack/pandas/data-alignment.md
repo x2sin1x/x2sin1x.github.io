@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "数据对齐"
+weight: 40
 ---
 
 # 数据对齐

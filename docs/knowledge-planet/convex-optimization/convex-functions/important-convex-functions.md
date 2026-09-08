@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "重要凸函数"
+weight: 220
 ---
 
 # 重要凸函数

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: 列宁著作导读
+weight: 10
 ---
 
 # 列宁著作导读

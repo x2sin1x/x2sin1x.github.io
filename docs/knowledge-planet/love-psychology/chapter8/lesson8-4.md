@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "失恋的调适"
+weight: 840
 ---
 
 # 失恋的调适

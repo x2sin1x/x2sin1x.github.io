@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Lagrange 对偶函数"
+weight: 410
 ---
 
 # Lagrange 对偶函数

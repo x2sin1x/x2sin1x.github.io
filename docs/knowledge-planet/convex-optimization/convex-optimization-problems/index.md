@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "凸优化问题"
+weight: 300
 ---
 
 # 凸优化问题

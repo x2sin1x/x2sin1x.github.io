@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "恋爱管理"
+weight: 700
 ---
 
 # 恋爱管理

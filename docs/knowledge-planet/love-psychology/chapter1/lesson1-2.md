@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "柏拉图式爱情"
+weight: 120
 ---
 
 # 柏拉图式爱情

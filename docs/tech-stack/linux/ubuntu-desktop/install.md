@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "系统安装"
+weight: 110
 ---
 
 # 系统安装

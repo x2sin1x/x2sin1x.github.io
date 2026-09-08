@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "增删改查"
+weight: 30
 ---
 
 # 增删改查

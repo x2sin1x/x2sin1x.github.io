@@ -1,5 +1,4 @@
 ---
-inHomePost: false
 title: "文本数据"
 ---
 

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "爱还是喜欢？"
+weight: 520
 ---
 
 # 爱还是喜欢？

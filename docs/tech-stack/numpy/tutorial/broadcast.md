@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "NumPy 广播机制"
+weight: 60
 ---
 
 # NumPy 广播机制

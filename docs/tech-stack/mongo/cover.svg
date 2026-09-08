@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-label="MongoDB">
+  <rect width="900" height="500" fill="#00684A"/>
+  <g transform="translate(450 205)">
+    <path d="M0 -110 C 30 -60 44 -30 44 0 C 44 42 22 72 0 88 L 0 110 L -8 110 L -8 88 C -30 72 -44 42 -44 0 C -44 -30 -30 -60 0 -110 Z" fill="#00ED64"/>
+    <path d="M0 -60 L 0 80" stroke="#00684A" stroke-width="6" fill="none"/>
+  </g>
+  <text x="450" y="360" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="bold" fill="#ffffff" text-anchor="middle">MongoDB</text>
+  <text x="450" y="420" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#B8FFDD" text-anchor="middle">文档数据库与聚合查询</text>
+</svg>

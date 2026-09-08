@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Git 分支管理"
+weight: 50
 ---
 
 # Git 分支管理

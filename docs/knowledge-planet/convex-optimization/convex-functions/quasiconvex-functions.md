@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "拟凸函数"
+weight: 250
 ---
 
 # 拟凸函数

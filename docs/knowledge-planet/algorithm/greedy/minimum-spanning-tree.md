@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "最小生成树"
+weight: 330
 ---
 
 # 最小生成树

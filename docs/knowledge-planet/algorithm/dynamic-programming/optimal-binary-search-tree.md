@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "最优二叉搜索树"
+weight: 240
 ---
 
 # 最优二叉搜索树

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "广义不等式"
+weight: 490
 ---
 
 # 广义不等式

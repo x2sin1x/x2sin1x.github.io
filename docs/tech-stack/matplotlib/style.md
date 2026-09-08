@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Matplotlib 绘图样式"
+weight: 20
 ---
 
 # Matplotlib 绘图样式

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "瓦西列夫与《情爱论》"
+weight: 130
 ---
 
 # 瓦西列夫与《情爱论》

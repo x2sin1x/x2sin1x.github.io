@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "择一定理"
+weight: 480
 ---
 
 # 择一定理

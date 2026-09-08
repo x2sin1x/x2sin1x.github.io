@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "鞍点解释"
+weight: 440
 ---
 
 # 鞍点解释

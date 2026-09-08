@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "哈夫曼编码"
+weight: 320
 ---
 
 # 哈夫曼编码

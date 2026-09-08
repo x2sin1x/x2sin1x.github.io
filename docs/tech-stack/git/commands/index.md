@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Git 常用命令一览"
+weight: 100
 ---
 
 # Git 常用命令一览

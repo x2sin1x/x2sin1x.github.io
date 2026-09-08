@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "人生八阶段理论"
+weight: 410
 ---
 
 # 人生八阶段理论

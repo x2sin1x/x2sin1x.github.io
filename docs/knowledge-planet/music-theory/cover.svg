@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-label="乐理">
+  <rect width="900" height="500" fill="#1F2937"/>
+  <g fill="#F59E0B" font-family="Georgia, 'Times New Roman', serif">
+    <text x="450" y="235" font-size="150" text-anchor="middle">&#9835;</text>
+    <text x="330" y="180" font-size="70" text-anchor="middle">&#9834;</text>
+    <text x="575" y="185" font-size="56" text-anchor="middle">&#9833;</text>
+  </g>
+  <text x="450" y="360" font-family="'Songti SC', 'SimSun', serif" font-size="72" font-weight="bold" fill="#ffffff" text-anchor="middle">乐理</text>
+  <text x="450" y="420" font-family="'Songti SC', 'SimSun', serif" font-size="30" fill="#FCD9A0" text-anchor="middle">音程 · 和弦 · 调式 · 调性</text>
+</svg>

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "深入理解 KKT 条件"
+weight: 455
 ---
 
 # 深入理解 KKT 条件

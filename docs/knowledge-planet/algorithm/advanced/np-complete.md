@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "NP 完全理论"
+weight: 510
 ---
 
 # NP 完全理论

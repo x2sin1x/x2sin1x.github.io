@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "回溯剪枝"
+weight: 520
 ---
 
 # 回溯剪枝

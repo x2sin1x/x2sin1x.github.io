@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "导数"
+weight: 50
 ---
 
 # 导数

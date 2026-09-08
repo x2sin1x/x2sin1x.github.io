@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "活动选择"
+weight: 310
 ---
 
 # 活动选择

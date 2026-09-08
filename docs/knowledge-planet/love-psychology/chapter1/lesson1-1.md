@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "马克思主义爱情观"
+weight: 110
 ---
 
 # 马克思主义爱情观

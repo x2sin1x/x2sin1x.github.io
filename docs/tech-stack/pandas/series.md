@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Series 对象"
+weight: 10
 ---
 
 # Series 对象

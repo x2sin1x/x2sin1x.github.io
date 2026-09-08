@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "爱到尽头"
+weight: 800
 ---
 
 # 爱到尽头

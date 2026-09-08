@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "CUDA"
+weight: 150
 ---
 
 # CUDA

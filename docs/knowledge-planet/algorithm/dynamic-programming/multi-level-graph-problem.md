@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "多级图问题"
+weight: 270
 ---
 
 # 多级图问题

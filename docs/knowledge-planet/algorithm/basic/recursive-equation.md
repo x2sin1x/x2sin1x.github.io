@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "递归方程"
+weight: 30
 ---
 
 # 递归方程

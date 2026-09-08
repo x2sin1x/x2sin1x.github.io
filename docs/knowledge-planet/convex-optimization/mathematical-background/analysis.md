@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "分析"
+weight: 30
 ---
 
 # 分析

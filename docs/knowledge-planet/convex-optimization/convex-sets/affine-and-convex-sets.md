@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "仿射集合和凸集"
+weight: 110
 ---
 
 # 仿射集合和凸集

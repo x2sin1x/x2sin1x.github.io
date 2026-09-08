@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Matplotlib 子图"
+weight: 50
 ---
 
 # Matplotlib 子图

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "爱情理论"
+weight: 200
 ---
 
 # 爱情理论

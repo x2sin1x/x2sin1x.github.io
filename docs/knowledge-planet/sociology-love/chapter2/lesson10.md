@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "如何走出原生家庭进入爱情？"
+weight: 100
 ---
 
 # 如何走出原生家庭进入爱情？

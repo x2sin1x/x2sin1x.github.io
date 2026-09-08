@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "弗洛伊德：人格结构理论"
+weight: 210
 ---
 
 # 弗洛伊德：人格结构理论

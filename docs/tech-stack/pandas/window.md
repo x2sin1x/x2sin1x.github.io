@@ -1,5 +1,4 @@
 ---
-inHomePost: false
 title: "窗口计算"
 ---
 

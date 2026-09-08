@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "图的连通"
+weight: 420
 ---
 
 # 图的连通

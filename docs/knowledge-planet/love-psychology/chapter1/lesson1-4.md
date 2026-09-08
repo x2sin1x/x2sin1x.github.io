@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "爱情的本质与基础"
+weight: 140
 ---
 
 # 爱情的本质与基础

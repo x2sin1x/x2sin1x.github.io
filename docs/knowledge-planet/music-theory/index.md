@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "乐理"
+weight: 130
 ---
 
 # 乐理

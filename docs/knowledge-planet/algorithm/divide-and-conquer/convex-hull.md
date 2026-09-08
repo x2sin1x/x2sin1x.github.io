@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "寻找凸包"
+weight: 170
 ---
 
 # 寻找凸包

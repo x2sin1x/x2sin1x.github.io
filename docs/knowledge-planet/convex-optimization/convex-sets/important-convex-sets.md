@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "重要凸集"
+weight: 120
 ---
 
 # 重要凸集

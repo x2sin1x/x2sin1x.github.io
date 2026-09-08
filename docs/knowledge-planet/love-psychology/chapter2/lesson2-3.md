@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "弗洛姆：爱的艺术"
+weight: 230
 ---
 
 # 弗洛姆：爱的艺术

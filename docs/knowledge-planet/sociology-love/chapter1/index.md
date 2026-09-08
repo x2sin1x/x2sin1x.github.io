@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "我们这代人的爱情新问题"
+weight: 5
 ---
 
 # 我们这代人的爱情新问题

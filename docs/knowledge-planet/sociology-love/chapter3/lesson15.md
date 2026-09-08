@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "差异的价值：如何让差异促成爱？"
+weight: 150
 ---
 
 # 差异的价值：如何让差异促成爱？

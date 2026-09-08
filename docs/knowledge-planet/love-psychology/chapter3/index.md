@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "男女大不同"
+weight: 300
 ---
 
 # 男女大不同

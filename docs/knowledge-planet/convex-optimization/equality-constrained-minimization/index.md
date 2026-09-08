@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "等式约束优化"
+weight: 900
 ---
 
 # 等式约束优化

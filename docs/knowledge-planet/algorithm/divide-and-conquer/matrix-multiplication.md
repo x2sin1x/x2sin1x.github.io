@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "矩阵乘法"
+weight: 120
 ---
 
 # 矩阵乘法

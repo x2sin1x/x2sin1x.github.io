@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "理性说分手"
+weight: 830
 ---
 
 # 理性说分手

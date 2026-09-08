@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Python
+weight: 50
 ---
 
 # Python

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "基本性质"
+weight: 210
 ---
 
 # 基本性质

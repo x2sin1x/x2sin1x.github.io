@@ -1,5 +1,4 @@
 ---
-inHomePost: false
 title: "快速可视化"
 ---
 

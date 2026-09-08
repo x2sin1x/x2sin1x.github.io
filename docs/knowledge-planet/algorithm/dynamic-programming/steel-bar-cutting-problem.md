@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "钢条切割"
+weight: 220
 ---
 
 # 钢条切割

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "扰动和灵敏度分析"
+weight: 460
 ---
 
 # 扰动和灵敏度分析

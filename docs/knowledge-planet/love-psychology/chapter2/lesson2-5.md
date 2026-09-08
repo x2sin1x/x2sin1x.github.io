@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "艾斯沃斯：依恋理论"
+weight: 250
 ---
 
 # 艾斯沃斯：依恋理论

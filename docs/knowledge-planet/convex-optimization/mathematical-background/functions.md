@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "函数"
+weight: 40
 ---
 
 # 函数

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Lagrange 对偶问题"
+weight: 420
 ---
 
 # Lagrange 对偶问题

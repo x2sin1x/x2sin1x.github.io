@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "索引和选择"
+weight: 30
 ---
 
 # 索引和选择

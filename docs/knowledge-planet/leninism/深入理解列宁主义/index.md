@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "深入理解列宁主义"
+weight: 100
 ---
 
 # 深入理解列宁主义

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Python 函数
+weight: 60
 ---
 
 # Python 函数

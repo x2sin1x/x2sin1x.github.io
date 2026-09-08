@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "理解爱情"
+weight: 100
 ---
 
 # 理解爱情

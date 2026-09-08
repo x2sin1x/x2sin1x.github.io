@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "爱他人"
+weight: 1020
 ---
 
 # 爱他人

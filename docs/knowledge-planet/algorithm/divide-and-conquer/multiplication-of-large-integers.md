@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "大整数乘法"
+weight: 110
 ---
 
 # 大整数乘法

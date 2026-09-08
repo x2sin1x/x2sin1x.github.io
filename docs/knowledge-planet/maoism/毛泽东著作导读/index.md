@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "毛泽东著作导读"
+weight: 10
 ---
 
 # 毛泽东著作导读

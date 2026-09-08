@@ -1,5 +1,4 @@
 ---
-inHomePost: false
 title: "分类数据"
 ---
 

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: 列宁主义
+weight: 1
 ---
 
 # 列宁主义

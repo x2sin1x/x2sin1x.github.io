@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "图论算法"
+weight: 400
 ---
 
 # 图论算法

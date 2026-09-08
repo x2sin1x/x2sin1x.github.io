@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "爱的活力"
+weight: 630
 ---
 
 # 爱的活力

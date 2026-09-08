@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "必备软件"
+weight: 140
 ---
 
 # 必备软件

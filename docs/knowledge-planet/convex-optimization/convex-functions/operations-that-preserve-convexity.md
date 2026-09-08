@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "保凸运算"
+weight: 230
 ---
 
 # 保凸运算

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "基本概念"
+weight: 10
 ---
 
 # 基本概念

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "爱的创造"
+weight: 1040
 ---
 
 # 爱的创造

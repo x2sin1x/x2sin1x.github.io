@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Python 系统环境交互"
+weight: 170
 ---
 
 # Python 系统环境交互

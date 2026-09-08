@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: 金融学
+weight: 90
 ---
 
 # 金融学

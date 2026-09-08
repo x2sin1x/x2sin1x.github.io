@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "输入输出"
+weight: 70
 ---
 
 # 输入输出

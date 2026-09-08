@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "两性在恋爱中的不同表现"
+weight: 330
 ---
 
 # 两性在恋爱中的不同表现

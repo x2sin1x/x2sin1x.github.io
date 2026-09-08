@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Git 标签管理"
+weight: 60
 ---
 
 # Git 标签管理

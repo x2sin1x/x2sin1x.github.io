@@ -1,5 +1,4 @@
 ---
-inHomePost: false
 title: "时间序列"
 ---
 

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "范数"
+weight: 20
 ---
 
 # 范数

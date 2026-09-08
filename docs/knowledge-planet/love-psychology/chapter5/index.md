@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "恋爱的亲密关系"
+weight: 500
 ---
 
 # 恋爱的亲密关系

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: 马克思主义
+weight: 10
 ---
 
 # 马克思主义

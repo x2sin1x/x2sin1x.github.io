@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "斯滕伯格：爱情三角形"
+weight: 260
 ---
 
 # 斯滕伯格：爱情三角形

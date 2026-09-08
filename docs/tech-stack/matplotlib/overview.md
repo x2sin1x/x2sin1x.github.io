@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Matplotlib 概述"
+weight: 10
 ---
 
 # Matplotlib 概述

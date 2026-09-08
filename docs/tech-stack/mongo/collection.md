@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "集合操作"
+weight: 20
 ---
 
 # 集合操作

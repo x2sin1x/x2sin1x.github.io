@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Python 面向对象
+weight: 80
 ---
 
 # Python 面向对象

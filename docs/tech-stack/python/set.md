@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Python 集合
+weight: 40
 ---
 
 # Python 集合

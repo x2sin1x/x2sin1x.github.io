@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "分治算法"
+weight: 100
 ---
 
 # 分治算法

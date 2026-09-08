@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "如何减少价值判断带来的伤害？"
+weight: 130
 ---
 
 # 如何减少价值判断带来的伤害？

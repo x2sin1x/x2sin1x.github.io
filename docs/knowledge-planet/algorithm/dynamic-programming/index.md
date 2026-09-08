@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "动态规划"
+weight: 200
 ---
 
 # 动态规划

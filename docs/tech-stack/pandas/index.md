@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Pandas
+weight: 70
 ---
 
 # Pandas

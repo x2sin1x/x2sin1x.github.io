@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Python 列表
+weight: 10
 ---
 
 # Python 列表

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "几何解释"
+weight: 430
 ---
 
 # 几何解释

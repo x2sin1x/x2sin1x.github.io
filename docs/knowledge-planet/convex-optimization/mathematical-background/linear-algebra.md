@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "线性代数"
+weight: 60
 ---
 
 # 线性代数

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Matplotlib 二维绘图"
+weight: 30
 ---
 
 # Matplotlib 二维绘图

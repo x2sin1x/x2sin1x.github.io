@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "好好谈恋爱"
+weight: 600
 ---
 
 # 好好谈恋爱

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "相似还是互补？"
+weight: 540
 ---
 
 # 相似还是互补？

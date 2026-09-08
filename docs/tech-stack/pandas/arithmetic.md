@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "基本运算"
+weight: 35
 ---
 
 # 基本运算

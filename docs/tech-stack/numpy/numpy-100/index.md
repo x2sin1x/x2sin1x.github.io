@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Numpy 100 题"
+weight: 100
 ---
 
 # Numpy 100 题

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "最长公共子序列"
+weight: 230
 ---
 
 # 最长公共子序列

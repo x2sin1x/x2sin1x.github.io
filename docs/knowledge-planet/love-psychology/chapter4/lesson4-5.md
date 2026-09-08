@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "大学生的恋爱动机"
+weight: 450
 ---
 
 # 大学生的恋爱动机

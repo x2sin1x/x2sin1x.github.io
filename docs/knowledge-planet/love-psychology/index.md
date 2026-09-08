@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "恋爱心理学"
+weight: 105
 ---
 
 # 恋爱心理学

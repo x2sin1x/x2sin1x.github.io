@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Python 字符串
+weight: 50
 ---
 
 # Python 字符串

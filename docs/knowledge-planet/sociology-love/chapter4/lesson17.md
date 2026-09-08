@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "权责利统一：区分你、我、我们"
+weight: 170
 ---
 
 # 权责利统一：区分你、我、我们

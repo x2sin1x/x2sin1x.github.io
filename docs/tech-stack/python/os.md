@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Python 操作系统调用"
+weight: 130
 ---
 
 # Python 操作系统调用

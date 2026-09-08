@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: NumPy
+weight: 60
 ---
 
 # NumPy

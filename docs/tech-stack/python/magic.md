@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Python 魔法函数
+weight: 70
 ---
 
 # Python 魔法函数

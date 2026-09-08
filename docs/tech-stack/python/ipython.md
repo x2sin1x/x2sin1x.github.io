@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "iPython: Python 交互式 Shell"
+weight: 120
 ---
 
 # iPython: Python 交互式 Shell

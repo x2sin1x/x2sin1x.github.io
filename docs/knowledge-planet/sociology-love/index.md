@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "沈奕斐的社会学爱情思维课"
+weight: 100
 ---
 
 # 沈奕斐的社会学爱情思维课

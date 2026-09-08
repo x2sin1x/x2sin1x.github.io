@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "快速排序"
+weight: 130
 ---
 
 # 快速排序

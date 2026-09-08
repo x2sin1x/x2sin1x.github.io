@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "NumPy axis 参数"
+weight: 50
 ---
 
 # NumPy axis 参数

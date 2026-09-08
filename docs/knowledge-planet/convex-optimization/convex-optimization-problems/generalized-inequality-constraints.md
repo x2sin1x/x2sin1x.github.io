@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "广义不等式约束"
+weight: 360
 ---
 
 # 广义不等式约束

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "MongoDB"
+weight: 55
 ---
 
 # MongoDB

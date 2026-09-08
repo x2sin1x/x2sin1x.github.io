@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "爱自己"
+weight: 1010
 ---
 
 # 爱自己

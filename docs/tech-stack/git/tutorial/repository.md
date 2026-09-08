@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Git 本地仓库"
+weight: 30
 ---
 
 # Git 本地仓库

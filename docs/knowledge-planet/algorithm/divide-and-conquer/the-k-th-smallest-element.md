@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "求第 k 小元素"
+weight: 140
 ---
 
 # 求第 k 小元素

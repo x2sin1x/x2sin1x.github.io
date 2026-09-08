@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "爱的装备"
+weight: 550
 ---
 
 # 爱的装备

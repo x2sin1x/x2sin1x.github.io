@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Python 异常处理"
+weight: 65
 ---
 
 # Python 异常处理

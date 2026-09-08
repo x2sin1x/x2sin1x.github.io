@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "拓扑排序"
+weight: 450
 ---
 
 # 拓扑排序

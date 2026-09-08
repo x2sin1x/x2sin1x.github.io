@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "NumPy 随机数函数"
+weight: 30
 ---
 
 # NumPy 随机数函数

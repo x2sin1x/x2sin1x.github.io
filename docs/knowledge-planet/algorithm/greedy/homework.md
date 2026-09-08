@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "作业"
+weight: 340
 ---
 
 # 作业

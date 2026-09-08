@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "价值底线：什么是“三观一致”？"
+weight: 140
 ---
 
 # 价值底线：什么是“三观一致”？

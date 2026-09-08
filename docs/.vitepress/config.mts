@@ -1,4 +1,6 @@
 // .vitepress/config.mts
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import { defineConfig, type DefaultTheme } from "vitepress";
 import { defineTeekConfig } from "vitepress-theme-teek/config";
 // import { sidebar } from "./sidebar";
@@ -54,6 +56,64 @@ function mergeIndexIntoGroups(items: DefaultTheme.SidebarItem[]): DefaultTheme.S
  */
 const splitSectionKeys = ["/tech-stack/", "/knowledge-planet/"];
 
+/**
+ * docs 目录：优先从仓库根目录推断，兼容直接以 docs/ 为工作目录启动 VitePress 的情况
+ */
+const docsDir = existsSync(join(process.cwd(), "docs", ".vitepress"))
+  ? join(process.cwd(), "docs")
+  : process.cwd();
+
+/**
+ * 读取页面 frontmatter 中的 weight 字段（沿用旧 Hugo 站点的排序约定），用于侧边栏排序。
+ * 侧边栏插件 vitepress-plugin-sidebar-resolve 原生只支持 sidebarSort 字段，
+ * 这里在 sidebarResolved 钩子里自行按 weight 排序，文件名与 URL 无需加入序号前缀
+ */
+const weightCache = new Map<string, number | undefined>();
+const NO_WEIGHT = Number.MAX_SAFE_INTEGER;
+
+function readPageWeight(link: string): number {
+  // 兼容 cleanUrls 下带 / 不带 .md 的链接形式，目录链接回退到其 index.md
+  const clean = link.replace(/\.html$/, "").replace(/\/+$/, "");
+  const candidates = [join(docsDir, `${clean}.md`), join(docsDir, clean, "index.md")];
+  for (const filePath of candidates) {
+    if (weightCache.has(filePath)) {
+      const cached = weightCache.get(filePath);
+      if (cached !== undefined) return cached;
+      continue;
+    }
+    let weight: number | undefined;
+    try {
+      const frontmatter = readFileSync(filePath, "utf-8").match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1];
+      const raw = frontmatter?.match(/^weight:\s*(\d+)\s*$/m)?.[1];
+      if (raw) weight = Number(raw);
+    } catch {
+      // 文件不存在或不可读时按无 weight 处理
+    }
+    weightCache.set(filePath, weight);
+    if (weight !== undefined) return weight;
+  }
+  return NO_WEIGHT;
+}
+
+/**
+ * 同层侧边栏条目按 weight 升序稳定排序，无 weight 的条目排在有 weight 的条目之后
+ */
+function sortByWeight(items: DefaultTheme.SidebarItem[]): DefaultTheme.SidebarItem[] {
+  return items
+    .map((item, index) => ({ item, index, weight: item.link ? readPageWeight(item.link) : NO_WEIGHT }))
+    .sort((a, b) => a.weight - b.weight || a.index - b.index)
+    .map(({ item }) => item);
+}
+
+/**
+ * 递归按 weight 排序侧边栏树的每一层
+ */
+function sortTreeByWeight(items: DefaultTheme.SidebarItem[]): DefaultTheme.SidebarItem[] {
+  return sortByWeight(
+    items.map((item) => (item.items?.length ? { ...item, items: sortTreeByWeight(item.items) } : item))
+  );
+}
+
 // 博客板块（一级目录）：侧边栏展示为 <year>/<slug> 两级结构
 const postsKey = "/posts/";
 
@@ -89,6 +149,32 @@ function buildPostsSidebar(items: DefaultTheme.SidebarItem[]): DefaultTheme.Side
 
 // Teek 主题配置
 const teekConfig = defineTeekConfig({
+  // 自定义 markdown 渲染：必须放在 defineTeekConfig 的 markdown.config 里，
+  // Teek 会先注册自身的 markdown 扩展（imgCard / shareCard / navCard / note 容器等），
+  // 再回调本函数；若写在 defineConfig 的 markdown.config 会因 extends 合并时函数覆盖
+  // 导致 Teek 的所有 markdown 扩展失效
+  markdown: {
+    config(md) {
+      // 将 ```abcjs 代码块渲染为 AbcScore 组件（乐谱）
+      const componentFences: Record<string, string> = {
+        abcjs: "AbcScore",
+      };
+      const defaultFence = md.renderer.rules.fence;
+      md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+        const token = tokens[idx];
+        if (!token) return "";
+
+        const component = componentFences[token.info.trim()];
+        if (!component) {
+          return defaultFence
+            ? defaultFence(tokens, idx, options, env, self)
+            : self.renderToken(tokens, idx, options);
+        }
+        const source = Buffer.from(token.content, "utf8").toString("base64");
+        return `<${component} source="${source}" />\n`;
+      };
+    },
+  },
   vitePlugins: {
     // 将技术栈 / 知识星球排除在主题的文章数据集（vitepress-plugin-file-content-loader）之外：
     // 这些板块不是博客文章，此前靠 frontmatter 的 inHomePost: false 只能挡住首页文章列表渲染，
@@ -126,11 +212,12 @@ const teekConfig = defineTeekConfig({
             // 分组项的 text 即子目录名（插件默认不取 md 标题），拼出侧边栏 key
             const stackKey = `${key}${stack.text}/`;
             if (!stack.items?.length) continue;
-            result[stackKey] = mergeIndexIntoGroups([stack]);
+            result[stackKey] = sortTreeByWeight(mergeIndexIntoGroups([stack]));
           }
 
-          // 板块落地页只显示各子目录入口，不再展开完整目录树
-          result[key] = stacks.flatMap(
+          // 板块落地页只显示各子目录入口，不再展开完整目录树（按各子目录 index.md 的 weight 排序）
+          result[key] = sortByWeight(
+            stacks.flatMap(
             (stack): DefaultTheme.SidebarItem[] => {
               const stackKey = `${key}${stack.text}/`;
               if (!stack.items?.length) return [];
@@ -146,7 +233,7 @@ const teekConfig = defineTeekConfig({
               if (link) sidebarItem.link = link;
               return [sidebarItem];
             }
-          );
+          ));
         }
         return result;
       },
@@ -161,7 +248,24 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: "首页", link: "/" },
-      { text: "博客", link: "/posts/", activeMatch: "/posts/" },
+      // “博客”使用自定义 NavDropdownLink 组件（见 theme/index.ts）：
+      // 单击标题进入博客总览页，hover 展开功能页子菜单。
+      // 功能页 permalink 定义在 docs/@pages/ 下的 frontmatter 中；由于 permalink 仅在客户端重定向，
+      // activeMatch 需同时匹配 @pages 源文件路径，才能在功能页上正确高亮
+      {
+        component: "NavDropdownLink",
+        props: {
+          text: "博客",
+          link: "/posts/",
+          activeMatch: "/posts/",
+          items: [
+            { text: "分类", link: "/categories", activeMatch: "^/(categories|@pages/categoriesPage)" },
+            { text: "标签", link: "/tags", activeMatch: "^/(tags|@pages/tagsPage)" },
+            { text: "归档", link: "/archives", activeMatch: "^/(archives|@pages/archivesPage)" },
+            { text: "清单", link: "/articleOverview", activeMatch: "^/(articleOverview|@pages/articleOverviewPage)" },
+          ],
+        },
+      },
       // “技术栈”/“知识星球”使用自定义 NavDropdownLink 组件（见 theme/index.ts）：
       // 单击标题进入总览页，hover 展开子菜单（不再单独放“总览”项）
       {
@@ -214,25 +318,5 @@ export default defineConfig({
   markdown: {
     // 启用数学公式渲染（行内 $...$ / $\int$，块级 $$...$$），依赖 markdown-it-mathjax3
     math: true,
-    config(md) {
-      // 将 ```abcjs 代码块渲染为 AbcScore 组件（乐谱）
-      const componentFences: Record<string, string> = {
-        abcjs: "AbcScore",
-      };
-      const defaultFence = md.renderer.rules.fence;
-      md.renderer.rules.fence = (tokens, idx, options, env, self) => {
-        const token = tokens[idx];
-        if (!token) return "";
-
-        const component = componentFences[token.info.trim()];
-        if (!component) {
-          return defaultFence
-            ? defaultFence(tokens, idx, options, env, self)
-            : self.renderToken(tokens, idx, options);
-        }
-        const source = Buffer.from(token.content, "utf8").toString("base64");
-        return `<${component} source="${source}" />\n`;
-      };
-    },
   },
 });

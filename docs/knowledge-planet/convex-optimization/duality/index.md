@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "对偶"
+weight: 400
 ---
 
 # 对偶

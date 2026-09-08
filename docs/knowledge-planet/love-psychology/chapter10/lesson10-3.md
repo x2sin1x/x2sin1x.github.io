@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "爱的能力"
+weight: 1030
 ---
 
 # 爱的能力

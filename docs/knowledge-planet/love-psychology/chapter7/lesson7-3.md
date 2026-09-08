@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "亲密关系中的有效沟通"
+weight: 730
 ---
 
 # 亲密关系中的有效沟通

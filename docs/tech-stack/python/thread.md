@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Python 多线程编程
+weight: 90
 ---
 
 # Python 多线程编程

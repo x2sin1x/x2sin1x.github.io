@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Matplotlib 条形图"
+weight: 40
 ---
 
 # Matplotlib 条形图

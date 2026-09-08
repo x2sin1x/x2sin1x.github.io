@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "恋爱冲突解决的策略选择"
+weight: 750
 ---
 
 # 恋爱冲突解决的策略选择

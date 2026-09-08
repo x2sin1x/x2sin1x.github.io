@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Linux
+weight: 40
 ---
 
 # Linux

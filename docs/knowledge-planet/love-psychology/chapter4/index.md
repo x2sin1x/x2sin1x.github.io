@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "大学生的爱情"
+weight: 400
 ---
 
 # 大学生的爱情

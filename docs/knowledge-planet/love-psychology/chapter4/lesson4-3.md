@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "大学生的自我意识"
+weight: 430
 ---
 
 # 大学生的自我意识

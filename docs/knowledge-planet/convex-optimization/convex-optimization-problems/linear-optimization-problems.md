@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "线性规划问题"
+weight: 330
 ---
 
 # 线性规划问题

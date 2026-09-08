@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "NumPy 矩阵运算"
+weight: 40
 ---
 
 # NumPy 矩阵运算

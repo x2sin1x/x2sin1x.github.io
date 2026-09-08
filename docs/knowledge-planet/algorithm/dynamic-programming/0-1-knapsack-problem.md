@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "0-1背包问题"
+weight: 260
 ---
 
 # 0-1背包问题

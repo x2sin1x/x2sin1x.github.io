@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "暗恋"
+weight: 640
 ---
 
 # 暗恋

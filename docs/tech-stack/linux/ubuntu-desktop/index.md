@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Ubuntu Desktop 快速部署"
+weight: 100
 ---
 
 # Ubuntu Desktop 快速部署

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "数学基础"
+weight: 10
 ---
 
 # 数学基础

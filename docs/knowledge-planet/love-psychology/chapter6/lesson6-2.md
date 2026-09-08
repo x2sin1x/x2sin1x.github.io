@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "对不爱说不"
+weight: 620
 ---
 
 # 对不爱说不

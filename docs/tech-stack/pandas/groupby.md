@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "分类汇总"
+weight: 60
 ---
 
 # 分类汇总

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "最优性条件"
+weight: 450
 ---
 
 # 最优性条件

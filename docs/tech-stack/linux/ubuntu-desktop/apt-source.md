@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "更换软件源"
+weight: 120
 ---
 
 # 更换软件源

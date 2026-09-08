@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Python API"
+weight: 50
 ---
 
 # Python API

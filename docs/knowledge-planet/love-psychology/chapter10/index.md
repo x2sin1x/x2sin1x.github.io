@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "祝福爱情"
+weight: 1000
 ---
 
 # 祝福爱情

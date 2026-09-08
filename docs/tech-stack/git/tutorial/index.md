@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "Git 使用教程"
+weight: 10
 ---
 
 # Git 使用教程

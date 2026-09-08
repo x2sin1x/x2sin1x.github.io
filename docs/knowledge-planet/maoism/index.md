@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "毛泽东思想"
+weight: 1
 ---
 
 # 毛泽东思想

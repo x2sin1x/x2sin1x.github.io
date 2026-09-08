@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "优化问题"
+weight: 310
 ---
 
 # 优化问题

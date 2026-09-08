@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "聚合操作"
+weight: 40
 ---
 
 # 聚合操作

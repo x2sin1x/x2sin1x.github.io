@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: 算法分析与设计
+weight: 110
 ---
 
 # 算法分析与设计

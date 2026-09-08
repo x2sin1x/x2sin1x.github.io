@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "恋爱是一种亲密关系"
+weight: 510
 ---
 
 # 恋爱是一种亲密关系

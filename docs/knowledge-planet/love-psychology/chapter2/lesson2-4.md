@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "约翰·李：爱情彩虹图"
+weight: 240
 ---
 
 # 约翰·李：爱情彩虹图

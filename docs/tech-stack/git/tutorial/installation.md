@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "安装 Git"
+weight: 20
 ---
 
 # 安装 Git

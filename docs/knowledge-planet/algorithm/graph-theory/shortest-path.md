@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "最短路径"
+weight: 430
 ---
 
 # 最短路径

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "NumPy ndarray 对象"
+weight: 10
 ---
 
 # NumPy ndarray 对象

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "最近点对"
+weight: 150
 ---
 
 # 最近点对

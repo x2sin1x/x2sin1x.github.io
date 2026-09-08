@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "NumPy 索引与切片"
+weight: 20
 ---
 
 # NumPy 索引与切片

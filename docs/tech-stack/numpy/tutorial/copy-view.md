@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "NumPy 副本与视图"
+weight: 70
 ---
 
 # NumPy 副本与视图

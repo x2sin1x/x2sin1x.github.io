@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "广义不等式的单调性和凸性"
+weight: 270
 ---
 
 # 广义不等式的单调性和凸性

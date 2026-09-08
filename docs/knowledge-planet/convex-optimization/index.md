@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "凸优化"
+weight: 120
 ---
 
 # 凸优化

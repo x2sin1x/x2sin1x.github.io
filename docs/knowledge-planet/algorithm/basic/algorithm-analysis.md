@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "算法分析"
+weight: 20
 ---
 
 # 算法分析

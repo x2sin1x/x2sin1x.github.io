@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "其他注意事项"
+weight: 200
 ---
 
 # 其他注意事项

@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "几何规划"
+weight: 350
 ---
 
 # 几何规划

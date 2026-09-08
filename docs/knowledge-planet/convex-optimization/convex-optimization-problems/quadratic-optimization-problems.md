@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "二次优化问题"
+weight: 340
 ---
 
 # 二次优化问题

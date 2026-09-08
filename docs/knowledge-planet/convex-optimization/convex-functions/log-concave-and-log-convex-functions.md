@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "对数凹函数和对数凸函数"
+weight: 260
 ---
 
 # 对数凹函数和对数凸函数

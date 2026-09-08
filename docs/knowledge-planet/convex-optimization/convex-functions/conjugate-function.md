@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "共轭函数"
+weight: 240
 ---
 
 # 共轭函数

@@ -1,5 +1,4 @@
 ---
-inHomePost: false
 title: "知识星球"
 ---
 
@@ -7,30 +6,66 @@ title: "知识星球"
 
 ## 追求和把握真理的奥秘
 
-<CardGrid>
-
-<SiteCard title="马克思主义" link="/knowledge-planet/marxism/" icon="communism" />
-  <SiteCard title="列宁主义" link="/knowledge-planet/leninism/" icon="communism" />
-  <SiteCard title="毛泽东思想" link="/knowledge-planet/maoism/" icon="communism" />
-
-</CardGrid>
+::: imgCard
+```yaml
+config:
+  target: _self
+data:
+  - img: /knowledge-planet/leninism/cover.jpg
+    link: /knowledge-planet/leninism/
+    name: 列宁主义
+    desc: 著作导读与理论要点
+  - img: /knowledge-planet/maoism/assets/imgs/cover.jpg
+    link: /knowledge-planet/maoism/
+    name: 毛泽东思想
+    desc: 著作导读与选集节选
+  - img: /knowledge-planet/marxism/assets/imgs/cover.png
+    link: /knowledge-planet/marxism/
+    name: 马克思主义
+    desc: 哲学、政治经济学与科学社会主义
+```
+:::
 
 ## 数理与专业
 
-<CardGrid>
-
-<SiteCard title="算法分析与设计" link="/knowledge-planet/algorithm/" icon="book-open" />
-  <SiteCard title="凸优化" link="/knowledge-planet/convex-optimization/" icon="book-open" />
-  <SiteCard title="金融" link="/knowledge-planet/finance/" icon="book-open" />
-
-</CardGrid>
+::: imgCard
+```yaml
+config:
+  target: _self
+data:
+  - img: /knowledge-planet/finance/cover.jpg
+    link: /knowledge-planet/finance/
+    name: 金融学
+    desc: 货币银行学与金融市场
+  - img: /knowledge-planet/algorithm/cover.png
+    link: /knowledge-planet/algorithm/
+    name: 算法分析与设计
+    desc: 分治、动态规划与贪心
+  - img: /knowledge-planet/convex-optimization/bv_cvxbook_cover.jpg
+    link: /knowledge-planet/convex-optimization/
+    name: 凸优化
+    desc: 凸集、凸函数与优化问题
+```
+:::
 
 ## 人文与生活
 
-<CardGrid>
-
-<SiteCard title="恋爱心理学" link="/knowledge-planet/love-psychology/" icon="heart" />
-  <SiteCard title="恋爱社会学" link="/knowledge-planet/sociology-love/" icon="heart" />
-  <SiteCard title="乐理" link="/knowledge-planet/music-theory/" icon="treble-clef" />
-
-</CardGrid>
+::: imgCard
+```yaml
+config:
+  target: _self
+data:
+  - img: /knowledge-planet/sociology-love/cover.jpg
+    link: /knowledge-planet/sociology-love/
+    name: 沈奕斐的社会学爱情思维课
+    desc: 社会学视角下的爱情思维
+  - img: /knowledge-planet/love-psychology/cover.jpg
+    link: /knowledge-planet/love-psychology/
+    name: 恋爱心理学
+    desc: 亲密关系的心理学解读
+  - img: /knowledge-planet/music-theory/cover.svg
+    link: /knowledge-planet/music-theory/
+    name: 乐理
+    desc: 音程、和弦与调式
+```
+:::

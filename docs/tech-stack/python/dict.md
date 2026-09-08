@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: Python 字典
+weight: 30
 ---
 
 # Python 字典

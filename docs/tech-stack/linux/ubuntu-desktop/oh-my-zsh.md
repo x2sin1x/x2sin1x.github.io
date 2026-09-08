@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "终端美化"
+weight: 130
 ---
 
 # 终端美化

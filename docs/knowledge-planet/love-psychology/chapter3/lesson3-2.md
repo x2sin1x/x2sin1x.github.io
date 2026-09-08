@@ -1,6 +1,6 @@
 ---
-inHomePost: false
 title: "男女性别差异"
+weight: 320
 ---
 
 # 男女性别差异
