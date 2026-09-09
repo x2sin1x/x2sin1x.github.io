@@ -1,8 +1,8 @@
 ---
 title: "毛泽东思想"
+date: 2021-07-17T19:34:11+08:00
 weight: 1
 ---
-
 # 毛泽东思想
 
 ![](./assets/imgs/cover.jpg)

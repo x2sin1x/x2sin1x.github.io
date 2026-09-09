@@ -1,8 +1,8 @@
 ---
 title: Python 面向对象
+date: '2021-01-01'
 weight: 80
 ---
-
 # Python 面向对象
 
 ## 类与对象

@@ -1,8 +1,8 @@
 ---
 title: "Python API"
+date: 2024-03-20T01:46:30+08:00
 weight: 50
 ---
-
 # Python API
 
 本页把前几页的 `mongosh` 命令改写成 Python 程序。程序使用 PyMongo 的同步 API，连接本地 MongoDB 8.0，写入任务数据，查询未完成任务，并运行一个聚合统计。

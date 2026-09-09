@@ -1,8 +1,8 @@
 ---
 title: "凸优化"
+date: 2021-10-24T22:19:21+08:00
 weight: 120
 ---
-
 # 凸优化
 
 ![](bv_cvxbook_cover.jpg)

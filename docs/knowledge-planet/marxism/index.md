@@ -1,8 +1,8 @@
 ---
 title: 马克思主义
+date: '2021-01-24'
 weight: 10
 ---
-
 # 马克思主义
 
 ![](/knowledge-planet/marxism/assets/imgs/cover.png)

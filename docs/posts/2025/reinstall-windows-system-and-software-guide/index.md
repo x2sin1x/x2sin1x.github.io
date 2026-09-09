@@ -76,6 +76,7 @@ reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a
 | :---------------: | :---------------------------------------------------------------: |
 |[VS Code](https://code.visualstudio.com/)|强大轻量级 IDE + Agent Coder|
 |~~[Trae](https://www.trae.cn/)~~|字节跳动 Agent Coder|
+|[WorkBuddy](https://copilot.tencent.com/work/)|腾讯出品小龙虾|
 |[Microsoft Office](https://www.microsoft.com/zh-cn/microsoft-365/)|办公软件全家桶|
 |[Office Tool Plus](https://otp.landian.vip/zh-cn/)|快速自定义安装 Office 软件|
 |[Clash Verge Rev](https://www.clashverge.dev/)|基于 Clash Meta (Mihomo) 内核的 Clash 客户端|
@@ -94,56 +95,10 @@ reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a
 |~~[Drawnix](https://drawnix.com/)~~|开源白板工具|
 |[PotPlayer](https://potplayer.daum.net/)|全能视频播放器|
 |[PowerToys](https://learn.microsoft.com/zh-cn/windows/powertoys/)|Windows 系统官方外挂|
-|[uTools](https://www.u-tools.cn/)|功能丰富的插件应用生态|
+|~~[uTools](https://www.u-tools.cn/)~~|功能丰富的插件应用生态|
 |~~[OpenFiles](https://openfiles.pansysoft.app/)~~|~~开源万能格式文件查看器~~|
 |~~[Allen Explorer](https://www.allenxiang.com/)~~|类 Chrome 的强大文件资源管理器|
 |[Inkscape](https://inkscape.org/)|免费矢量图编辑器|
-
-## Code & Work Agent
-
-### ChatGPT & Codex
-
-OpenAI 官方推荐使用 `npm` 安装 [Codex CLI](https://developers.openai.com/codex/quickstart?setup=cli)。
-
-```bash
-npm i -g @openai/codex
-```
-
-如要通过 API Key 接入非 OpenAI 模型，配置 `~/.codex/auth.json`
-
-```json
-{
-  "OPENAI_API_KEY": "<YOUR_API_KEY>"
-}
-```
-
-配置 `~/.codex/config.toml`
-
-```toml
-model_provider = "<PROVIDER_NAME>"
-model = "gpt-5.5"
-model_reasoning_effort = "high"
-disable_response_storage = true
-
-[model_providers.<PROVIDER_NAME>]
-name = "<PROVIDER_NAME>"
-wire_api = "responses"
-requires_openai_auth = false
-base_url = "<PROVIDER_API_URL>"
-```
-
-当然，可以使用 [CC Switch](https://www.ccswitch.io/zh/) 统一管理 API 提供商。
-
-此外，可以直接从微软应用商店安装 ChatGPT & Codex 桌面版，也可以从[官网](https://openai.com/zh-Hans-CN/index/codex-for-almost-everything/)下载安装程序。
-
-### WorkBuddy & CodeBuddy
-
-::: tip
-腾讯出品，小白友好。
-:::
-
-- [WorkBuddy](https://copilot.tencent.com/work/) 下载地址
-- [CodeBuddy](https://www.codebuddy.cn/ide/) 下载地址
 
 ## 思源笔记
 
@@ -157,7 +112,9 @@ base_url = "<PROVIDER_API_URL>"
 
 ## WSL
 
-根据最新的 [Microsoft 官方 WSL 安装指南](https://learn.microsoft.com/zh-cn/windows/wsl/install)，~~首先在“控制面板 –> 程序 –> 启用或关闭 Windows 功能”中启用适用于 Windows 的 Linux 子系统和 Hyper-V。~~ 无需手动提前配置再安装，直接在 PowerShell（管理员权限）中执行以下命令安装 WSL 和 Ubuntu 发行版：
+根据最新的 [Microsoft 官方 WSL 安装指南](https://learn.microsoft.com/zh-cn/windows/wsl/install)，首先在“控制面板 –> 程序 –> 启用或关闭 Windows 功能”中启用 Hyper-V。
+
+重启后，在 PowerShell（管理员权限）中执行以下命令安装 WSL 和 Ubuntu 发行版：
 
 ```powershell
 wsl --install -d Ubuntu
@@ -236,6 +193,8 @@ dnsTunneling=true
 firewall=true
 autoProxy=true
 ```
+
+或者直接运行 WSL 设置的 GUI 程序，将网络模式修改为镜像即可。
 
 ### 访问 Windows 宿主文件系统
 
@@ -331,13 +290,27 @@ cat ./.ssh/id_rsa.pub
 
 由于通过 SSH 协议连接 Github 仓库不会走系统的 HTTP 代理，需要手动配置。编辑 `~/.ssh/config` 文件（若没有则新建）：
 
-Linux / WSL
+#### WSL
 
 ```bash
 vim ~/.ssh/config
 ```
 
-Windows
+写入内容
+
+```powershell
+Host github.com
+    HostName ssh.github.com
+    Port 443
+    User git
+    # 如果你的 7890 是 SOCKS5 代理（Clash 等通常 7890 是混合端口或 HTTP，7891 是 SOCKS5，请按需修改）
+    ProxyCommand nc -X 5 -x 127.0.0.1:7890 %h %p
+    
+    # 如果你的 7890 纯粹是 HTTP 代理，改用这行：
+    ProxyCommand nc -X connect -x 127.0.0.1:7890 %h %p
+```
+
+#### Windows
 
 ```powershell
 notepad ~/.ssh/config
@@ -359,7 +332,7 @@ Host github.com
 ssh -T git@github.com
 ```
 
-::: info
+::: danger
 在 Windows 系统中，需要通过 Git Bash 来运行上述命令。这是因为它需要调用 `C:\Program Files\Git\mingw64\bin\connect.exe`。
 :::
 
@@ -369,13 +342,90 @@ ssh -T git@github.com
 Hi USERNAME! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
+## Agent
+
+### Codex
+
+OpenAI 官方推荐使用 `npm` 安装 [Codex CLI](https://developers.openai.com/codex/quickstart?setup=cli)。
+
+```bash
+npm i -g @openai/codex
+```
+
+如要通过 API Key 接入非 OpenAI 模型，配置 `~/.codex/auth.json`
+
+```json
+{
+  "OPENAI_API_KEY": "<YOUR_API_KEY>"
+}
+```
+
+配置 `~/.codex/config.toml`
+
+```toml
+model_provider = "<PROVIDER_NAME>"
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+disable_response_storage = true
+
+[model_providers.<PROVIDER_NAME>]
+name = "<PROVIDER_NAME>"
+wire_api = "responses"
+requires_openai_auth = false
+base_url = "<PROVIDER_API_URL>"
+```
+
+此外，可以直接从微软应用商店安装 ChatGPT & Codex 桌面版，也可以从[官网](https://openai.com/zh-Hans-CN/index/codex-for-almost-everything/)下载安装程序。
+
+### CC Switch
+
+在使用 Codex 时，通常使用 [CC Switch](https://www.ccswitch.io/zh/) 统一管理 API 提供商比较方便。
+
+但是在 Linux 或者 WSL 中，GUI 程序并不方便。目前 GitHub 已有 [CC-Switch CLI](https://github.com/SaladDay/cc-switch-cli) 实现了对终端更友好的 CLI 版本。
+
+```bash
+curl -fsSL https://github.com/SaladDay/cc-switch-cli/releases/latest/download/install.sh | bash
+```
+
+### OpenCode
+
+[OpenCode](https://opencode.ai/) 官方推荐在 WSL 中安装 CLI，而不推荐在 Windows 中安装。
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+```
+
+### Pi
+
+[Pi](https://pi.dev) 是践行了“**一切皆插件**”的极简 Coding Agent，理念是“让 Pi 适配你的工作流，而不是反过来”——默认只给模型 `read`、`write`、`edit`、`bash` 四个工具。
+
+Linux & WSL
+
+```bash
+curl -fsSL https://pi.dev/install.sh | sh
+```
+
+Windows PowerShell
+
+```powershell
+powershell -c "irm https://pi.dev/install.ps1 | iex"
+```
+
+### Skills
+
+可通过 `npx skills add` 命令从个人自用技能仓库安装技能。建议在项目级安装以确保 Skill 不会冗余占用上下文。
+
+```bash
+npx skills add git@gitee.com:bowenEI/myskills.git -a AGENT
+```
+
 ## Python
 
 ### Conda
 
 推荐使用 [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/main) 作为 Python 包管理器。
 
-#### Linux / WSL
+#### WSL
 
 ```bash
 curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -410,7 +460,7 @@ Invoke-WebRequest -Uri "https://repo.anaconda.com/miniconda/Miniconda3-latest-Wi
 
 [uv](https://docs.astral.sh/uv/) 是一个快速的 Python 包管理器，推荐使用它来安装 Python 包。
 
-#### Linux / WSL
+#### WSL
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -434,19 +484,43 @@ uv python install 3.14 --default
 
 [Node.js](https://nodejs.org/en/download) 是开源跨平台的 JS 运行时环境，可以用来创建 Web 应用、命令行工具和脚本。
 
-### Linux / WSL
+### WSL
 
 推荐使用 `nvm` 来安装和管理不同版本的 Node.js。
 
 ```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+# Download and install nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.6/install.sh | bash
+
+# in lieu of restarting the shell
 \. "$HOME/.nvm/nvm.sh"
+
+# Download and install Node.js:
+nvm install 24
+
+# Verify the Node.js version:
+node -v # Should print "v24.18.1".
+
+# Verify npm version:
+npm -v # Should print "11.16.0".
 ```
 
-安装最新版的 Node.js LTS：
+通常，安装后即为默认 `node` 版本。可以通过 `use` 命令在不同版本的 `node` 之间切换：
 
 ```bash
-nvm install lastest
+nvm use 24
+```
+
+WSL 可能在终端对话退出之后没有正确配置 `node` 和 `npm`。若出现了这个情况，使用如下命令修正默认别名：
+
+```bash
+nvm alias default v24.18.1
+```
+
+如果你想固定使用最新的 LTS，可以用这个命令：
+
+```bash
+nvm alias default lts/*
 ```
 
 ### Windows
@@ -471,7 +545,39 @@ choco install nodejs --version="24.18.0"
 
 ## Go
 
-推荐使用 [gvm](https://github.com/moovweb/gvm) 来安装和管理不同版本的 Go。
+Go 是 Google 支持的开源编程语言，非常适合用来写高性能后端。
+
+访问 [Go 官方网站](https://golang.google.cn/dl/)下载安装包进行安装。Windows 系统直接下载 `.msi` 安装文件安装。
+
+WSL 中的安装步骤如下：
+
+1. 清理旧版本，并且将下载好的压缩包解压
+
+```bash
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.26.5.linux-amd64.tar.gz
+```
+
+2. 配置 Go 环境变量，配置到 `$HOME/.zshrc`
+
+```bash
+export PATH=$PATH:/usr/local/go/bin
+```
+
+3. 配置通过 Go 安装的工具的环境变量，配置到 `$HOME/.zshrc`
+
+```bash
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
+
+4. 重启终端或者通过 `source` 命令使环境变量生效。通过如下命令验证安装：
+
+```bash
+go version
+```
+
+---
+
+还可以使用 [gvm](https://github.com/moovweb/gvm) 来安装和管理不同版本的 Go。
 
 ```bash
 sudo apt-get install bison
@@ -484,8 +590,6 @@ zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binsc
 gvm install go1.4
 gvm use go1.4 [--default]
 ```
-
-当然，也可以直接从 [Go 官方网站](https://golang.google.cn/dl/)下载安装包进行安装。
 
 ### Hugo
 
@@ -515,11 +619,46 @@ winget install Hugo.Hugo.Extended
 sudo apt install texlive-full
 ```
 
+如果通过官方安装脚本安装，需要如下几个步骤：
+
+1. 下载安装脚本
+
+```bash
+wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+# Or
+curl -L -o install-tl-unx.tar.gz https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+```
+
+2. 解压
+
+```bash
+zcat < install-tl-unx.tar.gz | tar xf -
+```
+
+3. 安装
+
+```bash
+cd install-tl-2*
+sudo perl ./install-tl --no-interaction
+```
+
+4. 配置环境变量
+
+根据偏好，可以在 `$HOME/.profile` 或 `$HOME/.bashrc` `$HOME/.zshrc` 中添加：
+
+```bash
+export PATH=/usr/local/texlive/2026/bin/x86_64-linux:$PATH
+```
+
+::: warning
+注意确认安装路径。
+:::
+
 ## Docker
 
 推荐使用 [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/) 来管理 Docker 容器。安装完成后，可以通过 WSL 终端直接使用 Docker 命令。
 
-::: info
+::: danger
 不推荐使用 Ubuntu Server 的安装方式在 WSL 中安装 Docker，因为这种方式需要额外配置 Docker 的守护进程，且不如 Docker Desktop 方便。
 :::
 

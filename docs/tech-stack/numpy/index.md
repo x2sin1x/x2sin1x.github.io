@@ -1,8 +1,8 @@
 ---
 title: NumPy
+date: '2021-01-24'
 weight: 60
 ---
-
 # NumPy
 
 ![](cover.jpg)

@@ -1,8 +1,8 @@
 ---
 title: Pandas
+date: '2021-01-24'
 weight: 70
 ---
-
 # Pandas
 
 ![](cover.jpg)

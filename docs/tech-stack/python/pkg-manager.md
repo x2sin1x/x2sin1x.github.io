@@ -1,8 +1,8 @@
 ---
 title: "Python 包管理器"
+date: 2021-12-24T11:44:15+08:00
 weight: 150
 ---
-
 # Python 包管理器
 
 ## pip

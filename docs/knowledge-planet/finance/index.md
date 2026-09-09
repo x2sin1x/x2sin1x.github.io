@@ -1,8 +1,8 @@
 ---
 title: 金融学
+date: '2021-01-24'
 weight: 90
 ---
-
 # 金融学
 
 ![](cover.jpg)

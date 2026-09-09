@@ -1,8 +1,8 @@
 ---
 title: "iPython: Python 交互式 Shell"
+date: '2021-01-01'
 weight: 120
 ---
-
 # iPython: Python 交互式 Shell
 
 **IPython** 是一种基于 **Python** 的交互式解释器，提供了强大的编辑和交互功能。

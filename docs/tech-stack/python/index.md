@@ -1,8 +1,8 @@
 ---
 title: Python
+date: '2021-01-24'
 weight: 50
 ---
-
 # Python
 
 ![](cover.jpg)

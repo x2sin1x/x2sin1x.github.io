@@ -1,0 +1,6 @@
+interface:
+  display_name: "VitePress × SiYuan 同步"
+  short_description: "在思源与 VitePress 间安全地双向同步文档"
+  default_prompt: "使用 $sync-siyuan-vitepress 在指定的思源笔记路径与 VitePress 站点之间执行安全的增量同步。"
+policy:
+  allow_implicit_invocation: true

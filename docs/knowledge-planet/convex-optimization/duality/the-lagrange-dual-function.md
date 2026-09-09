@@ -1,8 +1,8 @@
 ---
 title: "Lagrange 对偶函数"
+date: 2022-04-01T12:56:37+08:00
 weight: 410
 ---
-
 # Lagrange 对偶函数
 
 ## Lagrange 函数

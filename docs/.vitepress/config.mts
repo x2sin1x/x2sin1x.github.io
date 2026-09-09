@@ -182,6 +182,9 @@ const teekConfig = defineTeekConfig({
     // 从数据源头排除后，分页 total 与实际文章数一致（侧边栏由 sidebar 插件单独生成，不受影响）。
     fileContentLoaderIgnore: ["**/tech-stack/**", "**/knowledge-planet/**"],
     sidebarOption: {
+      // 文章封面等图片与 md 同目录存放，插件扫到非 .md 文件会告警且不会进侧边栏，
+      // 这里按扩展名忽略常见静态资源，避免每次 dev/build 刷警告
+      ignoreList: [/\.(jpe?g|png|gif|webp|svg|avif|ico|mp4|drawio|vsdx|ipynb|py|ya?ml|csv|xlsx|sh)$/i],
       sidebarResolved: (sidebar) => {
         if (Array.isArray(sidebar)) return sidebar;
 
@@ -299,6 +302,7 @@ export default defineConfig({
             { text: "列宁主义", link: "/knowledge-planet/leninism/" },
             { text: "毛泽东思想", link: "/knowledge-planet/maoism/" },
             { text: "乐理", link: "/knowledge-planet/music-theory/" },
+            { text: "和声", link: "/knowledge-planet/harmony/" },
             { text: "恋爱心理学", link: "/knowledge-planet/love-psychology/" },
             { text: "沈奕斐的社会学爱情思维课", link: "/knowledge-planet/sociology-love/" },
           ],

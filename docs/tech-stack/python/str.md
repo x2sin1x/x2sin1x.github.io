@@ -1,8 +1,8 @@
 ---
 title: Python 字符串
+date: '2021-01-01'
 weight: 50
 ---
-
 # Python 字符串
 
 ## 生成字符串

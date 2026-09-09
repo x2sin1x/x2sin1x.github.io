@@ -1,8 +1,8 @@
 ---
 title: "Ubuntu Desktop 快速部署"
+date: '2021-01-01'
 weight: 100
 ---
-
 # Ubuntu Desktop 快速部署
 
 ## Contents

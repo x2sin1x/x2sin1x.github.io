@@ -1,8 +1,8 @@
 ---
 title: "Python 装饰器"
+date: 2021-04-28T16:47:12+08:00
 weight: 140
 ---
-
 # Python 装饰器
 
 ## 铺垫

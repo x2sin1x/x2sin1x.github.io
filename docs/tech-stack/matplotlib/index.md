@@ -1,8 +1,8 @@
 ---
 title: Matplotlib
+date: '2021-01-24'
 weight: 80
 ---
-
 # Matplotlib
 
 ![](cover.jpg)

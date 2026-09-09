@@ -1,8 +1,8 @@
 ---
 title: "Python 异常处理"
+date: 2022-02-18T14:47:24+08:00
 weight: 65
 ---
-
 # Python 异常处理
 
 ## try/except 块

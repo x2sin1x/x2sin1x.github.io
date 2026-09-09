@@ -11,6 +11,10 @@ title: "知识星球"
 config:
   target: _self
 data:
+  - img: /knowledge-planet/marxism/cover.jpg
+    link: /knowledge-planet/marxism/
+    name: 马克思主义
+    desc: 哲学、政治经济学与科学社会主义
   - img: /knowledge-planet/leninism/cover.jpg
     link: /knowledge-planet/leninism/
     name: 列宁主义
@@ -19,10 +23,6 @@ data:
     link: /knowledge-planet/maoism/
     name: 毛泽东思想
     desc: 著作导读与选集节选
-  - img: /knowledge-planet/marxism/cover.jpg
-    link: /knowledge-planet/marxism/
-    name: 马克思主义
-    desc: 哲学、政治经济学与科学社会主义
 ```
 :::
 
@@ -67,5 +67,9 @@ data:
     link: /knowledge-planet/music-theory/
     name: 乐理
     desc: 音程、和弦与调式
+  - img: /knowledge-planet/harmony/cover.jpg
+    link: /knowledge-planet/harmony/
+    name: 和声
+    desc: 古典和声与流行和声
 ```
 :::

@@ -1,8 +1,8 @@
 ---
 title: "必备软件"
+date: 2021-12-03T10:41:29+08:00
 weight: 140
 ---
-
 # 必备软件
 
 ## Visual Studio Code

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "skills": {
+    "sync-siyuan-vitepress": {
+      "source": "git@github.com:bowenEI/myskills.git",
+      "sourceUrl": "git@github.com:bowenEI/myskills.git",
+      "sourceType": "git",
+      "skillPath": "skills/sync-siyuan-vitepress/SKILL.md",
+      "computedHash": "1deddae90c3f562e8a08bcfd17d1649afe590d5bb2f117a58c3e2a872bec68e2"
+    },
+    "tech-stack-quickstart": {
+      "source": "git@github.com:bowenEI/myskills.git",
+      "sourceUrl": "git@github.com:bowenEI/myskills.git",
+      "sourceType": "git",
+      "skillPath": "skills/tech-stack-quickstart/SKILL.md",
+      "computedHash": "d7714d3915be7448c1663e2ff04b911245d200e809e772b707f5031e84f171f9"
+    }
+  }
+}

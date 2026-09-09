@@ -1,8 +1,8 @@
 ---
 title: "Matplotlib 三维绘图"
+date: 2021-04-27T17:50:23+08:00
 weight: 60
 ---
-
 # Matplotlib 三维绘图
 
 ```python

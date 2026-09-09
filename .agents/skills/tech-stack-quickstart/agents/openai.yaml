@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tech Stack Quickstart"
+  short_description: "创建适合初学者的技术栈速成指南"
+  default_prompt: "使用 $tech-stack-quickstart 为某个技术栈创建一份适合初学者的快速入门指南。"

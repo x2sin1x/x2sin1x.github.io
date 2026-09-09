@@ -1,8 +1,8 @@
 ---
 title: Python 处理 json 数据
+date: '2021-01-01'
 weight: 110
 ---
-
 # Python 处理 json 数据
 
 读写 `json` 文件主要用到 `json` 库中的 `dump` 和 `load` 方法，而解析 `json` 字符串主要用到 `json` 库中的 `dumps` 和 `loads` 方法。二者极易弄混淆。

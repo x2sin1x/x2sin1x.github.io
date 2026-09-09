@@ -1,8 +1,8 @@
 ---
 title: "Matplotlib 条形图"
+date: 2021-04-26T16:31:43+08:00
 weight: 40
 ---
-
 # Matplotlib 条形图
 
 ```python

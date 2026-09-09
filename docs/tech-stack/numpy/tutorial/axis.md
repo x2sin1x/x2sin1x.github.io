@@ -1,8 +1,8 @@
 ---
 title: "NumPy axis 参数"
+date: 2021-04-17T20:02:02+08:00
 weight: 50
 ---
-
 # NumPy axis 参数
 
 ```python

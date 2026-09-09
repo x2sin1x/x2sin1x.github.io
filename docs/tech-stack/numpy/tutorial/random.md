@@ -1,8 +1,8 @@
 ---
 title: "NumPy 随机数函数"
+date: 2021-04-17T19:21:48+08:00
 weight: 30
 ---
-
 # NumPy 随机数函数
 
 ```python

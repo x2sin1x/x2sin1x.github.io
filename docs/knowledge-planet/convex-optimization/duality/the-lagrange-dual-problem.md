@@ -1,8 +1,8 @@
 ---
 title: "Lagrange 对偶问题"
+date: 2022-04-03T13:58:03+08:00
 weight: 420
 ---
-
 # Lagrange 对偶问题
 
 ## 定义

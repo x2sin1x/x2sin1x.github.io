@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "vitepress_root": "/home/foo/repos/teek/docs",
+  "notebook": "20241220160822-fxiwsa0",
+  "hpath_root": null,
+  "documents": {
+    "posts/2025/reinstall-windows-system-and-software-guide/index.md": {
+      "siyuan_hash": "653aa1b94d56a2a8480c6b9b596c5e6de4bd6f73339cbbf753a5bb46409eba72",
+      "vitepress_hash": "653aa1b94d56a2a8480c6b9b596c5e6de4bd6f73339cbbf753a5bb46409eba72",
+      "hpath": null
+    }
+  },
+  "managed": {
+    "posts/2025/reinstall-windows-system-and-software-guide/index.md": "a8dd5e623db49349c0d1ace40bd2df1b803c794cff16e47ae8eccf04a589312d"
+  }
+}

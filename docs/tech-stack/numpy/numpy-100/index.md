@@ -1,8 +1,8 @@
 ---
 title: "Numpy 100 题"
+date: 2025-04-23T17:08:59+08:00
 weight: 100
 ---
-
 # Numpy 100 题
 
 This is a collection of exercises that have been collected in the numpy mailing list, on stack overflow

@@ -1,8 +1,8 @@
 ---
 title: Python 字典
+date: '2021-01-01'
 weight: 30
 ---
-
 # Python 字典
 
 字典 `dictionary`，在一些编程语言中也称为 `hash` 或 `map`，是一种由键值对组成的数据结构。

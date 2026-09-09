@@ -1,8 +1,8 @@
 ---
 title: "Python 系统环境交互"
+date: 2022-03-07T22:48:57+08:00
 weight: 170
 ---
-
 # Python 系统环境交互
 
 **Python** 中的标准模块 `sys` 提供了 **Python** 脚本和其运行环境交互的方法。

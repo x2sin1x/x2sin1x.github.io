@@ -1,8 +1,8 @@
 ---
 title: "NumPy 索引与切片"
+date: 2021-04-17T17:31:38+08:00
 weight: 20
 ---
-
 # NumPy 索引与切片
 
 ```python

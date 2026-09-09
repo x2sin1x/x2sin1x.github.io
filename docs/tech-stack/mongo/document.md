@@ -1,8 +1,8 @@
 ---
 title: "增删改查"
+date: 2024-03-20T01:45:51+08:00
 weight: 30
 ---
-
 # 增删改查
 
 MongoDB 的 CRUD 分别代表 Create、Read、Update 和 Delete。本页继续使用[集合操作](/tech-stack/mongo/collection)准备的 `taskdb.tasks` 集合，每条命令都可以在 `mongosh` 中直接执行。

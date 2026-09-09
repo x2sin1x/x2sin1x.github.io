@@ -1,8 +1,8 @@
 ---
 title: Git
+date: '2021-01-24'
 weight: 30
 ---
-
 # Git
 
 ![](cover.jpg)

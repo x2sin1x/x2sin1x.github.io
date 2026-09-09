@@ -1,8 +1,8 @@
 ---
 title: Python 列表
+date: '2021-01-01'
 weight: 10
 ---
-
 # Python 列表
 
 ## 创建列表

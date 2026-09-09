@@ -1,8 +1,8 @@
 ---
 title: Python 函数
+date: '2021-01-01'
 weight: 60
 ---
-
 # Python 函数
 
 ## 定义函数

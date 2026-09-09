@@ -1,8 +1,8 @@
 ---
 title: "MongoDB"
+date: 2024-03-20T01:42:37+08:00
 weight: 55
 ---
-
 # MongoDB
 
 ![](cover.jpg)
