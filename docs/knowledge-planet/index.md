@@ -87,5 +87,9 @@ data:
     link: /knowledge-planet/orchestration/
     name: 配器
     desc: 乐器法与配器法
+  - img: /knowledge-planet/counterpoint/cover.jpg
+    link: /knowledge-planet/counterpoint/
+    name: 复调
+    desc: 严格对位与赋格
 ```
 :::

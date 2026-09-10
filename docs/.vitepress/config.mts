@@ -304,6 +304,7 @@ export default defineConfig({
             { text: "乐理", link: "/knowledge-planet/music-theory/" },
             { text: "和声", link: "/knowledge-planet/harmony/" },
             { text: "配器", link: "/knowledge-planet/orchestration/" },
+            { text: "复调", link: "/knowledge-planet/counterpoint/" },
             { text: "恋爱心理学", link: "/knowledge-planet/love-psychology/" },
             { text: "沈奕斐的社会学爱情思维课", link: "/knowledge-planet/sociology-love/" },
           ],
