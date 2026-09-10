@@ -4,7 +4,7 @@ title: "知识星球"
 
 # 知识星球
 
-## 追求和把握真理的奥秘
+## 真理的光芒
 
 ::: imgCard
 ```yaml
@@ -26,7 +26,7 @@ data:
 ```
 :::
 
-## 数理与专业
+## 数理与科学
 
 ::: imgCard
 ```yaml
@@ -50,6 +50,8 @@ data:
 
 ## 人文与生活
 
+### 社会与心理
+
 ::: imgCard
 ```yaml
 config:
@@ -63,6 +65,16 @@ data:
     link: /knowledge-planet/love-psychology/
     name: 恋爱心理学
     desc: 亲密关系的心理学解读
+```
+:::
+
+### 音乐与艺术
+
+::: imgCard
+```yaml
+config:
+  target: _self
+data:
   - img: /knowledge-planet/music-theory/cover.jpg
     link: /knowledge-planet/music-theory/
     name: 乐理
@@ -71,5 +83,9 @@ data:
     link: /knowledge-planet/harmony/
     name: 和声
     desc: 古典和声与流行和声
+  - img: /knowledge-planet/orchestration/cover.jpg
+    link: /knowledge-planet/orchestration/
+    name: 配器
+    desc: 乐器法与配器法
 ```
 :::
