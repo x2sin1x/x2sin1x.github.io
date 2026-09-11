@@ -1,7 +1,8 @@
 ---
 title: 归档
 permalink: /archives
-layout: TkCataloguePage
+archivesPage: true
+layout: page
 article: false
 sidebar: false
 ---

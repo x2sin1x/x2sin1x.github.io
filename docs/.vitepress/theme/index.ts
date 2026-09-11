@@ -1,13 +1,24 @@
 // .vitepress/theme/index.ts
+import { h } from "vue";
 import type { Theme } from "vitepress";
 import Teek from "vitepress-theme-teek";
 import "vitepress-theme-teek/index.css";
 import "./style.css";
 import AbcScore from "./components/AbcScore.vue";
+import BloggerCardInject from "./components/BloggerCardInject.vue";
+import ContributeChart from "./components/ContributeChart.vue";
 import NavDropdownLink from "./components/NavDropdownLink.vue";
 
 export default {
   extends: Teek,
+  // 通过归档页顶部插槽渲染 Git 提交活跃度贡献图；
+  // teek-home-after 在所有 layout: home 页面（首页 / 分类 / 标签）渲染，
+  // BloggerCardInject 仅在分类、标签页把博主信息卡片注入卡片列表
+  Layout: () =>
+    h(Teek.Layout, null, {
+      "teek-archives-top-before": () => h(ContributeChart),
+      "teek-home-after": () => h(BloggerCardInject),
+    }),
   enhanceApp({ app }) {
     app.component("AbcScore", AbcScore);
     // 可点击的导航下拉（右上角“技术栈”/“知识星球”）：

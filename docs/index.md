@@ -4,12 +4,12 @@ layout: home
 teekHome: false
 
 hero:
-  name: "Bowen's Home"
-  text: "博客 · 技术笔记 · 学习资料"
+  name: "Nenifindo's Home"
+  text: "mi re la ti sol fa do"
   tagline: 记录技术学习与思考，沉淀知识体系
   image:
-    src: /teek-logo-large.png
-    alt: Teek Logo
+    src: /nenifindo.png
+    alt: Nenifindo Logo
   actions:
     - theme: brand
       text: 博客

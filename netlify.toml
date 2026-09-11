@@ -1,0 +1,15 @@
+# Netlify 部署配置
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  command = "pnpm docs:build"
+  publish = "docs/.vitepress/dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# VitePress 产物中的静态资源带内容 hash，可长缓存
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

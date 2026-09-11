@@ -149,6 +149,13 @@ function buildPostsSidebar(items: DefaultTheme.SidebarItem[]): DefaultTheme.Side
 
 // Teek 主题配置
 const teekConfig = defineTeekConfig({
+  // 博主信息（首页 Banner 中的头像与昵称）：暂用站点 Logo 作为头像，
+  // 替换为个人头像时把图片放入 docs/public/ 后修改 avatar 路径即可
+  blogger: {
+    name: "Nenifindo",
+    avatar: "/nenifindo.png",
+    shape: "circle",
+  },
   // 自定义 markdown 渲染：必须放在 defineTeekConfig 的 markdown.config 里，
   // Teek 会先注册自身的 markdown 扩展（imgCard / shareCard / navCard / note 容器等），
   // 再回调本函数；若写在 defineConfig 的 markdown.config 会因 extends 合并时函数覆盖
@@ -262,8 +269,6 @@ export default defineConfig({
           link: "/posts/",
           activeMatch: "/posts/",
           items: [
-            { text: "分类", link: "/categories", activeMatch: "^/(categories|@pages/categoriesPage)" },
-            { text: "标签", link: "/tags", activeMatch: "^/(tags|@pages/tagsPage)" },
             { text: "归档", link: "/archives", activeMatch: "^/(archives|@pages/archivesPage)" },
             { text: "清单", link: "/articleOverview", activeMatch: "^/(articleOverview|@pages/articleOverviewPage)" },
           ],
@@ -332,13 +337,14 @@ export default defineConfig({
         },
       },
     },
+    // 导航栏左上角标题前显示站点图标（Nenifindo.svg，与 favicon 同源）
+    logo: "/favicon.svg",
   },
-  title: "Bowen's Home",
-  description: "Bowen Zhou 的个人博客、技术笔记与学习资料",
+  title: "Nenifindo's Home",
+  description: "Nenifindo 的个人博客、技术笔记与学习资料",
   head: [
-    // 站点图标，与 vp.teek.top 保持一致
-    ["link", { rel: "icon", type: "image/svg+xml", href: "/teek-logo-mini.svg" }],
-    ["link", { rel: "icon", type: "image/png", href: "/teek-logo-mini.png" }],
+    // 站点图标：Nenifindo.svg（源文件在仓库根目录，副本发布到 /favicon.svg）
+    ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
   ],
   cleanUrls: true,
   markdown: {
