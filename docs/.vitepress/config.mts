@@ -308,6 +308,7 @@ export default defineConfig({
             { text: "毛泽东思想", link: "/knowledge-planet/maoism/" },
             { text: "乐理", link: "/knowledge-planet/music-theory/" },
             { text: "和声", link: "/knowledge-planet/harmony/" },
+            { text: "曲式", link: "/knowledge-planet/musical-form/" },
             { text: "配器", link: "/knowledge-planet/orchestration/" },
             { text: "复调", link: "/knowledge-planet/counterpoint/" },
             { text: "恋爱心理学", link: "/knowledge-planet/love-psychology/" },

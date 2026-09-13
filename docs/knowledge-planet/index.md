@@ -83,6 +83,10 @@ data:
     link: /knowledge-planet/harmony/
     name: 和声
     desc: 古典和声与流行和声
+  - img: /knowledge-planet/musical-form/cover.jpg
+    link: /knowledge-planet/musical-form/
+    name: 曲式
+    desc: 小型曲式与大型曲式
   - img: /knowledge-planet/orchestration/cover.jpg
     link: /knowledge-planet/orchestration/
     name: 配器
