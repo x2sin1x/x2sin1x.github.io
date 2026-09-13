@@ -1,5 +1,5 @@
 // .vitepress/config.mts
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { defineConfig, type DefaultTheme } from "vitepress";
 import { defineTeekConfig } from "vitepress-theme-teek/config";
@@ -48,6 +48,45 @@ function mergeIndexIntoGroups(items: DefaultTheme.SidebarItem[]): DefaultTheme.S
     if (indexItem.link) merged.link = indexItem.link;
     return merged;
   });
+}
+
+/**
+ * 扫描 docs 下所有 markdown 文件，构建「URL 路径 → 页面标题」映射，
+ * 注入 themeConfig.breadcrumbTitles 供自定义面包屑组件
+ * （theme/components/ArticleBreadcrumb.vue）显示层级标题。
+ * 标题优先级：frontmatter title > 正文第一个一级标题 > 文件 / 目录名（去序号前缀）。
+ * URL 为 cleanUrls 形式（站点未配置 base）：目录页为 /a/b/，普通页面为 /a/b/c
+ */
+function collectBreadcrumbTitles(): Record<string, string> {
+  const titles: Record<string, string> = {};
+  // 静态资源与构建产物目录不参与扫描；其余无 md 内容的目录（assets/ 等）自然不会产生条目
+  const ignoredDirs = new Set([".vitepress", "public", "node_modules"]);
+  const walk = (dir: string, prefix: string): void => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const abs = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (ignoredDirs.has(entry.name)) continue;
+        walk(abs, `${prefix}${entry.name}/`);
+        continue;
+      }
+      if (!entry.name.endsWith(".md")) continue;
+
+      const content = readFileSync(abs, "utf-8");
+      // 先剥离 frontmatter，避免正文一级标题匹配受其干扰
+      const frontmatterBlock = content.match(/^---\r?\n[\s\S]*?\r?\n---/)?.[0] ?? "";
+      const body = content.slice(frontmatterBlock.length);
+      const fmTitle = frontmatterBlock.match(/^title:\s*(.+?)\s*$/m)?.[1]?.replace(/^["']|["']$/g, "");
+      const h1Title = body.match(/^#\s+(.+?)\s*$/m)?.[1];
+      const name = entry.name.replace(/\.md$/, "").replace(/^\d+\./, "");
+
+      const rel = `${prefix}${entry.name}`.replace(/\.md$/, "");
+      const url = rel === "index" ? "/" : rel.endsWith("/index") ? `/${rel.slice(0, -"index".length)}` : `/${rel}`;
+      titles[url] = fmTitle || h1Title || name;
+    }
+  };
+  // prefix 从空串起步，叶子节点处统一拼出形如 /a/b 的 URL，避免根目录出现重复斜杠
+  walk(docsDir, "");
+  return titles;
 }
 
 /**
@@ -156,6 +195,11 @@ const teekConfig = defineTeekConfig({
     avatar: "/nenifindo.png",
     shape: "circle",
   },
+  // 关闭主题内置面包屑（仅显示文件 / 目录名且多数层级无链接），
+  // 改由 theme/index.ts 通过 teek-article-analyze-before 插槽渲染自定义面包屑组件
+  breadcrumb: {
+    enabled: false,
+  },
   // 自定义 markdown 渲染：必须放在 defineTeekConfig 的 markdown.config 里，
   // Teek 会先注册自身的 markdown 扩展（imgCard / shareCard / navCard / note 容器等），
   // 再回调本函数；若写在 defineConfig 的 markdown.config 会因 extends 合并时函数覆盖
@@ -251,6 +295,10 @@ const teekConfig = defineTeekConfig({
   },
 });
 
+// 全站「URL → 标题」映射（见 collectBreadcrumbTitles），供自定义面包屑组件显示层级标题；
+// 以变量展开方式合并进 themeConfig，避免字面量未知键触发 VitePress 类型检查报错
+const breadcrumbTitleData = { breadcrumbTitles: collectBreadcrumbTitles() };
+
 // VitePress 配置
 export default defineConfig({
   extends: teekConfig,
@@ -340,6 +388,7 @@ export default defineConfig({
     },
     // 导航栏左上角标题前显示站点图标（Nenifindo.svg，与 favicon 同源）
     logo: "/favicon.svg",
+    ...breadcrumbTitleData,
   },
   title: "Nenifindo's Home",
   description: "Nenifindo 的个人博客、技术笔记与学习资料",

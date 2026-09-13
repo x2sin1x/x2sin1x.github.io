@@ -262,3 +262,12 @@ html {
   max-width: 100%;
   height: auto;
 }
+
+/*
+ * 文章面包屑布局适配：
+ * 自定义面包屑（ArticleBreadcrumb.vue）渲染在 teek-article-analyze-before 插槽，独立成行；
+ * 关闭主题内置面包屑后，tk-article-analyze 行内只剩文章信息，保持其原本靠右的布局
+ */
+.tk-article-analyze {
+  justify-content: flex-end;
+}

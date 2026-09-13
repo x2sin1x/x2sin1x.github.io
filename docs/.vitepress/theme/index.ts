@@ -8,6 +8,7 @@ import AbcScore from "./components/AbcScore.vue";
 import BloggerCardInject from "./components/BloggerCardInject.vue";
 import ContributeChart from "./components/ContributeChart.vue";
 import NavDropdownLink from "./components/NavDropdownLink.vue";
+import ArticleBreadcrumb from "./components/ArticleBreadcrumb.vue";
 
 export default {
   extends: Teek,
@@ -18,6 +19,9 @@ export default {
     h(Teek.Layout, null, {
       "teek-archives-top-before": () => h(ContributeChart),
       "teek-home-after": () => h(BloggerCardInject),
+      // 文章面包屑：主题内置面包屑已关闭（teekConfig breadcrumb.enabled: false），
+      // 改用自定义组件（层级均可点击并显示页面标题，见 ArticleBreadcrumb.vue）
+      "teek-article-analyze-before": () => h(ArticleBreadcrumb),
     }),
   enhanceApp({ app }) {
     app.component("AbcScore", AbcScore);
