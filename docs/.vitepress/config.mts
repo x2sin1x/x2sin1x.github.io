@@ -51,6 +51,19 @@ function mergeIndexIntoGroups(items: DefaultTheme.SidebarItem[]): DefaultTheme.S
 }
 
 /**
+ * 递归为带子项的分组设置 collapsed: false，使分组可折叠（默认展开）。
+ * VitePress 侧边栏分组仅在显式设置 collapsed（true/false）时才显示折叠按钮，
+ * 省略时永远展开且无法收起
+ */
+function makeGroupsCollapsible(items: DefaultTheme.SidebarItem[]): DefaultTheme.SidebarItem[] {
+  return items.map((item) =>
+    item.items?.length
+      ? { ...item, collapsed: false, items: makeGroupsCollapsible(item.items) }
+      : item,
+  );
+}
+
+/**
  * 扫描 docs 下所有 markdown 文件，构建「URL 路径 → 页面标题」映射，
  * 注入 themeConfig.breadcrumbTitles 供自定义面包屑组件
  * （theme/components/ArticleBreadcrumb.vue）显示层级标题。
@@ -266,7 +279,7 @@ const teekConfig = defineTeekConfig({
             // 分组项的 text 即子目录名（插件默认不取 md 标题），拼出侧边栏 key
             const stackKey = `${key}${stack.text}/`;
             if (!stack.items?.length) continue;
-            result[stackKey] = sortTreeByWeight(mergeIndexIntoGroups([stack]));
+            result[stackKey] = makeGroupsCollapsible(sortTreeByWeight(mergeIndexIntoGroups([stack])));
           }
 
           // 板块落地页只显示各子目录入口，不再展开完整目录树（按各子目录 index.md 的 weight 排序）
