@@ -16,6 +16,8 @@ tags:
 ![这就是中国第331集](cover.jpg)
 
 > 文章为复旦大学中国研究院副院长范勇鹏在[《这就是中国》第332期](https://www.bilibili.com/bangumi/play/ep3902129)的演讲内容。
+>
+> 关于大众学术更系统的理论梳理，可参见后续文章[《大众学术：学术的第三范式》](/posts/2026/dazhong-xueshu-third-paradigm/)。
 
 ---
 
