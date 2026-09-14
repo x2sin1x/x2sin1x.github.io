@@ -1,0 +1,4 @@
+interface:
+  display_name: "SiYuan Note"
+  short_description: "按平台通过 CLI 或 Python API 管理思源笔记"
+  default_prompt: "使用 $siyuan-note 管理本地思源笔记、文档和块：原生 Windows 优先使用 SiYuan CLI，Linux 和 WSL 优先使用 Python HTTP API。"

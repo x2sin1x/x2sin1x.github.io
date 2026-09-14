@@ -1,0 +1,11 @@
+# SiYuan Note API Configuration (Linux/WSL or Python API path)
+# 思源笔记 API 配置（Linux/WSL 或 Python API 路径）
+#
+# 1. 从思源笔记获取 API Token:
+#    设置 → 关于 → API → 复制 Token
+#
+# 2. 保存此文件为 config.yaml 并填入你的 Token
+
+siyuan:
+  base_url: "http://127.0.0.1:6806"  # API 地址，端口可能在重启后变化
+  token: "your-api-token-here"       # 填入你的 API Token
