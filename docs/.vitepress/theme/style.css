@@ -266,8 +266,20 @@ html {
 /*
  * 文章面包屑布局适配：
  * 自定义面包屑（ArticleBreadcrumb.vue）渲染在 teek-article-analyze-before 插槽，独立成行；
- * 关闭主题内置面包屑后，tk-article-analyze 行内只剩文章信息，保持其原本靠右的布局
+ * 关闭主题内置面包屑后，tk-article-analyze 行内只剩文章信息，
+ * 取消主题默认的 space-between 改为靠左，与上方面包屑左对齐
  */
 .tk-article-analyze {
-  justify-content: flex-end;
+  justify-content: flex-start;
+  padding-top: 1rem;
+}
+
+/* 主题的 .tk-breadcrumb__item 使用 float: left 且无 clearfix；
+ * 内置实现里面包屑是 .tk-article-analyze 的 flex 子项（flex item 自成 BFC），能包住浮动；
+ * 而本站独立渲染时 .tk-article-breadcrumb 是普通块级元素，高度塌陷为 0，
+ * 浮动项与下方文章分析行重叠，且因 .tk-breadcrumb 的 line-height: 1
+ * 导致面包屑底部比文章分析行高出一小截。
+ * 改为 flow-root 建立格式化上下文包含浮动，让面包屑真正独占一行 */
+.tk-article-breadcrumb {
+  display: flow-root;
 }
