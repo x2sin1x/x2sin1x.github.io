@@ -45,6 +45,10 @@ data:
     link: /knowledge-planet/convex-optimization/
     name: 凸优化
     desc: 凸集、凸函数与优化问题
+  - img: /knowledge-planet/cs336/cover.svg
+    link: /knowledge-planet/cs336/
+    name: CS336:从零开始的语言模型
+    desc: 斯坦福大模型课程——分词、架构、系统、缩放定律与对齐
 ```
 :::
 
