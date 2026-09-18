@@ -708,7 +708,7 @@ $$
 
 整条思维链可以概括为
 
-```mermaid
+::: mermaid
 flowchart TD
     A["条件②产生负步长"]
     B["负步长引理"]
@@ -722,7 +722,7 @@ flowchart TD
     C --> D
     D --> E
     E --> F
-```
+:::
 
 ### 点评
 

@@ -264,6 +264,23 @@ html {
 }
 
 /*
+ * Mermaid 图表：Mermaid 组件（```mermaid 围栏映射）输出官方约定的 pre.mermaid，
+ * 客户端由 mermaid.run() 将其内容替换为 SVG（见 components/Mermaid.vue）。
+ * 渲染前显示转义后的源码，渲染后居中展示图表，超宽时可横向滚动
+ */
+pre.mermaid {
+  text-align: center;
+  overflow-x: auto;
+  /* 官方文档建议：页面其它字体会覆盖 mermaid 图表字体，显式指定以保持一致 */
+  font-family: var(--vp-font-family-base);
+}
+
+pre.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
  * 文章面包屑布局适配：
  * 自定义面包屑（ArticleBreadcrumb.vue）渲染在 teek-article-analyze-before 插槽，独立成行；
  * 关闭主题内置面包屑后，tk-article-analyze 行内只剩文章信息，

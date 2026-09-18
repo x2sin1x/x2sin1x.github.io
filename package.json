@@ -3,6 +3,7 @@
     "@types/node": "^26.4.1",
     "echarts": "^6.1.0",
     "markdown-it-mathjax3": "^4.3.2",
+    "mermaid": "^12.0.0",
     "typescript": "^5.9.3",
     "vitepress": "^1.6.4",
     "vitepress-theme-teek": "^1.6.2",

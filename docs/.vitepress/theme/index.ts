@@ -7,6 +7,7 @@ import "./style.css";
 import AbcScore from "./components/AbcScore.vue";
 import BloggerCardInject from "./components/BloggerCardInject.vue";
 import ContributeChart from "./components/ContributeChart.vue";
+import Mermaid from "./components/Mermaid.vue";
 import NavDropdownLink from "./components/NavDropdownLink.vue";
 import ArticleBreadcrumb from "./components/ArticleBreadcrumb.vue";
 
@@ -25,6 +26,9 @@ export default {
     }),
   enhanceApp({ app }) {
     app.component("AbcScore", AbcScore);
+    // ```mermaid 图表组件（config.mts 围栏映射）：
+    // 组件输出官方约定的 <pre class="mermaid">，挂载后用 mermaid.run() 渲染
+    app.component("Mermaid", Mermaid);
     // 可点击的导航下拉（右上角“技术栈”/“知识星球”）：
     // 单击标题进入总览页，hover 展开子菜单，配合 nav 中的 component 项使用
     app.component("NavDropdownLink", NavDropdownLink);

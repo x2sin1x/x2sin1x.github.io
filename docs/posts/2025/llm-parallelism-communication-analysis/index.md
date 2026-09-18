@@ -28,7 +28,7 @@ tags:
 
 > 关于分片的定义详见下文。
 
-```mermaid
+::: mermaid
 mindmap
     root((并行策略))
         DP
@@ -45,7 +45,7 @@ mindmap
             CP
             Ulysses
             USP
-```
+:::
 
 ### 符号定义
 

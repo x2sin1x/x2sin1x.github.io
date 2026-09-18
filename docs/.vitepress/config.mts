@@ -3,6 +3,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { defineConfig, type DefaultTheme } from "vitepress";
 import { defineTeekConfig } from "vitepress-theme-teek/config";
+import { useRawContainer } from "./markdown/raw-container";
 // import { sidebar } from "./sidebar";
 
 /**
@@ -219,24 +220,21 @@ const teekConfig = defineTeekConfig({
   // 导致 Teek 的所有 markdown 扩展失效
   markdown: {
     config(md) {
-      // 将 ```abcjs 代码块渲染为 AbcScore 组件（乐谱）
-      const componentFences: Record<string, string> = {
+      // ::: mermaid / ::: abcjs 容器（与主题 imgCard / note 等容器的 ::: 语法一致，
+      // 冒号与容器名之间以空格分隔），
+      // 替代原 ``` 围栏方案：容器内容原样提取后渲染为对应组件，
+      // 组件内部按官方文档约定经 mermaid.run() 等渲染（见 theme/components）
+      const containers: Record<string, string> = {
+        mermaid: "Mermaid",
         abcjs: "AbcScore",
       };
-      const defaultFence = md.renderer.rules.fence;
-      md.renderer.rules.fence = (tokens, idx, options, env, self) => {
-        const token = tokens[idx];
-        if (!token) return "";
-
-        const component = componentFences[token.info.trim()];
-        if (!component) {
-          return defaultFence
-            ? defaultFence(tokens, idx, options, env, self)
-            : self.renderToken(tokens, idx, options);
-        }
-        const source = Buffer.from(token.content, "utf8").toString("base64");
-        return `<${component} source="${source}" />\n`;
-      };
+      for (const [name, component] of Object.entries(containers)) {
+        useRawContainer(md, name, (source) => {
+          // 源码经 base64 编码内联，避免 HTML 转义与语法内容冲突
+          const encoded = Buffer.from(source, "utf8").toString("base64");
+          return `<${component} source="${encoded}" />\n`;
+        });
+      }
     },
   },
   vitePlugins: {
