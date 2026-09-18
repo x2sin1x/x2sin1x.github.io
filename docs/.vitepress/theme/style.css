@@ -300,3 +300,56 @@ pre.mermaid svg {
 .tk-article-breadcrumb {
   display: flow-root;
 }
+
+/*
+ * 首页 features 卡片动效：
+ * front matter 中 features 配置 link 后，VitePress 默认主题将 VPFeature
+ * 渲染为 <a class="VPFeature" href="...">，整卡可单击进入；无 link 时是
+ * <div class="VPFeature">。因此用 .VPFeature[href] 精确选中可点击卡片。
+ * 默认样式 hover 仅变边框色，这里追加浮起 + 阴影，以及图标放大、底部箭头右移动效。
+ * 注意：VPFeature 的 scoped 样式（.VPFeature[data-v-x]，特异性 0,2,0）已设置
+ * transition，选择器需保持同等特异性并在其后加载才能覆盖为包含
+ * transform/box-shadow 的完整过渡列表
+ */
+.VPFeature[href] {
+  transition: border-color 0.25s, background-color 0.25s, transform 0.25s,
+    box-shadow 0.25s;
+}
+
+.VPFeature[href]:hover,
+.VPFeature[href]:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.12);
+}
+
+.VPFeature .icon {
+  transition: transform 0.25s;
+}
+
+.VPFeature[href]:hover .icon {
+  transform: scale(1.12) rotate(-6deg);
+}
+
+.VPFeature .link-text-icon {
+  transition: transform 0.25s;
+}
+
+.VPFeature[href]:hover .link-text-icon {
+  transform: translateX(4px);
+}
+
+/* 尊重系统"减少动态效果"设置，关闭位移动画仅保留边框变色 */
+@media (prefers-reduced-motion: reduce) {
+  .VPFeature[href],
+  .VPFeature .icon,
+  .VPFeature .link-text-icon {
+    transition: border-color 0.25s, background-color 0.25s;
+  }
+
+  .VPFeature[href]:hover,
+  .VPFeature[href]:focus-visible,
+  .VPFeature[href]:hover .icon,
+  .VPFeature[href]:hover .link-text-icon {
+    transform: none;
+  }
+}
