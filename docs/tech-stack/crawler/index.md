@@ -1,9 +1,9 @@
 ---
-title: 爬虫与 Web 逆向
+title: Web 爬虫与逆向
 weight: 60
 ---
 
-# 爬虫与 Web 逆向
+# Web 爬虫与逆向
 
 从零开始的 Python 爬虫教程，分为**基础爬虫**与 **Web 逆向**两个部分：
 

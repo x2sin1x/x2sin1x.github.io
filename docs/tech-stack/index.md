@@ -35,7 +35,7 @@ config:
 data:
   - img: /tech-stack/crawler/cover.jpg
     link: /tech-stack/crawler/
-    name: 爬虫与 Web 逆向
+    name: Web 爬虫与逆向
     desc: 基础爬虫与 JS 逆向实战
 ```
 :::

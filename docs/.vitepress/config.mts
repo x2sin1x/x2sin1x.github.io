@@ -346,7 +346,7 @@ export default defineConfig({
             { text: "Git", link: "/tech-stack/git/" },
             { text: "Linux", link: "/tech-stack/linux/" },
             { text: "MongoDB", link: "/tech-stack/mongo/" },
-            { text: "爬虫与逆向", link: "/tech-stack/crawler/" },
+            { text: "Web 爬虫与逆向", link: "/tech-stack/crawler/" },
             { text: "NumPy", link: "/tech-stack/numpy/" },
             { text: "Pandas", link: "/tech-stack/pandas/" },
             { text: "Matplotlib", link: "/tech-stack/matplotlib/" },
