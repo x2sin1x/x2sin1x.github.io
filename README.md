@@ -1,4 +1,4 @@
-# Nenifindo's Home
+# Bowen Blog
 
 基于 [VitePress](https://vitepress.dev) 与 [vitepress-theme-teek](https://vp.teek.top) 构建的个人博客与知识库站点。
 

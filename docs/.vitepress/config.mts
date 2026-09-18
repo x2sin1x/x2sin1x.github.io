@@ -399,14 +399,14 @@ export default defineConfig({
         },
       },
     },
-    // 导航栏左上角标题前显示站点图标（Nenifindo.svg，与 favicon 同源）
+    // 导航栏左上角标题前显示站点图标（x2sin1x.svg，与 favicon 同源）
     logo: "/favicon.svg",
     ...breadcrumbTitleData,
   },
-  title: "Nenifindo's Home",
+  title: "Bowen Blog",
   description: "Nenifindo 的个人博客、技术笔记与学习资料",
   head: [
-    // 站点图标：Nenifindo.svg（源文件在仓库根目录，副本发布到 /favicon.svg）
+    // 站点图标：x2sin1x.svg（源文件在仓库根目录 assets/icons/，副本发布到 /favicon.svg）
     ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
   ],
   cleanUrls: true,

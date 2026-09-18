@@ -4,7 +4,7 @@ layout: home
 teekHome: false
 
 hero:
-  name: "Nenifindo's Home"
+  name: "Bowen Blog"
   text: "mi re la ti sol fa do"
   tagline: 记录技术学习与思考，沉淀知识体系
   image:
