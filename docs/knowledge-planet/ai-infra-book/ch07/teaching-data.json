@@ -1,0 +1,163 @@
+{
+  "kind": "derived teaching models, not measurements",
+  "primary": {
+    "participants": 16,
+    "ranks_per_server": 8,
+    "per_rank_bytes": 201326592,
+    "chunk_bytes": 12582912,
+    "nics_per_server": 8,
+    "nic_Bps": 50000000000.0,
+    "local_Bps": 450000000000.0,
+    "round_startup_s": 8.33e-07,
+    "flat_s": 0.0075747372,
+    "interleaved_s": 0.0075747372,
+    "hier_s": 0.0012995812266666665,
+    "hier_one_nic_s": 0.0048227965866666665,
+    "saved_s": {
+      "gradient-fp32-flat-contiguous-nic8": 0.0075747372,
+      "gradient-fp32-flat-interleaved-nic8": 0.0075747372,
+      "gradient-fp32-hierarchical-nic8": 0.0012995812266666667,
+      "gradient-fp32-hierarchical-nic1": 0.0048227965866666665
+    },
+    "local_crossover_Bps": 49917385613.48908
+  },
+  "contrast": {
+    "participants": 8,
+    "ranks_per_server": 4,
+    "per_rank_bytes": 201326592,
+    "nics_per_server": 2,
+    "nic_Bps": 25000000000.0,
+    "shared_per_direction_Bps": 32000000000.0,
+    "local_bridge_Bps": 300000000000.0,
+    "local_Bps": 32000000000.0,
+    "flat_s": 0.01102171,
+    "hier_s": 0.015735304,
+    "saved_s": {
+      "gradient-fp32-flat-contiguous-two-nic": 0.01102171,
+      "gradient-fp32-flat-interleaved-two-nic": 0.044051854,
+      "gradient-fp32-hierarchical-two-nic": 0.015735304,
+      "gradient-fp32-flat-contiguous-one-nic": 0.01410452344,
+      "gradient-fp32-flat-contiguous-three-nic": 0.01102171
+    },
+    "flat_local_bridge_s": 0.01102171,
+    "hier_local_bridge_s": 0.00730475296,
+    "port_Bps": 25000000000.0,
+    "two_ports_unshared_s": 0.00705809272,
+    "expert_ingress_s": 0.001048576,
+    "local_crossover_Bps": 63932282014.315384,
+    "flat_one_nic_s": 0.014104523439999999,
+    "flat_three_nic_s": 0.01102171
+  },
+  "scaling": {
+    "compute_s": 0.02,
+    "cut_volume_bytes": 377487360,
+    "cut_Bps": 50000000000.0,
+    "cut_s": 0.0075497472,
+    "crossover_device_multiplier": 2.6490953233506946
+  },
+  "small_messages": {
+    "bandwidth_Bps": 50000000000.0,
+    "tripled_Bps": 150000000000.0,
+    "startup_s": 5e-06,
+    "single_message_crossover_bytes": 250000.00000000003,
+    "ring_crossover_bytes": 2000000.0000000002,
+    "ring_8MiB_s": [
+      0.00036360128000000004,
+      0.00016786709333333334
+    ],
+    "ring_8KiB_s": [
+      7.028672000000001e-05,
+      7.009557333333334e-05
+    ],
+    "serial_72_bandwidth_saving_s": 1.376256e-05,
+    "serial_72_startup_saving_s": 0.0030240000000000006,
+    "serial_step_1MB_s": [
+      2.5e-05,
+      1.5000000000000002e-05
+    ],
+    "serial_step_10KB_s": [
+      5.2e-06,
+      5.1e-06
+    ]
+  },
+  "pipeline": {
+    "stages": 4,
+    "microbatches": 8,
+    "stage_s": 0.001,
+    "finish_s": 0.011,
+    "utilization": 0.7272727272727273,
+    "microbatches_for_90pct": 27
+  },
+  "independent_reads": {
+    "reads": 8,
+    "per_read_s": 2.2218000000000005e-06,
+    "serial_s": 1.7774400000000004e-05,
+    "parallel_s": 2.2218000000000005e-06
+  },
+  "snapshot": {
+    "payload_bytes": 150994944,
+    "remote_per_read_s": 0.0030248988799999998,
+    "local_per_read_s": 4.607311761194029e-05,
+    "setup_s": 0.0030749719976119402,
+    "full_reuse_boundary": 1.0322765555602025,
+    "full_first_winning_integer": 2,
+    "ten_pct_reuse_boundary": 10.322765555602023,
+    "ten_pct_first_winning_integer": 11
+  },
+  "window": {
+    "transaction_bytes": 256,
+    "lifetime_s": 2e-06,
+    "path_Bps": 50000000000.0,
+    "active_128_Bps": 16384000000.0,
+    "required_active_256": 391,
+    "required_active_4096": 25,
+    "required_start_interval_s": 5.12e-09,
+    "issue_interval_s": 1.863e-08,
+    "issue_rate_per_s": 53676865.27106817,
+    "rate_256_at_delta_Bps": 13741277509.393452,
+    "rate_4096_at_delta_Bps": 219860440150.29523,
+    "start_interval_4096_s": 8.192e-08,
+    "rate_bound_crossover_bytes": 931.4999999999999
+  },
+  "isolation": {
+    "fixed_bytes": 540672,
+    "per_class_bytes": 131072,
+    "budget_bytes": 1048576,
+    "max_classes": 3
+  },
+  "reclaim": {
+    "operation_bytes": 8192,
+    "consumed_per_poll": 4,
+    "poll_s": 2e-05,
+    "sustainable_Bps": 1638399999.9999998,
+    "required_rate_ops_per_s": 6103515.625,
+    "required_interval_s": 1.6384e-07
+  },
+  "queue": {
+    "buffer_bytes": 524288,
+    "excess_Bps": 50000000000.0,
+    "max_overlap_s": 1.048576e-05,
+    "feedback_max_s": 5.24288e-06
+  },
+  "multipath": {
+    "packet_bytes": 4096,
+    "rate_Bps": 50000000000.0,
+    "packet_serialization_s": 8.192e-08,
+    "single_s": 1.65536e-06,
+    "balanced_s": 1.3276799999999999e-06,
+    "delay_difference_boundary_s": 3.2768e-07
+  },
+  "step": {
+    "compute_s": 0.02,
+    "update_s": 0.002,
+    "flat_serial_s": 0.0295747372,
+    "hier_serial_s": 0.023299581226666664,
+    "hier_window_limited_comm_s": 0.0023322647466666666,
+    "hier_window_limited_serial_s": 0.024332264746666665,
+    "flat_ready_17ms_s": 0.026574737200000004,
+    "hier_ready_17ms_s": 0.022,
+    "hier_last_ready_fully_hidden_s": 0.018700418773333335,
+    "hier_one_nic_comm_s": 0.0048227965866666665,
+    "hier_one_nic_ready_17ms_s": 0.023822796586666667
+  }
+}

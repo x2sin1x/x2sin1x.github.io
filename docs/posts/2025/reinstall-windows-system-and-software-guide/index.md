@@ -6,6 +6,8 @@ categories:
   - Technique
 tags:
   - 技术分享
+# 精选文章：主题首页 topArticle 卡片读取 frontmatter 的 top 字段
+top: true
 ---
 
 # 重装 Windows 系统和软件指南

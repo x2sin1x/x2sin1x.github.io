@@ -45,10 +45,24 @@ data:
     link: /knowledge-planet/convex-optimization/
     name: 凸优化
     desc: 凸集、凸函数与优化问题
-  - img: /knowledge-planet/cs336/cover.svg
+```
+:::
+
+### 人工智能前沿
+
+::: imgCard
+```yaml
+config:
+  target: _self
+data:
+  - img: /knowledge-planet/cs336/cover.jpg
     link: /knowledge-planet/cs336/
-    name: CS336:从零开始的语言模型
+    name: CS336：从零开始的语言模型
     desc: 斯坦福大模型课程——分词、架构、系统、缩放定律与对齐
+  - img: /knowledge-planet/ai-infra-book/cover.jpg
+    link: /knowledge-planet/ai-infra-book/
+    name: AI Infra
+    desc: 训练、推理与部署大模型的量化分析和系统设计
 ```
 :::
 

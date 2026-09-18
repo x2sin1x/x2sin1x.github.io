@@ -1,0 +1,741 @@
+{
+  "source": "calculations/results/attention-input-base.json",
+  "baseline": [
+    {
+      "input_slots": 1,
+      "compute_ticks": 128,
+      "extra_latency_ticks": 128,
+      "input_buffer_bytes": 16384,
+      "finish_tick": 1280,
+      "chunks": [
+        {
+          "chunk": 0,
+          "slot": 0,
+          "issue_start": 0,
+          "transfer_end": 64,
+          "data_ready": 192,
+          "compute_start": 192,
+          "compute_end": 320,
+          "slot_released": 320
+        },
+        {
+          "chunk": 1,
+          "slot": 0,
+          "issue_start": 320,
+          "transfer_end": 384,
+          "data_ready": 512,
+          "compute_start": 512,
+          "compute_end": 640,
+          "slot_released": 640
+        },
+        {
+          "chunk": 2,
+          "slot": 0,
+          "issue_start": 640,
+          "transfer_end": 704,
+          "data_ready": 832,
+          "compute_start": 832,
+          "compute_end": 960,
+          "slot_released": 960
+        },
+        {
+          "chunk": 3,
+          "slot": 0,
+          "issue_start": 960,
+          "transfer_end": 1024,
+          "data_ready": 1152,
+          "compute_start": 1152,
+          "compute_end": 1280,
+          "slot_released": 1280
+        }
+      ]
+    },
+    {
+      "input_slots": 2,
+      "compute_ticks": 128,
+      "extra_latency_ticks": 128,
+      "input_buffer_bytes": 32768,
+      "finish_tick": 768,
+      "chunks": [
+        {
+          "chunk": 0,
+          "slot": 0,
+          "issue_start": 0,
+          "transfer_end": 64,
+          "data_ready": 192,
+          "compute_start": 192,
+          "compute_end": 320,
+          "slot_released": 320
+        },
+        {
+          "chunk": 1,
+          "slot": 1,
+          "issue_start": 64,
+          "transfer_end": 128,
+          "data_ready": 256,
+          "compute_start": 320,
+          "compute_end": 448,
+          "slot_released": 448
+        },
+        {
+          "chunk": 2,
+          "slot": 0,
+          "issue_start": 320,
+          "transfer_end": 384,
+          "data_ready": 512,
+          "compute_start": 512,
+          "compute_end": 640,
+          "slot_released": 640
+        },
+        {
+          "chunk": 3,
+          "slot": 1,
+          "issue_start": 448,
+          "transfer_end": 512,
+          "data_ready": 640,
+          "compute_start": 640,
+          "compute_end": 768,
+          "slot_released": 768
+        }
+      ]
+    },
+    {
+      "input_slots": 3,
+      "compute_ticks": 128,
+      "extra_latency_ticks": 128,
+      "input_buffer_bytes": 49152,
+      "finish_tick": 704,
+      "chunks": [
+        {
+          "chunk": 0,
+          "slot": 0,
+          "issue_start": 0,
+          "transfer_end": 64,
+          "data_ready": 192,
+          "compute_start": 192,
+          "compute_end": 320,
+          "slot_released": 320
+        },
+        {
+          "chunk": 1,
+          "slot": 1,
+          "issue_start": 64,
+          "transfer_end": 128,
+          "data_ready": 256,
+          "compute_start": 320,
+          "compute_end": 448,
+          "slot_released": 448
+        },
+        {
+          "chunk": 2,
+          "slot": 2,
+          "issue_start": 128,
+          "transfer_end": 192,
+          "data_ready": 320,
+          "compute_start": 448,
+          "compute_end": 576,
+          "slot_released": 576
+        },
+        {
+          "chunk": 3,
+          "slot": 0,
+          "issue_start": 320,
+          "transfer_end": 384,
+          "data_ready": 512,
+          "compute_start": 576,
+          "compute_end": 704,
+          "slot_released": 704
+        }
+      ]
+    },
+    {
+      "input_slots": 4,
+      "compute_ticks": 128,
+      "extra_latency_ticks": 128,
+      "input_buffer_bytes": 65536,
+      "finish_tick": 704,
+      "chunks": [
+        {
+          "chunk": 0,
+          "slot": 0,
+          "issue_start": 0,
+          "transfer_end": 64,
+          "data_ready": 192,
+          "compute_start": 192,
+          "compute_end": 320,
+          "slot_released": 320
+        },
+        {
+          "chunk": 1,
+          "slot": 1,
+          "issue_start": 64,
+          "transfer_end": 128,
+          "data_ready": 256,
+          "compute_start": 320,
+          "compute_end": 448,
+          "slot_released": 448
+        },
+        {
+          "chunk": 2,
+          "slot": 2,
+          "issue_start": 128,
+          "transfer_end": 192,
+          "data_ready": 320,
+          "compute_start": 448,
+          "compute_end": 576,
+          "slot_released": 576
+        },
+        {
+          "chunk": 3,
+          "slot": 3,
+          "issue_start": 192,
+          "transfer_end": 256,
+          "data_ready": 384,
+          "compute_start": 576,
+          "compute_end": 704,
+          "slot_released": 704
+        }
+      ]
+    }
+  ],
+  "matrix_double": [
+    {
+      "input_slots": 1,
+      "compute_ticks": 64,
+      "extra_latency_ticks": 128,
+      "input_buffer_bytes": 16384,
+      "finish_tick": 1024,
+      "chunks": [
+        {
+          "chunk": 0,
+          "slot": 0,
+          "issue_start": 0,
+          "transfer_end": 64,
+          "data_ready": 192,
+          "compute_start": 192,
+          "compute_end": 256,
+          "slot_released": 256
+        },
+        {
+          "chunk": 1,
+          "slot": 0,
+          "issue_start": 256,
+          "transfer_end": 320,
+          "data_ready": 448,
+          "compute_start": 448,
+          "compute_end": 512,
+          "slot_released": 512
+        },
+        {
+          "chunk": 2,
+          "slot": 0,
+          "issue_start": 512,
+          "transfer_end": 576,
+          "data_ready": 704,
+          "compute_start": 704,
+          "compute_end": 768,
+          "slot_released": 768
+        },
+        {
+          "chunk": 3,
+          "slot": 0,
+          "issue_start": 768,
+          "transfer_end": 832,
+          "data_ready": 960,
+          "compute_start": 960,
+          "compute_end": 1024,
+          "slot_released": 1024
+        }
+      ]
+    },
+    {
+      "input_slots": 2,
+      "compute_ticks": 64,
+      "extra_latency_ticks": 128,
+      "input_buffer_bytes": 32768,
+      "finish_tick": 576,
+      "chunks": [
+        {
+          "chunk": 0,
+          "slot": 0,
+          "issue_start": 0,
+          "transfer_end": 64,
+          "data_ready": 192,
+          "compute_start": 192,
+          "compute_end": 256,
+          "slot_released": 256
+        },
+        {
+          "chunk": 1,
+          "slot": 1,
+          "issue_start": 64,
+          "transfer_end": 128,
+          "data_ready": 256,
+          "compute_start": 256,
+          "compute_end": 320,
+          "slot_released": 320
+        },
+        {
+          "chunk": 2,
+          "slot": 0,
+          "issue_start": 256,
+          "transfer_end": 320,
+          "data_ready": 448,
+          "compute_start": 448,
+          "compute_end": 512,
+          "slot_released": 512
+        },
+        {
+          "chunk": 3,
+          "slot": 1,
+          "issue_start": 320,
+          "transfer_end": 384,
+          "data_ready": 512,
+          "compute_start": 512,
+          "compute_end": 576,
+          "slot_released": 576
+        }
+      ]
+    },
+    {
+      "input_slots": 3,
+      "compute_ticks": 64,
+      "extra_latency_ticks": 128,
+      "input_buffer_bytes": 49152,
+      "finish_tick": 512,
+      "chunks": [
+        {
+          "chunk": 0,
+          "slot": 0,
+          "issue_start": 0,
+          "transfer_end": 64,
+          "data_ready": 192,
+          "compute_start": 192,
+          "compute_end": 256,
+          "slot_released": 256
+        },
+        {
+          "chunk": 1,
+          "slot": 1,
+          "issue_start": 64,
+          "transfer_end": 128,
+          "data_ready": 256,
+          "compute_start": 256,
+          "compute_end": 320,
+          "slot_released": 320
+        },
+        {
+          "chunk": 2,
+          "slot": 2,
+          "issue_start": 128,
+          "transfer_end": 192,
+          "data_ready": 320,
+          "compute_start": 320,
+          "compute_end": 384,
+          "slot_released": 384
+        },
+        {
+          "chunk": 3,
+          "slot": 0,
+          "issue_start": 256,
+          "transfer_end": 320,
+          "data_ready": 448,
+          "compute_start": 448,
+          "compute_end": 512,
+          "slot_released": 512
+        }
+      ]
+    },
+    {
+      "input_slots": 4,
+      "compute_ticks": 64,
+      "extra_latency_ticks": 128,
+      "input_buffer_bytes": 65536,
+      "finish_tick": 448,
+      "chunks": [
+        {
+          "chunk": 0,
+          "slot": 0,
+          "issue_start": 0,
+          "transfer_end": 64,
+          "data_ready": 192,
+          "compute_start": 192,
+          "compute_end": 256,
+          "slot_released": 256
+        },
+        {
+          "chunk": 1,
+          "slot": 1,
+          "issue_start": 64,
+          "transfer_end": 128,
+          "data_ready": 256,
+          "compute_start": 256,
+          "compute_end": 320,
+          "slot_released": 320
+        },
+        {
+          "chunk": 2,
+          "slot": 2,
+          "issue_start": 128,
+          "transfer_end": 192,
+          "data_ready": 320,
+          "compute_start": 320,
+          "compute_end": 384,
+          "slot_released": 384
+        },
+        {
+          "chunk": 3,
+          "slot": 3,
+          "issue_start": 192,
+          "transfer_end": 256,
+          "data_ready": 384,
+          "compute_start": 384,
+          "compute_end": 448,
+          "slot_released": 448
+        }
+      ]
+    }
+  ],
+  "longer_latency": [
+    {
+      "input_slots": 1,
+      "compute_ticks": 128,
+      "extra_latency_ticks": 256,
+      "input_buffer_bytes": 16384,
+      "finish_tick": 1792,
+      "chunks": [
+        {
+          "chunk": 0,
+          "slot": 0,
+          "issue_start": 0,
+          "transfer_end": 64,
+          "data_ready": 320,
+          "compute_start": 320,
+          "compute_end": 448,
+          "slot_released": 448
+        },
+        {
+          "chunk": 1,
+          "slot": 0,
+          "issue_start": 448,
+          "transfer_end": 512,
+          "data_ready": 768,
+          "compute_start": 768,
+          "compute_end": 896,
+          "slot_released": 896
+        },
+        {
+          "chunk": 2,
+          "slot": 0,
+          "issue_start": 896,
+          "transfer_end": 960,
+          "data_ready": 1216,
+          "compute_start": 1216,
+          "compute_end": 1344,
+          "slot_released": 1344
+        },
+        {
+          "chunk": 3,
+          "slot": 0,
+          "issue_start": 1344,
+          "transfer_end": 1408,
+          "data_ready": 1664,
+          "compute_start": 1664,
+          "compute_end": 1792,
+          "slot_released": 1792
+        }
+      ]
+    },
+    {
+      "input_slots": 2,
+      "compute_ticks": 128,
+      "extra_latency_ticks": 256,
+      "input_buffer_bytes": 32768,
+      "finish_tick": 1024,
+      "chunks": [
+        {
+          "chunk": 0,
+          "slot": 0,
+          "issue_start": 0,
+          "transfer_end": 64,
+          "data_ready": 320,
+          "compute_start": 320,
+          "compute_end": 448,
+          "slot_released": 448
+        },
+        {
+          "chunk": 1,
+          "slot": 1,
+          "issue_start": 64,
+          "transfer_end": 128,
+          "data_ready": 384,
+          "compute_start": 448,
+          "compute_end": 576,
+          "slot_released": 576
+        },
+        {
+          "chunk": 2,
+          "slot": 0,
+          "issue_start": 448,
+          "transfer_end": 512,
+          "data_ready": 768,
+          "compute_start": 768,
+          "compute_end": 896,
+          "slot_released": 896
+        },
+        {
+          "chunk": 3,
+          "slot": 1,
+          "issue_start": 576,
+          "transfer_end": 640,
+          "data_ready": 896,
+          "compute_start": 896,
+          "compute_end": 1024,
+          "slot_released": 1024
+        }
+      ]
+    },
+    {
+      "input_slots": 3,
+      "compute_ticks": 128,
+      "extra_latency_ticks": 256,
+      "input_buffer_bytes": 49152,
+      "finish_tick": 896,
+      "chunks": [
+        {
+          "chunk": 0,
+          "slot": 0,
+          "issue_start": 0,
+          "transfer_end": 64,
+          "data_ready": 320,
+          "compute_start": 320,
+          "compute_end": 448,
+          "slot_released": 448
+        },
+        {
+          "chunk": 1,
+          "slot": 1,
+          "issue_start": 64,
+          "transfer_end": 128,
+          "data_ready": 384,
+          "compute_start": 448,
+          "compute_end": 576,
+          "slot_released": 576
+        },
+        {
+          "chunk": 2,
+          "slot": 2,
+          "issue_start": 128,
+          "transfer_end": 192,
+          "data_ready": 448,
+          "compute_start": 576,
+          "compute_end": 704,
+          "slot_released": 704
+        },
+        {
+          "chunk": 3,
+          "slot": 0,
+          "issue_start": 448,
+          "transfer_end": 512,
+          "data_ready": 768,
+          "compute_start": 768,
+          "compute_end": 896,
+          "slot_released": 896
+        }
+      ]
+    },
+    {
+      "input_slots": 4,
+      "compute_ticks": 128,
+      "extra_latency_ticks": 256,
+      "input_buffer_bytes": 65536,
+      "finish_tick": 832,
+      "chunks": [
+        {
+          "chunk": 0,
+          "slot": 0,
+          "issue_start": 0,
+          "transfer_end": 64,
+          "data_ready": 320,
+          "compute_start": 320,
+          "compute_end": 448,
+          "slot_released": 448
+        },
+        {
+          "chunk": 1,
+          "slot": 1,
+          "issue_start": 64,
+          "transfer_end": 128,
+          "data_ready": 384,
+          "compute_start": 448,
+          "compute_end": 576,
+          "slot_released": 576
+        },
+        {
+          "chunk": 2,
+          "slot": 2,
+          "issue_start": 128,
+          "transfer_end": 192,
+          "data_ready": 448,
+          "compute_start": 576,
+          "compute_end": 704,
+          "slot_released": 704
+        },
+        {
+          "chunk": 3,
+          "slot": 3,
+          "issue_start": 192,
+          "transfer_end": 256,
+          "data_ready": 512,
+          "compute_start": 704,
+          "compute_end": 832,
+          "slot_released": 832
+        }
+      ]
+    }
+  ],
+  "boundaries": {
+    "roofline_crossing_rows": 178.14471899510528,
+    "first_compute_bound_row": 179,
+    "asymptotic_intensity": 2048,
+    "host_reuse_count": 32,
+    "message_crossing_bytes": 900000,
+    "first_transfer_dominated_row": 110,
+    "minimum_baseline_slots": 3,
+    "minimum_double_matrix_slots": 4
+  },
+  "die_locality": {
+    "weights_per_die_bytes": 34359738368,
+    "activation_bytes": 67108864,
+    "cases": [
+      {
+        "device": "B200 (HGX)",
+        "die_capacity_GB": 90.0,
+        "die_hbm_bytes_per_second": 4000000000000.0,
+        "link_bytes_per_second_per_direction": 10000000000000,
+        "link_to_hbm_ratio": 2.5,
+        "local_ms": 8.589934592,
+        "remote_ms": 8.589934592,
+        "serial_ms": 17.179869184,
+        "remote_share": 0.5,
+        "overlapped_ms": 8.589934592,
+        "split_ms": 8.589934592,
+        "activation_us": 6.7108864
+      },
+      {
+        "device": "Ascend 910C",
+        "die_capacity_GB": 64,
+        "die_hbm_bytes_per_second": 1600000000000.0,
+        "link_bytes_per_second_per_direction": 270000000000,
+        "link_to_hbm_ratio": 0.16875,
+        "local_ms": 21.47483648,
+        "remote_ms": 127.25829025185185,
+        "serial_ms": 148.73312673185185,
+        "remote_share": 0.8556149732620321,
+        "overlapped_ms": 127.25829025185185,
+        "split_ms": 21.47483648,
+        "activation_us": 248.55134814814815
+      }
+    ]
+  },
+  "host_link": {
+    "bytes": 67108864,
+    "h2d_ms": 2.097152,
+    "gpu_read_us": 66.57625396825397,
+    "ratio": 31.5,
+    "min_reuse": 32,
+    "per_call_at_100_us": 20.97152
+  },
+  "interconnect": {
+    "alpha_us": 2.0,
+    "rates": [
+      300000000000,
+      450000000000
+    ],
+    "rows": [
+      {
+        "payload": 8192,
+        "a100_us": 2.0273066666666666,
+        "h100_us": 2.0182044444444442,
+        "h100_half_alpha_us": 1.0182044444444445
+      },
+      {
+        "payload": 2097152,
+        "a100_us": 8.990506666666667,
+        "h100_us": 6.6603377777777775,
+        "h100_half_alpha_us": 5.6603377777777775
+      }
+    ],
+    "crossing_bytes": 900000,
+    "crossing_rows": 109.86328125
+  },
+  "measured_decode": {
+    "device": "RTX PRO 6000 Blackwell Workstation Edition",
+    "read_bytes": 16344770560,
+    "bound_ms": 9.120965714285713,
+    "bound_128_s": 1.1674836114285714,
+    "bound_tokens_per_s": 109.63751332095788,
+    "measured_ms": 25.83,
+    "measured_runs": [
+      26.43,
+      16.18,
+      25.83
+    ],
+    "measured_tokens_per_s": 38.71467286101433,
+    "measured_128_s": 3.30624,
+    "fraction": 0.35311520380509925,
+    "non_read_ms": 16.709034285714285,
+    "short_ms": 26.26,
+    "short_read_bytes": 15438800896,
+    "extra_read_ms": 0.5055634285714286,
+    "b64_ms": 29.63,
+    "b64_read_bytes": 34464163840,
+    "b64_bound_ms": 19.23,
+    "b64_effective_bytes_per_second": 1163150990212.6223
+  },
+  "energy": {
+    "rtx_pro6000_watts": 600,
+    "calls": [
+      {
+        "m": 1,
+        "rtx_us": 42.91812365408987,
+        "mac_us": 165.98699949099682,
+        "ratio": 3.8675269410380935,
+        "rtx_mJ": 25.75087419245392,
+        "mac_breakeven_W": 155.13789797646564
+      },
+      {
+        "m": 256,
+        "rtx_us": 32.64899714849889,
+        "mac_us": 1835.3749983361922,
+        "ratio": 56.21535601808148,
+        "rtx_mJ": 19.589398289099336,
+        "mac_breakeven_W": 10.673240240745109
+      }
+    ],
+    "decode_step": [
+      {
+        "device": "rtx4090",
+        "watts": 450,
+        "step_ms": 16.215050158730158,
+        "joules": 7.296772571428572
+      },
+      {
+        "device": "rtx5090",
+        "watts": 575,
+        "step_ms": 9.120965714285713,
+        "joules": 5.244555285714285
+      }
+    ],
+    "power_ratio": 1.2777777777777777,
+    "energy_ratio": 0.7187499999999999
+  },
+  "groq_kv": {
+    "chip_sram_bytes": 230686720,
+    "one_request": 6,
+    "eight_requests": 42,
+    "eight_requests_32k": 168,
+    "weights_bf16": 72
+  },
+  "provenance": "Tick = one B200 SM clock with FA4 per-SM rates; schedules are derived, not GPU measurements."
+}

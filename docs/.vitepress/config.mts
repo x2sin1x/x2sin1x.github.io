@@ -3,6 +3,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { defineConfig, type DefaultTheme } from "vitepress";
 import { defineTeekConfig } from "vitepress-theme-teek/config";
+import footnote from "markdown-it-footnote";
 import { useRawContainer } from "./markdown/raw-container";
 // import { sidebar } from "./sidebar";
 
@@ -242,6 +243,15 @@ const teekConfig = defineTeekConfig({
           return `<${component} source="${encoded}" />\n`;
         });
       }
+      // 脚注渲染（[^1] ... [^1]: 说明），VitePress 内置扩展不含脚注语法；
+      // markdown-it-footnote 输出 section.footnotes 结构，主题样式可正常排版。
+      // md 是 MarkdownIt / MarkdownItAsync 的联合类型，直接在联合上调用 .use
+      // 会因两个成员的重载签名互不兼容而报错，这里按用到的成员做结构化收窄
+      // md 是两份 markdown-it 类型声明的联合（VitePress 与主题各自依赖解析产生），
+      // 直接在联合上调用 .use 会因重载不兼容而报错，
+      // 这里按用到的成员做结构化收窄（以 footnote 插件自身的签名为准）
+      const mdIt = md as { use: (plugin: typeof footnote, ...params: unknown[]) => void };
+      mdIt.use(footnote);
     },
   },
   vitePlugins: {
@@ -253,7 +263,7 @@ const teekConfig = defineTeekConfig({
     sidebarOption: {
       // 文章封面等图片与 md 同目录存放，插件扫到非 .md 文件会告警且不会进侧边栏，
       // 这里按扩展名忽略常见静态资源，避免每次 dev/build 刷警告
-      ignoreList: [/\.(jpe?g|png|gif|webp|svg|avif|ico|mp4|drawio|vsdx|ipynb|py|ya?ml|csv|xlsx|sh)$/i],
+      ignoreList: [/\.(jpe?g|png|gif|webp|svg|avif|ico|mp4|drawio|vsdx|ipynb|py|ya?ml|csv|xlsx|json|sh)$/i],
       sidebarResolved: (sidebar) => {
         if (Array.isArray(sidebar)) return sidebar;
 
@@ -370,6 +380,7 @@ export default defineConfig({
             { text: "算法分析与设计", link: "/knowledge-planet/algorithm/" },
             { text: "凸优化", link: "/knowledge-planet/convex-optimization/" },
             { text: "CS336：从零开始的语言模型", link: "/knowledge-planet/cs336/" },
+            { text: "深入理解 AI Infra", link: "/knowledge-planet/ai-infra-book/" },
             { text: "金融学", link: "/knowledge-planet/finance/" },
             { text: "马克思主义", link: "/knowledge-planet/marxism/" },
             { text: "列宁主义", link: "/knowledge-planet/leninism/" },

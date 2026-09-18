@@ -1,0 +1,730 @@
+{
+  "kind": "hgx_h100_dense_tp_model",
+  "parameters": {
+    "model": "qwen3-32b",
+    "device": "h100-sxm",
+    "gpus_per_server": 8,
+    "history": 131064,
+    "steps": 8,
+    "sessions": 4,
+    "workspace_bytes": 2147483648,
+    "history_32k": 32760,
+    "nvlink_Bps": 450000000000.0,
+    "nvlink_alpha_s": 8.22e-07,
+    "ib_Bps": 50000000000.0,
+    "ib_alpha_s": 3.76e-06,
+    "deadline_s": 0.13,
+    "single_deadline_s": 0.05,
+    "required_fraction": 0.75,
+    "fault_at_ms": 20.0,
+    "stall_ms": 40.0,
+    "server_power_w": 10200
+  },
+  "device": {
+    "id": "h100-sxm",
+    "capacity_bytes": 80000000000,
+    "hbm_Bps": 3350000000000.0,
+    "matrix_flops_per_s": 989400000000000.0,
+    "power_w": 700
+  },
+  "model": {
+    "name": "qwen3-32b",
+    "layers": 64,
+    "hidden": 5120,
+    "intermediate": 25600,
+    "query_heads": 64,
+    "kv_heads": 8,
+    "head_dim": 128,
+    "vocab": 151936,
+    "attention_bytes_per_layer": 188743680,
+    "ffn_bytes_per_layer": 786432000,
+    "head_bytes": 1555824640,
+    "weight_read_bytes": 63967068160,
+    "weight_resident_bytes": 65524246528,
+    "kv_bytes_per_token": 262144,
+    "message_bytes": 10240,
+    "allreduces_per_step": 128
+  },
+  "capacity": {
+    "1": {
+      "weights": 65524246528.0,
+      "kv": 34359738368.0,
+      "workspace": 2147483648,
+      "max_sessions_128k": 0,
+      "max_sessions_32k": 1
+    },
+    "2": {
+      "weights": 32762800128.0,
+      "kv": 17179869184.0,
+      "workspace": 2147483648,
+      "max_sessions_128k": 2,
+      "max_sessions_32k": 10
+    },
+    "4": {
+      "weights": 16382076928.0,
+      "kv": 8589934592.0,
+      "workspace": 2147483648,
+      "max_sessions_128k": 7,
+      "max_sessions_32k": 28
+    },
+    "8": {
+      "weights": 8191715328.0,
+      "kv": 4294967296.0,
+      "workspace": 2147483648,
+      "max_sessions_128k": 16,
+      "max_sessions_32k": 64
+    },
+    "16": {
+      "weights": 4096534528.0,
+      "kv": 4294967296.0,
+      "workspace": 2147483648,
+      "max_sessions_128k": 17,
+      "max_sessions_32k": 68
+    }
+  },
+  "first_steps": [
+    {
+      "tp": 1,
+      "history": 131064,
+      "fabric": "nvlink",
+      "weight_read_bytes": 63967068160,
+      "kv_read_bytes": 34357903360,
+      "per_card_hbm_bytes": 98324971520.0,
+      "local_s": 0.029350737767164178,
+      "compute_s": 0.0003424603750151607,
+      "local_bound": "memory",
+      "allreduce_s": 0.0,
+      "communication_s": 0.0,
+      "serial_s": 0.0,
+      "total_s": 0.029350737767164178
+    },
+    {
+      "tp": 2,
+      "history": 131064,
+      "fabric": "nvlink",
+      "weight_read_bytes": 63967068160,
+      "kv_read_bytes": 34357903360,
+      "per_card_hbm_bytes": 49162485760.0,
+      "local_s": 0.014675368883582089,
+      "compute_s": 0.00017123018750758034,
+      "local_bound": "memory",
+      "allreduce_s": 1.6667555555555557e-06,
+      "communication_s": 0.00021334471111111113,
+      "serial_s": 0.0,
+      "total_s": 0.0148887135946932
+    },
+    {
+      "tp": 4,
+      "history": 131064,
+      "fabric": "nvlink",
+      "weight_read_bytes": 63967068160,
+      "kv_read_bytes": 34357903360,
+      "per_card_hbm_bytes": 24581242880.0,
+      "local_s": 0.007337684441791044,
+      "compute_s": 8.561509375379017e-05,
+      "local_bound": "memory",
+      "allreduce_s": 4.966133333333334e-06,
+      "communication_s": 0.0006356650666666668,
+      "serial_s": 0.0,
+      "total_s": 0.007973349508457711
+    },
+    {
+      "tp": 8,
+      "history": 131064,
+      "fabric": "nvlink",
+      "weight_read_bytes": 63967068160,
+      "kv_read_bytes": 34357903360,
+      "per_card_hbm_bytes": 12290621440.0,
+      "local_s": 0.003668842220895522,
+      "compute_s": 4.2807546876895086e-05,
+      "local_bound": "memory",
+      "allreduce_s": 1.1547822222222223e-05,
+      "communication_s": 0.0014781212444444445,
+      "serial_s": 0.0,
+      "total_s": 0.005146963465339967
+    }
+  ],
+  "collectives": {
+    "participants": 8,
+    "alpha_s": 8.22e-07,
+    "bandwidth_Bps": 450000000000.0,
+    "ring_s": 1.1547822222222223e-05,
+    "tree_s": 5.068533333333333e-06,
+    "prefill_bytes": 83886080,
+    "ring_prefill_s": 0.00033773164444444445,
+    "tree_prefill_s": 0.0011234130666666667,
+    "crossover_bytes": 696282.3529411765,
+    "bandwidth_doubled_saving_s": 2.5486222222221005e-06,
+    "alpha_halved_saving_s": 0.000736512,
+    "alpha_total_s": 0.001473024
+  },
+  "two_servers": {
+    "measured": {
+      "run": "hgx2",
+      "mode": "out_of_place",
+      "size_bytes": 16384,
+      "nranks": 16,
+      "time_s": 3.274e-05,
+      "source": "experiments/ch07/07-03/raw/hgx2.txt",
+      "line": 81
+    },
+    "tp16": {
+      "tp": 16,
+      "history": 131064,
+      "fabric": "measured_two_servers",
+      "weight_read_bytes": 63967068160,
+      "kv_read_bytes": 34357903360,
+      "per_card_hbm_bytes": 8292679680.0,
+      "local_s": 0.0024754267701492536,
+      "compute_s": 2.1403773438447543e-05,
+      "local_bound": "memory",
+      "allreduce_s": 3.274e-05,
+      "communication_s": 0.00419072,
+      "serial_s": 0.0,
+      "total_s": 0.006666146770149254
+    },
+    "flat_ring_ib_s": 0.000113184,
+    "nvlink_domain_tp16": {
+      "tp": 16,
+      "history": 131064,
+      "fabric": "nvlink",
+      "weight_read_bytes": 63967068160,
+      "kv_read_bytes": 34357903360,
+      "per_card_hbm_bytes": 8292679680.0,
+      "local_s": 0.0024754267701492536,
+      "compute_s": 2.1403773438447543e-05,
+      "local_bound": "memory",
+      "allreduce_s": 2.4702666666666666e-05,
+      "communication_s": 0.0031619413333333333,
+      "serial_s": 0.0,
+      "total_s": 0.005637368103482587
+    }
+  },
+  "candidates": [
+    {
+      "tp": 1,
+      "instances": 8,
+      "sessions_per_instance": 1,
+      "max_sessions_per_instance": 0,
+      "capacity_fits": false,
+      "step_times_s": [
+        0.029350737767164178,
+        0.029350816019104477,
+        0.029350894271044776,
+        0.029350972522985075,
+        0.029351050774925374,
+        0.029351129026865673,
+        0.02935120727880597,
+        0.029351285530746268
+      ],
+      "service_ms": 234.80809319164177,
+      "healthy_completion_ms": [
+        234.80809319164177,
+        234.80809319164177,
+        234.80809319164177,
+        234.80809319164177
+      ],
+      "fault_completion_ms": [
+        294.8080931916418,
+        234.80809319164177,
+        234.80809319164177,
+        234.80809319164177
+      ],
+      "healthy_gpu_seconds": 1.8784647455331343,
+      "healthy_energy_j": 2395.0425505547464,
+      "healthy_ontime": 0,
+      "healthy_eligible": false,
+      "healthy_gpu_seconds_per_ontime": null,
+      "fault_gpu_seconds": 2.358464745533134,
+      "fault_energy_j": 3007.0425505547464,
+      "fault_ontime": 0,
+      "fault_eligible": false,
+      "fault_gpu_seconds_per_ontime": null
+    },
+    {
+      "tp": 2,
+      "instances": 4,
+      "sessions_per_instance": 1,
+      "max_sessions_per_instance": 2,
+      "capacity_fits": true,
+      "step_times_s": [
+        0.0148887135946932,
+        0.01488875272066335,
+        0.0148887918466335,
+        0.014888830972603649,
+        0.014888870098573799,
+        0.014888909224543948,
+        0.014888948350514096,
+        0.014888987476484246
+      ],
+      "service_ms": 119.11080428470979,
+      "healthy_completion_ms": [
+        119.11080428470979,
+        119.11080428470979,
+        119.11080428470979,
+        119.11080428470979
+      ],
+      "fault_completion_ms": [
+        179.1108042847098,
+        119.11080428470979,
+        119.11080428470979,
+        119.11080428470979
+      ],
+      "healthy_gpu_seconds": 0.9528864342776783,
+      "healthy_energy_j": 1214.9302037040397,
+      "healthy_ontime": 4,
+      "healthy_eligible": true,
+      "healthy_gpu_seconds_per_ontime": 0.23822160856941957,
+      "fault_gpu_seconds": 1.4328864342776784,
+      "fault_energy_j": 1826.9302037040397,
+      "fault_ontime": 3,
+      "fault_eligible": true,
+      "fault_gpu_seconds_per_ontime": 0.4776288114258928
+    },
+    {
+      "tp": 4,
+      "instances": 2,
+      "sessions_per_instance": 2,
+      "max_sessions_per_instance": 7,
+      "capacity_fits": true,
+      "step_times_s": [
+        0.007973349508457711,
+        0.007973369071442787,
+        0.00797338863442786,
+        0.007973408197412936,
+        0.00797342776039801,
+        0.007973447323383086,
+        0.00797346688636816,
+        0.007973486449353234
+      ],
+      "service_ms": 63.78734383124378,
+      "healthy_completion_ms": [
+        63.78734383124378,
+        63.78734383124378,
+        127.57468766248756,
+        127.57468766248756
+      ],
+      "fault_completion_ms": [
+        123.78734383124379,
+        63.78734383124378,
+        187.57468766248758,
+        127.57468766248756
+      ],
+      "healthy_gpu_seconds": 1.0205975012999005,
+      "healthy_energy_j": 1301.261814157373,
+      "healthy_ontime": 4,
+      "healthy_eligible": true,
+      "healthy_gpu_seconds_per_ontime": 0.2551493753249751,
+      "fault_gpu_seconds": 1.5005975012999007,
+      "fault_energy_j": 1913.2618141573732,
+      "fault_ontime": 3,
+      "fault_eligible": true,
+      "fault_gpu_seconds_per_ontime": 0.5001991670999669
+    },
+    {
+      "tp": 8,
+      "instances": 1,
+      "sessions_per_instance": 4,
+      "max_sessions_per_instance": 16,
+      "capacity_fits": true,
+      "step_times_s": [
+        0.005146963465339967,
+        0.005146973246832504,
+        0.005146983028325041,
+        0.005146992809817579,
+        0.005147002591310117,
+        0.005147012372802654,
+        0.005147022154295191,
+        0.005147031935787728
+      ],
+      "service_ms": 41.17598160451078,
+      "healthy_completion_ms": [
+        41.17598160451078,
+        82.35196320902156,
+        123.52794481353234,
+        164.70392641804312
+      ],
+      "fault_completion_ms": [
+        101.17598160451078,
+        142.35196320902156,
+        183.52794481353234,
+        224.70392641804312
+      ],
+      "healthy_gpu_seconds": 1.317631411344345,
+      "healthy_energy_j": 1679.98004946404,
+      "healthy_ontime": 3,
+      "healthy_eligible": true,
+      "healthy_gpu_seconds_per_ontime": 0.439210470448115,
+      "fault_gpu_seconds": 1.797631411344345,
+      "fault_energy_j": 2291.98004946404,
+      "fault_ontime": 1,
+      "fault_eligible": false,
+      "fault_gpu_seconds_per_ontime": 1.797631411344345
+    }
+  ],
+  "candidates_32k": [
+    {
+      "tp": 1,
+      "instances": 8,
+      "sessions_per_instance": 1,
+      "max_sessions_per_instance": 1,
+      "capacity_fits": true,
+      "step_times_s": [
+        0.021658259028059703,
+        0.02165833728,
+        0.021658415531940298,
+        0.021658493783880597,
+        0.021658572035820896,
+        0.021658650287761195,
+        0.021658728539701494,
+        0.02165880679164179
+      ],
+      "service_ms": 173.26826327880596,
+      "healthy_completion_ms": [
+        173.26826327880596,
+        173.26826327880596,
+        173.26826327880596,
+        173.26826327880596
+      ],
+      "fault_completion_ms": [
+        233.26826327880596,
+        173.26826327880596,
+        173.26826327880596,
+        173.26826327880596
+      ],
+      "healthy_gpu_seconds": 1.3861461062304476,
+      "healthy_energy_j": 1767.3362854438208,
+      "healthy_ontime": 0,
+      "healthy_eligible": false,
+      "healthy_gpu_seconds_per_ontime": null,
+      "fault_gpu_seconds": 1.8661461062304476,
+      "fault_energy_j": 2379.336285443821,
+      "fault_ontime": 0,
+      "fault_eligible": false,
+      "fault_gpu_seconds_per_ontime": null
+    },
+    {
+      "tp": 2,
+      "instances": 4,
+      "sessions_per_instance": 1,
+      "max_sessions_per_instance": 10,
+      "capacity_fits": true,
+      "step_times_s": [
+        0.011042474225140963,
+        0.011042513351111111,
+        0.01104255247708126,
+        0.01104259160305141,
+        0.01104263072902156,
+        0.011042669854991709,
+        0.011042708980961859,
+        0.011042748106932006
+      ],
+      "service_ms": 88.34088932829187,
+      "healthy_completion_ms": [
+        88.34088932829187,
+        88.34088932829187,
+        88.34088932829187,
+        88.34088932829187
+      ],
+      "fault_completion_ms": [
+        148.34088932829187,
+        88.34088932829187,
+        88.34088932829187,
+        88.34088932829187
+      ],
+      "healthy_gpu_seconds": 0.706727114626335,
+      "healthy_energy_j": 901.077071148577,
+      "healthy_ontime": 4,
+      "healthy_eligible": true,
+      "healthy_gpu_seconds_per_ontime": 0.17668177865658374,
+      "fault_gpu_seconds": 1.186727114626335,
+      "fault_energy_j": 1513.0770711485768,
+      "fault_ontime": 3,
+      "fault_eligible": true,
+      "fault_gpu_seconds_per_ontime": 0.39557570487544497
+    },
+    {
+      "tp": 4,
+      "instances": 2,
+      "sessions_per_instance": 2,
+      "max_sessions_per_instance": 28,
+      "capacity_fits": true,
+      "step_times_s": [
+        0.006050229823681592,
+        0.006050249386666666,
+        0.006050268949651741,
+        0.006050288512636816,
+        0.006050308075621891,
+        0.006050327638606965,
+        0.00605034720159204,
+        0.006050366764577114
+      ],
+      "service_ms": 48.40238635303483,
+      "healthy_completion_ms": [
+        48.40238635303483,
+        48.40238635303483,
+        96.80477270606966,
+        96.80477270606966
+      ],
+      "fault_completion_ms": [
+        108.40238635303483,
+        48.40238635303483,
+        156.80477270606966,
+        96.80477270606966
+      ],
+      "healthy_gpu_seconds": 0.7744381816485573,
+      "healthy_energy_j": 987.4086816019105,
+      "healthy_ontime": 4,
+      "healthy_eligible": true,
+      "healthy_gpu_seconds_per_ontime": 0.19360954541213932,
+      "fault_gpu_seconds": 1.2544381816485572,
+      "fault_energy_j": 1599.4086816019103,
+      "fault_ontime": 3,
+      "fault_eligible": true,
+      "fault_gpu_seconds_per_ontime": 0.4181460605495191
+    },
+    {
+      "tp": 8,
+      "instances": 1,
+      "sessions_per_instance": 4,
+      "max_sessions_per_instance": 64,
+      "capacity_fits": true,
+      "step_times_s": [
+        0.004185403622951908,
+        0.004185413404444444,
+        0.004185423185936982,
+        0.0041854329674295195,
+        0.0041854427489220565,
+        0.004185452530414593,
+        0.004185462311907131,
+        0.004185472093399668
+      ],
+      "service_ms": 33.4835028654063,
+      "healthy_completion_ms": [
+        33.4835028654063,
+        66.9670057308126,
+        100.4505085962189,
+        133.9340114616252
+      ],
+      "fault_completion_ms": [
+        93.48350286540631,
+        126.96700573081262,
+        160.45050859621892,
+        193.93401146162523
+      ],
+      "healthy_gpu_seconds": 1.0714720916930016,
+      "healthy_energy_j": 1366.1269169085772,
+      "healthy_ontime": 3,
+      "healthy_eligible": true,
+      "healthy_gpu_seconds_per_ontime": 0.3571573638976672,
+      "fault_gpu_seconds": 1.5514720916930018,
+      "fault_energy_j": 1978.1269169085774,
+      "fault_ontime": 2,
+      "fault_eligible": false,
+      "fault_gpu_seconds_per_ontime": 0.7757360458465009
+    }
+  ],
+  "single_session": [
+    {
+      "tp": 1,
+      "service_ms": 234.80809319164177
+    },
+    {
+      "tp": 2,
+      "service_ms": 119.11080428470979
+    },
+    {
+      "tp": 4,
+      "service_ms": 63.78734383124378
+    },
+    {
+      "tp": 8,
+      "service_ms": 41.17598160451078
+    },
+    {
+      "tp": 16,
+      "fabric": "measured_two_servers",
+      "service_ms": 53.32944804298508
+    }
+  ],
+  "dense_moe": {
+    "device": "h100-sxm",
+    "capacity_bytes": 80000000000,
+    "workspace_bytes": 2147483648,
+    "fit_rule": "floor((cards*(80 GB - 2 GiB) - resident weights) / per-request state); weights and state spread evenly",
+    "models": [
+      {
+        "model": "qwen3-32b",
+        "kind": "dense",
+        "weight_resident_bytes": 65524246528,
+        "kv_bytes_per_token": 262144,
+        "fixed_state_bytes": 0,
+        "weight_read_b1": 63968432128,
+        "weight_read_b64": 63969077248,
+        "matrix_flops_b64": 8492073091072,
+        "state_read_b64": 549772591104,
+        "sources": [
+          "qwen3-32b-decode-b1-s32768",
+          "qwen3-32b-decode-b64-s32768"
+        ],
+        "state_per_request": {
+          "32768": 8589934592,
+          "131072": 34359738368,
+          "262144": 68719476736
+        },
+        "b64_state_read_s": 0.16411122122507463,
+        "b64_weight_read_s": 0.019095246939701493,
+        "requests_fit_h100": {
+          "1x32768": 1,
+          "1x131072": 0,
+          "2x32768": 10,
+          "2x131072": 2
+        }
+      },
+      {
+        "model": "qwen3-30b-a3b",
+        "kind": "moe_gqa",
+        "weight_resident_bytes": 61064245248,
+        "kv_bytes_per_token": 98304,
+        "fixed_state_bytes": 0,
+        "weight_read_b1": 6083739648,
+        "weight_read_b64": 60442177536,
+        "matrix_flops_b64": 2038649847808,
+        "state_read_b64": 206164721664,
+        "sources": [
+          "qwen3-30b-a3b-decode-b1-s32768",
+          "qwen3-30b-a3b-decode-b64-s32768-balanced"
+        ],
+        "state_per_request": {
+          "32768": 3221225472,
+          "131072": 12884901888,
+          "262144": 25769803776
+        },
+        "b64_state_read_s": 0.06154170795940298,
+        "b64_weight_read_s": 0.018042441055522388,
+        "requests_fit_h100": {
+          "1x32768": 5,
+          "1x131072": 1,
+          "2x32768": 29,
+          "2x131072": 7
+        }
+      },
+      {
+        "model": "qwen3.6-35b-a3b",
+        "kind": "moe_hybrid",
+        "weight_resident_bytes": 69321221376,
+        "kv_bytes_per_token": 20480,
+        "fixed_state_bytes": 64880640,
+        "weight_read_b1": 5892863232,
+        "weight_read_b64": 68304364800,
+        "matrix_flops_b64": 726893867008,
+        "state_read_b64": 47103344640,
+        "sources": [
+          "qwen36-decode-b1-s32768",
+          "qwen36-decode-b64-s32768",
+          "qwen36-capacity-b1-n131072"
+        ],
+        "state_per_request": {
+          "32768": 735969280,
+          "131072": 2749235200,
+          "262144": 5433589760
+        },
+        "b64_state_read_s": 0.014060699892537313,
+        "b64_weight_read_s": 0.02038936262686567,
+        "requests_fit_h100": {
+          "1x32768": 11,
+          "1x131072": 3,
+          "2x32768": 117,
+          "2x131072": 31
+        }
+      }
+    ]
+  },
+  "rack": {
+    "server_power_kw": 10.2,
+    "per_gpu_kw": 1.275,
+    "budget_kw": 120,
+    "air_cooling_kw": 40,
+    "max_servers": 11,
+    "max_gpus": 88,
+    "max_servers_air": 3,
+    "max_gpus_air": 24,
+    "four_servers_kw": 40.8,
+    "rows": [
+      {
+        "gpus": 64,
+        "servers": 8,
+        "power_kw": 81.6,
+        "within_budget": true
+      },
+      {
+        "gpus": 72,
+        "servers": 9,
+        "power_kw": 91.8,
+        "within_budget": true
+      },
+      {
+        "gpus": 96,
+        "servers": 12,
+        "power_kw": 122.39999999999999,
+        "within_budget": false
+      }
+    ]
+  },
+  "memory_pool": {
+    "node_capacity_bytes": 80000000000,
+    "demand_bytes": [
+      100000000000.0,
+      60000000000.0,
+      40000000000.0,
+      40000000000.0
+    ],
+    "borrowed_bytes": 20000000000.0,
+    "physical_after_bytes": [
+      80000000000,
+      80000000000.0,
+      40000000000.0,
+      40000000000.0
+    ],
+    "free_before_bytes": [
+      20000000000.0,
+      40000000000.0,
+      40000000000.0
+    ],
+    "free_after_bytes": 80000000000.0,
+    "path_Bps": 50000000000.0,
+    "read_latency_s": 7.52e-06,
+    "transaction_bytes": 256,
+    "min_in_flight": 1469,
+    "windows": [
+      {
+        "in_flight": 128,
+        "window_Bps": 4357446808.510638,
+        "usable_Bps": 4357446808.510638,
+        "read_s": 4.58984375,
+        "max_reads_per_s": 0.2178723404255319
+      },
+      {
+        "in_flight": 4096,
+        "window_Bps": 139438297872.34042,
+        "usable_Bps": 50000000000.0,
+        "read_s": 0.4,
+        "max_reads_per_s": 2.5
+      }
+    ],
+    "frequency_per_s": [
+      0.016666666666666666,
+      1,
+      20
+    ],
+    "demand_Bps": [
+      333333333.3333333,
+      20000000000.0,
+      400000000000.0
+    ],
+    "repeat": 10,
+    "remote_repeat_s": 4.0,
+    "fetch_then_local_s": 0.45970149253731346,
+    "local_read_s": 0.005970149253731343
+  }
+}
