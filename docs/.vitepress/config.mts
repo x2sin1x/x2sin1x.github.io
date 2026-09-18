@@ -209,6 +209,13 @@ const teekConfig = defineTeekConfig({
     avatar: "/nenifindo.png",
     shape: "circle",
   },
+  // 日期用本地时区而非 UTC 处理：主题默认 dateUTC: true 会把 frontmatter 日期（按 UTC 零点解析）
+  // 格式化成无时区字符串，文章清单页再按本地时区重新解析并用 UTC 取值显示，
+  // 两次转换叠加使日期提前一天（如 2026-09-18 显示为 2026-09-17）。
+  // 关闭后格式化与重新解析使用同一时区，日期保持不变。
+  articleAnalyze: {
+    dateUTC: false,
+  },
   // 关闭主题内置面包屑（仅显示文件 / 目录名且多数层级无链接），
   // 改由 theme/index.ts 通过 teek-article-analyze-before 插槽渲染自定义面包屑组件
   breadcrumb: {
