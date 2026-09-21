@@ -5,7 +5,7 @@ weight: 105
 ---
 # CS336：从零开始的语言模型
 
-![](cover.svg)
+![](cover.jpg)
 
 > Stanford CS336 · Language Modeling from Scratch · Stanford / Spring 2026
 > 讲师：Tatsunori Hashimoto（Tatsu Hashimoto）、Percy Liang
