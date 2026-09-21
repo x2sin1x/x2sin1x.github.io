@@ -108,7 +108,7 @@ function collectBreadcrumbTitles(): Record<string, string> {
  * 需要拆分侧边栏的板块（一级目录）：将这些目录下的一级子目录拆分为独立侧边栏，
  * 点开某个子目录页面时，左侧只显示当前子目录的目录结构
  */
-const splitSectionKeys = ["/tech-stack/", "/knowledge-planet/"];
+const splitSectionKeys = ["/tech-stack/", "/knowledge-planet/", "/papers/"];
 
 /**
  * docs 目录：优先从仓库根目录推断，兼容直接以 docs/ 为工作目录启动 VitePress 的情况
@@ -217,6 +217,16 @@ const teekConfig = defineTeekConfig({
   articleAnalyze: {
     dateUTC: false,
   },
+  // 博客标签 / 分类页地址：/posts/tags、/posts/categories
+  //（与论文板块的 /papers/tags、/papers/categories 结构一致）。
+  // 主题的标签 / 分类卡片（首页、/posts/ 页）与清单页通过该配置生成跳转链接；
+  // 旧地址 /tags、/categories 为重定向页（兼容主题文章卡片硬编码链接，见 tagsRedirectPage.md）
+  tag: {
+    path: "/posts/tags",
+  },
+  category: {
+    path: "/posts/categories",
+  },
   // 关闭主题内置面包屑（仅显示文件 / 目录名且多数层级无链接），
   // 改由 theme/index.ts 通过 teek-article-analyze-before 插槽渲染自定义面包屑组件
   breadcrumb: {
@@ -255,11 +265,13 @@ const teekConfig = defineTeekConfig({
     },
   },
   vitePlugins: {
-    // 将技术栈 / 知识星球排除在主题的文章数据集（vitepress-plugin-file-content-loader）之外：
+    // 将技术栈 / 知识星球 / 论文排除在主题的文章数据集（vitepress-plugin-file-content-loader）之外：
     // 这些板块不是博客文章，此前靠 frontmatter 的 inHomePost: false 只能挡住首页文章列表渲染，
     // 但主题分页组件的 total 取的是未过滤的全量文章数，导致 /posts/ 出现大量空白分页。
     // 从数据源头排除后，分页 total 与实际文章数一致（侧边栏由 sidebar 插件单独生成，不受影响）。
-    fileContentLoaderIgnore: ["**/tech-stack/**", "**/knowledge-planet/**"],
+    // 排除论文后，主题内置的标签 / 分类 / 归档 / 首页列表均为纯博客数据，
+    // 论文板块使用独立的 createContentLoader 数据源（见 @pages/papers.data.ts）与自建标签 / 分类页。
+    fileContentLoaderIgnore: ["**/tech-stack/**", "**/knowledge-planet/**", "**/papers/**"],
     sidebarOption: {
       // 文章封面等图片与 md 同目录存放，插件扫到非 .md 文件会告警且不会进侧边栏，
       // 这里按扩展名忽略常见静态资源，避免每次 dev/build 刷警告
@@ -333,7 +345,17 @@ export default defineConfig({
   lang: "zh-CN",
   themeConfig: {
     nav: [
-      { text: "首页", link: "/" },
+      // 「首页」同样使用自定义 NavDropdownLink 组件（见 theme/index.ts）：
+      // 单击标题进入站点首页，hover 展开「路线图」子菜单
+      {
+        component: "NavDropdownLink",
+        props: {
+          text: "首页",
+          link: "/",
+          activeMatch: "^/$",
+          items: [{ text: "路线图", link: "/roadmap", activeMatch: "^/roadmap" }],
+        },
+      },
       // “博客”使用自定义 NavDropdownLink 组件（见 theme/index.ts）：
       // 单击标题进入博客总览页，hover 展开功能页子菜单。
       // 功能页 permalink 定义在 docs/@pages/ 下的 frontmatter 中；由于 permalink 仅在客户端重定向，
@@ -347,6 +369,22 @@ export default defineConfig({
           items: [
             { text: "归档", link: "/archives", activeMatch: "^/(archives|@pages/archivesPage)" },
             { text: "清单", link: "/articleOverview", activeMatch: "^/(articleOverview|@pages/articleOverviewPage)" },
+            { text: "标签", link: "/posts/tags", activeMatch: "^/(posts/tags|@pages/tagsPage)" },
+            { text: "分类", link: "/posts/categories", activeMatch: "^/(posts/categories|@pages/categoriesPage)" },
+          ],
+        },
+      },
+      // “论文”板块：独立的标签 / 分类系统（/papers/tags、/papers/categories），
+      // 数据源与页面均为自建（@pages/papers.data.ts + PapersTaxonomy 组件），与博客标签系统互不相通
+      {
+        component: "NavDropdownLink",
+        props: {
+          text: "论文",
+          link: "/papers/",
+          activeMatch: "^/papers/",
+          items: [
+            { text: "标签", link: "/papers/tags", activeMatch: "^/(papers/tags|@pages/papersTagsPage)" },
+            { text: "分类", link: "/papers/categories", activeMatch: "^/(papers/categories|@pages/papersCategoriesPage)" },
           ],
         },
       },

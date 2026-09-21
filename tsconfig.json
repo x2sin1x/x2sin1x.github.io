@@ -3,6 +3,9 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "allowJs": false,
+    // 允许导入带 .mts 扩展名的数据加载器文件（docs/@pages/papers.data.mts），
+    // 供 Vue 组件引用构建期数据；noEmit: true 下该选项无副作用
+    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
