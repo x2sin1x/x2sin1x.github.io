@@ -23,6 +23,10 @@ data:
     link: /tech-stack/mongo/
     name: MongoDB
     desc: 文档数据库与聚合查询
+  - img: /tech-stack/redis/cover.jpg
+    link: /tech-stack/redis/
+    name: Redis
+    desc: 内存数据库与缓存策略
 ```
 :::
 
