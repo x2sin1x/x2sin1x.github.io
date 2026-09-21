@@ -12,14 +12,8 @@ hero:
     alt: Nenifindo Logo
   actions:
     - theme: brand
-      text: 博客
-      link: /posts/
-    - theme: alt
-      text: 技术栈
-      link: /tech-stack/
-    - theme: alt
-      text: 知识星球
-      link: /knowledge-planet/
+      text: 开始
+      link: /roadmap
 
 features:
   # 配置 link 后卡片渲染为 <a>，支持整卡单击进入；linkText 显示在卡片底部并带箭头
