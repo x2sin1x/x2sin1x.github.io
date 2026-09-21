@@ -1,17 +1,63 @@
 ---
-title: "Git 使用教程"
+title: "使用教程"
 date: 2021-12-03T09:57:48+08:00
 weight: 10
 ---
+
 # Git 使用教程
 
-## Git 简介
+## Git 工作流一览
 
-**Git** 是一个分布式版本控制系统，与之相对应的是早期 Linux 系统所痛恨的以 SVN 为代表的集中式版本控制系统。那么，集中式和分布式版本控制系统有什么区别呢？
+::: mermaid
+sequenceDiagram
+    participant C as 干净工作区<br/>Clean Workspace
+    participant M as 已更改工作区<br/>Modified Workspace
+    participant I as 暂存区<br/>Index
+    participant R as 本地仓库<br/>Repository
+    participant RR as 远程仓库<br/>Remote
 
-先说集中式版本控制系统，版本库是集中存放在中央服务器的，而干活的时候，用的都是自己的电脑，所以要先从中央服务器取得最新的版本，然后开始干活，干完活了，再把自己的活推送给中央服务器。中央服务器就好比是一个图书馆，你要改一本书，必须先从图书馆借出来，然后回到家自己改，改完了，再放回图书馆。
+    RR->>R: git clone
+    Note over RR,R: 克隆远程仓库<br/>创建本地仓库
 
-分布式版本控制系统根本没有“中央服务器”，每个人的电脑上都是一个完整的版本库，这样，你工作的时候，就不需要联网了，因为版本库就在你自己的电脑上。既然每个人电脑上都有一个完整的版本库，那多个人如何协作呢？比方说你在自己电脑上改了文件 A，你的同事也在他的电脑上改了文件 A，这时，你们俩之间只需把各自的修改推送给对方，就可以互相看到对方的修改了。
+    C->>M: 编辑 / 修改文件
+    Note over C,M: 工作区产生修改
+
+    M->>I: git add
+    Note over M,I: 将修改加入暂存区
+
+    I->>R: git commit
+    Note over I,R: 创建新的提交
+
+    R->>RR: git push
+    Note over R,RR: 推送本地提交
+
+    RR->>R: git fetch
+    Note over RR,R: 获取远程更新
+
+    R->>R: git merge
+    Note over R: 将其他分支合并到当前分支
+
+    R->>R: git rebase
+    Note over R: 将当前分支提交变基到目标分支
+
+    RR->>R: git pull
+    Note over RR,R: fetch + merge / rebase
+
+    I->>M: git restore --staged
+    Note over I,M: 取消暂存<br/>修改保留在工作区
+
+    M->>C: git restore
+    Note over M,C: 丢弃工作区修改
+
+    R->>I: git reset --soft HEAD~1
+    Note over R,I: HEAD 回退<br/>暂存区保留
+
+    R->>M: git reset HEAD~1
+    Note over R,M: HEAD 回退<br/>取消暂存，修改保留
+
+    R->>C: git reset --hard HEAD~1
+    Note over R,C: HEAD、暂存区、工作区<br/>全部回退
+:::
 
 ## Contents
 
