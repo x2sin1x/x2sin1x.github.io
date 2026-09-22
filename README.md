@@ -89,28 +89,9 @@ pnpm docs:preview
 - `tech-stack/`、`knowledge-planet/` 目录下的内容不进入博客文章数据集，各自通过 `index.md` 落地页组织
 - 图片等站点级静态资源放 `docs/public/`，文章专属图片放在文章目录旁
 
-## 部署方式（Netlify Git 集成）
-
-站点使用根路径部署（`base: /`），配合 Netlify 默认子域名无需修改 VitePress 配置。
-
-### 首次部署
-
-1. 登录 [Netlify](https://app.netlify.com)，选择 **Add new site → Import an existing project → Deploy with GitHub**，关联本仓库
-2. 构建配置：
-   - **Build command**：`pnpm docs:build`
-   - **Publish directory**：`docs/.vitepress/dist`
-   - **环境变量**：`NODE_VERSION` = `20`（或 `22`）；Netlify 会根据 `pnpm-lock.yaml` 自动启用 pnpm
-3. 开启 **Pretty URLs**：进入 **Site configuration → Build & deploy**，启用 Pretty URLs。站点开启了 `cleanUrls: true`，该开关保证 `/path.html` 形式的请求能正确重定向到干净链接，无需在仓库中添加 `_redirects` 文件
-4. 部署完成后，在 **Site overview** 查看默认站点地址：`https://<site-name>.netlify.app`（可在 Site configuration → Change site name 中修改）。如需绑定自定义域名，在 **Domain management** 中添加即可
-
-### 更新部署
-
-推送到默认分支（`main`）即自动触发 Netlify 构建并发布，Pull Request 会生成 deploy preview 供预览。
-
 ## 参考文档
 
 - [VitePress 官方文档](https://vitepress.dev)
 - [vitepress-theme-teek 文档](https://vp.teek.top)
 - [abcjs 乐谱记法](https://abcjs.net/abcjs-editor.html)
 - [markdown-it-mathjax3](https://github.com/tandpfun/markdown-it-mathjax3)
-- [Netlify 文档](https://docs.netlify.com)（Git 集成 / Pretty URLs）
