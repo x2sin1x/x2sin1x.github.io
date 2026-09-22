@@ -418,7 +418,7 @@ powershell -c "irm https://pi.dev/install.ps1 | iex"
 可通过 `npx skills add` 命令从个人自用技能仓库安装技能。建议在项目级安装以确保 Skill 不会冗余占用上下文。
 
 ```bash
-npx skills add git@gitee.com:bowenEI/myskills.git -a AGENT
+npx skills add git@gitee.com:x2sin1x/myskills.git -a AGENT
 ```
 
 ## Python

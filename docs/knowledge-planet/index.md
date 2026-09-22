@@ -59,10 +59,14 @@ data:
     link: /knowledge-planet/cs336/
     name: CS336：从零开始的语言模型
     desc: 斯坦福大模型课程——分词、架构、系统、缩放定律与对齐
-  - img: /knowledge-planet/ai-infra-book/cover.jpg
-    link: /knowledge-planet/ai-infra-book/
+  - img: /knowledge-planet/ai-infra/cover.jpg
+    link: /knowledge-planet/ai-infra/
     name: AI Infra
     desc: 训练、推理与部署大模型的量化分析和系统设计
+  - img: /knowledge-planet/ai-agent/cover.jpg
+    link: /knowledge-planet/ai-agent/
+    name: AI Agent
+    desc: 智能体的原理与实践教程——大脑、眼睛与手脚
 ```
 :::
 

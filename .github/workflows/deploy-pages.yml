@@ -1,6 +1,6 @@
 # GitHub Pages 部署工作流
 #
-# 部署目标：https://nenifindo.github.io/（用户站点，base 为根路径，无需设置 --base）。
+# 部署目标：https://x2sin1x.github.io/（用户站点，base 为根路径，无需设置 --base）。
 # 使用前准备：
 # 1. 仓库 Settings → Pages → Build and deployment → Source 选择 "GitHub Actions"。
 # 2. 如改用自定义域名，将域名写入 docs/public/CNAME。

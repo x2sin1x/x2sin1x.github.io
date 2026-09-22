@@ -435,7 +435,7 @@ export default defineConfig({
         },
       },
     ],
-    socialLinks: [{ icon: "github", link: "https://github.com/bowenEI" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/x2sin1x" }],
     // 内置本地搜索（基于 MiniSearch，构建时索引全站文本，无需外部服务）。
     // Teek 主题继承默认主题 Layout 并已适配 VPNavBarSearch 样式，开箱即用
     search: {
