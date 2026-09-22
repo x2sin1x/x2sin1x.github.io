@@ -471,4 +471,22 @@ export default defineConfig({
     // 启用数学公式渲染（行内 $...$ / $\int$，块级 $$...$$），依赖 markdown-it-mathjax3
     math: true,
   },
+  vite: {
+    build: {
+      // 按 node_modules 下的包名拆分 vendor chunk：默认把所有第三方依赖打进少量大 chunk，
+      // 构建期间内存峰值过高，Netlify 构建机 OOM（exit code 137，Killed）；
+      // 拆成每包一个 chunk 可降低单次打包的内存占用，同时提升客户端缓存命中
+      chunkSizeWarningLimit: 1500,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (!id.includes("node_modules")) return undefined;
+            // 形如 .../node_modules/<pkg>/...：取包名作为 chunk 名（scoped 包为 @scope）
+            const pkg = id.split("node_modules/")[1]?.split("/")[0];
+            return pkg ? pkg.toString() : undefined;
+          },
+        },
+      },
+    },
+  },
 });
