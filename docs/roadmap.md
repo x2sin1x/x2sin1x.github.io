@@ -10,12 +10,13 @@ sidebar: false
 
 ## 站点总览
 
-站点由「一个博客」与「两大笔记板块」构成，外加一组全站功能页：
+站点由「一个博客」「一个论文板块」与「两大笔记板块」构成，外加一组全站功能页：
 
 | 板块 | 入口 | 内容定位 |
 |------|------|----------|
 | 首页 | [/](/) | 站点介绍与各板块导航卡片 |
 | 博客 | [/posts/](/posts/) | 技术解读、论文精读与时事评论，按年份归档 |
+| 论文 | [/papers/](/papers/) | 前沿论文与官方技术博客的独立解读，按论文发表年份归档 |
 | 技术栈 | [/tech-stack/](/tech-stack/) | 工具与技术的学习笔记、教程与速查手册 |
 | 知识星球 | [/knowledge-planet/](/knowledge-planet/) | 各领域的系统性专栏笔记，按合集组织 |
 
@@ -27,6 +28,8 @@ docs/
 ├── roadmap.md          # 本页：站点结构与维护约定
 ├── posts/              # 博客文章（按年份分目录）
 │   └── <year>/<slug>/  # 每篇文章一个目录，存放 index.md 与图片等资源
+├── papers/             # 论文解读（按论文发表 / arXiv 年份分目录）
+│   └── <year>/<slug>.md # 每篇论文一个 md 文件
 ├── tech-stack/         # 技术栈笔记（按技术分目录）
 ├── knowledge-planet/   # 知识星球合集（按合集分目录）
 ├── @pages/             # 全站功能页源文件（归档、清单、分类、标签等）
@@ -39,6 +42,35 @@ docs/
 博客是站点的核心输出，文章按创建年份放在 `2021` 至 `2026` 的年份目录下，每篇文章使用独立的 `<slug>` 目录，文章的 `index.md` 与配图同目录存放。
 
 内容范围不限于技术，涵盖论文精读、时事评论与个人感悟。所有文章自动进入归档页、清单页、分类与标签系统，无需手工登记。
+
+## 论文：`docs/papers/`
+
+论文板块收录对前沿论文（及官方技术博客）的独立解读，与博客相互隔离：`papers/` 已从博客文章数据集中排除（见 `config.mts` 的 `fileContentLoaderIgnore`），拥有自己的落地页、标签 / 分类与归档 / 清单系统。
+
+目录组织：落地页 `index.md` 之外，论文按**论文发表或挂到 arXiv 的年份**放入年份目录（而非解读的写作时间），每篇论文一个 `.md` 文件：
+
+```text
+papers/
+├── index.md           # 落地页（论文列表 + 标签 / 分类卡片）
+└── 2026/              # 年份 = 论文发表或挂到 arXiv 的年份
+    ├── DFlash.md
+    ├── DFlash2.md
+    └── DSpark.md
+```
+
+frontmatter 约定：`title` 为论文（或官方博客）名称，`date` 用于站内排序，`tags` 记录研究方向，`categories` 记录发表载体（如会议 `ICML`、技术博客 `Blog`）。与博客文章不同，论文解读不进入主题的文章数据集，全部板块页面由独立数据源（`@pages/papers.data.mts`）与自建组件渲染。
+
+论文板块功能页（源文件同样存放在 `docs/@pages/`）：
+
+| 页面 | URL | 说明 |
+|------|-----|------|
+| 落地页 | [/papers/](/papers/) | 论文列表与标签 / 分类卡片 |
+| 归档 | [/papers/archives](/papers/archives) | 按年份时间线展示全部论文 |
+| 清单 | [/papers/articleOverview](/papers/articleOverview) | 按分类分组的结构化清单（含字数与阅读时长） |
+| 标签 | [/papers/tags](/papers/tags) | 按标签（研究方向）浏览 |
+| 分类 | [/papers/categories](/papers/categories) | 按分类（发表载体）浏览 |
+
+以上页面的数据均只来自 `docs/papers/`，与博客的归档、清单、标签、分类互不相通。
 
 ## 技术栈：`docs/tech-stack/`
 
@@ -95,6 +127,10 @@ MongoDB 与 Redis 两个教程结构对齐：概念 → 基础操作 → 进阶�
 | 标签 | [/posts/tags](/posts/tags) | 按标签浏览 |
 | 登录 | [/login](/login) | 站点登录页 |
 | 风险链接提示 | [/risk-link](/risk-link) | 外链跳转前的安全提示页 |
+| 论文归档 | [/papers/archives](/papers/archives) | 论文板块归档页（数据仅来自 `papers/`） |
+| 论文清单 | [/papers/articleOverview](/papers/articleOverview) | 论文板块清单页（数据仅来自 `papers/`） |
+| 论文标签 | [/papers/tags](/papers/tags) | 论文板块标签页（数据仅来自 `papers/`） |
+| 论文分类 | [/papers/categories](/papers/categories) | 论文板块分类页（数据仅来自 `papers/`） |
 
 ## 站点基础设施：`docs/.vitepress/`
 
@@ -110,5 +146,6 @@ MongoDB 与 Redis 两个教程结构对齐：概念 → 基础操作 → 进阶�
 - **命名**：目录与英文文件名使用 kebab-case，合集与教程的落地页命名为 `index.md`。
 - **frontmatter**：需要排序的页面写 `title`、`date` 与 `weight`；侧边栏顺序由 `weight` 决定，与文件名无关。
 - **链接**：站内链接一律使用根相对路径（如 `/tech-stack/redis/`），图片与文章同目录存放。
-- **板块隔离**：`tech-stack/` 与 `knowledge-planet/` 已从博客文章数据集中排除，新建板块若不希望出现在博客列表，需要同步更新 `fileContentLoaderIgnore` 配置。
+- **板块隔离**：`tech-stack/`、`knowledge-planet/` 与 `papers/` 已从博客文章数据集中排除，新建板块若不希望出现在博客列表，需要同步更新 `fileContentLoaderIgnore` 配置。
+- **论文年份**：新增论文放入以其**发表或挂到 arXiv 的年份**命名的目录（而非写作时间），`date` 字段用于站内排序。
 - **校验**：改动配置、主题或新增板块后，运行 `pnpm typecheck` 与 `pnpm docs:build` 验证；涉及布局的改动还需在桌面与移动宽度下预览确认。

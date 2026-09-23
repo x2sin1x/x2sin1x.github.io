@@ -1,0 +1,7 @@
+interface:
+  display_name: "论文博客化解读"
+  short_description: "把论文写成问题驱动、机制清晰、证据闭环的中文技术博客"
+  default_prompt: "使用 $paper-blog-writer 把这篇论文写成问题驱动、易读且有证据支撑的技术博客。"
+
+policy:
+  allow_implicit_invocation: true

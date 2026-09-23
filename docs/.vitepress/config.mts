@@ -232,6 +232,19 @@ const teekConfig = defineTeekConfig({
   breadcrumb: {
     enabled: false,
   },
+  // 全站页脚：主题的 FooterInfo / FooterGroup 仅在 layout: home 页面渲染
+  // （见主题 Layout 的 isHomePage 分支），而现在 /posts/、/papers/ 均为 layout: page，
+  // 故不使用 footerInfo 配置，改由 theme/index.ts 通过 layout-bottom 插槽
+  // 全站注入自建页脚 SiteFooter（Theme By Teek + Copyright 2026）。
+  // 站点首页（docs/index.md，layout: home）仍由主题 FooterInfo 渲染页脚：
+  // 这里用 copyright.name 固定文案（主题默认拼接取运行时年份，会随年份漂移），
+  // SiteFooter 则在 layout: home 页面自行隐藏，避免首页双份页脚
+  footerInfo: {
+    copyright: {
+      show: true,
+      name: "Copyright 2026",
+    },
+  },
   // 自定义 markdown 渲染：必须放在 defineTeekConfig 的 markdown.config 里，
   // Teek 会先注册自身的 markdown 扩展（imgCard / shareCard / navCard / note 容器等），
   // 再回调本函数；若写在 defineConfig 的 markdown.config 会因 extends 合并时函数覆盖
@@ -374,8 +387,9 @@ export default defineConfig({
           ],
         },
       },
-      // “论文”板块：独立的标签 / 分类系统（/papers/tags、/papers/categories），
-      // 数据源与页面均为自建（@pages/papers.data.ts + PapersTaxonomy 组件），与博客标签系统互不相通
+      // “论文”板块：独立的标签 / 分类系统（/papers/tags、/papers/categories）与
+      // 自建归档 / 清单页（/papers/archives、/papers/articleOverview），
+      // 数据源与页面均为自建（@pages/papers.data.ts + Papers* 组件），与博客板块互不相通
       {
         component: "NavDropdownLink",
         props: {
@@ -383,6 +397,12 @@ export default defineConfig({
           link: "/papers/",
           activeMatch: "^/papers/",
           items: [
+            { text: "归档", link: "/papers/archives", activeMatch: "^/(papers/archives|@pages/papersArchivesPage)" },
+            {
+              text: "清单",
+              link: "/papers/articleOverview",
+              activeMatch: "^/(papers/articleOverview|@pages/papersArticleOverviewPage)",
+            },
             { text: "标签", link: "/papers/tags", activeMatch: "^/(papers/tags|@pages/papersTagsPage)" },
             { text: "分类", link: "/papers/categories", activeMatch: "^/(papers/categories|@pages/papersCategoriesPage)" },
           ],

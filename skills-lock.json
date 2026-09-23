@@ -8,6 +8,13 @@
       "skillPath": "skills/markdown-cjk-spacing/SKILL.md",
       "computedHash": "a16ef8cf86b3ac78c404c1a74a6630e70a2bc41b970352ac55b97f87c882396a"
     },
+    "paper-blog-writer": {
+      "source": "git@github.com:x2sin1x/myskills.git",
+      "sourceUrl": "git@github.com:x2sin1x/myskills.git",
+      "sourceType": "git",
+      "skillPath": "skills/paper-blog-writer/SKILL.md",
+      "computedHash": "5cc2e6c6064bfefc664f337a65f1df90b40d519a4b174783f679ef70b8c679dc"
+    },
     "siyuan-note": {
       "source": "git@github.com:x2sin1x/myskills.git",
       "sourceUrl": "git@github.com:x2sin1x/myskills.git",
