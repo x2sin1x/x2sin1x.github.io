@@ -31,6 +31,24 @@ function pruneEmptyGroups(items: DefaultTheme.SidebarItem[]): DefaultTheme.Sideb
 }
 
 /**
+ * 递归归一化侧边栏链接中的目录页地址：sidebar-resolve 插件为 index.md 生成的链接形如
+ * `.../index`（无斜杠、无扩展名），而 VitePress 目录页的规范 URL 是 `.../`。
+ * 主题的 Previous / Next page 靠 isActive(relativePath, link) 匹配当前页，其内部归一化
+ * 只会剥离带扩展名的 index.md / index.html（INDEX_OR_EXT_RE），不会剥离裸的 /index 后缀，
+ * 导致 <slug>/index.md 页面在候选列表中永远匹配不到自己：findIndex 返回 -1，
+ * 上一页变为 undefined、下一页固定取候选列表第一项（即某个 <slug>/index 页面）。
+ * 统一改写为带尾部斜杠的规范形式后，`/a/b/` 与 `/a/b/index.md` 归一化结果一致，
+ * 同时侧边栏链接成为 cleanUrls 下的规范地址，目录页的侧边栏高亮也一并修复
+ */
+function normalizeIndexLinks(items: DefaultTheme.SidebarItem[]): DefaultTheme.SidebarItem[] {
+  return items.map((item) => ({
+    ...item,
+    ...(item.link ? { link: item.link.replace(/(^|\/)index$/, "$1") } : {}),
+    ...(item.items?.length ? { items: normalizeIndexLinks(item.items) } : {}),
+  }));
+}
+
+/**
  * 递归合并分组与其目录下的 index.md 条目：
  * 插件为每个目录生成的分组标题取目录名（如 chapter1），而目录内的 index.md
  * 又会作为带标题的条目（如“第一章 xxx”）出现在分组里，导致标题重复显示。
@@ -108,7 +126,7 @@ function collectBreadcrumbTitles(): Record<string, string> {
  * 需要拆分侧边栏的板块（一级目录）：将这些目录下的一级子目录拆分为独立侧边栏，
  * 点开某个子目录页面时，左侧只显示当前子目录的目录结构
  */
-const splitSectionKeys = ["/tech-stack/", "/knowledge-planet/", "/papers/"];
+const splitSectionKeys = ["/tech-stack/", "/knowledge-planet/", "/papers/", "/repos/"];
 
 /**
  * docs 目录：优先从仓库根目录推断，兼容直接以 docs/ 为工作目录启动 VitePress 的情况
@@ -278,19 +296,18 @@ const teekConfig = defineTeekConfig({
     },
   },
   vitePlugins: {
-    // 将技术栈 / 知识星球 / 论文排除在主题的文章数据集（vitepress-plugin-file-content-loader）之外：
-    // 这些板块不是博客文章，此前靠 frontmatter 的 inHomePost: false 只能挡住首页文章列表渲染，
-    // 但主题分页组件的 total 取的是未过滤的全量文章数，导致 /posts/ 出现大量空白分页。
-    // 从数据源头排除后，分页 total 与实际文章数一致（侧边栏由 sidebar 插件单独生成，不受影响）。
+    // 将技术栈 / 知识星球 / 论文 / 仓库排除在主题的文章数据集（vitepress-plugin-file-content-loader）之外：
+    // 这些板块不是博客文章，从数据源头排除后，
+    // 分页 total 与实际文章数一致（侧边栏由 sidebar 插件单独生成，不受影响）。
     // 排除论文后，主题内置的标签 / 分类 / 归档 / 首页列表均为纯博客数据，
     // 论文板块使用独立的 createContentLoader 数据源（见 @pages/papers.data.ts）与自建标签 / 分类页。
-    fileContentLoaderIgnore: ["**/tech-stack/**", "**/knowledge-planet/**", "**/papers/**"],
+    fileContentLoaderIgnore: ["**/tech-stack/**", "**/knowledge-planet/**", "**/papers/**", "**/repos/**"],
     sidebarOption: {
       // 文章封面等图片与 md 同目录存放，插件扫到非 .md 文件会告警且不会进侧边栏，
       // 这里按扩展名忽略常见静态资源，避免每次 dev/build 刷警告
       ignoreList: [/\.(jpe?g|png|gif|webp|svg|avif|ico|mp4|drawio|vsdx|ipynb|py|ya?ml|csv|xlsx|json|sh)$/i],
       sidebarResolved: (sidebar) => {
-        if (Array.isArray(sidebar)) return sidebar;
+        if (Array.isArray(sidebar)) return normalizeIndexLinks(sidebar);
 
         const result: DefaultTheme.SidebarMulti = {};
         for (const [key, value] of Object.entries(sidebar)) {
@@ -299,11 +316,11 @@ const teekConfig = defineTeekConfig({
           const items = pruneEmptyGroups(Array.isArray(value) ? value : value.items);
           if (key === postsKey) {
             // 博客板块：恢复侧边栏，按 <year>/<slug> 结构展示
-            result[key] = buildPostsSidebar(items);
+            result[key] = normalizeIndexLinks(buildPostsSidebar(items));
             continue;
           }
           if (!splitSectionKeys.includes(key)) {
-            result[key] = items;
+            result[key] = normalizeIndexLinks(items);
             continue;
           }
           const [rootItem] = items;
@@ -319,11 +336,13 @@ const teekConfig = defineTeekConfig({
             // 分组项的 text 即子目录名（插件默认不取 md 标题），拼出侧边栏 key
             const stackKey = `${key}${stack.text}/`;
             if (!stack.items?.length) continue;
-            result[stackKey] = makeGroupsCollapsible(sortTreeByWeight(mergeIndexIntoGroups([stack])));
+            result[stackKey] = normalizeIndexLinks(
+              makeGroupsCollapsible(sortTreeByWeight(mergeIndexIntoGroups([stack])))
+            );
           }
 
           // 板块落地页只显示各子目录入口，不再展开完整目录树（按各子目录 index.md 的 weight 排序）
-          result[key] = sortByWeight(
+          result[key] = normalizeIndexLinks(sortByWeight(
             stacks.flatMap(
             (stack): DefaultTheme.SidebarItem[] => {
               const stackKey = `${key}${stack.text}/`;
@@ -340,7 +359,7 @@ const teekConfig = defineTeekConfig({
               if (link) sidebarItem.link = link;
               return [sidebarItem];
             }
-          ));
+          )));
         }
         return result;
       },
@@ -405,6 +424,20 @@ export default defineConfig({
             },
             { text: "标签", link: "/papers/tags", activeMatch: "^/(papers/tags|@pages/papersTagsPage)" },
             { text: "分类", link: "/papers/categories", activeMatch: "^/(papers/categories|@pages/papersCategoriesPage)" },
+          ],
+        },
+      },
+      {
+        component: "NavDropdownLink",
+        props: {
+          // 「仓库」板块：用于解读 GitHub 源码，子目录组织与「技术栈」/「知识星球」一致
+          // （<slug>/index.md 入口 + 自由扩展章节），新仓库按字母 / 主题顺序追加到 items
+          text: "仓库",
+          link: "/repos/",
+          activeMatch: "/repos/",
+          items: [
+            { text: "Mooncake", link: "/repos/mooncake/" },
+            { text: "vLLM", link: "/repos/vllm/" },
           ],
         },
       },

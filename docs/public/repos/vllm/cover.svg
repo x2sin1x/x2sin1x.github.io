@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="0.55" stop-color="#101c3a"/>
+      <stop offset="1" stop-color="#1b2f5e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4cc2ff"/>
+      <stop offset="0.5" stop-color="#7d8cff"/>
+      <stop offset="1" stop-color="#c86bfa"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <!-- paged blocks motif -->
+  <g opacity="0.9">
+    <rect x="790" y="150" width="84" height="84" rx="10" fill="none" stroke="#4cc2ff" stroke-width="3"/>
+    <rect x="890" y="150" width="84" height="84" rx="10" fill="#4cc2ff" fill-opacity="0.18" stroke="#4cc2ff" stroke-width="3"/>
+    <rect x="990" y="150" width="84" height="84" rx="10" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="3" stroke-dasharray="6 6"/>
+    <rect x="890" y="250" width="84" height="84" rx="10" fill="#7d8cff" fill-opacity="0.18" stroke="#7d8cff" stroke-width="3"/>
+    <rect x="990" y="250" width="84" height="84" rx="10" fill="none" stroke="#7d8cff" stroke-width="3"/>
+    <rect x="790" y="250" width="84" height="84" rx="10" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="3" stroke-dasharray="6 6"/>
+    <rect x="940" y="360" width="84" height="84" rx="10" fill="#c86bfa" fill-opacity="0.18" stroke="#c86bfa" stroke-width="3"/>
+    <rect x="840" y="360" width="84" height="84" rx="10" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="3" stroke-dasharray="6 6"/>
+  </g>
+  <text x="90" y="270" font-family="Arial, Helvetica, sans-serif" font-size="150" font-weight="800" fill="#ffffff">vLLM</text>
+  <rect x="94" y="305" width="330" height="8" rx="4" fill="url(#accent)"/>
+  <text x="94" y="380" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="44" font-weight="600" fill="#dbe6ff">源码解读</text>
+  <text x="94" y="440" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="26" fill="#8fa3c8">PagedAttention · 连续批处理 · 前缀缓存</text>
+  <text x="94" y="482" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="26" fill="#8fa3c8">从一次请求走进 V1 引擎的九跳主链路</text>
+  <text x="94" y="560" font-family="Menlo, Consolas, monospace" font-size="20" fill="#5f7396">github.com/vllm-project/vllm</text>
+</svg>

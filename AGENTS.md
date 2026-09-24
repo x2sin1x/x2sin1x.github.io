@@ -4,6 +4,8 @@
 
 This is a pnpm-managed VitePress site. Dated articles live in `docs/blogs/`, technical notes in `docs/tech-stack/`, and subject collections in `docs/knowledge-planet/`. Site configuration is in `docs/.vitepress/config.mts`; theme extensions, Vue components, and CSS belong under `docs/.vitepress/theme/`. Put files requiring stable root-relative URLs in `docs/public/`; keep article-specific images beside their article. Do not edit or commit generated `docs/.vitepress/cache/` or `docs/.vitepress/dist/` content.
 
+Page layout constraint: if a page has no subpages, create it as a single file `<slug>.md`; if it has subpages, create it as a directory `<slug>/index.md`. Do not create a `<slug>/index.md` for pages that will never contain subpages.
+
 ## Build, Test, and Development Commands
 
 - `pnpm install` installs the locked dependencies from `pnpm-lock.yaml`.

@@ -32,4 +32,14 @@ features:
     details: 马列主义经典导读、凸优化、金融学、音乐理论等领域的系统性专栏笔记。
     link: /knowledge-planet/
     linkText: 进入知识星球
+  - icon: 📄
+    title: 论文
+    details: 学术论文精读与解读，附独立的归档、标签与分类体系，追踪研究前沿。
+    link: /papers/
+    linkText: 进入论文
+  - icon: 📦
+    title: 仓库
+    details: GitHub 开源仓库源码解读，逐章剖析调用链与设计取舍。
+    link: /repos/
+    linkText: 进入仓库
 ---
