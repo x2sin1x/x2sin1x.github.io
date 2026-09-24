@@ -1,0 +1,7 @@
+interface:
+  display_name: "源码解读书生成器"
+  short_description: "从真实源码证据生成架构清晰、结论可追溯的中文解读书"
+  default_prompt: "使用 $source-code-book-writer 将这个仓库写成有源码证据、调用链和设计取舍分析的中文解读书。"
+
+policy:
+  allow_implicit_invocation: true
