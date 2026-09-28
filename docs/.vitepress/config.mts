@@ -208,6 +208,28 @@ function buildPostsSidebar(items: DefaultTheme.SidebarItem[]): DefaultTheme.Side
     .reverse();
 }
 
+// 论文板块（一级目录）：落地页侧边栏展示为可折叠的年份分组
+const papersKey = "/papers/";
+
+/**
+ * 论文板块落地页侧边栏：将各年份子目录生成为可折叠分组（collapsed: true，默认收起），
+ * 年份倒序（最新在前）；分组内部保留各年份完整目录树并按 weight 排序。
+ * collapsed: true 的分组在当前页不在其内时保持收起，落地页上所有年份默认收起
+ */
+function buildPapersLandingSidebar(stacks: DefaultTheme.SidebarItem[]): DefaultTheme.SidebarItem[] {
+  return stacks
+    .filter((stack) => stack.items?.length)
+    .map((stack) => {
+      const yearItem: DefaultTheme.SidebarItem = {
+        collapsed: true,
+        items: makeGroupsCollapsible(sortTreeByWeight(stack.items ?? [])),
+      };
+      if (stack.text) yearItem.text = stack.text;
+      return yearItem;
+    })
+    .reverse();
+}
+
 // Teek 主题配置
 const teekConfig = defineTeekConfig({
   // 博主信息（首页 Banner 中的头像与昵称）：暂用站点 Logo 作为头像，
@@ -330,8 +352,11 @@ const teekConfig = defineTeekConfig({
             );
           }
 
-          // 板块落地页只显示各子目录入口，不再展开完整目录树（按各子目录 index.md 的 weight 排序）
-          result[key] = normalizeIndexLinks(sortByWeight(
+          // 板块落地页默认只显示各子目录入口，不再展开完整目录树（按各子目录 index.md 的 weight 排序）；
+          // 论文板块例外：落地页展示全部年份的可折叠分组（默认收起），与博客板块的年份分组体验一致
+          result[key] = key === papersKey
+            ? normalizeIndexLinks(buildPapersLandingSidebar(stacks))
+            : normalizeIndexLinks(sortByWeight(
             stacks.flatMap(
             (stack): DefaultTheme.SidebarItem[] => {
               const stackKey = `${key}${stack.text}/`;
