@@ -8,6 +8,10 @@ Page layout constraint: if a page has no subpages, create it as a single file `<
 
 Local image constraint: if an article needs to reference local images, put them in a `<slug>/` folder next to `<slug>.md` (e.g., `docs/papers/2025/CloudMatrix384.md` with images in `docs/papers/2025/CloudMatrix384/`), and reference them with the relative path `<slug>/...`. This keeps the relative paths from the article as simple as possible.
 
+Paper blog date constraint: when creating a paper blog under `docs/papers/`, the front matter `date` must be the paper's publication date or the date it was first posted to arXiv, not the current date. Use the date of the version the article is based on when the paper has multiple arXiv versions (the verification date still belongs in the article body, not in `date`).
+
+Cover image constraint: entries under `docs/repos/`, `docs/tech-stack/`, and `docs/knowledge-planet/` use a cover image (`<slug>/cover.webp`, referenced by `<slug>/index.md` and the section landing page's imgCard list). If the user has not provided a cover image, do not create one on your own — no generating images from context, no placeholder or borrowed files, and no reusing another entry's cover. Leave the cover absent (skip the `![](cover.webp)` reference and the imgCard `img` field if needed) and ask the user to provide the image file manually; only convert / wire up the image the user explicitly supplies.
+
 ## Build, Test, and Development Commands
 
 - `pnpm install` installs the locked dependencies from `pnpm-lock.yaml`.

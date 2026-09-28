@@ -212,17 +212,22 @@ function buildPostsSidebar(items: DefaultTheme.SidebarItem[]): DefaultTheme.Side
 const papersKey = "/papers/";
 
 /**
- * 论文板块落地页侧边栏：将各年份子目录生成为可折叠分组（collapsed: true，默认收起），
- * 年份倒序（最新在前）；分组内部保留各年份完整目录树并按 weight 排序。
- * collapsed: true 的分组在当前页不在其内时保持收起，落地页上所有年份默认收起
+ * 论文板块侧边栏（落地页与全部论文页共用）：将各年份子目录生成为可折叠分组
+ * （collapsed: true，默认收起），年份倒序（最新在前）；分组内部保留各年份完整
+ * 目录树并按 weight 排序。
+ * collapsed: true 的分组无论当前页是否在其中都保持收起，因此任何 /papers/ 页面的
+ * 左侧菜单都完整展示所有年份且默认全部收起
  */
-function buildPapersLandingSidebar(stacks: DefaultTheme.SidebarItem[]): DefaultTheme.SidebarItem[] {
+function buildPapersSidebar(stacks: DefaultTheme.SidebarItem[]): DefaultTheme.SidebarItem[] {
   return stacks
     .filter((stack) => stack.items?.length)
     .map((stack) => {
+      // 与其他板块的年份子目录处理一致：先合并 index.md 条目（标题上提、去重），
+      // 再按 weight 排序并让内部分组可折叠（默认展开）
+      const [merged] = mergeIndexIntoGroups([stack]);
       const yearItem: DefaultTheme.SidebarItem = {
         collapsed: true,
-        items: makeGroupsCollapsible(sortTreeByWeight(stack.items ?? [])),
+        items: makeGroupsCollapsible(sortTreeByWeight(merged?.items ?? [])),
       };
       if (stack.text) yearItem.text = stack.text;
       return yearItem;
@@ -347,15 +352,19 @@ const teekConfig = defineTeekConfig({
             // 分组项的 text 即子目录名（插件默认不取 md 标题），拼出侧边栏 key
             const stackKey = `${key}${stack.text}/`;
             if (!stack.items?.length) continue;
+            // 论文板块例外：不为年份子目录生成独立侧边栏，所有论文页共用
+            // 「全部年份、默认收起」的侧边栏（见下方 result[key] 分支）
+            if (key === papersKey) continue;
             result[stackKey] = normalizeIndexLinks(
               makeGroupsCollapsible(sortTreeByWeight(mergeIndexIntoGroups([stack])))
             );
           }
 
           // 板块落地页默认只显示各子目录入口，不再展开完整目录树（按各子目录 index.md 的 weight 排序）；
-          // 论文板块例外：落地页展示全部年份的可折叠分组（默认收起），与博客板块的年份分组体验一致
+          // 论文板块例外：落地页与全部论文页均展示所有年份的可折叠分组（默认收起），
+          // 与博客板块的年份分组体验一致
           result[key] = key === papersKey
-            ? normalizeIndexLinks(buildPapersLandingSidebar(stacks))
+            ? normalizeIndexLinks(buildPapersSidebar(stacks))
             : normalizeIndexLinks(sortByWeight(
             stacks.flatMap(
             (stack): DefaultTheme.SidebarItem[] => {
