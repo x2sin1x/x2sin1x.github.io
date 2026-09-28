@@ -6,6 +6,8 @@ This is a pnpm-managed VitePress site. Dated articles live in `docs/blogs/`, tec
 
 Page layout constraint: if a page has no subpages, create it as a single file `<slug>.md`; if it has subpages, create it as a directory `<slug>/index.md`. Do not create a `<slug>/index.md` for pages that will never contain subpages.
 
+Local image constraint: if an article needs to reference local images, put them in a `<slug>/` folder next to `<slug>.md` (e.g., `docs/papers/2025/CloudMatrix384.md` with images in `docs/papers/2025/CloudMatrix384/`), and reference them with the relative path `<slug>/...`. This keeps the relative paths from the article as simple as possible.
+
 ## Build, Test, and Development Commands
 
 - `pnpm install` installs the locked dependencies from `pnpm-lock.yaml`.
