@@ -52,7 +52,7 @@ $$
 \end{aligned}
 $$
 
-![](from-conic-sections-to-quadratic-forms/conic-sections.png "圆锥曲线")
+![](from-conic-sections-to-quadratic-forms/conic-sections.webp "圆锥曲线")
 
 ### 圆锥曲线的一般方程
 
@@ -226,7 +226,7 @@ $$
 
 接着，求出旋转变换的逆矩阵即可反解出 $x, y$，代入原式即可证明。
 
-![](from-conic-sections-to-quadratic-forms/inverse-proportional-and-checkmark-functions.png "反比例函数和对勾函数")
+![](from-conic-sections-to-quadratic-forms/inverse-proportional-and-checkmark-functions.webp "反比例函数和对勾函数")
 
 ### 矩阵相似对角化
 
@@ -346,7 +346,7 @@ $$
 \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1 \quad (a, b, c > 0)
 $$
 
-![](from-conic-sections-to-quadratic-forms/ellipsoid.png "椭球面")
+![](from-conic-sections-to-quadratic-forms/ellipsoid.webp "椭球面")
 
 特别地，当 $a = b = c = r$ 时，方程表示球面
 
@@ -362,7 +362,7 @@ $$
 \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = z^2 \quad (a, b > 0)
 $$
 
-![](from-conic-sections-to-quadratic-forms/elliptic-cone.png "椭圆锥面")
+![](from-conic-sections-to-quadratic-forms/elliptic-cone.webp "椭圆锥面")
 
 特别地，当 $a = b = r$ 时，方程表示圆锥面
 
@@ -382,7 +382,7 @@ $$
 \end{aligned}
 $$
 
-![](from-conic-sections-to-quadratic-forms/quadratic-cylinder.png "二次柱面")
+![](from-conic-sections-to-quadratic-forms/quadratic-cylinder.webp "二次柱面")
 
 ### 双曲面
 
@@ -395,7 +395,7 @@ $$
 \end{aligned}
 $$
 
-![](from-conic-sections-to-quadratic-forms/hyperboloid.png "双曲面")
+![](from-conic-sections-to-quadratic-forms/hyperboloid.webp "双曲面")
 
 ### 抛物面
 
@@ -408,7 +408,7 @@ $$
 \end{aligned}
 $$
 
-![](from-conic-sections-to-quadratic-forms/paraboloid.png "抛物面")
+![](from-conic-sections-to-quadratic-forms/paraboloid.webp "抛物面")
 
 ### 二次曲面的一般方程
 

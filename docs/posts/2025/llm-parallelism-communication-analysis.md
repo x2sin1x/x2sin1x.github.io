@@ -20,7 +20,7 @@ tags:
 
 [^1]: Efficient Training of Large Language Models on Distributed Infrastructures: A Survey. [arXiv](https://arxiv.org/abs/2407.20018)
 
-![](llm-parallelism-communication-analysis/assets/imgs/llm-parallelism-overview.png "LLM 并行策略概述")
+![](llm-parallelism-communication-analysis/assets/imgs/llm-parallelism-overview.webp "LLM 并行策略概述")
 
 ::: info
 张量并行和流水线并行还可以统称为模型并行（Model Parallelism，MP）。这是因为它们都是将模型权重进行分片，只不过前者之间切分权重，而后者切分模型层。
@@ -121,7 +121,7 @@ $$
 \end{cases}
 $$
 
-![](llm-parallelism-communication-analysis/assets/imgs/zero-optimized-dp.png "ZeRO 对 DP 的优化")
+![](llm-parallelism-communication-analysis/assets/imgs/zero-optimized-dp.webp "ZeRO 对 DP 的优化")
 
 ZeRO[^3]（Zero Redundancy Optimizer）是在标准数据并行（Data Parallelism, DP） 的基础上，通过消除模型状态的冗余存储来显著降低显存占用，从而支持训练超大规模模型（如百亿、千亿参数）。它不是改变并行策略本身，而是在 DP 的通信和计算流程中对模型状态进行分片。具体来说，在 DP 中，每个设备都会完整存储：
 
@@ -158,7 +158,7 @@ ZeRO 则在此基础上按照 DP 的并行度对这些数据进行分片。ZeRO 
 
 [^2]: Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism. [arXiv](https://arxiv.org/abs/1909.08053)
 
-![](llm-parallelism-communication-analysis/assets/imgs/megatron-lm-tensor-parallel.png "Megatron-LM 的张量并行设计")
+![](llm-parallelism-communication-analysis/assets/imgs/megatron-lm-tensor-parallel.webp "Megatron-LM 的张量并行设计")
 
 对于 MLP 层，公式推导如下：
 
@@ -225,7 +225,7 @@ GPipe[^4] 是一种经典的流水线并行实现。它将模型划分为多个�
 
 [^4]: GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism. [arXiv](https://arxiv.org/abs/1811.06965)
 
-![](llm-parallelism-communication-analysis/assets/imgs/gpipe-pipeline-parallel.png "GPipe 的流水线并行设计")
+![](llm-parallelism-communication-analysis/assets/imgs/gpipe-pipeline-parallel.webp "GPipe 的流水线并行设计")
 
 PP 的通信开销可以说是最低的，它仅仅只需要 $d-1$ 次 P2P 通信，每次通信的数据量为 $bsh$。这是因为每个设备只需要将中间激活传递给下一个设备，而不需要进行任何额外的计算。但是 PP 的痛点在于其致命的气泡（Bubble）率，这使得其在模型训练过程中设备利用率大打折扣。
 
@@ -233,7 +233,7 @@ PipeDream[^5] 是一种改进的流水线并行方法，通过引入重叠计算
 
 [^5]: PipeDream: Fast and Efficient Pipeline Parallel DNN Training. [arXiv](https://arxiv.org/abs/1806.03377)
 
-![](llm-parallelism-communication-analysis/assets/imgs/pipedream-pipeline-parallel.png "PipeDream 的流水线并行设计")
+![](llm-parallelism-communication-analysis/assets/imgs/pipedream-pipeline-parallel.webp "PipeDream 的流水线并行设计")
 
 GPipe 和 PipeDream 都是经典的流水线并行方法，但它们只是作为 PP 技术的铺垫。现代的 PP 方法通常采用 1F1B 调度策略[^6]，即每进行一次前向传播就进行一次反向传播，从而最大化设备利用率。
 
@@ -274,7 +274,7 @@ GShard[^12] 是最早提出 EP 的工作之一。其实现 EP 的方式至今仍
 
 [^12]: GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding. [arXiv](https://arxiv.org/abs/2006.16668)
 
-![](llm-parallelism-communication-analysis/assets/imgs/gshard-expert-parallel.png "GShard 的专家并行设计")
+![](llm-parallelism-communication-analysis/assets/imgs/gshard-expert-parallel.webp "GShard 的专家并行设计")
 
 EP 通常会与 DP 结合使用，以进一步提高系统的吞吐量和资源利用率。此时，输入输出的隐藏状态的维度为 $[\dfrac{b}{d}, s, h]$。在路由之后，维度变为 $[\dfrac{b}{d} \cdot s, k, h]$，批次大小和序列长度相乘说明所有 token 被展平。而在 Dispatch 之后，假设第 $i$ 个专家上被分配了 $n_i$ 个 token，那么其隐藏状态的维度为 $[n_i, h]$。这些参数之间应当满足以下关系：
 
@@ -310,7 +310,7 @@ $$
 
 [^8]: Sequence Parallelism: Long Sequence Training from System Perspective [arXiv](https://arxiv.org/abs/2105.13120)
 
-![](llm-parallelism-communication-analysis/assets/imgs/rsa-calculation-flow.png "RSA 的计算流程")
+![](llm-parallelism-communication-analysis/assets/imgs/rsa-calculation-flow.webp "RSA 的计算流程")
 
 对于 $Q \times K$ 和 $S \times V$ 两个矩阵乘法，RSA 都需要进行 $d-1$ 次 P2P 环形通信，可进一步参考下面的动画深入理解。其中，$Q \times K$ 的结果维度为 $[b, \dfrac{s}{d}, \dfrac{s}{d}, h]$，所以每次通信的数据量为 $bh \cdot \left( \dfrac{s}{d} \right)^2$；而 $S \times V$ 的结果维度为 $[b, \dfrac{s}{d}, h]$，所以每次通信的数据量为 $bh \cdot \dfrac{s}{d}$。所以一层 Decoder 的总通信量为
 
@@ -326,14 +326,14 @@ Context Parallelism（CP）[^9]也提出了类似的想法，不过它是基于 
 
 [^10]: GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints. [arXiv](https://arxiv.org/abs/2305.13245)
 
-![](llm-parallelism-communication-analysis/assets/imgs/cp-ring-pass-kv-q.png "Ring Pass-KV 和 Ring Pass-Q 算法")
+![](llm-parallelism-communication-analysis/assets/imgs/cp-ring-pass-kv-q.webp "Ring Pass-KV 和 Ring Pass-Q 算法")
 
 由于 SP 的引入会导致 Attention 计算时的多次同步通信，DeepSpeed 团队索性就一劳永逸，在 Attention 计算前后各进行一次 A2A，保证 Attention 计算时的序列是完整的。这样一来，形成了 SP-HP-SP 的混合并行模式（HP，Head Parallelism），是为 Ulysses[^11]。这里的 HP 指的是将注意力头切分到不同设备上计算，其本质和 EP 相当。
 
 [^11]: DeepSpeed Ulysses: System Optimizations for Enabling Training of Extreme Long Sequence Transformer Models
 . [arXiv](https://arxiv.org/abs/2309.14509)
 
-![](llm-parallelism-communication-analysis/assets/imgs/deepspeed-ulysses-sequence-parallel.png "DeepSpeed Ulysses 的 SP-HP-SP 混合并行设计")
+![](llm-parallelism-communication-analysis/assets/imgs/deepspeed-ulysses-sequence-parallel.webp "DeepSpeed Ulysses 的 SP-HP-SP 混合并行设计")
 
 在这个混合并行策略中，输入和输入的隐藏状态维度为 $[b, \dfrac{s}{d}, h]$，而在计算 Attention 时的维度为 $[b, s, \dfrac{h}{d}]$。由此可见，采用 Ulysses 并行策略的一层 Decoder 中，总通信量为
 
@@ -345,7 +345,7 @@ $$
 
 [^13]: USP: A Unified Sequence Parallelism Approach for Long Context Generative AI. [arXiv](https://arxiv.org/abs/2405.07719)
 
-![](llm-parallelism-communication-analysis/assets/imgs/usp-sequence-parallel.png "USP 的统一序列并行设计，包括 SP-Ulysses 和 SP-Ring")
+![](llm-parallelism-communication-analysis/assets/imgs/usp-sequence-parallel.webp "USP 的统一序列并行设计，包括 SP-Ulysses 和 SP-Ring")
 
 具体来说，这篇论文认为 Ulysses 和 Ring-Attention 分别存在如下痛点：
 
@@ -372,4 +372,4 @@ USP-Attention 的设计理念即中庸之道，将 SP-Ulysses 和 Sp-Ring 结合
 
 在 USP[^13] 这篇论文中，研究人员还提到了其提出的 SP 可以与 DP、TP 等并行策略结合使用，形成 4D 混合并行。它们也同样对这些并行策略进行了定量分析，如图所示：
 
-![](llm-parallelism-communication-analysis/assets/imgs/parallel-strategies-analysis.png "SP、DP、TP、ZeRO 等并行策略的通信开销和显存占用分析")
+![](llm-parallelism-communication-analysis/assets/imgs/parallel-strategies-analysis.webp "SP、DP、TP、ZeRO 等并行策略的通信开销和显存占用分析")

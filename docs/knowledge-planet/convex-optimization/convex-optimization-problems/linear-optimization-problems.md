@@ -21,7 +21,7 @@ $$
 
 ### 几何意义
 
-![](/knowledge-planet/convex-optimization/convex-optimization-problems/a8a985396113223812d0766fc4c3af51.png)
+![](/knowledge-planet/convex-optimization/convex-optimization-problems/a8a985396113223812d0766fc4c3af51.webp)
 
 可行域 $\mathcal{P}$ 是一个多面体（图中蓝色六边形），目标函数 $c^{\top}x$ 是线性的，所以其等位曲线是与 $c$ 正交的超平面（如虚线所示）。点 $x^{\star}$ 是最优的，它是 $\mathcal{P}$ 中在方向 $-c$ 上最远的点。
 

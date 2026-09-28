@@ -56,7 +56,7 @@ $$T_{\text{train}} = \frac{6ND}{n\cdot A_{\text{peak}}\cdot \text{MFU}}$$
 
 其中 $6ND$ 是总计算量（见[芯片架构](/knowledge-planet/ai-infra/hardware/chip-architecture)篇），$n$ 是卡数，$A_{\text{peak}}$ 是单卡峰值算力。一个 55% 和一个 40% 的 MFU，意味着同样的训练量一个是 100 天、一个是 137 天。万卡训练的 MFU 每提升一个百分点都来自系统层的千锤百炼：并行切分、通信 overlap、算子优化、调度。
 
-![MegaScale 在 530B 模型上的弱扩展 MFU：11200 卡上仍保持 54.3%，比开源 Megatron-LM 高约 6 个百分点](./megascale-scaling.png)
+![MegaScale 在 530B 模型上的弱扩展 MFU：11200 卡上仍保持 54.3%，比开源 Megatron-LM 高约 6 个百分点](./megascale-scaling.webp)
 
 *图源：[字节跳动 MegaScale 论文](https://arxiv.org/abs/2402.15627)（arXiv 2402.15627）。*
 

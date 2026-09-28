@@ -131,7 +131,7 @@ ICLR 2020 有一个工作是在 CIFAR-10 数据集上切 2x2 的 `patch`，然�
 
 ### Vision Transformer (ViT)
 
-![](an-image-is-worth-16x16-words-transformers-for-image-recognition-at-scale/model-overview.png "Figure 1: Model overview. We split an image into fixed-size patches, linearly embed each of them, add position embeddings, and feed the resulting sequence of vectors to a standard Transformer encoder. In order to perform classification, we use the standard approach of adding an extra learnable “classification token” to the sequence.")
+![](an-image-is-worth-16x16-words-transformers-for-image-recognition-at-scale/model-overview.webp "Figure 1: Model overview. We split an image into fixed-size patches, linearly embed each of them, add position embeddings, and feed the resulting sequence of vectors to a standard Transformer encoder. In order to perform classification, we use the standard approach of adding an extra learnable “classification token” to the sequence.")
 
 朱老师认为，论文的总览图非常重要。总览图画得好，别人在不读整篇文章的情况下光看图就能够大致了解这篇文章在讲什么。**ViT** 这篇文章的总览图画得非常好，以至于其他人在引用或者讲解 **ViT** 的时候都是直接把图贴上去而不做任何修改。
 

@@ -258,7 +258,7 @@ C. $m=2, n=3$
 
 D. $m=n=3$
 
-![](challenge-2024-graduate-entrance-exam-math-one/problem-5-vector-groups-figure.png)
+![](challenge-2024-graduate-entrance-exam-math-one/problem-5-vector-groups-figure.webp)
 
 【解】
 

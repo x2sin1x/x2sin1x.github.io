@@ -43,7 +43,7 @@ $$
 \operatorname{dom} f = \mathbf{R} \times \mathbf{R} _{++} = \{ (x, y) \in \mathbf{R} ^2 \mid y > 0 \}
 $$
 
-![](083668ee8e05363e5194f9c2671d419b.png)
+![](083668ee8e05363e5194f9c2671d419b.webp)
 
 ### 指数和的对数
 
@@ -51,7 +51,7 @@ $$
 
 下面是函数 $f(x) = \log{(e^x + e^y)}$ 的图像。
 
-![](96083f11deb407c668e7f5a77af7fd66.png)
+![](96083f11deb407c668e7f5a77af7fd66.webp)
 
 ### 几何平均数
 

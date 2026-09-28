@@ -5,7 +5,7 @@ weight: 40
 ---
 # Linux
 
-![](cover.jpg)
+![](cover.webp)
 
 ## Contents
 

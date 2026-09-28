@@ -5,7 +5,7 @@ weight: 120
 ---
 # 凸优化
 
-![](bv_cvxbook_cover.jpg)
+![](bv_cvxbook_cover.webp)
 
 ## Contents
 

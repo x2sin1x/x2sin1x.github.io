@@ -11,15 +11,15 @@ title: "知识星球"
 config:
   target: _self
 data:
-  - img: /knowledge-planet/marxism/cover.jpg
+  - img: /knowledge-planet/marxism/cover.webp
     link: /knowledge-planet/marxism/
     name: 马克思主义
     desc: 哲学、政治经济学与科学社会主义
-  - img: /knowledge-planet/leninism/cover.jpg
+  - img: /knowledge-planet/leninism/cover.webp
     link: /knowledge-planet/leninism/
     name: 列宁主义
     desc: 著作导读与理论要点
-  - img: /knowledge-planet/maoism/cover.jpg
+  - img: /knowledge-planet/maoism/cover.webp
     link: /knowledge-planet/maoism/
     name: 毛泽东思想
     desc: 著作导读与选集节选
@@ -33,15 +33,15 @@ data:
 config:
   target: _self
 data:
-  - img: /knowledge-planet/finance/cover.jpg
+  - img: /knowledge-planet/finance/cover.webp
     link: /knowledge-planet/finance/
     name: 金融学
     desc: 货币银行学与金融市场
-  - img: /knowledge-planet/algorithm/cover.jpg
+  - img: /knowledge-planet/algorithm/cover-card.webp
     link: /knowledge-planet/algorithm/
     name: 算法分析与设计
     desc: 分治、动态规划与贪心
-  - img: /knowledge-planet/convex-optimization/cover.jpg
+  - img: /knowledge-planet/convex-optimization/cover.webp
     link: /knowledge-planet/convex-optimization/
     name: 凸优化
     desc: 凸集、凸函数与优化问题
@@ -55,15 +55,15 @@ data:
 config:
   target: _self
 data:
-  - img: /knowledge-planet/cs336/cover.jpg
+  - img: /knowledge-planet/cs336/cover.webp
     link: /knowledge-planet/cs336/
     name: CS336：从零开始的语言模型
     desc: 斯坦福大模型课程——分词、架构、系统、缩放定律与对齐
-  - img: /knowledge-planet/ai-infra/cover.jpg
+  - img: /knowledge-planet/ai-infra/cover.webp
     link: /knowledge-planet/ai-infra/
     name: AI Infra
     desc: 训练、推理与部署大模型的量化分析和系统设计
-  - img: /knowledge-planet/ai-agent/cover.jpg
+  - img: /knowledge-planet/ai-agent/cover.webp
     link: /knowledge-planet/ai-agent/
     name: AI Agent
     desc: 智能体的原理与实践教程——大脑、眼睛与手脚
@@ -79,11 +79,11 @@ data:
 config:
   target: _self
 data:
-  - img: /knowledge-planet/sociology-love/cover.jpg
+  - img: /knowledge-planet/sociology-love/cover.webp
     link: /knowledge-planet/sociology-love/
     name: 沈奕斐的社会学爱情思维课
     desc: 社会学视角下的爱情思维
-  - img: /knowledge-planet/love-psychology/cover.jpg
+  - img: /knowledge-planet/love-psychology/cover.webp
     link: /knowledge-planet/love-psychology/
     name: 恋爱心理学
     desc: 亲密关系的心理学解读
@@ -97,23 +97,23 @@ data:
 config:
   target: _self
 data:
-  - img: /knowledge-planet/music-theory/cover.jpg
+  - img: /knowledge-planet/music-theory/cover.webp
     link: /knowledge-planet/music-theory/
     name: 乐理
     desc: 音程、和弦与调式
-  - img: /knowledge-planet/harmony/cover.jpg
+  - img: /knowledge-planet/harmony/cover.webp
     link: /knowledge-planet/harmony/
     name: 和声
     desc: 古典和声与流行和声
-  - img: /knowledge-planet/musical-form/cover.jpg
+  - img: /knowledge-planet/musical-form/cover.webp
     link: /knowledge-planet/musical-form/
     name: 曲式
     desc: 小型曲式与大型曲式
-  - img: /knowledge-planet/orchestration/cover.jpg
+  - img: /knowledge-planet/orchestration/cover.webp
     link: /knowledge-planet/orchestration/
     name: 配器
     desc: 乐器法与配器法
-  - img: /knowledge-planet/counterpoint/cover.jpg
+  - img: /knowledge-planet/counterpoint/cover.webp
     link: /knowledge-planet/counterpoint/
     name: 复调
     desc: 严格对位与赋格

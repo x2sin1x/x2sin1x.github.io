@@ -11,7 +11,7 @@ weight: 450
 
 将这些任务建模成 DAG (Directed acyclic graph)。于是原问题可以被转换成如下图所示的问题：
 
-![](Topological-sort.png)
+![](Topological-sort.webp)
 
 ## 问题分析
 

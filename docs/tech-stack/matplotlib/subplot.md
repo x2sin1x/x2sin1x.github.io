@@ -39,7 +39,7 @@ plt.plot(lnx, lny)
 
 
 ​    
-![](subplot/output_6_1.png)
+![](subplot/output_6_1.webp)
 ​    
 
 
@@ -59,7 +59,7 @@ ax2.plot(lnx, lny)
 
 
 ​    
-![](subplot/output_8_1.png)
+![](subplot/output_8_1.webp)
 ​    
 
 
@@ -76,7 +76,7 @@ fig, ax = plt.subplots()
 
 
 ​    
-![](subplot/output_12_0.png)
+![](subplot/output_12_0.webp)
 ​    
 
 
@@ -94,7 +94,7 @@ ax = fig.subplots()
 
 
 ​    
-![](subplot/output_16_0.png)
+![](subplot/output_16_0.webp)
 ​    
 
 
@@ -107,7 +107,7 @@ fig, ax = plt.subplots(nrows=2, ncols=3)
 
 
 ​    
-![](subplot/output_18_0.png)
+![](subplot/output_18_0.webp)
 ​    
 
 
@@ -123,7 +123,7 @@ fig
 
 
 ​    
-![](subplot/output_21_0.png)
+![](subplot/output_21_0.webp)
 ​    
 
 如果子图不多，也可以采用下面的方法直接得到每个子图对象，而不需要索引：
@@ -135,7 +135,7 @@ fig, (ax1, ax2) = plt.subplots(2, 1)
 
 
 ​    
-![](subplot/output_23_0.png)
+![](subplot/output_23_0.webp)
 ​    
 
 
@@ -152,7 +152,7 @@ fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
 
 
 ​    
-![](subplot/output_27_0.png)
+![](subplot/output_27_0.webp)
 ​    
 
 
@@ -165,7 +165,7 @@ fig, (ax1, ax2) = plt.subplots(1, 2, sharey=True)
 
 
 ​    
-![](subplot/output_29_0.png)
+![](subplot/output_29_0.webp)
 ​    
 
 
@@ -180,7 +180,7 @@ fig, ax = plt.subplots(2, 2, sharex=True)
 
 
 ​    
-![](subplot/output_32_0.png)
+![](subplot/output_32_0.webp)
 ​    
 
 
@@ -193,7 +193,7 @@ fig, ax = plt.subplots(2, 2, sharey=True)
 
 
 ​    
-![](subplot/output_34_0.png)
+![](subplot/output_34_0.webp)
 ​    
 
 
@@ -206,7 +206,7 @@ fig, ax = plt.subplots(2, 2, sharex=True, sharey=True)
 
 
 ​    
-![](subplot/output_36_0.png)
+![](subplot/output_36_0.webp)
 ​    
 
 
@@ -232,7 +232,7 @@ plt.plot(lnx, lny)
 
 
 ​    
-![](subplot/output_39_1.png)
+![](subplot/output_39_1.webp)
 ​    
 
 
@@ -278,7 +278,7 @@ fig
 
 
 ​    
-![](subplot/output_48_0.png)
+![](subplot/output_48_0.webp)
 ​    
 
 上面的 `Figure` 的坐标轴数字都没有挤在一起，说明了约束布局的重要性。
@@ -304,7 +304,7 @@ fig
 
 
 ​    
-![](subplot/output_53_0.png)
+![](subplot/output_53_0.webp)
 ​    
 
 ## 子图的属性与窗口的属性
@@ -329,7 +329,7 @@ fig, ax = plt.subplots(2, 2, constrained_layout=True)
 
 
 ​    
-![](subplot/output_60_0.png)
+![](subplot/output_60_0.webp)
 ​    
 
 
@@ -361,7 +361,7 @@ fig
 
 
 ​    
-![](subplot/output_62_0.png)
+![](subplot/output_62_0.webp)
 ​    
 
 现在，我们给每个子图添加图例：
@@ -378,7 +378,7 @@ fig
 
 
 ​    
-![](subplot/output_64_0.png)
+![](subplot/output_64_0.webp)
 ​    
 
 然而，实际上我们没有必要为每个子图都添加图例。这个问题的本质在于，`legend` 是从属于子图的 `Axes` 对象，还是从属于 `Figure` 对象？
@@ -410,7 +410,7 @@ lg = fig.legend((rects1, rects2, rects3), ('A', 'B', 'C'))
 
 
 ​    
-![](subplot/output_67_0.png)
+![](subplot/output_67_0.webp)
 ​    
 
 
@@ -424,7 +424,7 @@ fig
 
 
 ​    
-![](subplot/output_69_0.png)
+![](subplot/output_69_0.webp)
 ​    
 
 其中，参数 `bbox` 接收的四元组中，前两个分量分别代表横坐标和纵坐标的相对位置。我们是希望图例向右偏移一些不遮挡图像，因此给横坐标一个较小的增量。后两个分量代表宽和高，一般来说均设置为 1，这样不会有任何调整。

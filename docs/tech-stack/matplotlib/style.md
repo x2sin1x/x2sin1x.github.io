@@ -87,7 +87,7 @@ for ax, h in zip(axs.flat, hatches):
 
 
 ​    
-![](style/output_15_0.png)
+![](style/output_15_0.webp)
 ​    
 
 
@@ -105,7 +105,7 @@ for ax, h in zip(axs.flat, hatches):
 
 
 ​    
-![](style/output_17_0.png)
+![](style/output_17_0.webp)
 ​    
 
 
@@ -123,5 +123,5 @@ for ax, h in zip(axs.flat, hatches):
 
 
 ​    
-![](style/output_19_0.png)
+![](style/output_19_0.webp)
 ​

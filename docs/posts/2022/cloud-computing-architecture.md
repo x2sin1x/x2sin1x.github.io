@@ -50,7 +50,7 @@ SaaS（Software as a Service）是基于云计算基础平台所开发的应用�
 
 ## 云计算服务模式的层次划分
 
-![](cloud-computing-architecture/layer-partition.png)
+![](cloud-computing-architecture/layer-partition.webp)
 
 云计算服务模式主要分为网络、存储、服务器、虚拟化、操作系统、中间件、运行环境、数据和应用九层。
 

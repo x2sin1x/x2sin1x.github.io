@@ -319,7 +319,7 @@ HCCL 中有三个典型流程：
 
 此外，DeepSpeed-MoE 中也提出了类似的 Hierarchical AllToAll 算法，将原本需要 $p-1$ 轮通信的 AllToAll 的复杂度优化为 $O(G+p/G)$。
 
-![](introduction-to-parallel-computing-collective-communication/hierarchical-alltoall-deepspeed-moe.png)
+![](introduction-to-parallel-computing-collective-communication/hierarchical-alltoall-deepspeed-moe.webp)
 
 ### 集合通信算法对比
 

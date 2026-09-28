@@ -35,7 +35,7 @@ tags:
 
 ### 超节点的设计理念
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/cloudmatrix-design-philosophy.png "CloudMatrix 超节点的设计理念")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/cloudmatrix-design-philosophy.webp "CloudMatrix 超节点的设计理念")
 
 超节点设计的核心思路在于突破传统的冯·诺依曼体系结构，将各类异构资源通过 UB 统一总线整合而成的超大规模计算节点。这些异构资源包括 NPU、NPU、存储、网卡等，它们都是分离式且可扩展的。
 
@@ -56,7 +56,7 @@ CloudMatrix384 的设计要点是：
 -   fully interconnected 全互联
 -   ultra-high-bandwidth 超高带宽
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/cloudmatrix384-architecture.png "CloudMatrix384 超节点的架构")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/cloudmatrix384-architecture.webp "CloudMatrix384 超节点的架构")
 
 超节点的三层网络平面：
 
@@ -70,21 +70,21 @@ CloudMatrix384 的设计要点是：
 
 ### 硬件组件
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/ascend-910c-architecture.png "Ascend 910C 架构")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/ascend-910c-architecture.webp "Ascend 910C 架构")
 
 > 一块 Ascend 910C 芯片由两块 Ascend 910D[^6] 组成。
 
 [^6]: Ascend 910D 中的“D”是“Die”的缩写，指的是 NPU 的晶粒或芯片核心。
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/cloudmatrix384-node.png "CloudMatrix384 超节点内的一个节点")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/cloudmatrix384-node.webp "CloudMatrix384 超节点内的一个节点")
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/cloudmatrix384-ub-switch-system.png "CloudMatrix384 超节点内的 UB 交换系统")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/cloudmatrix384-ub-switch-system.webp "CloudMatrix384 超节点内的 UB 交换系统")
 
 ## CloudMatrix-Infer 部署 DeepSeek 模型
 
 ### 基于 P2P 的 PDC 分离部署
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/pdc-separation-deployment.png "CloudMatrix384 超节点内的 PDC 分离部署架构")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/pdc-separation-deployment.webp "CloudMatrix384 超节点内的 PDC 分离部署架构")
 
 Prefill 集群：
 
@@ -135,7 +135,7 @@ K/V 缓存中心化架构主要由过去一些系统（如 [Nvidia Dynamo](https
 
 #### MoE 优化：融合计算通信算子
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/cloudmatrix-infer-vs-traditional-moe.png "CloudMatrix-Infer 与传统 MoE 计算流程的对比")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/cloudmatrix-infer-vs-traditional-moe.webp "CloudMatrix-Infer 与传统 MoE 计算流程的对比")
 
 传统的基于 EP 的 MoE 计算过程，需要 2 次 Dispatch 和 1 次 Combine。其中的 2 次 Dispatch 分别是为了交换路由元数据，以及分发各个词元到不同的专家。这带来的挑战如下：
 
@@ -154,11 +154,11 @@ K/V 缓存中心化架构主要由过去一些系统（如 [Nvidia Dynamo](https
 
 [^4]: AIV: AI vector，一种专为人工智能计算优化的向量处理单元或计算核心。
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/aiv-direct-vs-sdma.png "CloudMatrix-Infer 的 AIV-Direct 与传统的 SDMA 之异同")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/aiv-direct-vs-sdma.webp "CloudMatrix-Infer 的 AIV-Direct 与传统的 SDMA 之异同")
 
 如图所示，AIV-Direct 相比于 SDMA，无需走本地 NPU 内存，可直接对远程 NPU 内存进行访问。
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/data-transfer-pipeline-stages.png "CloudMatrix-Infer 实现数据传输流水线的三个阶段")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/data-transfer-pipeline-stages.webp "CloudMatrix-Infer 实现数据传输流水线的三个阶段")
 
 如图所示，整个融合计算通信算子要解决一个问题，把数据写到远程 NPU 的内存。首先就需要先算出写到哪里（目标偏移地址）。如果按照顺序执行（先算偏移 → 再传数据），就会产生等待，导致流水线停顿。为了解决这个问题，可以将整个过程拆分为如下三个阶段：
 
@@ -184,11 +184,11 @@ K/V 缓存中心化架构主要由过去一些系统（如 [Nvidia Dynamo](https
 2. N-Zigzag 格式化 K/V 缓存
 3. 使用 BNSD ([Batch, NumHeads, Sequence, HeadDim]) 而不是 BSND
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/attention-fusion-operator-optimization.png "CloudMatrix-Infer Attention 融合算子的优化")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/attention-fusion-operator-optimization.webp "CloudMatrix-Infer Attention 融合算子的优化")
 
 #### Pipeline & Overlapping
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/decode-comm-compute-overlap.png "CloudMatrix-Infer 与 DeepSeek 在 Decode 阶段的通算掩盖对比")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/decode-comm-compute-overlap.webp "CloudMatrix-Infer 与 DeepSeek 在 Decode 阶段的通算掩盖对比")
 
 根据 [DeepSeek-V3 技术报告](https://arxiv.org/abs/2412.19437)中的内容，在 Decode 阶段，共享专家和路由专家是协同部署的。在此基础上，结合 EPLB 算法，就可以实现如果某个专家被调用频繁、负载高，就可以把这个专家在多个设备或节点上复制多个副本，以分散负载。
 
@@ -205,7 +205,7 @@ K/V 缓存中心化架构主要由过去一些系统（如 [Nvidia Dynamo](https
 
 MTP（Multi-Token Prediction，多词元预测）的机制是每次推理出一个词元时，还会预测接下来的几个词元，然后在后续的生成中验证。尽管它能提高解码效率，但是其带来的挑战是频繁的 CPU-NPU 同步，这会导致流水线中断的问题。
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/mtp-pipeline-comparison.png "不采用 MTP、采用 MTP 和 CloudMatrix-Infer 优化后的 MTP 流水线对比")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/mtp-pipeline-comparison.webp "不采用 MTP、采用 MTP 和 CloudMatrix-Infer 优化后的 MTP 流水线对比")
 
 如图 15b 所示，MTP 预测多个 token 然后验证一次这个过程是串行的，其问题根源是：
 
@@ -231,11 +231,11 @@ Prefill 阶段面临的主要挑战：
 -   序列长度不齐：短序列需要等待长序列处理完毕，导致资源浪费。
 -   低效并发：如果 DP 并行度太高（假设 DP=32）时，如果一批请求没有达到 32 个，必然有设备空闲；如果硬要攒到 32 个请求，平均的 TTFT 时延显著增加。
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/hybrid-parallel-vs-dp.png "分阶段混合并行策略与纯 DP 之比较")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/hybrid-parallel-vs-dp.webp "分阶段混合并行策略与纯 DP 之比较")
 
 解决方案：分阶段混合并行策略。在 MLA block 内，计算 Attention 时采用 TP，前后则采用 SP。具体来说，SP 用到了序列打包：第一阶段的 down_proj 和第三阶段的 o_proj。
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/hybrid-parallel-communication.png "分阶段混合并行策略的通信")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/hybrid-parallel-communication.webp "分阶段混合并行策略的通信")
 
 采用混合并行策略的代价在于引入了两次额外的通信：
 
@@ -252,7 +252,7 @@ Prefill 阶段面临的主要挑战：
 
 [^7]: AIC: AI cube cores，专用矩阵计算单元
 
-![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/prefill-comm-compute-overlap.png "CloudMatrix-Infer 与 DeepSeek 在 Prefill 阶段的通算掩盖对比")
+![](serving-large-language-models-on-huawei-cloudmatrix384/assets/imgs/prefill-comm-compute-overlap.webp "CloudMatrix-Infer 与 DeepSeek 在 Prefill 阶段的通算掩盖对比")
 
 关于 P/D 的优化策略之异同，可以参考如下表格：
 

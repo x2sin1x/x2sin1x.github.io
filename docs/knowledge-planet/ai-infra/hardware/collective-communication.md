@@ -26,7 +26,7 @@ AllReduce 可以拆成 **ReduceScatter + AllGather** 两步实现——这个分
 
 AllReduce 最经典的实现是**环形（Ring）算法**&#8203;。把 N 张卡连成一个环，以"求和"为例分两阶段：
 
-![Ring AllReduce：GPU 首尾相连成环，数据沿环逐跳传递](./ring-topology.png)
+![Ring AllReduce：GPU 首尾相连成环，数据沿环逐跳传递](./ring-topology.webp)
 
 *图源：[Andrew Gibiansky 博客《Bringing HPC Techniques to Deep Learning》](https://andrew.gibiansky.com/blog/machine-learning/baidu-allreduce/)（源自 Baidu Ring AllReduce）。*
 

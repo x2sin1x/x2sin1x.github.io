@@ -5,7 +5,7 @@ weight: 80
 ---
 # Matplotlib
 
-![](cover.jpg)
+![](cover.webp)
 
 ## Contents
 

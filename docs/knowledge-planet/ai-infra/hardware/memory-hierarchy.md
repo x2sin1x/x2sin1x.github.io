@@ -65,7 +65,7 @@ $$M \approx (2+2+12)\cdot\Psi\ \text{字节}$$
 
 于是有了分而治之的 ZeRO 系列：把权重、梯度、优化器状态切分到多张卡上，每张卡只保存 $1/N$。&#8203;**天下没有免费的午餐，切分省下的显存要用通信还**&#8203;：ZeRO-1/2 的通信量与普通数据并行几乎相同（约 1×），ZeRO-3 需要额外的前向/反向参数广播，通信量约 1.5×（ZeRO 论文口径，可被计算掩盖一部分）：
 
-![ZeRO 三级切分：优化器状态、梯度、参数逐级切分后单卡显存占用（120GB → 1.9GB）](./zero-partitioning.png)
+![ZeRO 三级切分：优化器状态、梯度、参数逐级切分后单卡显存占用（120GB → 1.9GB）](./zero-partitioning.webp)
 
 *图源：[Hugging Face 博客《ZeRO: The Memory Optimization Chronicle》](https://huggingface.co/blog/zero-deepspeed-fairscale)（据 DeepSpeed ZeRO 论文）。通信量为切分后相对值。*
 

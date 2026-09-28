@@ -30,7 +30,7 @@ $$M_{\text{kv}} = 2\cdot L\cdot n_{\text{kv}}\cdot d_{\text{head}}\cdot s\cdot b
 
 vLLM 的 **PagedAttention** 借用操作系统虚拟内存的思想：KV Cache 切成固定大小的**块（block，如 16 token/块）**&#8203;，用块表（block table）维护逻辑→物理映射，按需分配：
 
-![vLLM 系统架构：调度器 + KV Cache 管理器（块表 + CPU/GPU 块分配器）+ 多 worker](./vllm-system.png)
+![vLLM 系统架构：调度器 + KV Cache 管理器（块表 + CPU/GPU 块分配器）+ 多 worker](./vllm-system.webp)
 
 *图源：[vLLM 论文](https://arxiv.org/abs/2309.06180)（arXiv 2309.06180）。*
 

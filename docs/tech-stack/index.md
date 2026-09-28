@@ -11,19 +11,19 @@ title: "技术栈"
 config:
   target: _self
 data:
-  - img: /tech-stack/git/cover.jpg
+  - img: /tech-stack/git/cover.webp
     link: /tech-stack/git/
     name: Git
     desc: 版本控制与协作流程
-  - img: /tech-stack/linux/cover.jpg
+  - img: /tech-stack/linux/cover.webp
     link: /tech-stack/linux/
     name: Linux
     desc: 常用命令与 Ubuntu 桌面配置
-  - img: /tech-stack/mongo/cover.jpg
+  - img: /tech-stack/mongo/cover.webp
     link: /tech-stack/mongo/
     name: MongoDB
     desc: 文档数据库与聚合查询
-  - img: /tech-stack/redis/cover.jpg
+  - img: /tech-stack/redis/cover.webp
     link: /tech-stack/redis/
     name: Redis
     desc: 内存数据库与缓存策略
@@ -37,7 +37,7 @@ data:
 config:
   target: _self
 data:
-  - img: /tech-stack/crawler/cover.jpg
+  - img: /tech-stack/crawler/cover.webp
     link: /tech-stack/crawler/
     name: Web 爬虫与逆向
     desc: 基础爬虫与 JS 逆向实战
@@ -51,19 +51,19 @@ data:
 config:
   target: _self
 data:
-  - img: /tech-stack/python/cover.jpg
+  - img: /tech-stack/python/cover.webp
     link: /tech-stack/python/
     name: Python
     desc: 语法基础与进阶特性
-  - img: /tech-stack/numpy/cover.jpg
+  - img: /tech-stack/numpy/cover.webp
     link: /tech-stack/numpy/
     name: NumPy
     desc: 多维数组与数值计算
-  - img: /tech-stack/pandas/cover.jpg
+  - img: /tech-stack/pandas/cover.webp
     link: /tech-stack/pandas/
     name: Pandas
     desc: 数据清洗与分析
-  - img: /tech-stack/matplotlib/cover.jpg
+  - img: /tech-stack/matplotlib/cover.webp
     link: /tech-stack/matplotlib/
     name: Matplotlib
     desc: 数据可视化绘图

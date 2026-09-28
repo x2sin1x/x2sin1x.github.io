@@ -42,7 +42,7 @@ fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 
 
 ​    
-![](plot3d/output_8_0.png)
+![](plot3d/output_8_0.webp)
 ​    
 
 
@@ -56,7 +56,7 @@ fig
 
 
 ​    
-![](plot3d/output_10_0.png)
+![](plot3d/output_10_0.webp)
 ​    
 
 ## 绘制空间曲面
@@ -87,7 +87,7 @@ surf = ax.plot_surface(x, y, z)
 
 
 ​    
-![](plot3d/output_17_0.png)
+![](plot3d/output_17_0.webp)
 ​    
 
 ```python
@@ -106,7 +106,7 @@ fig
 
 
 ​    
-![](plot3d/output_21_0.png)
+![](plot3d/output_21_0.webp)
 ​    
 
 添加颜色条：
@@ -119,7 +119,7 @@ fig
 
 
 ​    
-![](plot3d/output_23_0.png)
+![](plot3d/output_23_0.webp)
 ​    
 
 ## 绘制三维条形图
@@ -166,7 +166,7 @@ ax = plt.axes(projection='3d')
 
 
 ​    
-![](plot3d/output_33_0.png)
+![](plot3d/output_33_0.webp)
 ​    
 
 
@@ -180,5 +180,5 @@ fig
 
 
 ​    
-![](plot3d/output_35_0.png)
+![](plot3d/output_35_0.webp)
 ​

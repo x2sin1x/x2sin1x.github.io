@@ -5,7 +5,7 @@ weight: 55
 ---
 # MongoDB
 
-![](cover.jpg)
+![](cover.webp)
 
 本教程面向第一次接触 MongoDB 的开发者。你将使用 MongoDB 8.0、Docker、`mongosh` 和 PyMongo，完成一个可以查询、更新和统计任务的简单数据层。
 

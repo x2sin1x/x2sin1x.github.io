@@ -5,7 +5,7 @@ weight: 10
 ---
 # Matplotlib 概述
 
-![](overview/anatomy.png)
+![](overview/anatomy.webp)
 
 
 ```python

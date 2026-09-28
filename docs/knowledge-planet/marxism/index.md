@@ -5,7 +5,7 @@ weight: 10
 ---
 # 马克思主义
 
-![](/knowledge-planet/marxism/assets/imgs/cover.png)
+![](/knowledge-planet/marxism/assets/imgs/cover.webp)
 
 马克思主义是由马克思、恩格斯创立的，关于自然、社会和人类思维发展一般规律的科学，是关于无产阶级和全人类解放的学说体系。它由马克思主义哲学、马克思主义政治经济学和科学社会主义三个部分组成，是一个逻辑严密、内在统一的完整理论体系。
 

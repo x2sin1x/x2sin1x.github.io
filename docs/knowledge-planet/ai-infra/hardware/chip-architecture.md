@@ -17,7 +17,7 @@ weight: 10
 - **显存（HBM）**&#8203;。高带宽内存（High Bandwidth Memory）通过硅通孔和芯片封装在一起，H100 SXM 有 80 GB，带宽约 3.35 TB/s——它是计算单元真正"吃得饱"的数据来源。
 - **片上互联与卡间互联**&#8203;。L2 Cache（约 50 MB）在计算单元和显存之间做缓冲；NVLink 负责和其他卡说话（约 900 GB/s），PCIe 走主机（约 64 GB/s）。
 
-![GH100 完整芯片框图：8 个分区共 144 个 SM，中间是 L2 Cache，两侧是 5 块 HBM](./gh100-full-chip.png)
+![GH100 完整芯片框图：8 个分区共 144 个 SM，中间是 L2 Cache，两侧是 5 块 HBM](./gh100-full-chip.webp)
 
 *图源：[NVIDIA 开发者博客《NVIDIA Hopper Architecture In-Depth》](https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/)。*
 

@@ -364,7 +364,7 @@ $$
 
 所构成的正向闭曲线，如下图所示
 
-![](dirichlet-integral/contour-integration-path.png)
+![](dirichlet-integral/contour-integration-path.webp)
 
 由柯西积分定理得
 

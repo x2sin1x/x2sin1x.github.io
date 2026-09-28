@@ -13,7 +13,7 @@ title: "仓库"
 config:
   target: _self
 data:
-  - img: /repos/mooncake/cover.png
+  - img: /repos/mooncake/cover.webp
     link: /repos/mooncake/
     name: Mooncake
     desc: Kimi 的 KVCache 中心化分离式推理平台——Transfer Engine 与分布式缓存池的源码解读

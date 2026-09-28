@@ -107,7 +107,7 @@ tags:
 ::: tip
 **案例分析**
 
-![](otaku-japans-database-animals/assets/imgs/ai-generated-shrine-maiden.png "【AI 生成】一名同时具备“巫女”“樱花”“制服”等多种典型日本文化符号的女性角色形象")
+![](otaku-japans-database-animals/assets/imgs/ai-generated-shrine-maiden.webp "【AI 生成】一名同时具备“巫女”“樱花”“制服”等多种典型日本文化符号的女性角色形象")
 
 如图所示，这是一名同时具备“巫女”“樱花”“制服”等多种典型日本文化符号的女性角色形象。尽管该形象是 AI 强行生成的，严格意义上说并不存在于任何具体的动漫作品中，但是其所体现的文化符号却是深植于日本社会的，理论上的确可以将各种元素自由组合。
 
@@ -228,7 +228,7 @@ tags:
 ::: tip
 **案例分析**
 
-![](otaku-japans-database-animals/assets/imgs/ai-generated-cp-crossover.png "【AI 生成】新兰 CP & 柯哀 CP")
+![](otaku-japans-database-animals/assets/imgs/ai-generated-cp-crossover.webp "【AI 生成】新兰 CP & 柯哀 CP")
 
 “**同人创作**”（日语：同人誌／どうじんし，Dōjinshi；中文常简称“同人”）是指爱好者基于已有作品（如动漫、游戏、小说、影视剧等）或原创设定，出于非商业或半商业目的进行的二次创作活动及其产物。磕 CP（Character Pairing，角色配对）是同人创作中的一种常见形式，指将两个角色配对在一起，通常以浪漫或亲密关系为主题进行创作。
 
@@ -305,7 +305,7 @@ tags:
 ::: tip
 **案例分析**
 
-![](otaku-japans-database-animals/assets/imgs/ai-generated-zhongli.png "【AI 生成】我与钟离")
+![](otaku-japans-database-animals/assets/imgs/ai-generated-zhongli.webp "【AI 生成】我与钟离")
 
 《原神》中一个非常典型的例子是玩家与角色“钟离”的互动，尤其是在他的角色故事任务（传说任务）和日常对话中所体现的情感联结。
 

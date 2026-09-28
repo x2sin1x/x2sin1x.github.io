@@ -32,7 +32,7 @@ plt.bar(x, y)
 
 
 ​    
-![](bar/output_6_1.png)
+![](bar/output_6_1.webp)
 ​    
 
 
@@ -50,7 +50,7 @@ ax.bar(x, y)
 
 
 ​    
-![](bar/output_8_1.png)
+![](bar/output_8_1.webp)
 ​    
 
 ```python
@@ -71,7 +71,7 @@ fig
 
 
 ​    
-![](bar/output_13_0.png)
+![](bar/output_13_0.webp)
 ​    
 
 
@@ -89,7 +89,7 @@ fig
 
 
 ​    
-![](bar/output_16_0.png)
+![](bar/output_16_0.webp)
 ​    
 
 
@@ -109,7 +109,7 @@ fig
 
 
 ​    
-![](bar/output_20_0.png)
+![](bar/output_20_0.webp)
 ​    
 
 
@@ -127,7 +127,7 @@ fig
 
 
 ​    
-![](bar/output_23_0.png)
+![](bar/output_23_0.webp)
 ​    
 
 
@@ -149,7 +149,7 @@ fig
 
 
 ​    
-![](bar/output_28_0.png)
+![](bar/output_28_0.webp)
 ​    
 
 
@@ -169,7 +169,7 @@ fig
 
 
 ​    
-![](bar/output_32_0.png)
+![](bar/output_32_0.webp)
 ​    
 
 `width` 参数的取值范围一般为 $(0, 1]$ 之间的浮点数。如果 `width=1`，那么每个柱子之间就没有空隙。这个浮点数的几何意义相当于缩放比例。
@@ -217,7 +217,7 @@ fig
 
 
 ​    
-![](bar/output_43_0.png)
+![](bar/output_43_0.webp)
 ​    
 
 添加标签、标题和图例：
@@ -234,7 +234,7 @@ fig
 
 
 ​    
-![](bar/output_45_0.png)
+![](bar/output_45_0.webp)
 ​    
 
 为其添加水平网格线：
@@ -247,7 +247,7 @@ fig
 
 
 ​    
-![](bar/output_47_0.png)
+![](bar/output_47_0.webp)
 ​    
 
 网格线显示在了条形图上方，使用 `zorder` 参数改变各个元素的层数。
@@ -270,7 +270,7 @@ fig
 
 
 ​    
-![](bar/output_49_0.png)
+![](bar/output_49_0.webp)
 ​    
 
 
@@ -296,7 +296,7 @@ fig
 
 
 ​    
-![](bar/output_54_0.png)
+![](bar/output_54_0.webp)
 ​    
 
 其余设置与普通的条形图几乎没有任何区别。
@@ -331,7 +331,7 @@ fig
 
 
 ​    
-![](bar/output_61_0.png)
+![](bar/output_61_0.webp)
 ​    
 
 
@@ -368,5 +368,5 @@ fig
 
 
 ​    
-![](bar/output_69_0.png)
+![](bar/output_69_0.webp)
 ​

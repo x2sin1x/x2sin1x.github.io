@@ -5,7 +5,7 @@ weight: 90
 ---
 # 金融学
 
-![](cover.jpg)
+![](cover.webp)
 
 ## Contents
 

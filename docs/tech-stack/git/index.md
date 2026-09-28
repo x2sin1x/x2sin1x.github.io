@@ -5,7 +5,7 @@ weight: 30
 ---
 # Git
 
-![](cover.jpg)
+![](cover.webp)
 
 ## Git 简介
 

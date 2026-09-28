@@ -30,7 +30,7 @@ Flash Attetention 的研究动机是降低 Attention 计算过程中 GPU 的 HBM
 
 ### 架构
 
-![](illustrated-flash-attention/flash-attention-architecture.png "Flash Attention Architecture")
+![](illustrated-flash-attention/flash-attention-architecture.webp "Flash Attention Architecture")
 
 左图显示了 GPU 的三级存储结构，从上到下分别是 SRAM、HBM 和 CPU Main Memory。由计算机体系结构的基本常识可知，从上到下的访存速度越来越慢，而存储容量越来越大，离计算单元越来越远。
 
@@ -42,7 +42,7 @@ Flash Attetention 的研究动机是降低 Attention 计算过程中 GPU 的 HBM
 
 ### 标准 Attention 及其瓶颈
 
-![](illustrated-flash-attention/standard-attention-implementation.png "Standard Attention Inplementation")
+![](illustrated-flash-attention/standard-attention-implementation.webp "Standard Attention Inplementation")
 
 首先我们要知道一点，标准 Attention 的输入和输出都在 HBM 中。上图显示了标准 Attention 的计算过程，主要分为以下 3 步：
 
@@ -56,7 +56,7 @@ Flash Attetention 的研究动机是降低 Attention 计算过程中 GPU 的 HBM
 
 ### Flash Attention
 
-![](illustrated-flash-attention/flash-attention-algorithm.png "Flash Attention Algorithm")
+![](illustrated-flash-attention/flash-attention-algorithm.webp "Flash Attention Algorithm")
 
 上图显示了 Flash Attention 的计算过程，看起来似乎很难理解。为了方便说明，更加直观通俗易懂，我们将整个计算过程分为分割（split）和计算两个过程。其中，分割过程首次阅读定然不好理解，因为我们不知其所以然。所以，我们首先来看计算的过程，也就是第 5 行到第 15 行的二重循环。
 

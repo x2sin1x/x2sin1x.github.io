@@ -235,7 +235,7 @@ $$
 
 综上所述，直线 $HN$ 过定点 $(0,-2)$。
 
-![](challenge-2022-gaokao-national-paper-b-math-final-problem/ellipse-hn-fixed-point.png)
+![](challenge-2022-gaokao-national-paper-b-math-final-problem/ellipse-hn-fixed-point.webp)
 
 ### 点评
 
@@ -382,7 +382,7 @@ $$
 
 下图是 $a=1$ 时函数 $f(x)$ 的图像，可以帮助我们理解。
 
-![](challenge-2022-gaokao-national-paper-b-math-final-problem/fx-graph-a-equals-1.png)
+![](challenge-2022-gaokao-national-paper-b-math-final-problem/fx-graph-a-equals-1.webp)
 
 **3. $a<0$**
 
@@ -420,7 +420,7 @@ $$
 
 下图是 $a=-1$ 时函数 $f(x)$ 的图像。可以看到，函数 $f(x)$ 的图像正好与 $x$ 轴相切于原点。
 
-![](challenge-2022-gaokao-national-paper-b-math-final-problem/fx-graph-a-equals-minus-1.png)
+![](challenge-2022-gaokao-national-paper-b-math-final-problem/fx-graph-a-equals-minus-1.webp)
 
 **② $-1<a<0$**
 
@@ -428,7 +428,7 @@ $$
 
 下图是 $a=-\dfrac{1}{2}$ 时函数 $f(x)$ 的图像，和 $a>0$ 的情况类似。
 
-![](challenge-2022-gaokao-national-paper-b-math-final-problem/fx-graph-a-equals-minus-half.png)
+![](challenge-2022-gaokao-national-paper-b-math-final-problem/fx-graph-a-equals-minus-half.webp)
 
 **③ $a<-1$**
 
@@ -497,7 +497,7 @@ $$
 
 $h(x)$ 的图像如下图所示：
 
-![](challenge-2022-gaokao-national-paper-b-math-final-problem/hx-graph.png)
+![](challenge-2022-gaokao-national-paper-b-math-final-problem/hx-graph.webp)
 
 我们可以很容易得到 $h(0)=0$。并且我们观察到，$h(1)<0$，且 $h(x)$ 在 $(0,1)$ 上单调递减。因此我们可以判断 $f(n)<0$。又 $m \in (-1,1-\sqrt{2})$，$f(0)=0$，且 $f(x)$ 在 $(m,n)$ 上单调递减。这样我们又可以判断 $f(m)>0$。
 
@@ -523,7 +523,7 @@ $$
 
 下面说明零点的唯一性。首先，$f(0)=0$，$f(x)$ 在 $(m,n)$ 上单调递减。又因为 $f(m)>0$ 且 $f(n)<0$，所以 $f(x)>0$ 在 $(m,0)$ 上恒成立，$f(x)<0$ 在 $(0,n)$ 上恒成立。而 $f(x)$ 分别在 $(-1,m)$ 和 $(n,+\infty)$ 上都是单调的，因此刚才所证明存在的零点分别是 $(-1,0)$ 和 $(0,+\infty)$ 上的唯一零点。具体可以参考下图理解：
 
-![](challenge-2022-gaokao-national-paper-b-math-final-problem/fx-graph-zero-distribution.png)
+![](challenge-2022-gaokao-national-paper-b-math-final-problem/fx-graph-zero-distribution.webp)
 
 ### 点评
 

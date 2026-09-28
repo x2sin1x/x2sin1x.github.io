@@ -5,7 +5,7 @@ weight: 1
 ---
 # 列宁主义
 
-![](cover.jpg)
+![](cover.webp)
 
 ## Contents
 

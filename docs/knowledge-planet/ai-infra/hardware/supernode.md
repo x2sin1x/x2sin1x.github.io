@@ -16,7 +16,7 @@ weight: 30
 
 一个直观的对照：NVIDIA DGX H100 服务器是一个 8 卡 NVLink 域，而 **GB200 NVL72 把 72 张 Blackwell GPU（36 个 Grace+Blackwell 超级芯片）放进同一个 NVLink 域**&#8203;，卡间双向总带宽 130 TB/s。华为的 **CloudMatrix 384** 更进一步，把 384 张昇腾 NPU 组成一个超节点，用自研 UB（UnifiedBus）互联。
 
-![NVIDIA DGX GB200 机柜：上排为 NVLink 交换机托盘，下方 18 个计算托盘共 72 张 GPU](./dgx-gb200.jpg)
+![NVIDIA DGX GB200 机柜：上排为 NVLink 交换机托盘，下方 18 个计算托盘共 72 张 GPU](./dgx-gb200.webp)
 
 *图源：[Wikimedia Commons（CC BY-SA）](https://commons.wikimedia.org/wiki/File:Nvidia_DGX_GB200.jpg)，NVIDIA DGX GB200（即 GB200 NVL72）机柜实拍。*
 
@@ -24,7 +24,7 @@ weight: 30
 
 两家超节点的思路在架构图上看得非常清楚：
 
-![CloudMatrix 架构：NPU、CPU、内存、NIC 作为可独立扩展的资源池，由超高速互联（Scale-up）粘合成超节点](./cm384-vision.png)
+![CloudMatrix 架构：NPU、CPU、内存、NIC 作为可独立扩展的资源池，由超高速互联（Scale-up）粘合成超节点](./cm384-vision.webp)
 
 *图源：论文 [Serving Large Language Models on Huawei CloudMatrix384](https://arxiv.org/abs/2506.12708)（arXiv 2506.12708）。*
 

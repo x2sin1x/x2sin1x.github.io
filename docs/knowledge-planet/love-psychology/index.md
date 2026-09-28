@@ -5,7 +5,7 @@ weight: 105
 ---
 # 恋爱心理学
 
-![](cover.jpg)
+![](cover.webp)
 
 ## Contents
 

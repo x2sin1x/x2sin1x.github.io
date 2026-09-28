@@ -214,7 +214,7 @@ const teekConfig = defineTeekConfig({
   // 替换为个人头像时把图片放入 docs/public/ 后修改 avatar 路径即可
   blogger: {
     name: "Nenifindo",
-    avatar: "/nenifindo.png",
+    avatar: "/nenifindo.webp",
     shape: "circle",
   },
   // 日期用本地时区而非 UTC 处理：主题默认 dateUTC: true 会把 frontmatter 日期（按 UTC 零点解析）

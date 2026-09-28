@@ -5,7 +5,7 @@ weight: 10
 
 # Mooncake 源码解读
 
-![](cover.png)
+![](cover.webp)
 
 > 快照：`main` 分支，commit `056f67a5947bc6fb3216ff39d5758086cac0e1ba`，核对日期 2026-09-24。正文中的路径、行号与行为描述均以该快照为准（[GitHub 永久链接](https://github.com/kvcache-ai/Mooncake/tree/056f67a5947bc6fb3216ff39d5758086cac0e1ba)）。
 

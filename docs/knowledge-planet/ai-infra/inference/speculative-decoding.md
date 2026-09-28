@@ -21,7 +21,7 @@ decode 每步读全部权重（[带宽受限](/knowledge-planet/ai-infra/hardwar
    拒绝处用残差分布重采样一个修正 token，随后候选作废、回到起草；
 4. **产出**&#8203;：每轮接受 $n\in[1,\gamma+1]$ 个 token（含修正 token）。
 
-![投机采样的起草-验证过程：每轮大模型一次前向接受多个 token（绿色为接受、红色为拒绝）](./spec-decoding.png)
+![投机采样的起草-验证过程：每轮大模型一次前向接受多个 token（绿色为接受、红色为拒绝）](./spec-decoding.webp)
 
 *图源：[Leviathan et al. 2023](https://arxiv.org/abs/2211.17192)（arXiv 2211.17192）。*
 

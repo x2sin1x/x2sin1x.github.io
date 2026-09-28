@@ -31,7 +31,7 @@ flowchart LR
 
 TP=$t$ 时每卡：权重 $2\Psi/t$ 字节、该层激活也随切分下降（$2bsh/t$），优化器状态同样均摊——**TP 是三种状态全切的唯一策略**，这是"模型装不下"的第一刀几乎总是 TP 的原因。
 
-![Megatron-LM 的 MLP 列切/行切设计：f 处无通信、g 处一次 allreduce](./megatron-mlp-tp.png)
+![Megatron-LM 的 MLP 列切/行切设计：f 处无通信、g 处一次 allreduce](./megatron-mlp-tp.webp)
 
 *图源：[Megatron-LM 论文](https://arxiv.org/abs/1909.08053)（arXiv 1909.08053）。*
 

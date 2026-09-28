@@ -35,7 +35,7 @@ tags:
 
 在这样一个重要节点，系统研究美国思想殖民的历史、实践与危害，有助于摆脱美国思想迷信、打破美国思想枷锁，帮助世界各国人民更好地维护文化主权，更好地推动世界文明交流互鉴。
 
-![](ideological-colonization-means-roots-and-international-harm-of-american-cognitive-warfare/cover.jpeg)
+![](ideological-colonization-means-roots-and-international-harm-of-american-cognitive-warfare/cover.webp)
 
 ## 第一章 美国思想殖民的历史现实
 

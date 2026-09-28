@@ -39,11 +39,11 @@ tags:
 
 范勇鹏教授认为，要想打破中国话语赤字，建构中国话语体系，首先要推翻西方的话语体系，这就要求我们要系统解构西方的概念体系。那么，何为概念？**概念**是理论和日常话语之间的一个连接点，沟通理论和常识的桥梁。
 
-![](systematically-dismantling-western-discourse-system/concept-theory-bridge.png)
+![](systematically-dismantling-western-discourse-system/concept-theory-bridge.webp)
 
 任何一个理论体系都是始于一些基本概念的，理论本质上是对这些现实的概念化解释。因此，在形式上理论必然表现为一系列相互关联的概念的联系。例如西方的民主化理论由如下相互关联的概念组成：
 
-![](systematically-dismantling-western-discourse-system/democratization-theory-concepts.png)
+![](systematically-dismantling-western-discourse-system/democratization-theory-concepts.webp)
 
 在我们的日常生活中，我们很难理解甚至去使用这些概念和理论。那么，只有那些教条化的、庸俗化的表达可以渗透进我们的日常生活中，比如说我们熟知的“自由”、“民主”。这些教条化的、庸俗化的表达的最大特点就是简洁。
 
@@ -228,7 +228,7 @@ tags:
 
 于是，西方社会学制造了大量的模糊概念，例如“阶层”。他们按照人群收入的高低将无产阶级分为中高收入人群和低收入人群，于是创造出了“中产阶级”这样的概念，这其实与马克思主义的阶级斗争理论中的阶级完全不是一回事。这样一来就有了社会分层的概念，阶级概念于是被去政治化了，用纯粹的收入高低来掩盖财产和生产资料的所有权。
 
-![](systematically-dismantling-western-discourse-system/class-vs-stratum.png)
+![](systematically-dismantling-western-discourse-system/class-vs-stratum.webp)
 
 我们国内学界相当多的一批学者对阶级问题的认识受到了西方概念的影响。范勇鹏教授的一个硕士生开题时正值2016年美国大选，范勇鹏教授给他的硕士生的选题是《特朗普当选美国总统背后的阶级问题》。结果在开题的时候很多老师不同意，因为他们觉得美国不存在阶级问题——美国是典型的中产阶级社会。最后范勇鹏教授据理力争才得以成功开题。
 

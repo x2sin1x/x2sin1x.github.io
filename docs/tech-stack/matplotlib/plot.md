@@ -35,7 +35,7 @@ plt.plot(x, y)
 
 
     
-![](plot/output_7_1.png)
+![](plot/output_7_1.webp)
     
 
 
@@ -72,7 +72,7 @@ fig
 
 
     
-![](plot/output_16_0.png)
+![](plot/output_16_0.webp)
     
 
 下面，我们调用 `Axes` 对象的 `plot` 绘图方法：
@@ -93,7 +93,7 @@ fig
 
 
     
-![](plot/output_21_0.png)
+![](plot/output_21_0.webp)
     
 
 
@@ -117,7 +117,7 @@ fig
 
 
     
-![](plot/output_26_0.png)
+![](plot/output_26_0.webp)
     
 
 
@@ -139,7 +139,7 @@ fig
 
 
     
-![](plot/output_30_0.png)
+![](plot/output_30_0.webp)
     
 
 ## 坐标轴设置
@@ -165,7 +165,7 @@ fig
 
 
     
-![](plot/output_36_0.png)
+![](plot/output_36_0.webp)
     
 
 也可以设置其值域为 $[-1, 1]$。
@@ -185,7 +185,7 @@ fig
 
 
     
-![](plot/output_39_0.png)
+![](plot/output_39_0.webp)
     
 
 ### 坐标轴刻度
@@ -214,7 +214,7 @@ fig
 
 
     
-![](plot/output_43_0.png)
+![](plot/output_43_0.webp)
     
 
 同理，纵轴的刻度也可以进行类似的调整：
@@ -239,7 +239,7 @@ fig
 
 
     
-![](plot/output_46_0.png)
+![](plot/output_46_0.webp)
     
 
 ### 坐标轴子刻度
@@ -259,7 +259,7 @@ fig
 
 
     
-![](plot/output_50_0.png)
+![](plot/output_50_0.webp)
     
 
 
@@ -275,7 +275,7 @@ fig
 
 
     
-![](plot/output_52_0.png)
+![](plot/output_52_0.webp)
     
 
 ### 坐标轴刻度标签
@@ -307,7 +307,7 @@ fig
 
 
     
-![](plot/output_57_0.png)
+![](plot/output_57_0.webp)
     
 
 同理，纵轴的标签也可以这样设置：
@@ -332,7 +332,7 @@ fig
 
 
     
-![](plot/output_60_0.png)
+![](plot/output_60_0.webp)
     
 
 ### 坐标轴标题
@@ -365,7 +365,7 @@ fig
 
 
     
-![](plot/output_67_0.png)
+![](plot/output_67_0.webp)
     
 
 标题字体的大小也可以设置：
@@ -386,7 +386,7 @@ fig
 
 
     
-![](plot/output_70_0.png)
+![](plot/output_70_0.webp)
     
 
 ## 网格线
@@ -405,7 +405,7 @@ fig
 
 
     
-![](plot/output_74_0.png)
+![](plot/output_74_0.webp)
     
 
 
@@ -427,7 +427,7 @@ fig
 
 
     
-![](plot/output_78_0.png)
+![](plot/output_78_0.webp)
     
 
 
@@ -449,7 +449,7 @@ fig
 
 
     
-![](plot/output_82_0.png)
+![](plot/output_82_0.webp)
     
 
 
@@ -471,7 +471,7 @@ fig
 
 
     
-![](plot/output_86_0.png)
+![](plot/output_86_0.webp)
     
 
 ## 图例
@@ -515,7 +515,7 @@ fig
 
 
     
-![](plot/output_93_0.png)
+![](plot/output_93_0.webp)
     
 
 
@@ -540,7 +540,7 @@ fig
 
 
     
-![](plot/output_97_0.png)
+![](plot/output_97_0.webp)
     
 
 ## 注解
@@ -561,7 +561,7 @@ fig
 
 
     
-![](plot/output_100_0.png)
+![](plot/output_100_0.webp)
     
 
 其中，参数 `text` 表示注解的文本内容，参数 `xy` 表示被注解的点的坐标，参数 `xytext` 表示注解的文本框的坐标。
@@ -583,7 +583,7 @@ fig
 
 
     
-![](plot/output_103_0.png)
+![](plot/output_103_0.webp)
     
 
 箭头参数主要包括：
@@ -611,4 +611,4 @@ fig
 
 
     
-![](plot/output_106_0.png)
+![](plot/output_106_0.webp)

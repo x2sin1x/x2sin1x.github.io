@@ -8,7 +8,7 @@ hero:
   text: "mi re la ti sol fa do"
   tagline: 记录技术学习与思考，沉淀知识体系
   image:
-    src: /nenifindo.png
+    src: /nenifindo.webp
     alt: Nenifindo Logo
   actions:
     - theme: brand

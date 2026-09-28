@@ -27,7 +27,7 @@ tags:
 
 ## Taxonomy 分类
 
-![](towards-efficient-generative-large-language-model-serving-a-survey-from-algorithms-to-systems/llm-serving-taxonomy.png)
+![](towards-efficient-generative-large-language-model-serving-a-survey-from-algorithms-to-systems/llm-serving-taxonomy.webp)
 
 该综述从**算法创新**和**系统优化**两个维度展开介绍。顾名思义，前者是在偏上层的算法（模型）层面的工作，后者是在偏下层的系统层面的工作。
 
@@ -35,7 +35,7 @@ tags:
 
 ### Decoding Algorithm 解码算法
 
-![](towards-efficient-generative-large-language-model-serving-a-survey-from-algorithms-to-systems/decoding-algorithms.png)
+![](towards-efficient-generative-large-language-model-serving-a-survey-from-algorithms-to-systems/decoding-algorithms.webp)
 
 现有的 LLM 多采用自回归解码（Auto-Regressive Decoding）机制，这会导致极低的计算效率。所以很自然地可以想到放弃这个范式，采用更高效的解码算法。
 
@@ -60,7 +60,7 @@ tags:
 
 关于注意力简化的工作有很多，下图则列出了几种典型的注意力机制改进方法。
 
-![](towards-efficient-generative-large-language-model-serving-a-survey-from-algorithms-to-systems/attention-mechanism-improvements.png)
+![](towards-efficient-generative-large-language-model-serving-a-survey-from-algorithms-to-systems/attention-mechanism-improvements.webp)
 
 ### Model Compression 模型压缩
 
@@ -121,7 +121,7 @@ tags:
 
 ## Software Frameworks 软件框架
 
-![](towards-efficient-generative-large-language-model-serving-a-survey-from-algorithms-to-systems/software-frameworks.png)
+![](towards-efficient-generative-large-language-model-serving-a-survey-from-algorithms-to-systems/software-frameworks.webp)
 
 论文还对一些目前最先进的基于 GPU 的开源 LLM 推理系统进行了深入的分析，并从多个方面总结了它们在设计与实现上的差异。
 

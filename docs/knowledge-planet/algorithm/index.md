@@ -5,7 +5,7 @@ weight: 110
 ---
 # 算法分析与设计
 
-![](cover.png)
+![](cover.webp)
 
 ## Contents
 
