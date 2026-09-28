@@ -190,8 +190,8 @@ function sortTreeByWeight(items: DefaultTheme.SidebarItem[]): DefaultTheme.Sideb
 const postsKey = "/posts/";
 
 /**
- * 博客侧边栏：将插件生成的 <year>/<slug>/index.md 三层结构，
- * 压平为 <year> 分组 + 文章链接的两级结构（年份倒序，最新在前）
+ * 博客侧边栏：<year>/<slug>.md 扁平结构下，插件直接生成
+ * <year> 分组 + 文章链接的两级结构，这里仅收起年份分组并按年份倒序（最新在前）
  */
 function buildPostsSidebar(items: DefaultTheme.SidebarItem[]): DefaultTheme.SidebarItem[] {
   const [wrapper] = items;
@@ -201,19 +201,8 @@ function buildPostsSidebar(items: DefaultTheme.SidebarItem[]): DefaultTheme.Side
   return yearGroups
     .filter((year) => !year.link && year.items?.length)
     .map((year) => {
-      const yearItem: DefaultTheme.SidebarItem = { collapsed: true };
+      const yearItem: DefaultTheme.SidebarItem = { collapsed: true, items: year.items ?? [] };
       if (year.text) yearItem.text = year.text;
-      yearItem.items = (year.items ?? [])
-        .map((slug) => {
-          // slug 分组内只有 index.md 一个页面，取其标题与链接；无子项时回退用 slug 名
-          const post = slug.link ? slug : slug.items?.[0];
-          const postItem: DefaultTheme.SidebarItem = {};
-          const text = post?.text || slug.text;
-          if (text) postItem.text = text;
-          postItem.link = post?.link ?? `${postsKey}${year.text}/${slug.text}/`;
-          return postItem;
-        })
-        .filter((post) => Boolean(post.link));
       return yearItem;
     })
     .reverse();
