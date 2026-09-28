@@ -5,7 +5,7 @@ weight: 10
 
 # vLLM 源码解读
 
-![](cover.svg)
+![](cover.webp)
 
 > 快照：`main` 分支，commit `bbc4ddeca9ece9851aad26f03afc4bab37c6e8df`，核对日期 2026-09-24。正文中的路径、行号与行为描述均以该快照为准（[GitHub 永久链接](https://github.com/vllm-project/vllm/tree/bbc4ddeca9ece9851aad26f03afc4bab37c6e8df)）。快照处于版本号 `dev` 的开发态（`vllm/version.py:11`），功能以 commit 为锚点而非版本号。
 
