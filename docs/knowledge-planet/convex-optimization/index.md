@@ -5,8 +5,6 @@ weight: 120
 ---
 # 凸优化
 
-![](bv_cvxbook_cover.webp)
-
 ## Contents
 
 - [数学基础](/knowledge-planet/convex-optimization/mathematical-background/)

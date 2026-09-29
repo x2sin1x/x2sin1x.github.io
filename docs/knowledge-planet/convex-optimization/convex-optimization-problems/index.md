@@ -7,6 +7,14 @@ weight: 300
 
 ## 本章目录
 
+- [优化问题](/knowledge-planet/convex-optimization/convex-optimization-problems/optimization-problems/)
+- [凸优化](/knowledge-planet/convex-optimization/convex-optimization-problems/convex-optimization/)
+- [线性规划问题](/knowledge-planet/convex-optimization/convex-optimization-problems/linear-optimization-problems/)
+- [二次优化问题](/knowledge-planet/convex-optimization/convex-optimization-problems/quadratic-optimization-problems/)
+- [几何规划](/knowledge-planet/convex-optimization/convex-optimization-problems/geometric-programming/)
+- [广义不等式约束](/knowledge-planet/convex-optimization/convex-optimization-problems/generalized-inequality-constraints/)
+- [向量优化](/knowledge-planet/convex-optimization/convex-optimization-problems/vector-optimization/)
+
 ## 本章涉及到的数学术语
 
 | 简称 | 全程                                        | 含义             |

@@ -7,6 +7,13 @@ weight: 100
 
 ## 本章目录
 
+- [仿射集合和凸集](/knowledge-planet/convex-optimization/convex-sets/affine-and-convex-sets/)
+- [重要凸集](/knowledge-planet/convex-optimization/convex-sets/important-convex-sets/)
+- [保凸运算](/knowledge-planet/convex-optimization/convex-sets/operations-that-preserve-convexity/)
+- [广义不等式](/knowledge-planet/convex-optimization/convex-sets/generalized-inequalities/)
+- [分离与支撑超平面](/knowledge-planet/convex-optimization/convex-sets/separating-and-supporting-hyperplanes/)
+- [对偶锥与广义不等式](/knowledge-planet/convex-optimization/convex-sets/dual-cones-and-generalized-inequalities/)
+
 ## 本章涉及到的数学符号
 
 | 符号                      | 含义                                 |

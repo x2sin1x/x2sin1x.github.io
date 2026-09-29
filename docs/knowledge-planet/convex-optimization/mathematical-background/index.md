@@ -7,6 +7,12 @@ weight: 10
 
 ## 本章目录
 
+- [范数](/knowledge-planet/convex-optimization/mathematical-background/norms/)
+- [分析](/knowledge-planet/convex-optimization/mathematical-background/analysis/)
+- [函数](/knowledge-planet/convex-optimization/mathematical-background/functions/)
+- [导数](/knowledge-planet/convex-optimization/mathematical-background/derivatives/)
+- [线性代数](/knowledge-planet/convex-optimization/mathematical-background/linear-algebra/)
+
 ## 本章涉及到的数学符号
 
 | 符号                                | 含义                                               |
