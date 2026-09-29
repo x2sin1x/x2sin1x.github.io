@@ -25,7 +25,7 @@ flowchart LR
 - **第一刀（列切 $A=[A_1;A_2]$）**：GeLU 逐元素独立，各卡算各的部分 $Y_i$，**无需通信**；
 - **第二刀（行切 $B=[B_1;B_2]$）**：$Y_1B_1+Y_2B_2=Z$，各卡局部结果相加即为全量——一次 **allreduce** 合并。
 
-注意力同理（$Q/K/V$ 按头切，输出投影行切）。**每层前向 2 次、反向 2 次 allreduce**，每次搬运 $2bsh$ 字节（[超节点](/knowledge-planet/ai-infra/hardware/supernode)篇）。
+注意力同理（$Q/K/V$ 按头切，输出投影行切）。**每层前向 2 次、反向 2 次 allreduce**，每次搬运 $2bsh$ 字节（[超节点](/knowledge-planet/ai-infra/distributed/supernode)篇）。
 
 ## 显存账：权重、激活、参数三丰收
 
@@ -37,7 +37,7 @@ TP=$t$ 时每卡：权重 $2\Psi/t$ 字节、该层激活也随切分下降（$2
 
 ## 边界：TP 放多大
 
-通信在关键路径上且每层都发生，时间公式代入（[超节点](/knowledge-planet/ai-infra/hardware/supernode)篇）：NVLink 域内 8 卡单次 allreduce 约 0.25 ms，跨机则慢一个数量级。结论：
+通信在关键路径上且每层都发生，时间公式代入（[超节点](/knowledge-planet/ai-infra/distributed/supernode)篇）：NVLink 域内 8 卡单次 allreduce 约 0.25 ms，跨机则慢一个数量级。结论：
 
 - **TP 度数 ≤ 单机卡数（8），且留在 Scale-up 域内**；
 - 更大的权重切分交给 PP（通信稀疏）或 ZeRO-3（通信可重叠）；
@@ -45,7 +45,7 @@ TP=$t$ 时每卡：权重 $2\Psi/t$ 字节、该层激活也随切分下降（$2
 
 ::: details 深入推导：为什么列切 GeLU 免通信，softmax 却不行
 
-GeLU/ReLU 逐元素作用：$\text{GeLU}(XA)_i=\text{GeLU}(XA_i)$，切列后各卡独立成立。而 softmax 需要**整行**的 max 与 sum：若按列切 $QK^\top$ 的结果，每卡只有部分 logit，softmax 无法局部计算。Megatron 的处理：$Q/K/V$ 按注意力**头**切——softmax 本来就按头独立，切头即无通信；单头过大时用 [Sequence Parallelism](/knowledge-planet/ai-infra/training/parallelism/sequence-parallelism) 把 softmax 沿序列维切开配合 allgather。
+GeLU/ReLU 逐元素作用：$\text{GeLU}(XA)_i=\text{GeLU}(XA_i)$，切列后各卡独立成立。而 softmax 需要**整行**的 max 与 sum：若按列切 $QK^\top$ 的结果，每卡只有部分 logit，softmax 无法局部计算。Megatron 的处理：$Q/K/V$ 按注意力**头**切——softmax 本来就按头独立，切头即无通信；单头过大时用 [Sequence Parallelism](/knowledge-planet/ai-infra/parallelism/sequence-parallelism) 把 softmax 沿序列维切开配合 allgather。
 
 **通信量下界**。切分 $d\times k$ 的 GEMM 到 $t$ 卡，任何方案至少要交换 $O(bsh)$ 量级的激活（输出矩阵的信息分布在不同卡上）。Megatron 的两次通信（前向 allreduce + 反向 allreduce）已达此下界，故"更聪明的切法"省不掉通信，只能选择通信发生的时机与位置。
 
@@ -61,9 +61,9 @@ GeLU/ReLU 逐元素作用：$\text{GeLU}(XA)_i=\text{GeLU}(XA_i)$，切列后各
 
 ::: details 参考答案
 
-1. 每层 2 次 × $2bsh=134$ MB（BF16）≈ 268 MB；每 token 每层都付。训练时大 batch 的计算时间随 $b$ 增长而通信量也随 $b$ 增长（比值不变），但 decode 的计算本身是带宽受限的极薄切片，通信/计算比急剧恶化——TP 对 decode 延迟的伤害远大于训练（见[超节点](/knowledge-planet/ai-infra/hardware/supernode)篇 worked example）。
+1. 每层 2 次 × $2bsh=134$ MB（BF16）≈ 268 MB；每 token 每层都付。训练时大 batch 的计算时间随 $b$ 增长而通信量也随 $b$ 增长（比值不变），但 decode 的计算本身是带宽受限的极薄切片，通信/计算比急剧恶化——TP 对 decode 延迟的伤害远大于训练（见[超节点](/knowledge-planet/ai-infra/distributed/supernode)篇 worked example）。
 2. 否。allreduce 数据量 $2bsh$ 只与激活大小有关，与 $t$ 无关；只有权重/状态显存按 $1/t$ 减。
-3. 通信频次 × 层数 × 关键路径不可重叠：64 卡跨机 TP 的每 token 通信时间会超过计算时间几个数量级（[超节点](/knowledge-planet/ai-infra/hardware/supernode)篇 worked example 算过 18 倍/跨机）；且显存摊薄的需求早已被 PP/ZeRO 满足。
+3. 通信频次 × 层数 × 关键路径不可重叠：64 卡跨机 TP 的每 token 通信时间会超过计算时间几个数量级（[超节点](/knowledge-planet/ai-infra/distributed/supernode)篇 worked example 算过 18 倍/跨机）；且显存摊薄的需求早已被 PP/ZeRO 满足。
 
 :::
 

@@ -36,7 +36,7 @@ flowchart LR
 ## 两大系统难题
 
 1. **负载不均**：router 偏爱某些专家（热点专家卡成瓶颈、冷门专家空转），M 以上需辅助负载均衡损失 + 容量因子（capacity factor）限流丢 token——丢 token 率是 MoE 训练的敏感指标；
-2. **EP 度数与通信**：EP 越大，专家切得越细、单卡显存越省，但 all-to-all 跨的卡越多。[超节点](/knowledge-planet/ai-infra/hardware/supernode)篇的结论在这里兑现：**DeepSeek-V3 用 8 卡 EP（域内）做预填充、更大 EP 靠超节点带宽**；CM384 这类 384 卡超节点的卖点正是大 EP 通信余量。
+2. **EP 度数与通信**：EP 越大，专家切得越细、单卡显存越省，但 all-to-all 跨的卡越多。[超节点](/knowledge-planet/ai-infra/distributed/supernode)篇的结论在这里兑现：**DeepSeek-V3 用 8 卡 EP（域内）做预填充、更大 EP 靠超节点带宽**；CM384 这类 384 卡超节点的卖点正是大 EP 通信余量。
 
 ::: details 深入推导：all-to-all 通信模型与 DeepSeek-V3 的 EP 配置
 

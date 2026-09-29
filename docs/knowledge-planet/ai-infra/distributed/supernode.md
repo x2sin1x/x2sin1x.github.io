@@ -40,7 +40,7 @@ weight: 30
 ## 超节点改变了什么
 
 1. **并行策略的选择空间变大**&#8203;。张量并行、专家并行都要求"通信量大到跨节点就跑不动"。超节点把这些并行策略的适用规模直接放大了一个数量级。MoE 模型（如 DeepSeek-V3 的 256 个专家）在超节点内做大 EP，通信几乎"免费"。
-2. **失效域变大**&#8203;。以前坏一块卡只影响 8 卡机，现在 NVLink 域内一个 NVSwitch 故障可能波及整个机柜。超节点越大，容错设计越重要——这是下一篇[容错与 Checkpoint](/knowledge-planet/ai-infra/hardware/fault-tolerance)的伏笔。
+2. **失效域变大**&#8203;。以前坏一块卡只影响 8 卡机，现在 NVLink 域内一个 NVSwitch 故障可能波及整个机柜。超节点越大，容错设计越重要——这是下一篇[容错与 Checkpoint](/knowledge-planet/ai-infra/distributed/fault-tolerance)的伏笔。
 3. **Scale-up 与 Scale-out 的分界线**&#8203;。超节点内部叫 **Scale-up**&#8203;（纵向扩展，互联为主），超节点之间叫 **Scale-out**&#8203;（横向扩展，网络为主）。工程上的黄金法则：&#8203;**把通信最重的部分留在 Scale-up 域内，把通信稀疏的部分扔给 Scale-out**&#8203;。
 
 ## 量级估算：一次 All-Reduce 的代价
@@ -54,7 +54,7 @@ $$T = 2\,\frac{N-1}{N}\cdot\frac{m}{\beta} + 2(N-1)\,\alpha$$
 - **同机 8 卡 NVLink**&#8203;（有效带宽按 450 GB/s）：$T \approx 2\times\frac{7}{8}\times\frac{14\ \text{GB}}{450\ \text{GB/s}} \approx 55\ \text{ms}$；
 - **跨 8 台机器 IB**&#8203;（每卡 400 Gbps ≈ 50 GB/s）：$T \approx \frac{7}{4}\times\frac{14\ \text{GB}}{50\ \text{GB/s}} \approx 0.5\ \text{s}$——一次同步就是秒级，训练效率直接腰斩。
 
-这就是为什么"万卡集群"并不是 1250 台 8 卡机的简单堆叠，而要先在机柜内建成超节点、再谈集群——下一[万卡集群](/knowledge-planet/ai-infra/hardware/large-scale-cluster)篇展开。
+这就是为什么"万卡集群"并不是 1250 台 8 卡机的简单堆叠，而要先在机柜内建成超节点、再谈集群——下一[万卡集群](/knowledge-planet/ai-infra/distributed/large-scale-cluster)篇展开。
 
 ::: details 深入推导：张量并行为什么不能跨超节点边界
 

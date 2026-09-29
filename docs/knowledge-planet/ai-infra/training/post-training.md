@@ -26,7 +26,7 @@ flowchart LR
 
 ## SFT 的 Infra 账
 
-SFT 数据量小（相对预训练三个数量级），但**序列长度方差极大**&#8203;（几十到几万 token），这带来一个经典的效率问题：按条padding 会浪费大量计算。解法是 **packing**&#8203;——把多条样本拼进同一序列（配合 attention mask 隔离），把利用率拉回矩阵乘主导的水平。其余账目与预训练一致（$6ND$、ZeRO、[并行策略](/knowledge-planet/ai-infra/training/parallelism/)），单机到数十卡即可胜任，是后训练里最"便宜"的一段。
+SFT 数据量小（相对预训练三个数量级），但**序列长度方差极大**&#8203;（几十到几万 token），这带来一个经典的效率问题：按条padding 会浪费大量计算。解法是 **packing**&#8203;——把多条样本拼进同一序列（配合 attention mask 隔离），把利用率拉回矩阵乘主导的水平。其余账目与预训练一致（$6ND$、ZeRO、[并行策略](/knowledge-planet/ai-infra/parallelism/)），单机到数十卡即可胜任，是后训练里最"便宜"的一段。
 
 ## RLHF 的 Infra 难题
 

@@ -76,7 +76,7 @@ $$\eta \approx \left(1 + \frac{C}{t^{*}} + \frac{t_{\text{restart}}}{M}\right)^{
 
 代入一线水平（$C/t^{*} \approx 5/43 \approx 0.12$、$t_{\text{restart}}/M \approx 30/186 \approx 0.16$）：$\eta \approx 1/1.28 \approx 78\%$——即约五分之一的时间在陪跑。若把 $t_{\text{restart}}$ 压到 10 min（分片快恢复 + 在线剔除坏卡），$\eta \approx 90\%$。
 
-Llama 3 的实测数字可以交叉验证：39.3M GPU 时账单 vs 约 26.6M 理想需求（复算见[万卡集群](/knowledge-planet/ai-infra/hardware/large-scale-cluster)篇），有效占比约 68%——&#8203;**与故障中断、重启、数值异常回滚的总量自洽**&#8203;。容错系统的目标，就是让"故障"对训练吞吐的侵蚀控制在个位数百分比。
+Llama 3 的实测数字可以交叉验证：39.3M GPU 时账单 vs 约 26.6M 理想需求（复算见[万卡集群](/knowledge-planet/ai-infra/distributed/large-scale-cluster)篇），有效占比约 68%——&#8203;**与故障中断、重启、数值异常回滚的总量自洽**&#8203;。容错系统的目标，就是让"故障"对训练吞吐的侵蚀控制在个位数百分比。
 
 ::: details 深入推导：从 Young 公式到 Daly 公式
 

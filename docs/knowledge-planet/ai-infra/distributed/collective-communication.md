@@ -60,7 +60,7 @@ NVIDIA 的 NCCL 会自动根据消息大小、拓扑（NVLink/PCIe/IB）选择�
 
 ## 放到并行策略的坐标系里
 
-通信量、通信频次、能否与计算重叠——每个并行策略的通信特征都不同（详见后续训练板块的[并行策略](/knowledge-planet/ai-infra/training/parallelism/)）：
+通信量、通信频次、能否与计算重叠——每个并行策略的通信特征都不同（详见后续训练板块的[并行策略](/knowledge-planet/ai-infra/parallelism/)）：
 
 | 并行策略 | 通信原语 | 每步通信量 | 能否 overlap |
 | ---- | ---- | ---- | ---- |

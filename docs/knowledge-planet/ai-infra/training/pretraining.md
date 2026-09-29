@@ -14,7 +14,7 @@ weight: 10
 
 - **计算量**&#8203;：$C = 6ND$（见[芯片架构](/knowledge-planet/ai-infra/hardware/chip-architecture)篇），训练 GPT-3 级模型（$N=175\text{B}$、$D=300\text{B}$）约需 $3.1\times10^{23}$ FLOP；
 - **数据量**&#8203;：现代预训练用 $10\sim 20\text{T}$ token，原始网页数据在 PB 级；
-- **时间尺度**&#8203;：数月连续运行，跨越数千次故障（见[容错与 Checkpoint](/knowledge-planet/ai-infra/hardware/fault-tolerance)篇）。
+- **时间尺度**&#8203;：数月连续运行，跨越数千次故障（见[容错与 Checkpoint](/knowledge-planet/ai-infra/distributed/fault-tolerance)篇）。
 
 ## Scaling Law：先算账再开机
 
@@ -22,7 +22,7 @@ weight: 10
 
 $$D \approx 20\Psi \quad\Rightarrow\quad \text{最优 } \Psi \approx \sqrt{C/120},\ D \approx \sqrt{20C/6}$$
 
-决定训练哪一档模型后，[万卡集群](/knowledge-planet/ai-infra/hardware/large-scale-cluster)篇的时间公式直接给出工期与成本。&#8203;**预训练 Infra 的第一步不是写代码，是算这本账**&#8203;——这也是"量化分析与系统设计"能力的第一个用武之地。
+决定训练哪一档模型后，[万卡集群](/knowledge-planet/ai-infra/distributed/large-scale-cluster)篇的时间公式直接给出工期与成本。&#8203;**预训练 Infra 的第一步不是写代码，是算这本账**&#8203;——这也是"量化分析与系统设计"能力的第一个用武之地。
 
 ## 数据管道：GPU 断粮的预防针
 
@@ -44,7 +44,7 @@ Infra 视角的两个关键点：
 
 ## 训练循环与损失稳定性
 
-单个训练步：前向 → 反向 → 优化器更新，配合[显存层次](/knowledge-planet/ai-infra/hardware/memory-hierarchy)篇的 ZeRO/激活重算把状态装下、用[并行策略](/knowledge-planet/ai-infra/training/parallelism/)把计算摊开。预训练特有的 Infra 问题是**数值稳定性**&#8203;：
+单个训练步：前向 → 反向 → 优化器更新，配合[显存层次](/knowledge-planet/ai-infra/hardware/memory-hierarchy)篇的 ZeRO/激活重算把状态装下、用[并行策略](/knowledge-planet/ai-infra/parallelism/)把计算摊开。预训练特有的 Infra 问题是**数值稳定性**&#8203;：
 
 - **loss spike**&#8203;：训练数周后 loss 突然跳升，常见诱因是坏数据批次或数值上溢。一线做法：检测到 spike 后回滚到健康 checkpoint 并跳过可疑数据段（Llama 3、MegaScale 均内置）；
 - **混合精度护栏**&#8203;：BF16 计算天然稳于 FP16（无需 loss scaling），梯度裁剪兜底；
@@ -58,7 +58,7 @@ Infra 视角的两个关键点：
 
 $$\frac{4Ls}{2\Psi} = \frac{2Ls}{\Psi}$$
 
-以 7B 模型（$L=32$、$\Psi=7\times10^9$）：比值 $\approx 9\times10^{-9}\times s$，$s=4096$ 时约 $4\%$，可忽略；但 $s=10^5$（超长上下文）时超过 90%，&#8203;**必须计入，且注意力从矩阵乘退化为平方复杂度**&#8203;——这正是 [Ring Attention](https://arxiv.org/abs/2310.01889) 与[序列并行](/knowledge-planet/ai-infra/training/parallelism/sequence-parallelism)要解决的问题。
+以 7B 模型（$L=32$、$\Psi=7\times10^9$）：比值 $\approx 9\times10^{-9}\times s$，$s=4096$ 时约 $4\%$，可忽略；但 $s=10^5$（超长上下文）时超过 90%，&#8203;**必须计入，且注意力从矩阵乘退化为平方复杂度**&#8203;——这正是 [Ring Attention](https://arxiv.org/abs/2310.01889) 与[序列并行](/knowledge-planet/ai-infra/parallelism/sequence-parallelism)要解决的问题。
 
 （据 Kaplan et al. 2020 与 Hoffmann et al. 2022 的口径。）
 

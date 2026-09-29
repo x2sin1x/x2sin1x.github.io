@@ -34,7 +34,7 @@ flowchart LR
     C -.复用.-> D
 :::
 
-传输代价（[集合通信](/knowledge-planet/ai-infra/hardware/collective-communication)篇模型）：$M_{\text{kv}}=2Ln_{\text{kv}}d_{\text{head}}s\,b\cdot\text{bytes}$ 走 IB 50 GB/s 时，8K token 的 7B 模型 KV（约 1 GB）需 20 ms——相对数秒的 decode 生命周期可接受，但**传输时间是分离架构的新的一等公民约束**&#8203;，也解释了为什么 P/D 分离优先在同超节点内做（NVLink 域传输近免费，[超节点](/knowledge-planet/ai-infra/hardware/supernode)篇）。
+传输代价（[集合通信](/knowledge-planet/ai-infra/distributed/collective-communication)篇模型）：$M_{\text{kv}}=2Ln_{\text{kv}}d_{\text{head}}s\,b\cdot\text{bytes}$ 走 IB 50 GB/s 时，8K token 的 7B 模型 KV（约 1 GB）需 20 ms——相对数秒的 decode 生命周期可接受，但**传输时间是分离架构的新的一等公民约束**&#8203;，也解释了为什么 P/D 分离优先在同超节点内做（NVLink 域传输近免费，[超节点](/knowledge-planet/ai-infra/distributed/supernode)篇）。
 
 ## 配比与调度
 
@@ -66,7 +66,7 @@ $$\text{TTFT}: \frac{s_p}{c\cdot C_{\text{prefill}}^{\text{pool}}}\le D_1,\qquad
 
 ::: details 参考答案
 
-1. prefill 是计算受限：大 TP 摊薄权重读取、拉满算力利用率，通信虽重但单次 prefill 计算量大可掩盖；decode 是带宽受限、通信敏感（[张量并行](/knowledge-planet/ai-infra/training/parallelism/tensor-parallelism)篇：decode 的通信/计算比恶劣），小 TP 减少每 token 通信频次。
+1. prefill 是计算受限：大 TP 摊薄权重读取、拉满算力利用率，通信虽重但单次 prefill 计算量大可掩盖；decode 是带宽受限、通信敏感（[张量并行](/knowledge-planet/ai-infra/parallelism/tensor-parallelism)篇：decode 的通信/计算比恶劣），小 TP 减少每 token 通信频次。
 2. 7B/GQA：$M_{\text{kv}}\approx 2\times32\times8\times128\times32768\times2\text{B}\approx 4.3\ \text{GB}$，IB 传输约 86 ms——是 TTFT 的显著增量；这决定"分离优先域内、跨机必须算清传输账"，以及长上下文更倾向 KV 池化 + 本地 decode。
 3. 可叠加且互补：chunked prefill 管时间维（同卡调度）、P/D 管空间维（分池部署）、前缀缓存管重复计算（命中省 prefill）。生产三件套（Mooncake 架构）同时启用，缓存池还是 P/D 之间 KV 的中转站。
 

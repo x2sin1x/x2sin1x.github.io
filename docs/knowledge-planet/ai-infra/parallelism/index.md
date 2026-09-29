@@ -1,7 +1,7 @@
 ---
 title: "并行策略"
 date: 2026-09-22T18:00:00+08:00
-weight: 50
+weight: 6
 ---
 
 # 并行策略
@@ -14,17 +14,17 @@ weight: 50
 
 | 策略 | 切什么 | 省什么显存 | 通信代价 | 适合 |
 | ---- | ---- | ---- | ---- | ---- |
-| [数据并行 DP](/knowledge-planet/ai-infra/training/parallelism/data-parallelism) | 数据 | 只在 ZeRO 下省 | 梯度 allreduce | 默认底座 |
-| [张量并行 TP](/knowledge-planet/ai-infra/training/parallelism/tensor-parallelism) | 权重矩阵 | 权重+激活，按层均摊 | 每层 2 次 allreduce | 超节点内 |
-| [流水并行 PP](/knowledge-planet/ai-infra/training/parallelism/pipeline-parallelism) | 网络层 | 权重+激活，按层组 | 层边界 P2P | 跨机 |
-| [序列并行 SP](/knowledge-planet/ai-infra/training/parallelism/sequence-parallelism) | 序列长度 | 激活为主 | attention 通信 | 长上下文 |
-| [专家并行 EP](/knowledge-planet/ai-infra/training/parallelism/expert-parallelism) | 专家（MoE） | 专家权重 | all-to-all | MoE 模型 |
+| [数据并行 DP](/knowledge-planet/ai-infra/parallelism/data-parallelism) | 数据 | 只在 ZeRO 下省 | 梯度 allreduce | 默认底座 |
+| [张量并行 TP](/knowledge-planet/ai-infra/parallelism/tensor-parallelism) | 权重矩阵 | 权重+激活，按层均摊 | 每层 2 次 allreduce | 超节点内 |
+| [流水并行 PP](/knowledge-planet/ai-infra/parallelism/pipeline-parallelism) | 网络层 | 权重+激活，按层组 | 层边界 P2P | 跨机 |
+| [序列并行 SP](/knowledge-planet/ai-infra/parallelism/sequence-parallelism) | 序列长度 | 激活为主 | attention 通信 | 长上下文 |
+| [专家并行 EP](/knowledge-planet/ai-infra/parallelism/expert-parallelism) | 专家（MoE） | 专家权重 | all-to-all | MoE 模型 |
 
 它们**从不互斥**&#8203;：现代大模型训练是 3D/4D 并行（如 TP×PP×DP×SP 同时启用），因为每种策略切的是不同维度、省的是不同资源、付的是不同通信。
 
 ## 一个决策框架
 
-按"通信重 → 网络快"的匹配原则排布（呼应[超节点](/knowledge-planet/ai-infra/hardware/supernode)篇）：
+按"通信重 → 网络快"的匹配原则排布（呼应[超节点](/knowledge-planet/ai-infra/distributed/supernode)篇）：
 
 ::: mermaid
 flowchart TB
@@ -46,7 +46,7 @@ flowchart TB
 
 通信账：
 
-- TP=8：每层前向 2 次 allreduce（[超节点](/knowledge-planet/ai-infra/hardware/supernode)篇推导），必须放 NVLink 域内 ✓；
+- TP=8：每层前向 2 次 allreduce（[超节点](/knowledge-planet/ai-infra/distributed/supernode)篇推导），必须放 NVLink 域内 ✓；
 - PP=16：每步只有层边界激活 P2P（按 micro-batch 数量摊薄气泡），可跨机但优先域内；
 - DP=128：梯度 allreduce 可与反向重叠，放最外层跨机。
 
@@ -74,7 +74,7 @@ $M$ 是关键杠杆：$M\ge4(p-1)$ 时气泡 $<20\%$。但 $M$ 增大即梯度�
 
 ::: details 参考答案
 
-1. 每卡 $810/16\approx50\ \text{GB}$，两种切法相同。但 TP=16 需要 16 卡全互联（2 台 8 卡机之间 allreduce 走 IB，[超节点](/knowledge-planet/ai-infra/hardware/supernode)篇算过慢 18 倍）；PP=4 只需层边界 P2P、每步每卡一次一收一发。&#8203;**同等显存收益下通信模式完全不同，这就是切法的选择空间**&#8203;。
+1. 每卡 $810/16\approx50\ \text{GB}$，两种切法相同。但 TP=16 需要 16 卡全互联（2 台 8 卡机之间 allreduce 走 IB，[超节点](/knowledge-planet/ai-infra/distributed/supernode)篇算过慢 18 倍）；PP=4 只需层边界 P2P、每步每卡一次一收一发。&#8203;**同等显存收益下通信模式完全不同，这就是切法的选择空间**&#8203;。
 2. 气泡率 $(16-1)/(8+15)=15/23\approx65\%$；$M=16$ 时 $15/31\approx48\%$。代价：in-flight 激活显存翻倍、等效 batch 翻倍（可能影响收敛），需要三者权衡。
 3. TP/PP 切完权重后每卡仍持有完整参数的一个固定分片——它们扩展的是"模型装得下"，不提供数据维度的规模扩展；DP 是唯一随卡数线性增加计算吞吐的维度（通信可重叠），且 ZeRO 已把它的显存劣势修补大半。
 
@@ -95,4 +95,4 @@ $M$ 是关键杠杆：$M\ge4(p-1)$ 时气泡 $<20\%$。但 $M$ 增大即梯度�
 - Rajbhandari et al., [ZeRO](https://arxiv.org/abs/1910.02054)（arXiv 1910.02054）
 - Zheng et al., [Alpa: Automating Inter- and Intra-Operator Parallelism](https://arxiv.org/abs/2201.12020)（arXiv 2201.12020）
 
-各子篇：[数据并行](/knowledge-planet/ai-infra/training/parallelism/data-parallelism) · [张量并行](/knowledge-planet/ai-infra/training/parallelism/tensor-parallelism) · [流水并行](/knowledge-planet/ai-infra/training/parallelism/pipeline-parallelism) · [序列并行](/knowledge-planet/ai-infra/training/parallelism/sequence-parallelism) · [专家并行](/knowledge-planet/ai-infra/training/parallelism/expert-parallelism)
+各子篇：[数据并行](/knowledge-planet/ai-infra/parallelism/data-parallelism) · [张量并行](/knowledge-planet/ai-infra/parallelism/tensor-parallelism) · [流水并行](/knowledge-planet/ai-infra/parallelism/pipeline-parallelism) · [序列并行](/knowledge-planet/ai-infra/parallelism/sequence-parallelism) · [专家并行](/knowledge-planet/ai-infra/parallelism/expert-parallelism)

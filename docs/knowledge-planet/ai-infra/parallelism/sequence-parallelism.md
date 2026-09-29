@@ -20,7 +20,7 @@ weight: 40
 - 进入 TP 区域前：allreduce 改为 **reduce-scatter**（每卡只留激活的 $1/t$ 序列片）；
 - 离开 TP 区域：identity 改为 **allgather**（各卡要完整序列做 LayerNorm 后的矩阵乘）。
 
-通信总量**完全不变**（allreduce = reduce-scatter + allgather，[集合通信](/knowledge-planet/ai-infra/hardware/collective-communication)篇），激活显存却省了：LayerNorm/Dropout 区域的激活从 $sbh$ 降到 $sbh/t$。
+通信总量**完全不变**（allreduce = reduce-scatter + allgather，[集合通信](/knowledge-planet/ai-infra/distributed/collective-communication)篇），激活显存却省了：LayerNorm/Dropout 区域的激活从 $sbh$ 降到 $sbh/t$。
 
 ## 机制二：Ring Attention（沿序列切注意力）
 

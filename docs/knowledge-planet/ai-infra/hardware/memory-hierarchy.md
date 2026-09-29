@@ -100,7 +100,7 @@ $$2\times 32\times 32\times 128\times 2\ \text{B} \approx 0.5\ \text{MB/token}$$
 ## 数据集与 Checkpoint：金字塔的底部
 
 - **训练数据**&#8203;：万亿 token 的数据集以 TB 计，只能放在对象存储/HDFS，训练时由数据加载器流式读入。流水线任何一段跟不上，GPU 就会"断粮"。
-- **Checkpoint**&#8203;：万卡集群每几分钟就要把训练状态快照一次，一个万卡训练的完整 checkpoint 轻松超过 10 TB。写入时间 $C=M/B_{\text{write}}$：40 TB 状态写到 TB/s 级存储也要约 40 s，写入太慢会拖住训练，恢复太慢则白白烧掉昂贵的集群时间（下一篇[容错与 Checkpoint](/knowledge-planet/ai-infra/hardware/fault-tolerance)推导最优间隔）。DeepSeek 为此自研了 3FS 文件系统，用多机并发把 checkpoint 写入做到 TB/s 级。
+- **Checkpoint**&#8203;：万卡集群每几分钟就要把训练状态快照一次，一个万卡训练的完整 checkpoint 轻松超过 10 TB。写入时间 $C=M/B_{\text{write}}$：40 TB 状态写到 TB/s 级存储也要约 40 s，写入太慢则拖住训练，恢复太慢则白白烧掉昂贵的集群时间（[容错与 Checkpoint](/knowledge-planet/ai-infra/distributed/fault-tolerance)篇推导最优间隔，[Checkpoint 存储与加载](/knowledge-planet/ai-infra/storage/checkpoint-storage)篇讲怎么写快）。DeepSeek 为此自研了 3FS 文件系统，用多机并发把 checkpoint 写入做到 TB/s 级。
 
 ## 小结
 

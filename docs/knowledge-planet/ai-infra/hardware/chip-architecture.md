@@ -23,6 +23,39 @@ weight: 10
 
 一个有用的心理图像：&#8203;**把芯片想成一家餐厅，SM 是厨师，HBM 是仓库，仓库到厨房的传送带就是显存带宽**&#8203;。厨师再快，传送带送不上菜也得停工等食材。
 
+## 执行模型：SIMT 与两家微架构的答案
+
+### NVIDIA：SIMT + Tensor Core
+
+GPU 的执行模型是 **SIMT**（Single Instruction, Multiple Threads）：几千个线程被编成 **warp**（32 线程一组）调度——一个 warp 内所有线程锁步执行同一条指令，各自处理不同数据。这个模型对矩阵乘天然友好，但有两个著名陷阱：**warp divergence**（同一 warp 内 if 分叉导致指令串行化）与**访存合并**（同 warp 的 32 个线程访问连续地址才能合成一次传输，见[算子优化](/knowledge-planet/ai-infra/hpc/operator-optimization)篇）。
+
+Hopper（H100）与 Blackwell（B200）两代的关键演进：
+
+| 机制 | Hopper | Blackwell |
+| ---- | ---- | ---- |
+| Tensor Core | 第四代，BF16 约 1 PFLOP/s | 第五代，约 2.2 PFLOP/s，新增 FP4 |
+| 数据搬运 | **TMA**（Tensor Memory Accelerator）：异步批量搬运 tensor 到 shared memory，解放线程 | TMA 延续并增强 |
+| 线程簇 | **Thread Block Cluster**：跨 SM 的线程块可直读彼此的 shared memory（分布式共享内存） | 延续 |
+| 片上缓存 | 50 MB L2 | 更大 L2 + 双 die 一致性互联（两块芯粒封装） |
+
+**TMA 值得单独记住**：它把“数据怎么从 HBM 搬到 shared memory”从每个线程的职责变成硬件专用引擎的职责，是 FlashAttention-3、cuDNN fused kernel 这类高性能实现的地基（见[Attention Kernel](/knowledge-planet/ai-infra/hpc/attention-kernels)篇）。
+
+### 华为昇腾：达芬奇架构
+
+昇腾 NPU 采用 **达芬奇（Da Vinci）架构**，与 GPU 的 SIMT 走的是不同路线：每个计算核心由三类单元组成——
+
+- **Cube 单元**：专做 $16\times16\times16$ 的矩阵块乘加，一块 Cube 一 clock 完成 4096 次乘加。矩阵乘不走“标量指令循环”，而是直接以张量为操作数，这是 910B 算力（约 0.4 PFLOP/s）的来源。
+- **Vector 单元**：负责逐元素运算（激活、softmax、归一化），等价于 GPU 里那批“带宽受限小算子”的执行者。
+- **Scalar 单元**：地址计算与控制流。
+
+与 GPU 的对比要点：**Cube 单元把“矩阵乘”做成一等公民，代价是灵活的访存模式（gather、稀疏、自定义 kernel）相对受限**。CloudMatrix384 论文里 NPU 走 INT8 路线（910C 峰值 1054 TFLOPS）正是扬长避短——把算力差距用低精度与系统设计补回来（见[超节点](/knowledge-planet/ai-infra/distributed/supernode)篇）。
+
+::: details 为什么矩阵乘在 GPU 上是“一等公民”而 softmax 不是
+
+矩阵乘的计算密度极高：$n\times n$ 矩阵乘要做 $2n^3$ FLOP，却只需读 $2n^2$ 个数，运算强度 $\sim n$ 随规模线性增长，轻松越过 $I^{*}$ 进入计算受限区——硬件为它堆算力稳赚不赔。softmax 要对整行做归约（max、sum），每个数只参与常数次运算，运算强度 $\sim 1$，纯带宽受限。所以硬件演进的方向是把前者固化（Tensor Core/Cube 单元），把后者交给带宽与融合（kernel fusion 把 softmax 粘在相邻矩阵乘后面，省一次显存往返）。这个判断框架可以推广到任何算子：先算运算强度，再谈优化。
+
+:::
+
 ## Roofline：算力还是带宽，谁在拖后腿
 
 对一个运算，回答两个问题：
@@ -71,7 +104,7 @@ xychart-beta
 
 $$t\ \ge\ \frac{s_\Psi\cdot\Psi}{\beta}$$
 
-  权重 175 GB 的模型（$\Psi=875$ 亿、BF16）：$t \ge 175\ \text{GB} \div 3.35\ \text{TB/s} \approx 52\ \text{ms}$——算力再富裕也用不上，这就是理论下限。后续讲到的 [KV Cache](/knowledge-planet/ai-infra/inference/kv-cache)、[量化](/knowledge-planet/ai-infra/inference/quantization)、[投机采样](/knowledge-planet/ai-infra/inference/speculative-decoding)，本质都在“提高每次读权重的产出”。
+  权重 175 GB 的模型（$\Psi=875$ 亿、BF16）：$t \ge 175\ \text{GB} \div 3.35\ \text{TB/s} \approx 52\ \text{ms}$——算力再富裕也用不上，这就是理论下限。后续讲到的 [KV Cache](/knowledge-planet/ai-infra/inference/kv-cache)、[量化](/knowledge-planet/ai-infra/quantization/quantization-basics)、[投机采样](/knowledge-planet/ai-infra/inference/speculative-decoding)，本质都在“提高每次读权重的产出”。
 2. **训练优化的重点是让矩阵乘法之外的算子不拖后腿**&#8203;，比如算子融合（把若干带宽受限的小算子合并成一个）。
 
 ::: details 深入推导：Transformer 的计算量与 decode 的运算强度
@@ -80,7 +113,7 @@ $$t\ \ge\ \frac{s_\Psi\cdot\Psi}{\beta}$$
 
 $$C_{\text{train}} \approx 6ND$$
 
-这是估算训练时间、成本的万能公式，后面[万卡集群](/knowledge-planet/ai-infra/hardware/large-scale-cluster)篇会反复用到。注意力矩阵项（$\sim 2LsD$ 量级）在 $s$ 不超过几千时占比通常不足 10%，估算时可忽略。
+这是估算训练时间、成本的万能公式，后面[万卡集群](/knowledge-planet/ai-infra/distributed/large-scale-cluster)篇会反复用到。注意力矩阵项（$\sim 2LsD$ 量级）在 $s$ 不超过几千时占比通常不足 10%，估算时可忽略。
 
 **decode 的运算强度。**&#8203;batch 为 $b$ 时，每步生成 FLOPs 为 $2b\Psi$，而要读的权重是 $s_\Psi\Psi$ 字节（与 $b$ 无关！），故：
 
@@ -141,7 +174,7 @@ $$P = 132 \times 2048 \times 2 \times 1.83\ \text{GHz} \approx 989\ \text{TFLOP/
 
 Llama 3 论文报告 405B 训练的 MFU 约 40%，MegaScale 在 12288 卡上做到 55.2%——这已是业界一线水平。&#8203;**MFU 每提升 1 个百分点，等于同样硬件上多出 1 个百分点的免费算力**&#8203;，这正是 AI Infra 存在的意义（后续板块逐层展开）。
 
-**能效视角。**&#8203;H100 SXM 功耗 700 W，BF16 能效约 1.4 TFLOP/s/W；B200 功耗 1000 W、2.25 PFLOP/s，能效约 2.3 TFLOP/s/W。训练一个 Llama 3 405B 级模型耗电约数 GWh 量级——能源已是超大规模训练的一等约束（见[万卡集群](/knowledge-planet/ai-infra/hardware/large-scale-cluster)篇）。
+**能效视角。**&#8203;H100 SXM 功耗 700 W，BF16 能效约 1.4 TFLOP/s/W；B200 功耗 1000 W、2.25 PFLOP/s，能效约 2.3 TFLOP/s/W。训练一个 Llama 3 405B 级模型耗电约数 GWh 量级——能源已是超大规模训练的一等约束（见[万卡集群](/knowledge-planet/ai-infra/distributed/large-scale-cluster)篇）。
 
 :::
 

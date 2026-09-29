@@ -10,7 +10,7 @@ weight: 10
 
 ## 训练侧：MFU 与它的分解
 
-**MFU**&#8203;（Model FLOPs Utilization，见[万卡集群](/knowledge-planet/ai-infra/hardware/large-scale-cluster)篇）：
+**MFU**&#8203;（Model FLOPs Utilization，见[万卡集群](/knowledge-planet/ai-infra/distributed/large-scale-cluster)篇）：
 
 $$\text{MFU} = \frac{\text{实测吞吐（tokens/s）}\times 6N}{n\times A_{\text{peak}}}$$
 
@@ -18,7 +18,7 @@ $$\text{MFU} = \frac{\text{实测吞吐（tokens/s）}\times 6N}{n\times A_{\tex
 
 - **计算时间**&#8203;：有效 FLOPs ÷ 峰值（理想 MFU=100% 的部分）；
 - **通信暴露**&#8203;：allreduce/all-to-all 未被 overlap 掩盖的墙钟时间；
-- **流水气泡**&#8203;：$（p-1)/(M+p-1)$（[流水并行](/knowledge-planet/ai-infra/training/parallelism/pipeline-parallelism)篇）；
+- **流水气泡**&#8203;：$（p-1)/(M+p-1)$（[流水并行](/knowledge-planet/ai-infra/parallelism/pipeline-parallelism)篇）；
 - **数据等待**&#8203;：输入管道供给不足；
 - **优化器与同步**&#8203;：optimizer step、checkpoint 停顿。
 
@@ -43,7 +43,7 @@ $$\text{MFU} = \frac{\text{实测吞吐（tokens/s）}\times 6N}{n\times A_{\tex
 
 - **算力利用率**&#8203;：SM busy / Tensor Core active（Nsight Compute）；
 - **带宽利用率**&#8203;：HBM 带宽占比（decode 应接近饱和，训练应远低——低则说明不是带宽瓶颈）；
-- **互联利用率**&#8203;：NVLink/IB 发送/接收（对照 allreduce 理论时间，[集合通信](/knowledge-planet/ai-infra/hardware/collective-communication)篇模型）。
+- **互联利用率**&#8203;：NVLink/IB 发送/接收（对照 allreduce 理论时间，[集合通信](/knowledge-planet/ai-infra/distributed/collective-communication)篇模型）。
 
 ::: details 深入推导：从 profile 时间线到优化优先级
 
@@ -55,7 +55,7 @@ $$T_{\text{step}} = T_{\text{compute}} + T_{\text{comm-exposed}} + T_{\text{bubb
 
 | 桶 | 常见占比 | 首选手段 |
 | ---- | ---- | ---- |
-| comm-exposed | 5~20% | 通信 overlap、bucket 调优、[集合通信](/knowledge-planet/ai-infra/hardware/collective-communication)算法切换 |
+| comm-exposed | 5~20% | 通信 overlap、bucket 调优、[集合通信](/knowledge-planet/ai-infra/distributed/collective-communication)算法切换 |
 | bubble | 5~30%（PP 大时） | 加 M、交错流水、[zero bubble](https://arxiv.org/abs/2401.10241) |
 | data | <5%（正常） | 数据管道预取 |
 | opt | 1~5% | 异步优化器、 fused optimizer |
@@ -74,7 +74,7 @@ $$T_{\text{step}} = T_{\text{compute}} + T_{\text{comm-exposed}} + T_{\text{bubb
 
 ::: details 参考答案
 
-1. 25% 通信暴露过高。先算 allreduce 理论时间（梯度量与 $B_{\text{eff}}$，[集合通信](/knowledge-planet/ai-infra/hardware/collective-communication)篇模型）对照实测：远超理论 → 修实现（bucket、算法、拓扑）；等于理论 → 结构问题（通信在关键路径），改并行（减 TP、加 DP overlap）。验证：改后重 profile，看该桶是否消失、MFU 是否上升——单一归因单一验证。
+1. 25% 通信暴露过高。先算 allreduce 理论时间（梯度量与 $B_{\text{eff}}$，[集合通信](/knowledge-planet/ai-infra/distributed/collective-communication)篇模型）对照实测：远超理论 → 修实现（bucket、算法、拓扑）；等于理论 → 结构问题（通信在关键路径），改并行（减 TP、加 DP overlap）。验证：改后重 profile，看该桶是否消失、MFU 是否上升——单一归因单一验证。
 2. 长尾来自队列积压 + 长 prompt prefill（排队论：P99 由到达率峰值时的逗留时间决定，Little 定律）。验证：打点排队时间与 prefill 时间分离；若是排队 → 准入控制/扩容；若是 prefill → 前缀缓存 + chunked prefill。
 3. "利用率 100%"若指 SM busy 但吞吐低，说明卡在跑低效 kernel（访存型算子、精度不足的 fallback kernel）——忙不等于有效。要看的是有效 FLOPs（MFU）而非活跃度。
 

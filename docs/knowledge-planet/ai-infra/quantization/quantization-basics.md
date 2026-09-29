@@ -1,10 +1,10 @@
 ---
-title: "量化"
+title: "量化基础"
 date: 2026-09-22T18:00:00+08:00
-weight: 60
+weight: 10
 ---
 
-# 量化
+# 量化基础
 
 > 用更少的比特存权重与激活。&#8203;**推理侧性价比最高的单项优化：显存减半、带宽减半，质量几乎不掉。**
 
@@ -27,7 +27,9 @@ $$W_{\text{quant}} = \text{round}\left(\frac{W}{\Delta}\right),\quad \Delta = \f
 | FP8（E4M3/E5M2） | 8 bit 浮点 | 训练后直接转 | Hopper+ 原生支持，最省心 |
 | GPTQ | W4/W3 | 基于 Hessian 的逐层误差补偿 | GPU 推理主流 |
 | AWQ | W4 | 激活感知：保护显著通道 | 精度优于同位宽 GPTQ 场景多 |
-| SmoothQuant | W8A8 | 把激活离群值"平滑"进权重 | W8A8（激活也量化）代表 |
+| SmoothQuant | W8A8 | 把激活离群值“平滑”进权重 | W8A8（激活也量化）代表 |
+
+本章只覆盖基础与谱系；GPTQ/AWQ/SmoothQuant 的算法细节与 GGUF/k-means 谱系另见[主流量化方法](/knowledge-planet/ai-infra/quantization/quantization-methods)篇，蒸馏/剪枝/稀疏见[蒸馏、剪枝与稀疏化](/knowledge-planet/ai-infra/quantization/compression)篇。
 | NF4（QLoRA） | 4 bit 非均匀 | 信息论最优分布假设 | 面向微调基座 |
 
 **离群值是万恶之源**&#8203;：激活的少数通道量级远超其余（LLM 普遍现象），朴素 W8A8 会把它们截断成灾难。SmoothQuant 的等价变换 $Y=(X\text{diag}(s)^{-1})(\text{diag}(s)W)$ 把激活的离群"搬"进权重——数学上恒等、分布上双赢。

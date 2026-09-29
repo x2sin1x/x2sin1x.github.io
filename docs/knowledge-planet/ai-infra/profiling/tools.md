@@ -25,8 +25,8 @@ weight: 20
 以 PyTorch Profiler + Nsight Systems 的典型训练步时间线为例，四个必查点：
 
 1. **kernel 间隙（gap）**&#8203;：相邻 kernel 间的空洞。小间隙是 kernel 启动开销/同步（用 CUDA Graph 消）；大间隙是 CPU 瓶颈（数据预处理、Python 调度）——&#8203;**上万卡集群里 1 ms 的 Python 逻辑就是每天数千 GPU 时**&#8203;；
-2. **通信与计算的重叠**&#8203;：NCCL kernel 应与计算 kernel 时间上并行（不同 stream）。顺序执行的 allreduce = overlap 失败，回查[数据并行](/knowledge-planet/ai-infra/training/parallelism/data-parallelism)篇的 bucket 配置；
-3. **流水线的对齐**&#8203;：多卡时间线叠放对齐，看 PP 各 stage 是否齐步（[气泡](/knowledge-planet/ai-infra/training/parallelism/pipeline-parallelism)）；MegaScale 式诊断把流水线组事件汇到统一时间线（[容错](/knowledge-planet/ai-infra/hardware/fault-tolerance)篇图示）；
+2. **通信与计算的重叠**&#8203;：NCCL kernel 应与计算 kernel 时间上并行（不同 stream）。顺序执行的 allreduce = overlap 失败，回查[数据并行](/knowledge-planet/ai-infra/parallelism/data-parallelism)篇的 bucket 配置；
+3. **流水线的对齐**&#8203;：多卡时间线叠放对齐，看 PP 各 stage 是否齐步（[气泡](/knowledge-planet/ai-infra/parallelism/pipeline-parallelism)）；MegaScale 式诊断把流水线组事件汇到统一时间线（[容错](/knowledge-planet/ai-infra/distributed/fault-tolerance)篇图示）；
 4. **内存水位**&#8203;：allocator 的峰值与碎片（torch.cuda.memory_stats），对照[显存层次](/knowledge-planet/ai-infra/hardware/memory-hierarchy)篇的账目。
 
 ## 推理：服务指标下钻

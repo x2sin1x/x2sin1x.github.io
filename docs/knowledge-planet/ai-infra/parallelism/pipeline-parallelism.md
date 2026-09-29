@@ -24,7 +24,7 @@ $M$ 为 micro-batch 数。$M$ 不够大时气泡吞掉一切：$p=16$、$M=16$ �
 
 两个经典改进：
 
-- **1F1B（one-forward-one-backward）**：每个 worker 交替执行一次前向、一次反向，把 in-flight 激活数从 $M$ 降到 $O(p)$（显存省），气泡率变为 $\frac{p-1}{M+p-1}$（[并行策略](/knowledge-planet/ai-infra/training/parallelism/)篇）；
+- **1F1B（one-forward-one-backward）**：每个 worker 交替执行一次前向、一次反向，把 in-flight 激活数从 $M$ 降到 $O(p)$（显存省），气泡率变为 $\frac{p-1}{M+p-1}$（[并行策略](/knowledge-planet/ai-infra/parallelism/)篇）；
 - **交错流水（interleaved）**：每卡持有多个不连续的层块（virtual stage），流水线上"多点注入"，气泡进一步除以虚拟阶段数 $v$，代价是 P2P 通信次数增加 $v$ 倍。
 
 ::: mermaid
@@ -62,7 +62,7 @@ gantt
 - 激活显存 $\propto p$（1F1B）与 $M$ 无关（这是 1F1B 相对 GPipe 的核心优势，GPipe 是 $\propto M$）；
 - 等效 batch $=M\times b\times d$（$d$ 为 DP 度数）受收敛约束。
 
-解法组合：$M$ 用梯度累积凑够 $4(p-1)$ 以上；显存缺口交给[重计算](/knowledge-planet/ai-infra/hardware/memory-hierarchy)与 [SP](/knowledge-planet/ai-infra/training/parallelism/sequence-parallelism)；等效 batch 超限则加 DP 或降低学习率预期。**PP 配置设计就是在解一个三变量约束优化**。
+解法组合：$M$ 用梯度累积凑够 $4(p-1)$ 以上；显存缺口交给[重计算](/knowledge-planet/ai-infra/hardware/memory-hierarchy)与 [SP](/knowledge-planet/ai-infra/parallelism/sequence-parallelism)；等效 batch 超限则加 DP 或降低学习率预期。**PP 配置设计就是在解一个三变量约束优化**。
 
 **zero-bubble 前沿**：把 B 拆成 $B_{\text{in}}$（对输入的梯度）与 $B_{\text{out}}$（对权重的梯度）并允许后者延后执行，可把气泡理论值压到接近 0（Qi et al. 2023），代价是调度复杂度与权重更新延迟。
 

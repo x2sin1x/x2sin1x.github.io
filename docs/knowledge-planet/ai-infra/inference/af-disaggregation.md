@@ -13,7 +13,7 @@ weight: 90
 Attention 与 FFN 的负载画像在 MoE 时代进一步分化：
 
 - **Attention（A）**&#8203;：小矩阵乘 + softmax，带宽敏感；MoE 模型里它是 **dense** 的（每 token 都要算），且是 KV 的家；
-- **FFN/MoE（F）**&#8203;：专家是大矩阵乘，算力敏感；但专家是**稀疏激活**的，需要 all-to-all dispatch/combine（[专家并行](/knowledge-planet/ai-infra/training/parallelism/expert-parallelism)篇）。
+- **FFN/MoE（F）**&#8203;：专家是大矩阵乘，算力敏感；但专家是**稀疏激活**的，需要 all-to-all dispatch/combine（[专家并行](/knowledge-planet/ai-infra/parallelism/expert-parallelism)篇）。
 
 两者的显存需求也解耦：A 占 KV（随并发长），F 占专家权重（固定但巨大）。塞在一起时，"KV 多的卡"和"专家多的卡"被迫同配——&#8203;**A/F 分离让两种资源各自按需扩展**&#8203;。
 

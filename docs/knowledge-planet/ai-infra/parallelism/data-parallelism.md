@@ -35,7 +35,7 @@ flowchart TB
 
 ## 通信占比：什么时候 DP 是瓶颈
 
-梯度同步时间（ring，[集合通信](/knowledge-planet/ai-infra/hardware/collective-communication)篇模型）与单步计算时间之比：
+梯度同步时间（ring，[集合通信](/knowledge-planet/ai-infra/distributed/collective-communication)篇模型）与单步计算时间之比：
 
 $$\rho \approx \frac{2\,m/B_{\text{eff}}}{t_{\text{step}}},\quad m = 2\Psi\ \text{字节}$$
 
