@@ -32,6 +32,7 @@ vLLM 是目前最广泛使用的 LLM 推理服务引擎，它的辨识度来自�
 - [附录 A：推荐阅读路径](/repos/vllm/appendix-reading)
 - [附录 B：核心符号速查](/repos/vllm/appendix-symbols)
 - [附录 C：术语表](/repos/vllm/appendix-glossary)
+- [附录 D：命令行参数总览](/repos/vllm/appendix-cli)
 
 ## References
 
