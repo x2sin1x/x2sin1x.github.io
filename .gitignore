@@ -3,5 +3,6 @@ docs/.vitepress/cache/
 docs/.vitepress/dist/
 .DS_Store
 *.log
+__pycache__/
 docs/.siyuan-sync.json
 *.pi

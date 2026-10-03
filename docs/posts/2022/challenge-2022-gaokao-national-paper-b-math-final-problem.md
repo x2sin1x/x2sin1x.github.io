@@ -235,7 +235,33 @@ $$
 
 综上所述，直线 $HN$ 过定点 $(0,-2)$。
 
-![](challenge-2022-gaokao-national-paper-b-math-final-problem/ellipse-hn-fixed-point.webp)
+![椭圆 $E$ 与直线 $HN$ 过定点 $(0,-2)$ 示意](challenge-2022-gaokao-national-paper-b-math-final-problem/tikz-src/ellipse-hn-fixed-point.webp)
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[x=1.05cm,y=0.95cm,line cap=round]
+  \definecolor{lineblue}{RGB}{31,119,180}
+  \definecolor{linegreen}{RGB}{44,160,44}
+  \definecolor{linegold}{RGB}{190,160,30}
+  \draw[color=black!15,very thin] (-2,-4) [step=1] grid (4,3);
+  \draw[->,color=black!60] (-2.5,0) -- (4.5,0) node[below] {$x$};
+  \draw[->,color=black!60] (0,-4.5) -- (0,3.5) node[left] {$y$};
+  \draw (0,0) ellipse (1.7320508 and 2);
+  \draw[lineblue,thick] (-1.9,-3.2667) -- (3.1,0.0667);
+  \draw[linegreen,thick] (-1.15,2.3) -- (1.55,-3.1);
+  \draw[linegold,thick] (-1.067,2.6) -- (0.15,-2.6);
+  \fill[lineblue] (0,-2) circle (1.6pt) node[below left] {$A$};
+  \fill[lineblue] (1.5,-1) circle (1.6pt) node[below right] {$B$};
+  \fill[lineblue] (-0.866,1.732) circle (1.6pt) node[left=2pt] {$N$};
+  \fill[lineblue] (0.866,-1.732) circle (1.6pt) node[below=2pt] {$M$};
+  \fill[lineblue] (-0.062,-1.732) circle (1.6pt) node[left=2pt] {$H$};
+  \fill[lineblue] (0.402,-1.732) circle (1.6pt) node[above=1pt] {$T$};
+  \fill[lineblue] (1,-2) circle (1.6pt) node[right=4pt] {$P$};
+\end{tikzpicture}
+```
+
+:::
 
 ### 点评
 
@@ -382,7 +408,19 @@ $$
 
 下图是 $a=1$ 时函数 $f(x)$ 的图像，可以帮助我们理解。
 
-![](challenge-2022-gaokao-national-paper-b-math-final-problem/fx-graph-a-equals-1.webp)
+![$a=1$ 时函数 $f(x)$ 的图像](challenge-2022-gaokao-national-paper-b-math-final-problem/tikz-src/fx-graph-a-equals-1.webp)
+
+```tex
+\begin{tikzpicture}[x=1.05cm,y=0.38cm,line cap=round]
+  \definecolor{plotblue}{RGB}{31,119,180}
+  \draw[color=black!15,very thin] (-1,-7) [step=1] grid (5,2);
+  \draw[->,color=black!60] (-1.4,0) -- (5.5,0) node[below] {$x$};
+  \draw[->,color=black!60] (0,-7.4) -- (0,2.3) node[left] {$y$};
+  \draw[plotblue,thick]
+    plot[domain=-0.98:-0.9,samples=20] (\x,{ln(1+\x) + \x*exp(-\x)})
+    plot[domain=-0.9:5,samples=80] (\x,{ln(1+\x) + \x*exp(-\x)});
+\end{tikzpicture}
+```
 
 **3. $a<0$**
 
@@ -420,7 +458,19 @@ $$
 
 下图是 $a=-1$ 时函数 $f(x)$ 的图像。可以看到，函数 $f(x)$ 的图像正好与 $x$ 轴相切于原点。
 
-![](challenge-2022-gaokao-national-paper-b-math-final-problem/fx-graph-a-equals-minus-1.webp)
+![$a=-1$ 时函数 $f(x)$ 的图像，与 $x$ 轴相切于原点](challenge-2022-gaokao-national-paper-b-math-final-problem/tikz-src/fx-graph-a-equals-minus-1.webp)
+
+```tex
+\begin{tikzpicture}[x=1.1cm,y=0.9cm,line cap=round]
+  \definecolor{plotblue}{RGB}{31,119,180}
+  \draw[color=black!15,very thin] (-1,-2) [step=1] grid (5,2);
+  \draw[->,color=black!60] (-1.4,0) -- (5.5,0) node[below] {$x$};
+  \draw[->,color=black!60] (0,-2.3) -- (0,2.3) node[left] {$y$};
+  \draw[plotblue,thick]
+    plot[domain=-0.99:-0.9,samples=20] (\x,{ln(1+\x) - \x*exp(-\x)})
+    plot[domain=-0.9:5,samples=80] (\x,{ln(1+\x) - \x*exp(-\x)});
+\end{tikzpicture}
+```
 
 **② $-1<a<0$**
 
@@ -428,7 +478,19 @@ $$
 
 下图是 $a=-\dfrac{1}{2}$ 时函数 $f(x)$ 的图像，和 $a>0$ 的情况类似。
 
-![](challenge-2022-gaokao-national-paper-b-math-final-problem/fx-graph-a-equals-minus-half.webp)
+![$a=-\\dfrac{1}{2}$ 时函数 $f(x)$ 的图像](challenge-2022-gaokao-national-paper-b-math-final-problem/tikz-src/fx-graph-a-equals-minus-half.webp)
+
+```tex
+\begin{tikzpicture}[x=1.1cm,y=0.95cm,line cap=round]
+  \definecolor{plotblue}{RGB}{31,119,180}
+  \draw[color=black!15,very thin] (-1,-2) [step=1] grid (5,2);
+  \draw[->,color=black!60] (-1.4,0) -- (5.5,0) node[below] {$x$};
+  \draw[->,color=black!60] (0,-2.3) -- (0,2.3) node[left] {$y$};
+  \draw[plotblue,thick]
+    plot[domain=-0.95:-0.85,samples=15] (\x,{ln(1+\x) - 0.5*\x*exp(-\x)})
+    plot[domain=-0.85:5,samples=80] (\x,{ln(1+\x) - 0.5*\x*exp(-\x)});
+\end{tikzpicture}
+```
 
 **③ $a<-1$**
 
@@ -497,7 +559,20 @@ $$
 
 $h(x)$ 的图像如下图所示：
 
-![](challenge-2022-gaokao-national-paper-b-math-final-problem/hx-graph.webp)
+![函数 $h(x)$ 的图像](challenge-2022-gaokao-national-paper-b-math-final-problem/tikz-src/hx-graph.webp)
+
+```tex
+\begin{tikzpicture}[x=1.1cm,y=0.3cm,line cap=round]
+  \definecolor{plotblue}{RGB}{31,119,180}
+  \draw[color=black!15,very thin] (-1,-5) [step=1] grid (5,7);
+  \draw[->,color=black!60] (-1.5,0) -- (5.5,0) node[below] {$x$};
+  \draw[->,color=black!60] (0,-5.3) -- (0,7.3) node[left] {$y$};
+  \draw[plotblue,thick]
+    plot[domain=-0.95:0.9,samples=120] (\x,{ln(1+\x) + \x/(\x*\x-1)});
+  \draw[plotblue,thick]
+    plot[domain=1.1:5,samples=80] (\x,{ln(1+\x) + \x/(\x*\x-1)});
+\end{tikzpicture}
+```
 
 我们可以很容易得到 $h(0)=0$。并且我们观察到，$h(1)<0$，且 $h(x)$ 在 $(0,1)$ 上单调递减。因此我们可以判断 $f(n)<0$。又 $m \in (-1,1-\sqrt{2})$，$f(0)=0$，且 $f(x)$ 在 $(m,n)$ 上单调递减。这样我们又可以判断 $f(m)>0$。
 
@@ -523,7 +598,19 @@ $$
 
 下面说明零点的唯一性。首先，$f(0)=0$，$f(x)$ 在 $(m,n)$ 上单调递减。又因为 $f(m)>0$ 且 $f(n)<0$，所以 $f(x)>0$ 在 $(m,0)$ 上恒成立，$f(x)<0$ 在 $(0,n)$ 上恒成立。而 $f(x)$ 分别在 $(-1,m)$ 和 $(n,+\infty)$ 上都是单调的，因此刚才所证明存在的零点分别是 $(-1,0)$ 和 $(0,+\infty)$ 上的唯一零点。具体可以参考下图理解：
 
-![](challenge-2022-gaokao-national-paper-b-math-final-problem/fx-graph-zero-distribution.webp)
+![$a<-1$ 时函数 $f(x)$ 的零点分布示意](challenge-2022-gaokao-national-paper-b-math-final-problem/tikz-src/fx-graph-zero-distribution.webp)
+
+```tex
+\begin{tikzpicture}[x=1.1cm,y=0.75cm,line cap=round]
+  \definecolor{plotblue}{RGB}{31,119,180}
+  \draw[color=black!15,very thin] (-1,-2) [step=1] grid (5,2);
+  \draw[->,color=black!60] (-1.4,0) -- (5.5,0) node[below] {$x$};
+  \draw[->,color=black!60] (0,-2.3) -- (0,2.3) node[left] {$y$};
+  \draw[plotblue,thick]
+    plot[domain=-0.9995:-0.99,samples=15] (\x,{ln(1+\x) - 2*\x*exp(-\x)})
+    plot[domain=-0.99:5,samples=90] (\x,{ln(1+\x) - 2*\x*exp(-\x)});
+\end{tikzpicture}
+```
 
 ### 点评
 
