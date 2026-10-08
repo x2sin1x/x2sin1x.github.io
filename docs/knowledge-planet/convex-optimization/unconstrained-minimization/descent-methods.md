@@ -79,4 +79,41 @@ $$
 
 参数 $\alpha$ 典型取值在 0.01 与 0.3 之间，即接受线性外推预测下降量的 1% 到 30%；参数 $\beta$ 常取 0.1（对应非常粗糙的搜索）到 0.8（对应较为精细的搜索）之间。
 
-> **待配图**&#8203;：对应教材图 9.1 —— 回溯直线搜索示意图。曲线为 $f$ 沿直线方向的取值，下方虚线为线性外推 $f(x) + t\nabla f(x)^{\top}\Delta x$，上方虚线为斜率缩小 $\alpha$ 倍的直线 $f(x) + \alpha t\nabla f(x)^{\top}\Delta x$；回溯条件即要求 $f$ 位于上方虚线之下。
+![回溯直线搜索示意图（对应教材图 9.1）：曲线为 $f$ 沿直线方向的取值，下方虚线为线性外推，上方虚线为斜率缩小 $\alpha$ 倍的直线；回溯条件要求 $f$ 位于上方虚线之下](descent-methods/tikz-src/backtracking-line-search.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round,scale=1.5]
+  \draw[->,color=black!60] (-0.08,1.2) -- (1.5,1.2) node[below] {$t$};
+  \draw[->,color=black!60] (0,1.2) -- (0,4.35) node[left] {$f(x+t\Delta x)$};
+  \draw[cred,very thick,domain=0:1.15,samples=60] plot (\x,{2.5-3*\x+4*\x*\x});
+  \draw[cblue,thick,dashed,domain=0:0.46] plot (\x,{2.5-3*\x});
+  \draw[cgreen,thick,dashed,domain=0:1.34] plot (\x,{2.5-0.75*\x});
+  \draw[color=black!55,dotted] (1,1.2) -- (1,3.5);
+  \draw[color=black!55,dotted] (0.5,1.2) -- (0.5,2.0);
+  \draw[color=black!55,dotted] (0.25,1.2) -- (0.25,2.0);
+  \fill[cred] (1,3.5) circle (1.7pt);
+  \fill[cred] (0.5,2.0) circle (1.7pt);
+  \fill[cgreen] (0.25,2.0) circle (2.2pt);
+  \node[below=2pt] at (1,1.2) {$1$};
+  \node[below=2pt] at (0.5,1.2) {$\beta$};
+  \node[below=2pt] at (0.25,1.2) {$\beta^2$};
+  \node[anchor=west] at (0.8,4.1) {\textcolor{cred}{$f(x+t\Delta x)$}};
+  \node[anchor=north] at (0.35,0.88) {\textcolor{cblue}{$f(x)+t\nabla f(x)^{\top}\Delta x$}};
+  \node[anchor=west] at (1.45,1.58) {\textcolor{cgreen}{$f(x)+\alpha t\nabla f(x)^{\top}\Delta x$}};
+  \node[anchor=east] at (-0.06,3.35) {\textcolor{cgreen}{$t=\beta^2$}};
+  \draw[->,cgreen] (-0.04,3.28) -- (0.22,2.12);
+  \node[anchor=east] at (0,2.5) {$f(x)$};
+  \node[anchor=south] at (1.22,1.7) {\textcolor{cgreen}{$\alpha$}};
+\end{tikzpicture}
+```

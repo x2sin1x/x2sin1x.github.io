@@ -140,7 +140,166 @@ $$
 
 实验（$\alpha = 0.1$，$\beta = 0.5$）表明：对偶方法显得最快，但只快两三倍——进入二次收敛区域约需 6 次迭代，而原始方法需 12–15 次、不可行初始点方法需 10–20 次。三种方法对初始化的要求不同：原始方法需要原始可行点（$Ax^{(0)} = b$，$x^{(0)} \succ 0$），对偶方法需要对偶可行点（$A^{\top}\nu^{(0)} \succ 0$），不可行初始点方法则不需要任何初始化（只要求 $x^{(0)} \succ 0$）。就具体问题而言，哪种初始信息更容易获得，哪种方法就更合适。
 
-> **待配图**&#8203;：对应教材图 10.6、图 10.7、图 10.8 —— 三种方法在等式约束解析中心问题上的误差（或残差范数）随迭代次数的变化曲线（各含四个不同初始点）。
+![原始 Newton 方法在等式约束解析中心问题上的误差 $f(x^{(k)}) - p^{\star}$ 随迭代次数的变化曲线（四个不同初始点，对应教材图 10.6）](implementation/tikz-src/ac-primal.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \draw[color=black!25,very thin] (0.0000,0.0000) -- (6.6000,0.0000) (0.0000,0.2687) -- (6.6000,0.2687) (0.0000,0.5375) -- (6.6000,0.5375) (0.0000,0.8062) -- (6.6000,0.8062) (0.0000,1.0750) -- (6.6000,1.0750) (0.0000,1.3438) -- (6.6000,1.3438) (0.0000,1.6125) -- (6.6000,1.6125) (0.0000,1.8812) -- (6.6000,1.8812) (0.0000,2.1500) -- (6.6000,2.1500) (0.0000,2.4187) -- (6.6000,2.4187) (0.0000,2.6875) -- (6.6000,2.6875) (0.0000,2.9562) -- (6.6000,2.9562) (0.0000,3.2250) -- (6.6000,3.2250) (0.0000,3.4937) -- (6.6000,3.4937) (0.0000,3.7625) -- (6.6000,3.7625) (0.0000,4.0313) -- (6.6000,4.0313) (0.0000,4.3000) -- (6.6000,4.3000);
+  \draw[color=black!15,very thin] (0.0000,0.0000) -- (0.0000,4.3000) (0.7333,0.0000) -- (0.7333,4.3000) (1.4667,0.0000) -- (1.4667,4.3000) (2.2000,0.0000) -- (2.2000,4.3000) (2.9333,0.0000) -- (2.9333,4.3000) (3.6667,0.0000) -- (3.6667,4.3000) (4.4000,0.0000) -- (4.4000,4.3000) (5.1333,0.0000) -- (5.1333,4.3000) (5.8667,0.0000) -- (5.8667,4.3000) (6.6000,0.0000) -- (6.6000,4.3000);
+  \draw[->,color=black!60] (0.0000,0.0000) -- (6.9500,0.0000) node[anchor=west,xshift=2pt,yshift=-6pt] {$k$};
+  \draw[->,color=black!60] (0.0000,0.0000) -- (0.0000,4.6500) node[left=1pt] {$f-p^{\star}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.0000) {$10^{-14}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.2687) {$10^{-13}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.5375) {$10^{-12}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.8062) {$10^{-11}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.0750) {$10^{-10}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.3438) {$10^{-9}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.6125) {$10^{-8}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.8812) {$10^{-7}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.1500) {$10^{-6}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.4187) {$10^{-5}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.6875) {$10^{-4}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.9562) {$10^{-3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.2250) {$10^{-2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.4937) {$10^{-1}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.7625) {1};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.0313) {$10$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.3000) {$10^{2}$};
+  \node[below,font=\scriptsize,color=black!60] at (0.0000,0.0000) {0};
+  \node[below,font=\scriptsize,color=black!60] at (0.7333,0.0000) {1};
+  \node[below,font=\scriptsize,color=black!60] at (1.4667,0.0000) {2};
+  \node[below,font=\scriptsize,color=black!60] at (2.2000,0.0000) {3};
+  \node[below,font=\scriptsize,color=black!60] at (2.9333,0.0000) {4};
+  \node[below,font=\scriptsize,color=black!60] at (3.6667,0.0000) {5};
+  \node[below,font=\scriptsize,color=black!60] at (4.4000,0.0000) {6};
+  \node[below,font=\scriptsize,color=black!60] at (5.1333,0.0000) {7};
+  \node[below,font=\scriptsize,color=black!60] at (5.8667,0.0000) {8};
+  \node[below,font=\scriptsize,color=black!60] at (6.6000,0.0000) {9};
+  \draw[cblue,very thick] plot coordinates {(0.000,3.684) (0.733,3.085) (1.467,2.172) (2.200,0.561) (2.933,-0.269)};
+  \draw[cred,very thick] plot coordinates {(0.000,3.811) (0.733,3.377) (1.467,2.825) (2.200,1.925) (2.933,-0.269) (3.667,-0.269)};
+  \draw[cgreen,very thick] plot coordinates {(0.000,4.010) (0.733,3.743) (1.467,3.426) (2.200,3.003) (2.933,2.277) (3.667,0.844) (4.400,-0.269)};
+  \draw[corange,very thick] plot coordinates {(0.000,4.038) (0.733,3.888) (1.467,3.778) (2.200,3.672) (2.933,3.533) (3.667,3.301) (4.400,2.866) (5.133,2.010) (5.867,0.349) (6.600,-0.269)};
+  \node[anchor=south] at (3.3,4.8999999999999995) {primal Newton, four starting points};
+\end{tikzpicture}
+```
+![对偶 Newton 方法在等式约束解析中心问题上的对偶目标 $p^{\star} - g(\nu^{(k)})$ 随迭代次数的变化曲线（四个对偶可行初始点，对应教材图 10.7）](implementation/tikz-src/ac-dual.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \draw[color=black!25,very thin] (0.0000,0.0000) -- (6.6000,0.0000) (0.0000,0.2529) -- (6.6000,0.2529) (0.0000,0.5059) -- (6.6000,0.5059) (0.0000,0.7588) -- (6.6000,0.7588) (0.0000,1.0118) -- (6.6000,1.0118) (0.0000,1.2647) -- (6.6000,1.2647) (0.0000,1.5176) -- (6.6000,1.5176) (0.0000,1.7706) -- (6.6000,1.7706) (0.0000,2.0235) -- (6.6000,2.0235) (0.0000,2.2765) -- (6.6000,2.2765) (0.0000,2.5294) -- (6.6000,2.5294) (0.0000,2.7824) -- (6.6000,2.7824) (0.0000,3.0353) -- (6.6000,3.0353) (0.0000,3.2882) -- (6.6000,3.2882) (0.0000,3.5412) -- (6.6000,3.5412) (0.0000,3.7941) -- (6.6000,3.7941) (0.0000,4.0471) -- (6.6000,4.0471) (0.0000,4.3000) -- (6.6000,4.3000);
+  \draw[color=black!15,very thin] (0.0000,0.0000) -- (0.0000,4.3000) (0.9429,0.0000) -- (0.9429,4.3000) (1.8857,0.0000) -- (1.8857,4.3000) (2.8286,0.0000) -- (2.8286,4.3000) (3.7714,0.0000) -- (3.7714,4.3000) (4.7143,0.0000) -- (4.7143,4.3000) (5.6571,0.0000) -- (5.6571,4.3000) (6.6000,0.0000) -- (6.6000,4.3000);
+  \draw[->,color=black!60] (0.0000,0.0000) -- (6.9500,0.0000) node[anchor=west,xshift=2pt,yshift=-6pt] {$k$};
+  \draw[->,color=black!60] (0.0000,0.0000) -- (0.0000,4.6500) node[left=1pt] {$p^{\star}-g$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.0000) {$10^{-14}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.2529) {$10^{-13}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.5059) {$10^{-12}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.7588) {$10^{-11}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.0118) {$10^{-10}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.2647) {$10^{-9}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.5176) {$10^{-8}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.7706) {$10^{-7}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.0235) {$10^{-6}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.2765) {$10^{-5}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.5294) {$10^{-4}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.7824) {$10^{-3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.0353) {$10^{-2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.2882) {$10^{-1}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.5412) {1};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.7941) {$10$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.0471) {$10^{2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.3000) {$10^{3}$};
+  \node[below,font=\scriptsize,color=black!60] at (0.0000,0.0000) {0};
+  \node[below,font=\scriptsize,color=black!60] at (0.9429,0.0000) {1};
+  \node[below,font=\scriptsize,color=black!60] at (1.8857,0.0000) {2};
+  \node[below,font=\scriptsize,color=black!60] at (2.8286,0.0000) {3};
+  \node[below,font=\scriptsize,color=black!60] at (3.7714,0.0000) {4};
+  \node[below,font=\scriptsize,color=black!60] at (4.7143,0.0000) {5};
+  \node[below,font=\scriptsize,color=black!60] at (5.6571,0.0000) {6};
+  \node[below,font=\scriptsize,color=black!60] at (6.6000,0.0000) {7};
+  \draw[cblue,very thick] plot coordinates {(0.000,4.201) (0.943,4.118) (1.886,3.988) (2.829,3.769) (3.771,3.365) (4.714,2.579) (5.657,1.010) (6.600,0.267)};
+  \draw[cred,very thick] plot coordinates {(0.000,4.043) (0.943,3.864) (1.886,3.543) (2.829,2.930) (3.771,1.711) (4.714,0.343)};
+  \draw[cgreen,very thick] plot coordinates {(0.000,3.781) (0.943,3.444) (1.886,2.733) (2.829,1.319) (3.771,0.267)};
+  \draw[corange,very thick] plot coordinates {(0.000,3.965) (0.943,3.864) (1.886,3.543) (2.829,2.930) (3.771,1.711) (4.714,0.267)};
+  \node[anchor=south] at (3.3,4.8999999999999995) {dual Newton, four starting points};
+\end{tikzpicture}
+```
+
+![不可行初始点 Newton 方法在等式约束解析中心问题上的残差范数 $\|r\|$ 随迭代次数的变化曲线（四个初始点，$x^{(0)} = s\mathbf{1}$、$\nu^{(0)}=0$，对应教材图 10.8）](implementation/tikz-src/ac-infeasible.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \draw[color=black!25,very thin] (0.0000,0.0000) -- (6.6000,0.0000) (0.0000,0.2687) -- (6.6000,0.2687) (0.0000,0.5375) -- (6.6000,0.5375) (0.0000,0.8062) -- (6.6000,0.8062) (0.0000,1.0750) -- (6.6000,1.0750) (0.0000,1.3438) -- (6.6000,1.3438) (0.0000,1.6125) -- (6.6000,1.6125) (0.0000,1.8812) -- (6.6000,1.8812) (0.0000,2.1500) -- (6.6000,2.1500) (0.0000,2.4187) -- (6.6000,2.4187) (0.0000,2.6875) -- (6.6000,2.6875) (0.0000,2.9562) -- (6.6000,2.9562) (0.0000,3.2250) -- (6.6000,3.2250) (0.0000,3.4937) -- (6.6000,3.4937) (0.0000,3.7625) -- (6.6000,3.7625) (0.0000,4.0313) -- (6.6000,4.0313) (0.0000,4.3000) -- (6.6000,4.3000);
+  \draw[color=black!15,very thin] (0.0000,0.0000) -- (0.0000,4.3000) (0.7333,0.0000) -- (0.7333,4.3000) (1.4667,0.0000) -- (1.4667,4.3000) (2.2000,0.0000) -- (2.2000,4.3000) (2.9333,0.0000) -- (2.9333,4.3000) (3.6667,0.0000) -- (3.6667,4.3000) (4.4000,0.0000) -- (4.4000,4.3000) (5.1333,0.0000) -- (5.1333,4.3000) (5.8667,0.0000) -- (5.8667,4.3000) (6.6000,0.0000) -- (6.6000,4.3000);
+  \draw[->,color=black!60] (0.0000,0.0000) -- (6.9500,0.0000) node[anchor=west,xshift=2pt,yshift=-6pt] {$k$};
+  \draw[->,color=black!60] (0.0000,0.0000) -- (0.0000,4.6500) node[left=1pt] {$\|r\|$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.0000) {$10^{-13}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.2687) {$10^{-12}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.5375) {$10^{-11}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.8062) {$10^{-10}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.0750) {$10^{-9}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.3438) {$10^{-8}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.6125) {$10^{-7}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.8812) {$10^{-6}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.1500) {$10^{-5}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.4187) {$10^{-4}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.6875) {$10^{-3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.9562) {$10^{-2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.2250) {$10^{-1}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.4937) {1};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.7625) {$10$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.0313) {$10^{2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.3000) {$10^{3}$};
+  \node[below,font=\scriptsize,color=black!60] at (0.0000,0.0000) {0};
+  \node[below,font=\scriptsize,color=black!60] at (0.7333,0.0000) {1};
+  \node[below,font=\scriptsize,color=black!60] at (1.4667,0.0000) {2};
+  \node[below,font=\scriptsize,color=black!60] at (2.2000,0.0000) {3};
+  \node[below,font=\scriptsize,color=black!60] at (2.9333,0.0000) {4};
+  \node[below,font=\scriptsize,color=black!60] at (3.6667,0.0000) {5};
+  \node[below,font=\scriptsize,color=black!60] at (4.4000,0.0000) {6};
+  \node[below,font=\scriptsize,color=black!60] at (5.1333,0.0000) {7};
+  \node[below,font=\scriptsize,color=black!60] at (5.8667,0.0000) {8};
+  \node[below,font=\scriptsize,color=black!60] at (6.6000,0.0000) {9};
+  \draw[cblue,very thick] plot coordinates {(0.000,4.374) (0.733,4.023) (1.467,3.736) (2.200,3.632) (2.933,3.517) (3.667,3.371) (4.400,3.147) (5.133,2.733) (5.867,1.912) (6.600,0.377)};
+  \draw[cred,very thick] plot coordinates {(0.000,4.309) (0.733,3.757) (1.467,3.503) (2.200,3.226) (2.933,2.791) (3.667,1.978) (4.400,0.422)};
+  \draw[cgreen,very thick] plot coordinates {(0.000,4.176) (0.733,4.095) (1.467,3.443) (2.200,3.070) (2.933,2.481) (3.667,1.367) (4.400,0.358)};
+  \draw[corange,very thick] plot coordinates {(0.000,4.440) (0.733,4.360) (1.467,3.643) (2.200,3.332) (2.933,2.883) (3.667,2.153) (4.400,0.771)};
+  \node[anchor=south] at (3.3,4.8999999999999995) {infeasible-start Newton, four starting points};
+\end{tikzpicture}
+```
+
 
 ### 最优网络流
 

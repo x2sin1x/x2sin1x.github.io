@@ -49,7 +49,75 @@ $$
 
 **例子：两种阶段 I 方法的比较**&#8203;。对一个不可行的不等式组 $Ax \preceq b$（$m = 100$，$n = 50$）分别应用两种方法：极小化最大不可行性的基本方法（$\mathrm{minimize}\ s\ \mathrm{s.t.}\ Ax \preceq b + \mathbf{1}s$）与极小化不可行性之和的 LP（$\mathrm{minimize}\ \mathbf{1}^{\top}s\ \mathrm{s.t.}\ Ax \preceq b + s,\ s \succeq 0$）。得到的点 $x_{\max}$ 满足 100 个不等式中的 39 个，而 $x_{\mathrm{sum}}$ 满足 79 个。
 
-> **待配图**&#8203;：对应教材图 11.9 —— 两种阶段 I 方法得到的不可行量 $b_i - a_i^{\top}x$ 的分布直方图（左：基本方法，满足 39 个；右：不可行性之和，满足 79 个）。
+![两种阶段 I 方法得到的不可行量 $b_i - a_i^{\top}x$ 的分布直方图（左：极小化最大不可行性的基本方法；右：极小化不可行性之和，满足的不等式明显更多）（对应教材图 11.9）](feasibility-and-phase-i-methods/tikz-src/phase-i-histograms.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \begin{scope}[xshift=0cm]
+    \draw[fill=cblue!70,draw=cblue] (1.0000,0) rectangle (1.2000,3.7333);
+    \draw[fill=cblue!70,draw=cblue] (1.2200,0) rectangle (1.4200,1.6000);
+    \draw[fill=cblue!70,draw=cblue] (1.4400,0) rectangle (1.6400,1.3333);
+    \draw[fill=cblue!70,draw=cblue] (1.6600,0) rectangle (1.8600,2.9333);
+    \draw[fill=cblue!70,draw=cblue] (1.8800,0) rectangle (2.0800,1.8667);
+    \draw[fill=cblue!70,draw=cblue] (2.1000,0) rectangle (2.3000,1.3333);
+    \draw[fill=cblue!70,draw=cblue] (2.3200,0) rectangle (2.5200,2.9333);
+    \draw[fill=cblue!70,draw=cblue] (2.5400,0) rectangle (2.7400,1.8667);
+    \draw[fill=cblue!70,draw=cblue] (2.7600,0) rectangle (2.9600,1.3333);
+    \draw[fill=cblue!70,draw=cblue] (2.9800,0) rectangle (3.1800,1.8667);
+    \draw[fill=cblue!70,draw=cblue] (3.2000,0) rectangle (3.4000,0.8000);
+    \draw[fill=cblue!70,draw=cblue] (3.4200,0) rectangle (3.6200,1.3333);
+    \draw[fill=cblue!70,draw=cblue] (3.6400,0) rectangle (3.8400,1.0667);
+    \draw[fill=cblue!70,draw=cblue] (3.8600,0) rectangle (4.0600,1.3333);
+    \draw[fill=cblue!70,draw=cblue] (4.0800,0) rectangle (4.2800,0.0000);
+    \draw[fill=cblue!70,draw=cblue] (4.3000,0) rectangle (4.5000,0.5333);
+    \draw[fill=cblue!70,draw=cblue] (4.5200,0) rectangle (4.7200,0.0000);
+    \draw[fill=cblue!70,draw=cblue] (4.7400,0) rectangle (4.9400,0.0000);
+    \draw[fill=cblue!70,draw=cblue] (4.9600,0) rectangle (5.1600,0.0000);
+    \draw[fill=cblue!70,draw=cblue] (5.1800,0) rectangle (5.3800,0.8000);
+    \draw[->,color=black!60] (0.8,0) -- (6,0) node[below] {$b_i-a_i^{\top}x$};
+    \draw[->,color=black!60] (0.8,0) -- (0.8,4.6) node[left] {};
+    \node[anchor=south] at (3.2,5.1) {basic (min max-infeasibility)};
+    \node[anchor=south,color=black!60] at (3.2,4.6499999999999995) {satisfied: 37/100};
+  \end{scope}
+  \begin{scope}[xshift=8.4cm]
+    \draw[fill=cblue!70,draw=cblue] (1.0000,0) rectangle (1.2000,0.2857);
+    \draw[fill=cblue!70,draw=cblue] (1.2200,0) rectangle (1.4200,0.8571);
+    \draw[fill=cblue!70,draw=cblue] (1.4400,0) rectangle (1.6400,1.1429);
+    \draw[fill=cblue!70,draw=cblue] (1.6600,0) rectangle (1.8600,1.4286);
+    \draw[fill=cblue!70,draw=cblue] (1.8800,0) rectangle (2.0800,0.2857);
+    \draw[fill=cblue!70,draw=cblue] (2.1000,0) rectangle (2.3000,1.1429);
+    \draw[fill=cblue!70,draw=cblue] (2.3200,0) rectangle (2.5200,3.1429);
+    \draw[fill=cblue!70,draw=cblue] (2.5400,0) rectangle (2.7400,3.4286);
+    \draw[fill=cblue!70,draw=cblue] (2.7600,0) rectangle (2.9600,3.1429);
+    \draw[fill=cblue!70,draw=cblue] (2.9800,0) rectangle (3.1800,2.5714);
+    \draw[fill=cblue!70,draw=cblue] (3.2000,0) rectangle (3.4000,3.7143);
+    \draw[fill=cblue!70,draw=cblue] (3.4200,0) rectangle (3.6200,1.4286);
+    \draw[fill=cblue!70,draw=cblue] (3.6400,0) rectangle (3.8400,1.7143);
+    \draw[fill=cblue!70,draw=cblue] (3.8600,0) rectangle (4.0600,0.5714);
+    \draw[fill=cblue!70,draw=cblue] (4.0800,0) rectangle (4.2800,1.4286);
+    \draw[fill=cblue!70,draw=cblue] (4.3000,0) rectangle (4.5000,0.8571);
+    \draw[fill=cblue!70,draw=cblue] (4.5200,0) rectangle (4.7200,0.5714);
+    \draw[fill=cblue!70,draw=cblue] (4.7400,0) rectangle (4.9400,0.5714);
+    \draw[fill=cblue!70,draw=cblue] (4.9600,0) rectangle (5.1600,0.0000);
+    \draw[fill=cblue!70,draw=cblue] (5.1800,0) rectangle (5.3800,0.2857);
+    \draw[->,color=black!60] (0.8,0) -- (6,0) node[below] {$b_i-a_i^{\top}x$};
+    \draw[->,color=black!60] (0.8,0) -- (0.8,4.6) node[left] {};
+    \node[anchor=south] at (3.2,5.1) {sum of infeasibilities};
+    \node[anchor=south,color=black!60] at (3.2,4.6499999999999995) {satisfied: 64/100};
+  \end{scope}
+\end{tikzpicture}
+```
 
 ### 在阶段 II 中心路径附近终止
 
@@ -127,4 +195,132 @@ $$
 
 （回溯参数 $\alpha = 0.01$、$\beta = 0.9$，初始点 $x^{(0)} = 0$，$s^{(0)} = \mathbf{1}$，$\nu^{(0)} = 0$）。结果表明：$\gamma$ 大于 0.3 左右时，不到 20 步即可找到可行点，比阶段 I 方法（约 30 步）更高效；$\gamma$ 较小时所需步数急剧增长（近似按 $1/\gamma$）；$\gamma = 0.01$ 时需要几千次迭代。这也很典型：不可行初始点 Newton 方法在可行集非空且不非常接近边界时表现很好；但当可行集刚刚勉强非空时，阶段 I 方法要好得多。阶段 I 方法的另一个优点是能优雅地处理不可行情形，而不可行初始点 Newton 方法只是不收敛。
 
-> **待配图**&#8203;：对应教材图 11.10、图 11.11、图 11.12 —— 检测可行性（或证明不可行性）所需 Newton 迭代次数随 $\gamma$ 的变化曲线（整体、边界附近放大、以及不可行初始点 Newton 方法的结果）。
+![基本阶段 I 方法检测可行性（$\gamma > 0$）或证明不可行性（$\gamma < 0$）所需 Newton 迭代次数随 $\gamma$ 的变化：左为整体，右为边界 $\gamma = 0$ 附近的放大；代价随 $\gamma \to 0$ 按对数规律增长（对应教材图 11.10、图 11.11）](feasibility-and-phase-i-methods/tikz-src/phase-i-gamma.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \begin{scope}[xshift=0cm]
+    \draw[color=black!12,very thin] (0.0000,0) -- (0.0000,4.4) (1.6500,0) -- (1.6500,4.4) (3.3000,0) -- (3.3000,4.4) (4.9500,0) -- (4.9500,4.4) (6.6000,0) -- (6.6000,4.4) (0,0.8540) -- (6.6,0.8540) (0,1.7081) -- (6.6,1.7081) (0,2.5621) -- (6.6,2.5621) (0,3.4161) -- (6.6,3.4161) (0,4.2702) -- (6.6,4.2702) ;
+    \draw[->,color=black!60] (0,0) -- (6.8999999999999995,0) node[below] {$\gamma$};
+    \draw[->,color=black!60] (0,0) -- (0,4.7) node[left] {Newton steps};
+    \draw[cblue,very thick] plot [smooth] coordinates {(0.000,3.245) (0.412,3.075) (0.825,3.331) (1.237,3.245) (1.650,3.075) (2.063,3.075) (2.475,3.331) (2.887,3.075) (3.300,3.075) (3.712,3.075) (4.125,3.245) (4.537,3.587) (4.950,3.160) (5.362,3.245) (5.775,3.331) (6.188,3.331) (6.600,3.929)};
+  \fill[cblue] (0.000,3.245) circle (1.4pt);
+  \fill[cblue] (0.412,3.075) circle (1.4pt);
+  \fill[cblue] (0.825,3.331) circle (1.4pt);
+  \fill[cblue] (1.237,3.245) circle (1.4pt);
+  \fill[cblue] (1.650,3.075) circle (1.4pt);
+  \fill[cblue] (2.063,3.075) circle (1.4pt);
+  \fill[cblue] (2.475,3.331) circle (1.4pt);
+  \fill[cblue] (2.887,3.075) circle (1.4pt);
+  \fill[cblue] (3.300,3.075) circle (1.4pt);
+  \fill[cblue] (3.712,3.075) circle (1.4pt);
+  \fill[cblue] (4.125,3.245) circle (1.4pt);
+  \fill[cblue] (4.537,3.587) circle (1.4pt);
+  \fill[cblue] (4.950,3.160) circle (1.4pt);
+  \fill[cblue] (5.362,3.245) circle (1.4pt);
+  \fill[cblue] (5.775,3.331) circle (1.4pt);
+  \fill[cblue] (6.188,3.331) circle (1.4pt);
+  \fill[cblue] (6.600,3.929) circle (1.4pt);
+    \node[below,color=black!60] at (0.0000,0) {$10^{-2}$};
+    \node[below,color=black!60] at (1.6500,0) {$10^{-1}$};
+    \node[below,color=black!60] at (3.3000,0) {$10^{0}$};
+    \node[below,color=black!60] at (4.9500,0) {$10^{1}$};
+    \node[below,color=black!60] at (6.6000,0) {$10^{2}$};
+    \node[left,color=black!60] at (0,1.7081) {20};
+    \node[left,color=black!60] at (0,3.4161) {40};
+    \node[anchor=south] at (3.3,5.050000000000001) {feasible side ($\gamma>0$)};
+  \end{scope}
+  \begin{scope}[xshift=8.7cm]
+    \draw[color=black!12,very thin] (0.0000,0) -- (0.0000,4.4) (1.6500,0) -- (1.6500,4.4) (3.3000,0) -- (3.3000,4.4) (4.9500,0) -- (4.9500,4.4) (6.6000,0) -- (6.6000,4.4) (0,0.8540) -- (6.6,0.8540) (0,1.7081) -- (6.6,1.7081) (0,2.5621) -- (6.6,2.5621) (0,3.4161) -- (6.6,3.4161) (0,4.2702) -- (6.6,4.2702) ;
+    \draw[->,color=black!60] (0,0) -- (6.8999999999999995,0) node[below] {$\gamma$};
+    \draw[->,color=black!60] (0,0) -- (0,4.7) node[left] {Newton steps};
+    \draw[cblue,very thick] plot [smooth] coordinates {(0.000,3.245) (0.412,3.245) (0.825,3.075) (1.237,3.331) (1.650,3.075) (2.063,3.331) (2.475,3.331) (2.887,3.075) (3.300,3.245) (3.712,3.245) (4.125,3.245) (4.537,3.587) (4.950,3.160) (5.362,3.245) (5.775,3.672) (6.188,3.331) (6.600,3.929)};
+  \fill[cblue] (0.000,3.245) circle (1.4pt);
+  \fill[cblue] (0.412,3.245) circle (1.4pt);
+  \fill[cblue] (0.825,3.075) circle (1.4pt);
+  \fill[cblue] (1.237,3.331) circle (1.4pt);
+  \fill[cblue] (1.650,3.075) circle (1.4pt);
+  \fill[cblue] (2.063,3.331) circle (1.4pt);
+  \fill[cblue] (2.475,3.331) circle (1.4pt);
+  \fill[cblue] (2.887,3.075) circle (1.4pt);
+  \fill[cblue] (3.300,3.245) circle (1.4pt);
+  \fill[cblue] (3.712,3.245) circle (1.4pt);
+  \fill[cblue] (4.125,3.245) circle (1.4pt);
+  \fill[cblue] (4.537,3.587) circle (1.4pt);
+  \fill[cblue] (4.950,3.160) circle (1.4pt);
+  \fill[cblue] (5.362,3.245) circle (1.4pt);
+  \fill[cblue] (5.775,3.672) circle (1.4pt);
+  \fill[cblue] (6.188,3.331) circle (1.4pt);
+  \fill[cblue] (6.600,3.929) circle (1.4pt);
+    \node[below,color=black!60] at (0.0000,0) {$10^{-2}$};
+    \node[below,color=black!60] at (1.6500,0) {$10^{-1}$};
+    \node[below,color=black!60] at (3.3000,0) {$10^{0}$};
+    \node[below,color=black!60] at (4.9500,0) {$10^{1}$};
+    \node[below,color=black!60] at (6.6000,0) {$10^{2}$};
+    \node[left,color=black!60] at (0,1.7081) {20};
+    \node[left,color=black!60] at (0,3.4161) {40};
+    \node[anchor=south] at (3.3,5.050000000000001) {infeasible side ($\gamma<0$)};
+  \end{scope}
+\end{tikzpicture}
+```
+![不可行初始点 Newton 方法实现阶段 I 时，找到可行点所需 Newton 迭代次数随 $\gamma$ 的变化：$\gamma$ 较大时不到 20 步，$\gamma$ 较小时按 $1/\gamma$ 急剧增长（对应教材图 11.12）](feasibility-and-phase-i-methods/tikz-src/phase-i-infeasible-newton.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \draw[color=black!12,very thin] (0.0000,0) -- (0.0000,4.6) (1.6580,0) -- (1.6580,4.6) (3.1710,0) -- (3.1710,4.6) (4.8290,0) -- (4.8290,4.6) (6.3420,0) -- (6.3420,4.6) (8.0000,0) -- (8.0000,4.6) (0,0.7667) -- (8,0.7667) (0,1.5333) -- (8,1.5333) (0,2.3000) -- (8,2.3000) (0,3.0667) -- (8,3.0667) (0,3.8333) -- (8,3.8333) ;
+  \draw[->,color=black!60] (0,0) -- (8.35,0) node[below] {$\gamma$};
+  \draw[->,color=black!60] (0,0) -- (0,4.949999999999999) node[left] {Newton steps};
+  \draw[cblue,very thick] plot [smooth] coordinates {(8.000,0.015) (7.045,0.012) (5.784,0.012) (4.829,0.011) (3.874,0.011) (3.171,0.011) (2.613,0.012) (2.216,0.012) (1.658,0.014) (1.167,0.020) (0.703,0.025) (0.396,0.029) (0.000,0.040) (-0.558,0.060) (-0.955,0.078) (-1.513,0.118)};
+  \fill[cblue] (8.000,0.015) circle (1.6pt);
+  \fill[cblue] (7.045,0.012) circle (1.6pt);
+  \fill[cblue] (5.784,0.012) circle (1.6pt);
+  \fill[cblue] (4.829,0.011) circle (1.6pt);
+  \fill[cblue] (3.874,0.011) circle (1.6pt);
+  \fill[cblue] (3.171,0.011) circle (1.6pt);
+  \fill[cblue] (2.613,0.012) circle (1.6pt);
+  \fill[cblue] (2.216,0.012) circle (1.6pt);
+  \fill[cblue] (1.658,0.014) circle (1.6pt);
+  \fill[cblue] (1.167,0.020) circle (1.6pt);
+  \fill[cblue] (0.703,0.025) circle (1.6pt);
+  \fill[cblue] (0.396,0.029) circle (1.6pt);
+  \fill[cblue] (0.000,0.040) circle (1.6pt);
+  \fill[cblue] (-0.558,0.060) circle (1.6pt);
+  \fill[cblue] (-0.955,0.078) circle (1.6pt);
+  \fill[cblue] (-1.513,0.118) circle (1.6pt);
+  \node[below,color=black!60] at (0.0000,0) {0.03};
+  \node[below,color=black!60] at (1.6580,0) {0.1};
+  \node[below,color=black!60] at (3.1710,0) {0.3};
+  \node[below,color=black!60] at (4.8290,0) {1};
+  \node[below,color=black!60] at (6.3420,0) {3};
+  \node[below,color=black!60] at (8.0000,0) {10};
+  \node[left,color=black!60] at (0,0.7667) {500};
+  \node[left,color=black!60] at (0,1.5333) {1k};
+  \node[left,color=black!60] at (0,2.3000) {1.5k};
+  \node[left,color=black!60] at (0,3.0667) {2k};
+  \node[left,color=black!60] at (0,3.8333) {2.5k};
+  \node[left,color=black!60] at (0,4.6000) {3k};
+  \node[anchor=south east,color=black!60] at (0.7035,4.2933) {$\gamma=0.01$: thousands of steps};
+\end{tikzpicture}
+```\n

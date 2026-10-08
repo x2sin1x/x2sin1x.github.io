@@ -116,6 +116,27 @@ $$
 \end{aligned}
 $$
 
+### 极小化最大特征值
+
+极小化对称矩阵 $A(x)$ 的最大特征值
+
+$$
+\begin{aligned}
+    \mathrm{minimize} \quad & \lambda_{\max}(A(x))
+\end{aligned}
+$$
+
+可以写成 SDP：由于 $\lambda_{\max}(A(x)) \leqslant t \Longleftrightarrow A(x) \preceq tI$，
+
+$$
+\begin{aligned}
+    \mathrm{minimize} \quad & t \\
+    \mathrm{subject\ to} \quad & tI - A(x) \succeq 0
+\end{aligned}
+$$
+
+约束是关于 $(x, t)$ 的 LMI，因此这是一个 SDP。
+
 ## 举例
 
 ### 二阶锥规划

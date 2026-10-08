@@ -120,3 +120,16 @@ $$
 其中 $\tilde{f}_i$ 是凸的，$\tilde{h}_i$ 是仿射的，因此上面的问题是凸优化问题，并且称之为凸形式的几何规划。
 
 如果正项式的目标函数和约束函数都只有一个项，则凸形式的几何规划就退化为（一般的）线性规划。因此，我们可以认为几何规划是线性规划的一个推广。
+
+### 例子
+
+考虑简单的几何规划问题
+
+$$
+\begin{aligned}
+    \mathrm{minimize} \quad & x \\
+    \mathrm{subject\ to} \quad & xy \geqslant 1, \quad 0.1 \leqslant x \leqslant 10
+\end{aligned}
+$$
+
+作变量替换 $x = e^{u}$、$y = e^{v}$ 后，目标函数变为 $e^{u}$（$u$ 的凸函数），约束 $xy \geqslant 1$ 变为线性约束 $u + v \geqslant 0$，$0.1 \leqslant x \leqslant 10$ 变为 $-\log 10 \leqslant u \leqslant \log 10$，于是得到等价的凸优化问题。\n

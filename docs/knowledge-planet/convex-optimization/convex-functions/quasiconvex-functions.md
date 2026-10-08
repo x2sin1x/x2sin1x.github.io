@@ -18,11 +18,42 @@ weight: 250
 
 凸函数具有凸的下水平集，所以也是拟凸函数。但是拟凸函数不一定是凸函数。下图是一个反例。
 
-![](f4b347efad64a5caa6aaee0915edb968.webp)
+![](quasiconvex-not-convex.webp "拟凸但不凸的函数")
 
-如图所示，$f(x)$ 有一条水平渐近线（图中绿色虚线）。对于任意的 $\alpha$，下水平集 $[a, b]$ 是凸集。对于任意的 $\beta$，下水平集 $(-\infty, c]$ 是凸集。因此，$f(x)$ 是拟凸函数。
+::: details TikZ 代码
 
-然而，如图中红色线段所示，该部分不满足凸函数的定义，因此 $f(x)$ 不是凸函数。
+```tex
+\begin{tikzpicture}[line cap=round,line join=round,scale=0.95]
+  % quasiconvex but not convex: chord dips below the curve
+  \draw[->] (-0.4,0) -- (6.6,0);
+  \node at (5.9,4.6) {$f(x)$};
+  \draw[dashed] (-0.2,1.75) -- (6.4,1.75);
+  \node[left] at (-0.2,1.75) {$\alpha$};
+  \draw[dashed] (-0.2,3.9) -- (6.4,3.9);
+  \node[left] at (-0.2,3.9) {$\beta$};
+  \draw[very thick,green!60!black] plot[smooth,tension=0.8]
+    coordinates {(-0.2,4.2) (1.2,3.4) (2.4,1.7) (3.1,1.12) (3.9,0.95) (4.7,1.6) (5.4,3.3) (5.9,5.0)};
+  \draw[dashed] (2.35,0) -- (2.35,1.75);
+  \draw[dashed] (4.5,0) -- (4.5,1.75);
+  \draw[dashed] (5.35,0) -- (5.35,3.9);
+  \node[below] at (2.35,-0.05) {$a$};
+  \node[below] at (4.5,-0.05) {$b$};
+  \node[below] at (5.35,-0.05) {$c$};
+  \draw[red,very thick] (0.65,3.05) -- (3.2,1.08);
+  \fill[red] (0.65,3.05) circle (2.2pt);
+  \fill[red] (3.2,1.08) circle (2.2pt);
+\end{tikzpicture}
+```
+
+:::
+
+如图所示，函数 $f$ 的所有下水平集都是区间（凸集），例如 $\alpha$-下水平集为 $[a, b]$，因此 $f$ 是拟凸函数。但图中红色弦位于曲线下方，即
+
+$$
+f(\theta x + (1-\theta)y) > \theta f(x) + (1-\theta) f(y)
+$$
+
+凸性定义不成立，因此 $f$ 不是凸函数。这说明拟凸性严格弱于凸性。
 :::
 
 ### 举例
@@ -41,16 +72,16 @@ $$
 f(x)=\dfrac{a^{\top} x+b}{c^{\top} x+d}
 $$
 
-是拟凸函数，也是拟凹函数，因此是拟线性函数。其 α-下水平集为
+（定义域 $\{x \mid c^{\top}x + d > 0\}$）是拟凸函数，也是拟凹函数，因此是拟线性函数。其 $\alpha$-下水平集为
 
 $$
 \begin{aligned}
-S_{\alpha} &=\left\{x \mid c^{\top} x+d>0,\left(a^{\top} x+b\right) /\left(c^{\top} x+d\right) \leqslant \alpha\right\} \\
-&=\left\{x \mid c^{\top} x+d>0, a^{\top} x+b \leqslant \alpha\left(c^{\top} x+d\right)\right\}
+S_{\alpha} &=\left\{x \mid \frac{a^{\top} x+b}{c^{\top} x+d} \leqslant \alpha\right\} \\
+&=\left\{x \mid (a-\alpha c)^{\top} x \leqslant \alpha d - b,\; c^{\top} x+d>0\right\}
 \end{aligned}
 $$
 
-它是凸集，因为它是一个开端半平面和闭的半平面的交集。
+它是半空间与开半空间的交，是凸集，因此 $f$ 拟凸。同理可以验证其 $\alpha$-上水平集也是凸集，故 $f$ 也是拟凹的。
 
 距离比函数
 
@@ -74,13 +105,7 @@ $$
 
 ### 连续函数的拟凸性
 
-连续函数 $f: \mathbf{R} \rightarrow \mathbf{R}$ 是拟凸的，当且仅当下述条件至少有一个成立：
-
-- 函数 $f$ 是非减的（单调递增）
-- 函数 $f$ 是非增的（单调递减）
-- $\exists c \in \operatorname{dom} f$，使得对于 $t \leqslant c$，$f$ 非增；对于 $t \geqslant c$，$f$ 非减。
-
-简单来说，如果一个函数是拟凸函数，那么它在定义域内要么具有单调性，要么有且仅有一个峰。
+对于连续函数，拟凸性等价于所有下水平集都是凸集（即定义本身）。在一维情形有一个直观的刻画：连续函数 $f: \mathbf{R} \rightarrow \mathbf{R}$ 拟凸，当且仅当 $f$ 是单峰的（unimodal），即存在 $c$ 使得 $f$ 在 $(-\infty, c]$ 上非增、在 $[c, +\infty)$ 上非减（退化的单调函数也包含在内）。
 
 ## 可微拟凸函数
 
@@ -148,10 +173,10 @@ $$
 
 ## 通过一族凸函数进行表示
 
-我们可以很方便地将拟凸函数 $f$ 的下水平集（凸集）表示成凸函数的不等式。选择一族凸函数 $\phi_t: \mathbf{R}^n \rightarrow \mathbf{R}$，$t \in \mathbf{R}$ 表示凸函数的编号，这些函数满足
+利用下水平集，拟凸函数总可以通过一族凸函数来表示：$f$ 是拟凸函数，当且仅当存在一族凸函数 $\phi_t: \mathbf{R}^n \rightarrow \mathbf{R}$（$t \in \mathbf{R}$），使得
 
 $$
-f(x) \leqslant t \Longleftrightarrow \phi_{t}(x) \leqslant 0
+f(x) \leqslant t \Longleftrightarrow \phi_t(x) \leqslant 0
 $$
 
-即拟凸函数 $f$ 的 $t$- 下水平集是凸函数 $\phi_t$ 的 0-下水平集。
+即拟凸函数 $f$ 的 $t$-下水平集恰好是凸函数 $\phi_t$ 的 0-下水平集。这一表示的重要价值在于：约束为拟凸函数的优化问题，可以通过二分法求解一系列凸可行性问题（$\phi_t(x) \leqslant 0$ 是否有解）来完成，详见凸优化问题一章中的拟凸优化。

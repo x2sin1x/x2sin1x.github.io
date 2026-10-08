@@ -65,7 +65,39 @@ $$
 1. 内部解：原问题退化为无约束优化问题，只要驻点 $(x^{\star}, y^{\star})$ 满足 $\nabla f=0$ 且 $\lambda = 0$。
 2. 边界解：原问题转变为等式约束优化问题，这与之前讨论的情况相同。可以证明的一点是，最优解处的 $f$ 和 $g$ 的梯度方向是反向，即 $\exists \lambda$ 使得 $\nabla f = - \lambda \nabla g$。这里 $\lambda$ 的正负性是有意义的。由于我们希望最小化 $f$，梯度 $\nabla f$ 的值表示函数值上升最快的方向，因而负梯度方向 $-\nabla f$ 应该指向可行域的内部。$\nabla g$ 指向可行域的外部，即 $g(x, y) > 0$ 的区域，因为约束 $g(x, y) \leqslant 0$。因此这里的 $\lambda \geqslant 0$，这就是之前几节讲的对偶可行性。
 
-![](d399291c34f5ae1646758e8562e65c5d.webp)
+![](kkt-inequality-geometry.webp "边界解的几何解释")
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[line cap=round,line join=round,scale=1.05,
+  xq/.style={orange!45}, yq/.style={cyan!45}]
+  % KKT geometry: surface pi (objective) and sigma (constraint), gradients at (x*,y*)
+  % projection: X = 0.9x + 0.6y, Y = 0.55z - 0.35x + 0.3y
+  \foreach \xx in {-1.7,-1.275,...,1.7}
+    \draw[xq] plot[domain=-1.7:1.7,samples=9]
+      ({0.9*\xx + 0.6*\x}, {0.55*(1.05 + 0.08*\xx - 0.06*\x) - 0.35*\xx + 0.3*\x});
+  \foreach \yy in {-1.7,-1.275,...,1.7}
+    \draw[xq] plot[domain=-1.7:1.7,samples=9]
+      ({0.9*\x + 0.6*\yy}, {0.55*(1.05 + 0.08*\x - 0.06*\yy) - 0.35*\x + 0.3*\yy});
+  \node at (-2.5,0.9) {$\pi$};
+  \foreach \xx in {-1.7,-1.275,...,1.7}
+    \draw[yq] plot[domain=-1.7:1.7,samples=13]
+      ({0.9*\xx + 0.6*\x}, {0.55*(-0.45 + 0.3*\xx*\xx + 0.3*\x*\x) - 0.35*\xx + 0.3*\x});
+  \foreach \yy in {-1.7,-1.275,...,1.7}
+    \draw[yq] plot[domain=-1.7:1.7,samples=13]
+      ({0.9*\x + 0.6*\yy}, {0.55*(-0.45 + 0.3*\x*\x + 0.3*\yy*\yy) - 0.35*\x + 0.3*\yy});
+  \node at (-2.5,-1.0) {$\sigma$};
+  % point (x*, y*) on pi and gradient arrows
+  \fill (0.315,0.54) circle (2.2pt) node[below right] {$(x^{\star}, y^{\star})$};
+  \draw[->,very thick,blue!60!black] (0.315,0.54) -- (0.315,1.145)
+    node[right] {$\nabla f(x^{\star}, y^{\star})$};
+  \draw[->,very thick,brown!70!black,dashed] (0.315,0.5) -- (0.315,-0.3725)
+    node[right] {$-\lambda \nabla g(x^{\star}, y^{\star})$};
+\end{tikzpicture}
+```
+
+:::
 
 边界解的情况可以通过上图加深理解。图中表示的是二元函数 $f(x, y)$ 在不等式约束 $g(x, y) \leqslant 0$ 下的优化问题，并且最优解在边界的情况。如图所示，最优点即为平面 $\pi$（方程 $z = f(x, y)$）和平面 $\sigma$（方程 $g(x, y) = 0$）的交点。约束 $g(x, y) \leqslant 0$ 说明了可行域在平面 $\sigma$ 的下侧。梯度 $\nabla f$ 指向上方，负梯度 $-\nabla f$ 指向下方可行域内部。在最优解 $(x^{\star}, y^{\star})$ 处，$\nabla f$ 和 $\nabla g$ 共线。
 
@@ -174,7 +206,52 @@ $$
 2. 若 $\alpha = \dfrac{1}{2}$，$\nu = 0 = 2 - 4 \alpha$。此时满足所有的 KKT 条件，约束不等式是有效的。$x^{\star} = y^{\star} = \dfrac{1}{2}$ 是边界解。
 3. 若 $\alpha < \dfrac{1}{2}$，$\nu = 2 - 4 \alpha > 0$。此时约束不等式是有效的。$x^{\star} = 1 - \alpha$，$y^{\star} = \alpha$。
 
-![](2624b1be62172f5ceaff974be0b4133e.webp)
+![](kkt-example-geometry.webp "例子的几何意义")
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[line cap=round,line join=round,scale=1.05,
+  grid/.style={gray!50}]
+  % paraboloid Gamma: z = x^2 + y^2 with planes pi: x+y=1 and sigma: y=alpha
+  % projection: X = 0.9x + 0.6y, Y = 0.55z - 0.35x + 0.3y
+  % plane pi: x + y = 1 (horizontal + vertical grid lines)
+  \foreach \z in {0.1,0.6,1.1,1.6,2.1}
+    \draw[blue!55] plot[domain=-0.35:1.45,samples=8]
+      ({0.9*\x + 0.6*(1-\x)}, {0.55*\z - 0.35*\x + 0.3*(1-\x)});
+  \foreach \xx in {-0.2,0.25,0.7,1.15,1.4}
+    \draw[blue!55] ({0.9*\xx + 0.6*(1-\xx)}, {-0.35*\xx + 0.3*(1-\xx)})
+      -- ({0.9*\xx + 0.6*(1-\xx)}, {1.155 - 0.35*\xx + 0.3*(1-\xx)});
+  \node[blue!60!black] at (-2.7,-1.7) {$\pi: x + y = 1$};
+  % paraboloid rings and profiles
+  \foreach \h in {0.3,0.75,1.3,1.9}
+    \draw[grid] plot[variable=\t,domain=0:360,samples=49]
+      ({0.9*sqrt(\h)*cos(\t) + 0.6*sqrt(\h)*sin(\t)},
+       {0.55*\h - 0.35*sqrt(\h)*cos(\t) + 0.3*sqrt(\h)*sin(\t)});
+  \foreach \a in {0,45,90,135,180,225,270,315}
+    \draw[grid] plot[domain=0:1.4,samples=9]
+      ({0.9*\x*cos(\a) + 0.6*\x*sin(\a)},
+       {0.55*\x*\x - 0.35*\x*cos(\a) + 0.3*\x*sin(\a)});
+  % plane sigma: y = alpha (alpha = 0.5)
+  \foreach \z in {0.1,0.6,1.1,1.6,2.1}
+    \draw[orange!40] plot[domain=-1.3:1.3,samples=8]
+      ({0.9*\x + 0.3}, {0.55*\z - 0.35*\x + 0.15});
+  \foreach \xx in {-1.2,-0.6,0,0.6,1.2}
+    \draw[orange!40] ({0.9*\xx + 0.3}, {-0.35*\xx + 0.15})
+      -- ({0.9*\xx + 0.3}, {1.155 - 0.35*\xx + 0.15});
+  \node[orange!70!black] at (2.9,2.2) {$\sigma: y = \alpha$};
+  % intersection curve of Gamma and pi (red parabola)
+  \draw[very thick,red] plot[domain=-0.25:1.25,samples=25]
+    ({0.9*\x + 0.6*(1-\x)}, {0.55*(\x*\x + (1-\x)*(1-\x)) - 0.35*\x + 0.3*(1-\x)});
+  % axes and labels
+  \draw[->,dashed,blue!60!black] (0,0) -- (0,1.35);
+  \node at (-1.6,2.4) {$\Gamma: z = x^2 + y^2$};
+  \fill[red] ({0.9*0.5 + 0.6*0.5}, {0.55*0.5 - 0.35*0.5 + 0.3*0.5}) circle (2.0pt)
+    node[below right] {$(x^{\star}, y^{\star})$};
+\end{tikzpicture}
+```
+
+:::
 
 本题的几何意义如图所示。目标函数对应的曲面 $\Gamma$ 是（椭）圆抛物面，等式约束对应平面 $\pi$，不等式约束对应以平面 $\sigma$ 为边界的左半空间。曲面 $\Gamma$ 和平面 $\pi$ 的交线为图中的红色曲线（该曲线实际上是一个抛物线）。不考虑不等式约束，该优化问题的最优解为 $(x^{\star}, y^{\star}) = (\dfrac{1}{2}, \dfrac{1}{2})$，最优值为 $f(x^{\star}, y^{\star}) = \dfrac{1}{2}$，对应图中红点的坐标 $(\dfrac{1}{2}, \dfrac{1}{2}, \dfrac{1}{2})$。不等式约束实际上是让平面 $\alpha$ 沿 $y$ 轴方向平移，以 $\alpha = \dfrac{1}{2}$ 为界，可以分三种情况讨论。
 

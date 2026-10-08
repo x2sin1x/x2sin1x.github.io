@@ -15,6 +15,14 @@ $$
 
 则称函数 $f: \mathbf{R}^n \rightarrow \mathbf{R}$ 是凸的。
 
+### 例子
+
+- 仿射函数：$a^{\top}x + b$ 既是凸的也是凹的。
+- 二次函数：$f(x) = \frac{1}{2}x^{\top}Px + q^{\top}x + r$，当 $P \succeq 0$ 时是凸的。
+- 最小二乘目标：$f(x) = \|Ax - b\|_2^{2}$（即 $x^{\top}A^{\top}Ax - 2b^{\top}Ax + b^{\top}b$）是凸的。
+- 对数障碍（log-barrier）：$f(x) = -\sum_{i=1}^{m} \log(b_i - a_i^{\top}x)$，定义域为 $\{x \mid a_i^{\top}x < b_i\}$，是凸的。
+- 分段线性函数：$f(x) = \max\{0, x\}$ 或一般的 $f(x) = \max\{a_1^{\top}x + b_1, \cdots, a_L^{\top}x + b_L\}$ 是凸的。
+
 从几何意义上看，上述不等式意味着点 $(x, f(x))$ 和点 $(y, f(y))$ 之间的线段，即从 $x$ 到 $y$ 的弦，在函数 $f$ 图像的上方。如果不等式中当 $x \ne y$ 时 $0 \leqslant \theta \leqslant 1$ 严格成立，则称函数 $f$ 是严格凸的。
 
 ## 扩展值延伸
@@ -56,6 +64,10 @@ $$
 C_\alpha = \{ x \in \operatorname{dom} f \mid f(x) \leqslant \alpha \}
 $$
 
+若 $f$ 是凸函数，则其任意 $\alpha$-下水平集都是凸集：若 $f(x_1) \leqslant \alpha$、$f(x_2) \leqslant \alpha$，则 $f(\theta x_1 + (1-\theta)x_2) \leqslant \theta f(x_1) + (1-\theta) f(x_2) \leqslant \alpha$。
+
+反之不成立：下水平集全凸的函数只是拟凸函数（见下文），不一定凸。例如 $f(x) = x^3$ 不是凸函数，但它的所有下水平集 $(-\infty, \alpha^{1/3}]$ 都是凸集。
+
 ## 上境图
 
 函数 $f: \mathbf{R}^n \rightarrow \mathbf{R}$ 的图像定义为
@@ -69,14 +81,31 @@ $$
 函数 $f: \mathbf{R}^n \rightarrow \mathbf{R}$ 的上镜图定义为
 
 $$
-\operatorname{epi} f = \{ (x, f(x)) \mid x \in \operatorname{dom} f, f(x) \leqslant t \}
+\operatorname{epi} f = \{ (x, t) \mid x \in \operatorname{dom} f, f(x) \leqslant t \}
 $$
 
 上镜图的概念很像是下水平集和函数图像二者的结合。从几何上看，上镜图即为在函数图像之上。
 
 定义在 $\mathbf{R}^n$ 上的凸函数 $f$ 的上镜图是 $\mathbf{R}^{n+1}$ 空间的一个凸集，其支撑超平面和一阶条件有着如下图所示的联系：
 
-![](f2d493efc992a9a9ee5d3bcf4afe8753.webp)
+![](epigraph-first-order.webp)
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[line cap=round,line join=round,scale=1.0]
+  % epigraph of a convex function and its supporting hyperplane
+  \fill[gray!20] plot[domain=-2.4:3.2] (\x, {0.4*(\x-1)^2 + 0.3})
+    -- (3.2,4.6) -- (-2.4,4.6) -- cycle;
+  \draw plot[domain=-2.4:3.2] (\x, {0.4*(\x-1)^2 + 0.3});
+  \node at (0,3.4) {$\mathrm{epi}\, f$};
+  \draw (-0.7,-0.64) -- (3.3,1.28);
+  \fill (1.6,0.436) circle (1.4pt) node[right] {$(x, f(x))$};
+  \draw[->,thick] (1.6,0.436) -- (2.26,-0.38) node[right] {$(\nabla f(x), -1)$};
+\end{tikzpicture}
+```
+
+:::
 
 从图中可以直观地看到，凸函数 $f$ 在点 $x$ 处的一阶 Taylor 近似即为其上镜图在 $x$ 处的支撑超平面。
 
@@ -88,7 +117,7 @@ $$
 f(\theta x+(1-\theta) y) \leqslant \theta f(x)+(1-\theta) f(y)
 $$
 
-有时也称作 Jensen 不等式。此不等式可以很方便地扩展至更多点的凸组合：如果函数 $f$ 是凸函数，$x_1, \cdots, x_k \in \operatorname{f}$，$\theta_1, \cdot, \theta_k \geqslant 0$ 且 $\theta_1 + \cdots + \theta_k = 1$，则下式成立
+有时也称作 Jensen 不等式。此不等式可以很方便地扩展至更多点的凸组合：如果函数 $f$ 是凸函数，$x_1, \cdots, x_k \in \operatorname{dom} f$，$\theta_1, \cdots, \theta_k \geqslant 0$ 且 $\theta_1 + \cdots + \theta_k = 1$，则下式成立
 
 $$
 f(\theta_1 x_1 + \cdots + \theta_k x_k) \leqslant \theta_1 f(x_1) + \cdots + \theta_k f(x_k)

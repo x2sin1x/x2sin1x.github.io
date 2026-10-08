@@ -36,11 +36,58 @@ $$
 
 定义了集合 $\mathcal{G}$ 的一个支撑超平面。
 
-![](897997886a439447b91c46f904a12846.webp)
+![](g-set-one-lambda.webp "集合 G 与对偶函数的几何解释")
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[line cap=round,line join=round,scale=0.95]
+  % G set and the supporting line lambda u + t = g(lambda)
+  \draw[->] (-3.4,0) -- (3.6,0) node[right] {$u$};
+  \draw[->] (0,-0.8) -- (0,2.6) node[above] {$t$};
+  \draw[fill=gray!20] plot[smooth cycle,tension=0.85]
+    coordinates {(-2.7,1.15) (-1.9,1.6) (-0.9,1.95) (0.3,2.0) (1.3,1.75) (2.0,1.3) (2.6,0.5) (1.2,0.6) (0,0.8) (-1.4,0.75)};
+  \node at (1.0,1.6) {$\mathcal{G}$};
+  \draw[dashed] (-2.0,0.8) -- (0,0.8);
+  \fill (0,0.8) circle (1.4pt) node[right] {$p^{\star}$};
+  \fill (0,0.54) circle (1.4pt) node[right] {$g(\lambda)$};
+  \draw (-3.2,1.02) -- (3.4,0.03);
+  \node[anchor=east] at (-3.25,1.12) {$\lambda u + t = g(\lambda)$};
+\end{tikzpicture}
+```
+
+:::
 
 针对只有一个（不等式）约束的简单问题，对偶函数和下界 $g(\lambda) \leqslant p^{\star}$ 的几何解释如图所示。给定 $\lambda$，在集合 $\mathcal{G} = \{ (f_1(x), f_0(x)) \mid x \in \mathcal{D} \}$ 上极小化 $(\lambda, 1)^{\top}(u, t)$，得到斜率为 $-\lambda$ 的支撑超平面。支撑超平面与坐标轴 $u = 0$ 的交点即为 $g(\lambda)$。
 
-![](7204d4d29db53fea908026c9cc979065.webp)
+![](g-set-three-lambdas.webp "三个对偶可行值对应的支撑超平面")
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[line cap=round,line join=round,scale=0.95]
+  % G set and supporting lines for three dual feasible lambdas
+  \draw[->] (-3.4,0) -- (3.6,0) node[right] {$u$};
+  \draw[->] (0,-1.4) -- (0,2.6) node[above] {$t$};
+  \draw[fill=gray!20] plot[smooth cycle,tension=0.85]
+    coordinates {(-2.7,1.15) (-1.9,1.6) (-0.9,1.95) (0.3,2.0) (1.3,1.75) (2.0,1.3) (2.6,0.5) (1.2,0.6) (0,0.8) (-1.4,0.75)};
+  \node at (1.0,1.6) {$\mathcal{G}$};
+  \fill (0,0.8) circle (1.4pt) node[above right] {$p^{\star}$};
+  \fill (0,0.54) circle (1.4pt) node[right] {$d^{\star}$};
+  \fill (0,-0.065) circle (1.4pt);
+  % lambda1: nearly flat, touching the right tail
+  \draw (-3.2,0.529) -- (3.4,0.496);
+  \node[anchor=east] at (-3.25,0.62) {$\lambda_1 u + t = g(\lambda_1)$};
+  % lambda*: touching the dip
+  \draw (-3.2,1.02) -- (3.4,0.03);
+  \node[anchor=east] at (-3.25,1.12) {$\lambda^{\star} u + t = g(\lambda^{\star})$};
+  % lambda2: steep, intercept below zero
+  \draw (-3.2,1.375) -- (2.4,-1.145);
+  \node[anchor=east] at (-3.25,1.5) {$\lambda_2 u + t = g(\lambda_2)$};
+\end{tikzpicture}
+```
+
+:::
 
 如图所示，对偶可行的三个 $\lambda$ 值对应的支撑超平面，这三个值中包含最优值 $\lambda^{\star}$。强对偶性此时不成立，最优对偶间隙 $p^{\star} - d^{\star} > 0$。
 
@@ -86,7 +133,31 @@ $$
 
 即弱对偶性成立。强对偶性成立，当且仅当存在某些对偶可行变量 $(\lambda, \nu)$，使得上式中的不等号取等号。从几何上看，对于集合 $\mathcal{A}$，存在一个边界点 $(0, 0, p^{\star})$ 处的非竖直的支撑超平面。
 
-![](165202bc19f9ba9fd8d5b66a32af0a04.webp)
+![](a-set-one-lambda.webp "集合 A 与非竖直支撑超平面")
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[line cap=round,line join=round,scale=0.95]
+  % epigraph variation A = G + R_+ x R_+
+  % shared bottom boundary of G (from right tail back to left tip)
+  \fill[gray!20] (-2.7,1.15) -- (-2.7,2.35) -- (3.3,2.35) -- (3.3,0.5) -- (2.6,0.5)
+    plot[smooth] coordinates {(2.6,0.5) (1.2,0.6) (0,0.8) (-1.4,0.75) (-2.7,1.15)};
+  % outline of G: smooth top + smooth bottom (same points)
+  \draw plot[smooth] coordinates {(-2.7,1.15) (-1.9,1.6) (-0.9,1.95) (0.3,2.0) (1.3,1.75) (2.0,1.3) (2.6,0.5)};
+  \draw plot[smooth] coordinates {(2.6,0.5) (1.2,0.6) (0,0.8) (-1.4,0.75) (-2.7,1.15)};
+  \node at (2.7,2.0) {$\mathcal{A}$};
+  \draw[->] (-3.4,0) -- (3.6,0) node[right] {$u$};
+  \draw[->] (0,-0.8) -- (0,2.6) node[above] {$t$};
+  \draw[dashed] (-2.0,0.8) -- (0,0.8);
+  \fill (0,0.8) circle (1.4pt) node[right] {$(0, p^{\star})$};
+  \fill (0,0.54) circle (1.4pt) node[right] {$(0, g(\lambda))$};
+  \draw (-3.2,1.02) -- (3.4,0.03);
+  \node[anchor=east] at (-3.25,1.12) {$\lambda u + t = g(\lambda)$};
+\end{tikzpicture}
+```
+
+:::
 
 针对具有一个（不等式）约束的问题，对偶函数和下界 $g(\lambda) \leqslant p^{\star}$ 的几何解释。给定 $\lambda$，在 $\mathcal{A}$ 上极小化 $(\lambda, 1)^{\top}(u, t)$。这样可以得到斜率为 $-\lambda$ 的支撑超平面。此支撑超平面与坐标轴 $u = 0$ 的交点即为 $(0, g(\lambda))$。
 

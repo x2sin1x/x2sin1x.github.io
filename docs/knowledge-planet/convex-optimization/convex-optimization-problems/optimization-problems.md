@@ -362,7 +362,24 @@ $$
 
 其优化变量为 $x \in \mathbf{R}^n$ 和 $t \in \mathbf{R}$。显然，这个问题与原问题是等价的。下图可以很好地说明无约束优化问题的几何意义，即找上镜图中的最低点。
 
-![](49d8cf888fd182c77d39fe0282995292.webp)
+![](epigraph-problem.webp "上镜图问题形式")
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[line cap=round,line join=round,scale=1.0]
+  % epigraph problem form: minimize t over epi f0
+  \draw[->] (-0.8,0) -- (5.2,0) node[right] {$x$};
+  \draw[->] (0,-0.8) -- (0,4.4) node[above] {$t$};
+  \fill[gray!20] plot[domain=0.6:4.4] (\x, {0.55*(\x-2.2)^2 + 1.45})
+    -- (4.4,4.1) -- (0.6,4.1) -- cycle;
+  \draw plot[domain=0.6:4.4] (\x, {0.55*(\x-2.2)^2 + 1.45});
+  \node at (2.6,3.1) {$\mathrm{epi}\, f_0$};
+  \fill (2.2,1.45) circle (1.4pt) node[below] {$(x^{\star}, t^{\star})$};
+\end{tikzpicture}
+```
+
+:::
 
 ### 隐式与显式约束
 

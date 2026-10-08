@@ -9,7 +9,7 @@ weight: 270
 
 ## 广义不等式的单调性
 
-设 $K \subseteq \mathbf{R}^n$ 是一个正常锥，其相应的广义不等式为 $\\preceq_{K}$。定义函数 $f: \mathbf{R}^n \rightarrow \mathbf{R}$，若
+设 $K \subseteq \mathbf{R}^n$ 是一个正常锥，其相应的广义不等式为 $\preceq_{K}$。定义函数 $f: \mathbf{R}^n \rightarrow \mathbf{R}$，若
 
 $$
 x \preceq_{K} y \Longrightarrow f(x) \leqslant f(y)

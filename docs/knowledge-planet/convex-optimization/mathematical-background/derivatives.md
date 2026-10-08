@@ -53,13 +53,28 @@ $$
 
 ## 链式规则
 
-设复合函数 $h(x) = g(f(x))$，则
+设 $f: \mathbf{R}^{n}\rightarrow\mathbf{R}^{m}$、$g: \mathbf{R}^{m}\rightarrow\mathbf{R}^{p}$ 均可微，复合函数 $h(x)=g(f(x))$ 的导数为
 
 $$
-\begin{aligned}
-\nabla h(x) &= g'(f(x))f(x) \\
-&= \nabla g(f(x))^{\top} f(x)
-\end{aligned}
+Dh(x)=Dg(f(x))Df(x).
+$$
+
+当 $p=1$、即外层函数为实值函数时，梯度是 Jacobian 的转置，因此
+
+$$
+\nabla h(x)=Df(x)^{\top}\nabla g(f(x)).
+$$
+
+特别地，若 $m=1$ 且 $g:\mathbf{R}\rightarrow\mathbf{R}$，则化为标量复合公式
+
+$$
+\nabla h(x)=g'(f(x))\nabla f(x).
+$$
+
+例如，令 $f(x)=x_1^2+x_2^2$、$g(t)=e^t$，则
+
+$$
+\nabla(g(f(x)))=e^{x_1^2+x_2^2}\begin{bmatrix}2x_1\\2x_2\end{bmatrix}.
 $$
 
 ### 仿射函数

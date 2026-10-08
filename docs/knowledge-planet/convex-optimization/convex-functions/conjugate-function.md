@@ -15,7 +15,28 @@ $$
 
 ### 几何意义
 
-![](42ab18f4d6e33cabf67b80e910096099.webp "共轭函数的几何意义")
+![](conjugate-geometry.webp "共轭函数的几何意义")
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[line cap=round,line join=round,scale=1.0]
+  % conjugate function: f*(y) = sup (yx - f(x))
+  \draw[->] (-1.0,0) -- (4.7,0) node[below] {$x$};
+  \draw[->] (0,-1.3) -- (0,3.6);
+  \draw[blue] plot[domain=-0.8:4.4] (\x, {0.3*(\x-1.2)^2 + 0.5});
+  \node[blue] at (-0.45,2.9) {$f(x)$};
+  % line yx through origin (parallel to the tangent of f)
+  \draw[dashed] (-0.9,-0.648) -- (4.35,3.132);
+  \node at (4.0,3.0) {$xy$};
+  % tangent line, intercept -f*(y) on the y-axis
+  \draw[dashed] (-0.9,-1.444) -- (4.35,2.336);
+  \fill (2.4,0.932) circle (1.6pt);
+  \fill (0,-0.796) circle (1.6pt) node[right] {$(0, -f^{*}(y))$};
+\end{tikzpicture}
+```
+
+:::
 
 共轭函数的几何意义如图所示。教材当中仅仅只是简略说明了这张图，但实际上这张图并不是特别容易理解。下面详细说明如何将这张图和共轭函数的定义结合起来理解。
 

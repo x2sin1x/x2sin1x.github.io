@@ -12,6 +12,7 @@ weight: 10
 - [函数](/knowledge-planet/convex-optimization/mathematical-background/functions/)
 - [导数](/knowledge-planet/convex-optimization/mathematical-background/derivatives/)
 - [线性代数](/knowledge-planet/convex-optimization/mathematical-background/linear-algebra/)
+- [数值线性代数](/knowledge-planet/convex-optimization/mathematical-background/numerical-linear-algebra/)
 
 ## 本章涉及到的数学符号
 

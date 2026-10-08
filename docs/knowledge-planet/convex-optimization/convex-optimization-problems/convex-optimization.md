@@ -244,7 +244,23 @@ $$
 
 凸优化和拟凸优化之间最重要的区别在于，拟凸优化问题可以有非全局最优解。
 
-![](0ed3da5493d6875598b33f9867210ee9.webp)
+![](quasiconvex-local-optimum.webp "拟凸优化的局部最优解")
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[line cap=round,line join=round,scale=1.0]
+  % quasiconvex function: local minimum x need not be global
+  \draw[->] (-0.4,0) -- (6.6,0);
+  \draw[->] (0,-0.3) -- (0,4.2);
+  \draw plot[smooth,tension=0.8]
+    coordinates {(0,3.4) (0.9,2.5) (1.7,1.1) (2.2,0.55) (2.9,1.15) (3.5,1.75)
+                 (4.1,1.78) (4.7,1.74) (5.3,2.3) (6.3,4.0)};
+  \fill (4.4,1.76) circle (1.4pt) node[above] {$(x, f(x))$};
+\end{tikzpicture}
+```
+
+:::
 
 如图所示的拟凸函数在 $x$ 是局部最优解，但却不是全局最优解。这个例子说明了在凸函数中的最优性条件 $f^{\prime}(x)=0$ 对拟凸函数并不成立，它仅仅是一个充分条件。
 

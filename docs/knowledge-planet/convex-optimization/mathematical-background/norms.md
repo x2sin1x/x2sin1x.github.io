@@ -211,3 +211,9 @@ z^{\top}x \leqslant \|x\| \|z\|
 $$
 
 Euclid 范数的对偶还是 Euclid 范数，$\ell_1$-范数和 $\ell_{\infty}$-范数互为对偶。
+
+几个常用的对偶范数：
+
+- $\|z\|_2^{*} = \|z\|_2$：由 Cauchy-Schwarz 不等式，$z^{\top}x \leqslant \|z\|_2 \|x\|_2$，且在 $x = z / \|z\|_2$ 处取等。
+- $\|z\|_1^{*} = \|z\|_{\infty}$，$\|z\|_{\infty}^{*} = \|z\|_1$：由 Hölder 不等式，$z^{\top}x \leqslant \|z\|_{\infty} \|x\|_1$；前者在 $x = \operatorname{sgn}(z)$ 处取等，后者在 $x = e_k$（$k$ 为 $|z_k|$ 最大的下标）处取等。
+- Frobenius 范数的对偶是它本身：$\|Z\|_F^{*} = \|Z\|_F$（矩阵版本的 Cauchy-Schwarz 不等式）。

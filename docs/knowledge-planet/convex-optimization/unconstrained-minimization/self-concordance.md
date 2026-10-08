@@ -132,7 +132,31 @@ $$
 
 并保证退出时 $f(x) - p^{\star} \leqslant \epsilon$。
 
-> **待配图**&#8203;：对应教材图 9.24 —— 实线为函数 $-(\lambda + \log(1 - \lambda))$（$\lambda$ 很小时近似 $\lambda^2/2$），虚线为 $\lambda^2$（在 $0 \leqslant \lambda \leqslant 0.68$ 上是上界）。
+![实线为函数 $-(\lambda + \log(1 - \lambda))$（$\lambda$ 很小时近似 $\lambda^2/2$），虚线为 $\lambda^2$（在 $0 \leqslant \lambda \leqslant 0.68$ 上是上界）（对应教材图 9.24）](self-concordance/tikz-src/self-concordance-lambda.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \draw[->,color=black!60] (-0.15,0) -- (1.35,0) node[below] {$\lambda$};
+  \draw[->,color=black!60] (0,0) -- (0,2.3) node[left] {};
+  \draw[cred,very thick,domain=0:0.93,samples=100] plot (\x,{-\x-ln(1-\x)});
+  \draw[cblue,very thick,dashed,domain=0:1.28] plot (\x,{\x*\x});
+  \draw[color=black!55,dotted] (0.68,0) -- (0.68,0.47);
+  \node[below,font=\scriptsize,color=black!60] at (0.68,0) {$0.68$};
+  \node[font=\scriptsize,color=cred] at (0.79,1.9) {$-(\lambda+\log(1-\lambda))$};
+  \node[font=\scriptsize,color=cblue] at (1.08,1.28) {$\lambda^2$};
+\end{tikzpicture}
+```
 
 ## 自和谐函数的 Newton 方法分析
 
@@ -215,7 +239,195 @@ $$
 
 作为所需 Newton 步数的粗略预测效果并不差（尽管它显然不是唯一因素）。还应指出，所研究的问题族不仅是自和谐的，而且是**极小自和谐**&#8203;（minimally self-concordant）的——即对 $\alpha < 1$，$\alpha f$ 不再自和谐——因此该界无法通过缩放 $f$ 来改进。（$f(x) = -20\log x$ 是一个自和谐但非极小自和谐的函数的例子，因为 $(1/20)f$ 也自和谐。）
 
-> **待配图**&#8203;：对应教材图 9.25 —— 极小化自和谐函数所需的 Newton 迭代次数对 $f(x^{(0)}) - p^{\star}$ 的散点图（三个不同规模的问题族各 50 个实例）。
+![极小化自和谐函数所需的 Newton 迭代次数对 $f(x^{(0)}) - p^{\star}$ 的散点图（三个不同规模的问题族各 50 个实例），以及两条参考线（对应教材图 9.25）](self-concordance/tikz-src/self-concordance-scatter.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \draw[color=black!12,very thin] (0.0000,0) -- (0.0000,5.4) (1.2286,0) -- (1.2286,5.4) (2.4571,0) -- (2.4571,5.4) (3.6857,0) -- (3.6857,5.4) (4.9143,0) -- (4.9143,5.4) (6.1429,0) -- (6.1429,5.4) (7.3714,0) -- (7.3714,5.4) (8.6000,0) -- (8.6000,5.4) (0,0.7714) -- (8.6,0.7714) (0,1.5429) -- (8.6,1.5429) (0,2.3143) -- (8.6,2.3143) (0,3.0857) -- (8.6,3.0857) (0,3.8571) -- (8.6,3.8571) (0,4.6286) -- (8.6,4.6286) (0,5.4000) -- (8.6,5.4000) ;
+  \draw[->,color=black!60] (0,0) -- (8.95,0) node[below] {$f(x^{(0)})-p^{\star}$};
+  \draw[->,color=black!60] (0,0) -- (0,5.75) node[left] {Newton iterations};
+  \draw[cred,very thick,dashed] (0,0.0023) -- (8.6000,5.0648);
+  \draw[cgreen,very thick] (0,0.0023) -- (8.6000,0.0158);
+  \fill[cblue] (4.7044,0.0004) circle (1.4pt);
+  \fill[cblue] (2.1678,0.0309) circle (1.4pt);
+  \fill[cblue] (3.5937,0.0093) circle (1.4pt);
+  \fill[cblue] (6.1471,0.0012) circle (1.4pt);
+  \fill[cblue] (4.2844,0.0023) circle (1.4pt);
+  \fill[cblue] (7.0840,0.0000) circle (1.4pt);
+  \fill[cblue] (4.9066,0.0309) circle (1.4pt);
+  \fill[cblue] (7.7836,0.0100) circle (1.4pt);
+  \fill[cblue] (4.7417,0.0004) circle (1.4pt);
+  \fill[cblue] (7.4681,0.0197) circle (1.4pt);
+  \fill[cblue] (7.8778,0.0062) circle (1.4pt);
+  \fill[cblue] (0.5719,0.0309) circle (1.4pt);
+  \fill[cblue] (3.9173,0.0108) circle (1.4pt);
+  \fill[cblue] (8.4017,0.0039) circle (1.4pt);
+  \fill[cblue] (3.5754,0.0093) circle (1.4pt);
+  \fill[cblue] (2.8234,0.0077) circle (1.4pt);
+  \fill[cblue] (5.7121,0.0012) circle (1.4pt);
+  \fill[cblue] (0.0591,0.0012) circle (1.4pt);
+  \fill[cblue] (2.8308,0.0077) circle (1.4pt);
+  \fill[cblue] (0.0241,0.0012) circle (1.4pt);
+  \fill[cblue] (7.6071,0.0073) circle (1.4pt);
+  \fill[cblue] (5.8901,0.0158) circle (1.4pt);
+  \fill[cblue] (5.3736,0.0008) circle (1.4pt);
+  \fill[cblue] (0.9279,0.0309) circle (1.4pt);
+  \fill[cblue] (5.9459,0.0000) circle (1.4pt);
+  \fill[cblue] (3.0619,0.0069) circle (1.4pt);
+  \fill[cblue] (2.8675,0.0309) circle (1.4pt);
+  \fill[cblue] (4.9083,0.0116) circle (1.4pt);
+  \fill[cblue] (0.5662,0.0027) circle (1.4pt);
+  \fill[cblue] (0.6661,0.0309) circle (1.4pt);
+  \fill[cblue] (2.5339,0.0073) circle (1.4pt);
+  \fill[cblue] (4.8981,0.0000) circle (1.4pt);
+  \fill[cblue] (5.9426,0.0139) circle (1.4pt);
+  \fill[cblue] (8.0155,0.0085) circle (1.4pt);
+  \fill[cblue] (5.1292,0.0008) circle (1.4pt);
+  \fill[cblue] (1.7141,0.0309) circle (1.4pt);
+  \fill[cblue] (5.9506,0.0027) circle (1.4pt);
+  \fill[cblue] (0.5651,0.0309) circle (1.4pt);
+  \fill[cblue] (4.2469,0.0000) circle (1.4pt);
+  \fill[cblue] (6.0213,0.0019) circle (1.4pt);
+  \fill[cblue] (7.3427,0.0066) circle (1.4pt);
+  \fill[cblue] (7.2065,0.0062) circle (1.4pt);
+  \fill[cblue] (6.2388,0.0143) circle (1.4pt);
+  \fill[cblue] (1.9455,0.0309) circle (1.4pt);
+  \fill[cblue] (2.8860,0.0066) circle (1.4pt);
+  \fill[cblue] (8.3969,0.0093) circle (1.4pt);
+  \fill[cblue] (5.2183,0.0309) circle (1.4pt);
+  \fill[cblue] (4.8605,0.0031) circle (1.4pt);
+  \fill[cblue] (0.6934,0.0309) circle (1.4pt);
+  \fill[cblue] (3.3424,0.0069) circle (1.4pt);
+  \draw[cred] (2.4283-1.5pt,0.0031-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (0.1145-1.5pt,0.0015-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (0.2111-1.5pt,0.0015-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (7.8808-1.5pt,0.0220-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (4.4440-1.5pt,0.0077-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (7.2865-1.5pt,0.0004-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (4.1371-1.5pt,0.0108-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (6.7669-1.5pt,0.0004-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (6.9121-1.5pt,0.0000-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (0.7004-1.5pt,0.0019-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (5.6065-1.5pt,0.0077-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (7.9570-1.5pt,0.0120-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (0.4628-1.5pt,0.0015-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (6.6335-1.5pt,0.0008-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (3.9690-1.5pt,0.0062-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (2.3444-1.5pt,0.0023-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (5.9134-1.5pt,0.0012-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (4.4577-1.5pt,0.0104-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (1.0581-1.5pt,0.0031-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (5.0829-1.5pt,0.0093-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (2.2576-1.5pt,0.0042-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (3.1310-1.5pt,0.0073-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (7.3053-1.5pt,0.0015-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (4.3920-1.5pt,0.0096-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (7.7919-1.5pt,0.0000-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (2.7890-1.5pt,0.0050-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (6.4773-1.5pt,0.0069-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (6.6357-1.5pt,0.0073-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (6.5298-1.5pt,0.0039-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (2.6058-1.5pt,0.0031-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (6.4501-1.5pt,0.0023-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (6.2948-1.5pt,0.0008-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (5.2292-1.5pt,0.0000-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (4.9604-1.5pt,0.0089-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (7.7055-1.5pt,0.0004-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (6.6919-1.5pt,0.0012-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (0.5966-1.5pt,0.0019-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (5.4008-1.5pt,0.0123-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (0.4617-1.5pt,0.0023-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (6.6260-1.5pt,0.0000-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (5.6788-1.5pt,0.0042-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (8.2414-1.5pt,0.0023-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (6.3240-1.5pt,0.0015-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (3.4010-1.5pt,0.0077-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (4.1282-1.5pt,0.0069-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (3.2177-1.5pt,0.0031-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (4.9990-1.5pt,0.0089-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (2.7311-1.5pt,0.0066-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (2.9397-1.5pt,0.0054-1.5pt) rectangle ++(3pt,3pt);
+  \draw[cred] (4.2887-1.5pt,0.0089-1.5pt) rectangle ++(3pt,3pt);
+  \draw[fill] [cgreen!70!black] (3.3668,0.0015+1.8pt) -- (3.3668-1.7pt,0.0015-1.2pt) -- (3.3668+1.7pt,0.0015-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (5.7448,0.0019+1.8pt) -- (5.7448-1.7pt,0.0019-1.2pt) -- (5.7448+1.7pt,0.0019-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (4.2805,0.0015+1.8pt) -- (4.2805-1.7pt,0.0015-1.2pt) -- (4.2805+1.7pt,0.0015-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (2.2077,0.0023+1.8pt) -- (2.2077-1.7pt,0.0023-1.2pt) -- (2.2077+1.7pt,0.0023-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (5.3533,0.0054+1.8pt) -- (5.3533-1.7pt,0.0054-1.2pt) -- (5.3533+1.7pt,0.0054-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (5.4352,0.0069+1.8pt) -- (5.4352-1.7pt,0.0069-1.2pt) -- (5.4352+1.7pt,0.0069-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (5.6007,0.0042+1.8pt) -- (5.6007-1.7pt,0.0042-1.2pt) -- (5.6007+1.7pt,0.0042-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (8.0243,0.0027+1.8pt) -- (8.0243-1.7pt,0.0027-1.2pt) -- (8.0243+1.7pt,0.0027-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (3.7085,0.0023+1.8pt) -- (3.7085-1.7pt,0.0023-1.2pt) -- (3.7085+1.7pt,0.0023-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (3.4342,0.0023+1.8pt) -- (3.4342-1.7pt,0.0023-1.2pt) -- (3.4342+1.7pt,0.0023-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (0.4685,0.0015+1.8pt) -- (0.4685-1.7pt,0.0015-1.2pt) -- (0.4685+1.7pt,0.0015-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (4.7816,0.0023+1.8pt) -- (4.7816-1.7pt,0.0023-1.2pt) -- (4.7816+1.7pt,0.0023-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (6.4864,0.0054+1.8pt) -- (6.4864-1.7pt,0.0054-1.2pt) -- (6.4864+1.7pt,0.0054-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (7.8721,0.0062+1.8pt) -- (7.8721-1.7pt,0.0062-1.2pt) -- (7.8721+1.7pt,0.0062-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (4.3222,0.0066+1.8pt) -- (4.3222-1.7pt,0.0066-1.2pt) -- (4.3222+1.7pt,0.0066-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (8.2162,0.0131+1.8pt) -- (8.2162-1.7pt,0.0131-1.2pt) -- (8.2162+1.7pt,0.0131-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (6.1820,0.0023+1.8pt) -- (6.1820-1.7pt,0.0023-1.2pt) -- (6.1820+1.7pt,0.0023-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (3.7577,0.0023+1.8pt) -- (3.7577-1.7pt,0.0023-1.2pt) -- (3.7577+1.7pt,0.0023-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (3.5177,0.0027+1.8pt) -- (3.5177-1.7pt,0.0027-1.2pt) -- (3.5177+1.7pt,0.0027-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (1.5618,0.0019+1.8pt) -- (1.5618-1.7pt,0.0019-1.2pt) -- (1.5618+1.7pt,0.0019-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (1.7782,0.0019+1.8pt) -- (1.7782-1.7pt,0.0019-1.2pt) -- (1.7782+1.7pt,0.0019-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (2.9688,0.0062+1.8pt) -- (2.9688-1.7pt,0.0062-1.2pt) -- (2.9688+1.7pt,0.0062-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (7.5594,0.0031+1.8pt) -- (7.5594-1.7pt,0.0031-1.2pt) -- (7.5594+1.7pt,0.0031-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (5.3840,0.0069+1.8pt) -- (5.3840-1.7pt,0.0069-1.2pt) -- (5.3840+1.7pt,0.0069-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (1.9852,0.0015+1.8pt) -- (1.9852-1.7pt,0.0015-1.2pt) -- (1.9852+1.7pt,0.0015-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (6.4825,0.0077+1.8pt) -- (6.4825-1.7pt,0.0077-1.2pt) -- (6.4825+1.7pt,0.0077-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (5.5232,0.0054+1.8pt) -- (5.5232-1.7pt,0.0054-1.2pt) -- (5.5232+1.7pt,0.0054-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (1.2241,0.0015+1.8pt) -- (1.2241-1.7pt,0.0015-1.2pt) -- (1.2241+1.7pt,0.0015-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (2.7770,0.0023+1.8pt) -- (2.7770-1.7pt,0.0023-1.2pt) -- (2.7770+1.7pt,0.0023-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (1.4128,0.0015+1.8pt) -- (1.4128-1.7pt,0.0015-1.2pt) -- (1.4128+1.7pt,0.0015-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (8.5283,0.0008+1.8pt) -- (8.5283-1.7pt,0.0008-1.2pt) -- (8.5283+1.7pt,0.0008-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (1.1993,0.0015+1.8pt) -- (1.1993-1.7pt,0.0015-1.2pt) -- (1.1993+1.7pt,0.0015-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (2.1589,0.0023+1.8pt) -- (2.1589-1.7pt,0.0023-1.2pt) -- (2.1589+1.7pt,0.0023-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (7.6810,0.0019+1.8pt) -- (7.6810-1.7pt,0.0019-1.2pt) -- (7.6810+1.7pt,0.0019-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (4.9430,0.0019+1.8pt) -- (4.9430-1.7pt,0.0019-1.2pt) -- (4.9430+1.7pt,0.0019-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (5.0673,0.0089+1.8pt) -- (5.0673-1.7pt,0.0089-1.2pt) -- (5.0673+1.7pt,0.0089-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (3.4997,0.0039+1.8pt) -- (3.4997-1.7pt,0.0039-1.2pt) -- (3.4997+1.7pt,0.0039-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (7.9318,0.0069+1.8pt) -- (7.9318-1.7pt,0.0069-1.2pt) -- (7.9318+1.7pt,0.0069-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (4.9003,0.0031+1.8pt) -- (4.9003-1.7pt,0.0031-1.2pt) -- (4.9003+1.7pt,0.0031-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (2.3444,0.0019+1.8pt) -- (2.3444-1.7pt,0.0019-1.2pt) -- (2.3444+1.7pt,0.0019-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (6.0222,0.0096+1.8pt) -- (6.0222-1.7pt,0.0096-1.2pt) -- (6.0222+1.7pt,0.0096-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (1.8045,0.0015+1.8pt) -- (1.8045-1.7pt,0.0015-1.2pt) -- (1.8045+1.7pt,0.0015-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (0.9110,0.0015+1.8pt) -- (0.9110-1.7pt,0.0015-1.2pt) -- (0.9110+1.7pt,0.0015-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (4.9424,0.0058+1.8pt) -- (4.9424-1.7pt,0.0058-1.2pt) -- (4.9424+1.7pt,0.0058-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (1.0088,0.0015+1.8pt) -- (1.0088-1.7pt,0.0015-1.2pt) -- (1.0088+1.7pt,0.0015-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (7.0499,0.0116+1.8pt) -- (7.0499-1.7pt,0.0116-1.2pt) -- (7.0499+1.7pt,0.0116-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (7.1144,0.0058+1.8pt) -- (7.1144-1.7pt,0.0058-1.2pt) -- (7.1144+1.7pt,0.0058-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (1.3419,0.0015+1.8pt) -- (1.3419-1.7pt,0.0015-1.2pt) -- (1.3419+1.7pt,0.0015-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (4.0596,0.0019+1.8pt) -- (4.0596-1.7pt,0.0019-1.2pt) -- (4.0596+1.7pt,0.0019-1.2pt) -- cycle;
+  \draw[fill] [cgreen!70!black] (8.4935,0.0108+1.8pt) -- (8.4935-1.7pt,0.0108-1.2pt) -- (8.4935+1.7pt,0.0108-1.2pt) -- cycle;
+  \node[below,font=\scriptsize,color=black!60] at (0.0000,0) {0};
+  \node[below,font=\scriptsize,color=black!60] at (1.2286,0) {5};
+  \node[below,font=\scriptsize,color=black!60] at (2.4571,0) {10};
+  \node[below,font=\scriptsize,color=black!60] at (3.6857,0) {15};
+  \node[below,font=\scriptsize,color=black!60] at (4.9143,0) {20};
+  \node[below,font=\scriptsize,color=black!60] at (6.1429,0) {25};
+  \node[below,font=\scriptsize,color=black!60] at (7.3714,0) {30};
+  \node[below,font=\scriptsize,color=black!60] at (8.6000,0) {35};
+  \node[left,font=\scriptsize,color=black!60] at (0,0.7714) {$2\cdot 10^{3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0,1.5429) {$4\cdot 10^{3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0,2.3143) {$6\cdot 10^{3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0,3.0857) {$8\cdot 10^{3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0,3.8571) {$10\cdot 10^{3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0,4.6286) {$12\cdot 10^{3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0,5.4000) {$14\cdot 10^{3}$};
+  \node[font=\scriptsize,color=cred,rotate=87] at (7.7400,4.0500) {bound $375(f(x^{(0)})-p^{\star})+6$};
+  \node[font=\scriptsize,color=cgreen!60!black] at (5.4057,0.3471) {$f(x^{(0)})-p^{\star}+6$};
+\end{tikzpicture}
+```
 
 ### 自和谐性的实际意义
 

@@ -38,7 +38,24 @@ $$
 
 实际上，上述不等式以及上述结论仅仅只是给出了扰动之后最优值的一个下界，但是没有给出上界。因此，放松或者加强一个约束，上述结论并不对称。
 
-![](82efdbd231d6123b3b6986a4f1c8c877.webp)
+![](perturbation-value-function.webp "最优值函数与支撑超平面")
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[line cap=round,line join=round,scale=1.0]
+  % perturbation: p*(u) and its supporting line p*(0) - lambda* u
+  \draw[->] (-0.6,0) -- (3.0,0) node[right] {$u$};
+  \draw plot[domain=-0.35:2.7,samples=40] (\x, {1.2*exp(-1.8*\x) + 0.3});
+  \draw (-0.25,2.04) -- (0.85,-0.34);
+  \draw[dotted] (0,0) -- (0,1.5);
+  \node[below] at (0,-0.05) {$u = 0$};
+  \node[right] at (2.6,0.31) {$p^{\star}(u)$};
+  \node[below] at (0.75,-0.42) {$p^{\star}(0) - \lambda^{\star} u$};
+\end{tikzpicture}
+```
+
+:::
 
 上述不等式的几何意义如图所示，这是一个具有一个不等式约束的凸问题。图中蓝色曲线表示具有一个约束 $f_1(x) \leqslant u$ 的凸问题的最优值 $p^{\star}(u)$ 的图像，它是 $u$ 的函数。当 $u = 0$ 时，对应原始未被扰动的问题；当 $u < 0$ 时，约束加强了；当 $u > 0$ 时，约束放松了。仿射函数 $p^{\star}(0) - \lambda^{\star}u$（图中紫色直线）给出了最优值 $p^{\star}$ 的一个下界。从图中可以看到，紫色直线在蓝色曲线的下方，它们相切的切点对应的横坐标就是 $u = 0$，即原始未被扰动的问题。
 

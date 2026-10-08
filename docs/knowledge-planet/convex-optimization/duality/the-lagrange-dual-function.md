@@ -47,7 +47,33 @@ $$
 
 为了便于理解，我们考虑只有一个变量 $x \in \mathbf{R}$ 并且只有一个不等式约束的简单情形。如下图所示：
 
-![](1c8c0f7e8babb9bb33efe3b0cf280536.webp)
+![](dual-function-family.webp "对偶函数的几何解释")
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[x=2.2cm,y=0.5cm,line cap=round]
+  % family of lines f0 + lambda f1, the solid f0 and the dashed lower envelope
+  \draw[gray!40] (-1,-2) rectangle (1,5);
+  \foreach \t in {-0.9,-0.75,...,0.9}
+    \draw[gray!55] plot[domain=-1:1] (\x, {1.5*\t*\x - 0.75*\t*\t - 1});
+  \draw[dashed] plot[domain=-1:1] (\x, {0.75*\x*\x - 1});
+  \draw[thick] plot[smooth] coordinates {(-1,4.2) (-0.75,2.0) (-0.5,1.5) (-0.1,1.9) (0.15,2.1) (0.5,2.0) (0.75,3.0) (1,4.2)};
+  \draw[dotted] (-0.5,-2) -- (-0.5,5);
+  \draw[dotted] (0.5,-2) -- (0.5,5);
+  \fill (-0.5,1.5) circle (1.6pt);
+  \node[below] at (0,-2) {$x$};
+  \node[left] at (-1,4) {\small $4$};
+  \node[left] at (-1,0) {\small $0$};
+  \node[left] at (-1,-2) {\small $-2$};
+  \node[below] at (-1,-2) {\small $-1$};
+  \node[below] at (-0.5,-2) {\small $-0.5$};
+  \node[below] at (0.5,-2) {\small $0.5$};
+  \node[below] at (1,-2) {\small $1$};
+\end{tikzpicture}
+```
+
+:::
 
 图中表示的是对偶可行点给出的下界。粗的实线表示目标函数 $f_0$，下方的虚线表示约束函数 $f_1$。可行集是图中两个红点之间的部分所在区间。细的点线表示一系列 Lagrange 函数 $L(x, \lambda)$，其中 $\lambda = \lambda_1, \lambda_2, \lambda_3, \cdots$。该问题的最优点是左边的红点所在位置，可以看到每个 Lagrange 函数的极小值均小于之。
 

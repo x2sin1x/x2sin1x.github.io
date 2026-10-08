@@ -21,6 +21,8 @@ $$
 
 也是凸的。从几何上看，凸集经过伸缩变换和平移变换后仍然是凸集。一个凸集向它的某几个坐标的投影也是凸的。
 
+反过来，凸集在仿射函数下的**原象**也是凸的：若 $S \subseteq \mathbf{R}^m$ 凸，则 $f^{-1}(S) = \{x \mid f(x) \in S\}$ 也是凸的。这是因为若 $f(x_1), f(x_2) \in S$，则由 $S$ 的凸性，$f(\theta x_1 + (1-\theta)x_2) = \theta f(x_1) + (1-\theta) f(x_2) \in S$。
+
 **双曲锥**
 
 $$
@@ -60,7 +62,31 @@ $$
 
 在二维空间 $\mathbf{R}^{2}$ 中，小孔坐标 $(0, 0)$。圆 $x^2 + (y-2)^2 = 1$ 在直线 $y = -\sqrt{3}$ 上所成的像为线段 $y = -\sqrt{3}, x \in [-1, 1]$。如图所示：
 
-![](2f584a728570a6ece4e53c59712253b6.svg)
+![](pinhole-imaging.webp "小孔成像")
+
+::: details TikZ 代码
+
+```tex
+\begin{tikzpicture}[line cap=round,line join=round,scale=1.0]
+  % pinhole imaging: circle projects to a segment on y = -sqrt(3)
+  \draw[fill=gray!20] (0,2) circle (1);
+  \node at (-1.35,2.4) {$x^2+(y-2)^2=1$};
+  \fill (0,0) circle (1.6pt) node[below left] {$0$};
+  \draw[gray!60] (-2.6,-1.732) -- (2.6,-1.732);
+  \node[gray!60] at (2.35,-1.42) {$y=-\sqrt{3}$};
+  \draw[thick,blue] (-1,-1.732) -- (1,-1.732);
+  \draw (-0.866,1.5) -- (1,-1.732);
+  \draw (0.866,1.5) -- (-1,-1.732);
+  \fill (-0.866,1.5) circle (1.2pt);
+  \fill (0.866,1.5) circle (1.2pt);
+  \fill (-1,-1.732) circle (1.4pt);
+  \fill (1,-1.732) circle (1.4pt);
+  \node at (-1.15,-1.42) {$-1$};
+  \node at (1.2,-1.42) {$1$};
+\end{tikzpicture}
+```
+
+:::
 :::
 
 一个凸集在透视函数下的象和原象也是凸的，因此透视运算是保凸运算。
@@ -89,4 +115,4 @@ f(x) & = \dfrac{A x+b}{c^{\top} x+d}, \quad \operatorname{dom} f = \{x \mid c^{\
 \end{aligned}
 $$
 
-称为线性分式函数（或投射函数）。如果 $c=0$，$d > 0$，则 $f$ 是仿射函数。因此，仿射函数和线性函数被视为特殊的线性分式函数。线性分式函数也是保凸运算。
+称为线性分式函数（或投射函数）。如果 $c=0$，$d > 0$，则 $f$ 是仿射函数。因此，仿射函数和线性函数被视为特殊的线性分式函数。线性分式函数也是保凸运算：凸集在线性分式函数下的象和原象都是凸的。

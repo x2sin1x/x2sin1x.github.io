@@ -305,4 +305,224 @@ $$
 
 （$\operatorname{dom} f = \{(u, v) \mid u^{\top}u < 1,\ v^{\top}v < 1\}$，数据随机生成）的凸—凹博弈，从 $u^{(0)} = v^{(0)} = 0$ 出发的（不可行初始点）Newton 方法在约 5 次迭代后呈现明显的二次收敛。
 
-> **待配图**&#8203;：对应教材图 10.1–图 10.5 —— 原始/对偶残差范数与步长随迭代次数的变化曲线（可行例、不可行例与凸—凹博弈例）。
+![可行例（等式约束解析中心问题，$n=100$、$m=50$）中原始/对偶残差范数与步长随迭代次数的变化：第 8 次迭代取全步长后原始残差几乎变为零并保持为零，此后对偶残差二次收敛（对应教材图 10.1、图 10.2）](infeasible-start-newton-method/tikz-src/isn-feasible.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \begin{scope}
+  \draw[color=black!25,very thin] (0.0000,0.0000) -- (6.6000,0.0000) (0.0000,0.2687) -- (6.6000,0.2687) (0.0000,0.5375) -- (6.6000,0.5375) (0.0000,0.8062) -- (6.6000,0.8062) (0.0000,1.0750) -- (6.6000,1.0750) (0.0000,1.3438) -- (6.6000,1.3438) (0.0000,1.6125) -- (6.6000,1.6125) (0.0000,1.8812) -- (6.6000,1.8812) (0.0000,2.1500) -- (6.6000,2.1500) (0.0000,2.4187) -- (6.6000,2.4187) (0.0000,2.6875) -- (6.6000,2.6875) (0.0000,2.9562) -- (6.6000,2.9562) (0.0000,3.2250) -- (6.6000,3.2250) (0.0000,3.4937) -- (6.6000,3.4937) (0.0000,3.7625) -- (6.6000,3.7625) (0.0000,4.0313) -- (6.6000,4.0313) (0.0000,4.3000) -- (6.6000,4.3000);
+  \draw[color=black!15,very thin] (0.0000,0.0000) -- (0.0000,4.3000) (0.7333,0.0000) -- (0.7333,4.3000) (1.4667,0.0000) -- (1.4667,4.3000) (2.2000,0.0000) -- (2.2000,4.3000) (2.9333,0.0000) -- (2.9333,4.3000) (3.6667,0.0000) -- (3.6667,4.3000) (4.4000,0.0000) -- (4.4000,4.3000) (5.1333,0.0000) -- (5.1333,4.3000) (5.8667,0.0000) -- (5.8667,4.3000) (6.6000,0.0000) -- (6.6000,4.3000);
+  \draw[->,color=black!60] (0.0000,0.0000) -- (6.9500,0.0000) node[anchor=west,xshift=2pt,yshift=-6pt] {$k$};
+  \draw[->,color=black!60] (0.0000,0.0000) -- (0.0000,4.6500) node[left=1pt] {$\|r\|$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.0000) {$10^{-13}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.2687) {$10^{-12}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.5375) {$10^{-11}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.8062) {$10^{-10}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.0750) {$10^{-9}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.3438) {$10^{-8}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.6125) {$10^{-7}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.8812) {$10^{-6}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.1500) {$10^{-5}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.4187) {$10^{-4}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.6875) {$10^{-3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.9562) {$10^{-2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.2250) {$10^{-1}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.4937) {1};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.7625) {$10$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.0313) {$10^{2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.3000) {$10^{3}$};
+  \node[below,font=\scriptsize,color=black!60] at (0.0000,0.0000) {0};
+  \node[below,font=\scriptsize,color=black!60] at (0.7333,0.0000) {1};
+  \node[below,font=\scriptsize,color=black!60] at (1.4667,0.0000) {2};
+  \node[below,font=\scriptsize,color=black!60] at (2.2000,0.0000) {3};
+  \node[below,font=\scriptsize,color=black!60] at (2.9333,0.0000) {4};
+  \node[below,font=\scriptsize,color=black!60] at (3.6667,0.0000) {5};
+  \node[below,font=\scriptsize,color=black!60] at (4.4000,0.0000) {6};
+  \node[below,font=\scriptsize,color=black!60] at (5.1333,0.0000) {7};
+  \node[below,font=\scriptsize,color=black!60] at (5.8667,0.0000) {8};
+  \node[below,font=\scriptsize,color=black!60] at (6.6000,0.0000) {9};
+  \draw[cblue,very thick] plot coordinates {(0.000,3.762) (0.733,3.647) (1.467,3.608) (2.200,3.545) (2.933,3.542) (3.667,3.453) (4.400,3.160) (5.133,2.555) (5.867,1.328)};
+  \draw[cred,very thick] plot coordinates {(0.000,3.913) (0.733,0.004) (1.467,0.013) (2.933,0.072) (3.667,0.084) (4.400,0.062) (5.133,0.061) (5.867,0.057) (6.600,0.036)};
+  \node[anchor=south east,color=cblue] at (2.9333,2.2309) {$\|r_{\mathrm{dual}}\|$};
+  \node[anchor=south east,color=cred] at (4.4000,2.8753) {$\|r_{\mathrm{pri}}\|$};
+  \end{scope}
+  \begin{scope}[xshift=8.6000cm]
+    \draw[color=black!15,very thin] (0.0000,0) -- (0.0000,4.3) (0.8250,0) -- (0.8250,4.3) (1.6500,0) -- (1.6500,4.3) (2.4750,0) -- (2.4750,4.3) (3.3000,0) -- (3.3000,4.3) (4.1250,0) -- (4.1250,4.3) (4.9500,0) -- (4.9500,4.3) (5.7750,0) -- (5.7750,4.3) (6.6000,0) -- (6.6000,4.3) ;
+    \draw[->,color=black!60] (0,0) -- (6.8999999999999995,0) node[below] {$k$};
+    \draw[->,color=black!60] (0,0) -- (0,4.6499999999999995) node[left] {step length $t$};
+    \draw[cgray,very thick] plot coordinates {(0.000,3.909) (0.825,3.909) (1.650,1.955) (2.475,3.909) (3.300,3.909) (4.125,3.909) (4.950,3.909) (5.775,3.909) (6.600,3.909)};
+  \fill[cgray] (0.000,3.909) circle (1.6pt);
+  \fill[cgray] (0.825,3.909) circle (1.6pt);
+  \fill[cgray] (1.650,1.955) circle (1.6pt);
+  \fill[cgray] (2.475,3.909) circle (1.6pt);
+  \fill[cgray] (3.300,3.909) circle (1.6pt);
+  \fill[cgray] (4.125,3.909) circle (1.6pt);
+  \fill[cgray] (4.950,3.909) circle (1.6pt);
+  \fill[cgray] (5.775,3.909) circle (1.6pt);
+  \fill[cgray] (6.600,3.909) circle (1.6pt);
+    \draw[color=black!55,dashed] (0,3.9091) -- (6.6,3.9091);
+    \node[anchor=west,font=\scriptsize,color=black!55] at (0.1,4.0291) {$t=1$};
+  \end{scope}
+\end{tikzpicture}
+```
+![不可行例（$\operatorname{dom} f$ 与 $\{z \mid Az=b\}$ 不相交）中残差范数与步长随迭代次数的变化：步长从不为 1，残差也不收敛到零（对应教材图 10.3）](infeasible-start-newton-method/tikz-src/isn-infeasible.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \begin{scope}
+  \draw[color=black!25,very thin] (0.0000,0.0000) -- (6.6000,0.0000) (0.0000,0.2687) -- (6.6000,0.2687) (0.0000,0.5375) -- (6.6000,0.5375) (0.0000,0.8062) -- (6.6000,0.8062) (0.0000,1.0750) -- (6.6000,1.0750) (0.0000,1.3438) -- (6.6000,1.3438) (0.0000,1.6125) -- (6.6000,1.6125) (0.0000,1.8812) -- (6.6000,1.8812) (0.0000,2.1500) -- (6.6000,2.1500) (0.0000,2.4187) -- (6.6000,2.4187) (0.0000,2.6875) -- (6.6000,2.6875) (0.0000,2.9562) -- (6.6000,2.9562) (0.0000,3.2250) -- (6.6000,3.2250) (0.0000,3.4937) -- (6.6000,3.4937) (0.0000,3.7625) -- (6.6000,3.7625) (0.0000,4.0313) -- (6.6000,4.0313) (0.0000,4.3000) -- (6.6000,4.3000);
+  \draw[color=black!15,very thin] (0.0000,0.0000) -- (0.0000,4.3000) (0.2750,0.0000) -- (0.2750,4.3000) (0.5500,0.0000) -- (0.5500,4.3000) (0.8250,0.0000) -- (0.8250,4.3000) (1.1000,0.0000) -- (1.1000,4.3000) (1.3750,0.0000) -- (1.3750,4.3000) (1.6500,0.0000) -- (1.6500,4.3000) (1.9250,0.0000) -- (1.9250,4.3000) (2.2000,0.0000) -- (2.2000,4.3000) (2.4750,0.0000) -- (2.4750,4.3000) (2.7500,0.0000) -- (2.7500,4.3000) (3.0250,0.0000) -- (3.0250,4.3000) (3.3000,0.0000) -- (3.3000,4.3000) (3.5750,0.0000) -- (3.5750,4.3000) (3.8500,0.0000) -- (3.8500,4.3000) (4.1250,0.0000) -- (4.1250,4.3000) (4.4000,0.0000) -- (4.4000,4.3000) (4.6750,0.0000) -- (4.6750,4.3000) (4.9500,0.0000) -- (4.9500,4.3000) (5.2250,0.0000) -- (5.2250,4.3000) (5.5000,0.0000) -- (5.5000,4.3000) (5.7750,0.0000) -- (5.7750,4.3000) (6.0500,0.0000) -- (6.0500,4.3000) (6.3250,0.0000) -- (6.3250,4.3000) (6.6000,0.0000) -- (6.6000,4.3000);
+  \draw[->,color=black!60] (0.0000,0.0000) -- (6.9500,0.0000) node[anchor=west,xshift=2pt,yshift=-6pt] {$k$};
+  \draw[->,color=black!60] (0.0000,0.0000) -- (0.0000,4.6500) node[left=1pt] {$\|r\|$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.0000) {$10^{-13}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.2687) {$10^{-12}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.5375) {$10^{-11}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.8062) {$10^{-10}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.0750) {$10^{-9}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.3438) {$10^{-8}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.6125) {$10^{-7}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.8812) {$10^{-6}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.1500) {$10^{-5}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.4187) {$10^{-4}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.6875) {$10^{-3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.9562) {$10^{-2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.2250) {$10^{-1}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.4937) {1};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.7625) {$10$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.0313) {$10^{2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.3000) {$10^{3}$};
+  \node[below,font=\scriptsize,color=black!60] at (0.0000,0.0000) {0};
+  \node[below,font=\scriptsize,color=black!60] at (0.8250,0.0000) {3};
+  \node[below,font=\scriptsize,color=black!60] at (1.6500,0.0000) {6};
+  \node[below,font=\scriptsize,color=black!60] at (2.4750,0.0000) {9};
+  \node[below,font=\scriptsize,color=black!60] at (3.3000,0.0000) {12};
+  \node[below,font=\scriptsize,color=black!60] at (4.1250,0.0000) {15};
+  \node[below,font=\scriptsize,color=black!60] at (4.9500,0.0000) {18};
+  \node[below,font=\scriptsize,color=black!60] at (5.7750,0.0000) {21};
+  \node[below,font=\scriptsize,color=black!60] at (6.6000,0.0000) {24};
+  \draw[cblue,very thick] plot coordinates {(0.000,3.762) (0.275,3.754) (0.550,3.762) (0.825,3.835) (1.100,3.872) (1.375,3.888) (1.650,3.893) (1.925,3.903) (2.200,3.907) (2.475,3.911) (2.750,3.913) (3.025,3.915) (3.300,3.917) (3.575,3.918) (3.850,3.918) (4.125,3.919) (4.400,3.920) (4.675,3.920) (4.950,3.921) (5.225,3.921) (5.500,3.921) (5.775,3.921) (6.050,3.922) (6.325,3.922) (6.600,3.923)};
+  \draw[cred,very thick] plot coordinates {(0.000,4.079) (0.275,4.064) (0.550,4.048) (0.825,4.032) (1.100,4.025) (1.375,4.021) (1.650,4.019) (1.925,4.017) (2.200,4.017) (2.475,4.016) (2.750,4.015) (3.025,4.015) (3.300,4.014) (3.575,4.014) (3.850,4.014) (4.125,4.014) (4.400,4.013) (4.675,4.013) (4.950,4.013) (5.225,4.013) (5.500,4.013) (5.775,4.013) (6.050,4.013) (6.325,4.013) (6.600,4.012)};
+  \node[anchor=south east,color=cblue] at (1.1000,2.2309) {$\|r_{\mathrm{dual}}\|$};
+  \node[anchor=south east,color=cred] at (1.6500,2.8753) {$\|r_{\mathrm{pri}}\|$};
+  \end{scope}
+  \begin{scope}[xshift=8.6000cm]
+    \draw[color=black!15,very thin] (0.0000,0) -- (0.0000,4.3) (0.2750,0) -- (0.2750,4.3) (0.5500,0) -- (0.5500,4.3) (0.8250,0) -- (0.8250,4.3) (1.1000,0) -- (1.1000,4.3) (1.3750,0) -- (1.3750,4.3) (1.6500,0) -- (1.6500,4.3) (1.9250,0) -- (1.9250,4.3) (2.2000,0) -- (2.2000,4.3) (2.4750,0) -- (2.4750,4.3) (2.7500,0) -- (2.7500,4.3) (3.0250,0) -- (3.0250,4.3) (3.3000,0) -- (3.3000,4.3) (3.5750,0) -- (3.5750,4.3) (3.8500,0) -- (3.8500,4.3) (4.1250,0) -- (4.1250,4.3) (4.4000,0) -- (4.4000,4.3) (4.6750,0) -- (4.6750,4.3) (4.9500,0) -- (4.9500,4.3) (5.2250,0) -- (5.2250,4.3) (5.5000,0) -- (5.5000,4.3) (5.7750,0) -- (5.7750,4.3) (6.0500,0) -- (6.0500,4.3) (6.3250,0) -- (6.3250,4.3) (6.6000,0) -- (6.6000,4.3) ;
+    \draw[->,color=black!60] (0,0) -- (6.8999999999999995,0) node[below] {$k$};
+    \draw[->,color=black!60] (0,0) -- (0,4.6499999999999995) node[left] {step length $t$};
+    \draw[cgray,very thick] plot coordinates {(0.000,0.489) (0.275,0.489) (0.550,0.489) (0.825,0.244) (1.100,0.122) (1.375,0.061) (1.650,0.061) (1.925,0.031) (2.200,0.031) (2.475,0.015) (2.750,0.015) (3.025,0.015) (3.300,0.008) (3.575,0.008) (3.850,0.008) (4.125,0.008) (4.400,0.004) (4.675,0.004) (4.950,0.004) (5.225,0.004) (5.500,0.004) (5.775,0.004) (6.050,0.004) (6.325,0.004) (6.600,0.004)};
+  \fill[cgray] (0.000,0.489) circle (1.6pt);
+  \fill[cgray] (0.275,0.489) circle (1.6pt);
+  \fill[cgray] (0.550,0.489) circle (1.6pt);
+  \fill[cgray] (0.825,0.244) circle (1.6pt);
+  \fill[cgray] (1.100,0.122) circle (1.6pt);
+  \fill[cgray] (1.375,0.061) circle (1.6pt);
+  \fill[cgray] (1.650,0.061) circle (1.6pt);
+  \fill[cgray] (1.925,0.031) circle (1.6pt);
+  \fill[cgray] (2.200,0.031) circle (1.6pt);
+  \fill[cgray] (2.475,0.015) circle (1.6pt);
+  \fill[cgray] (2.750,0.015) circle (1.6pt);
+  \fill[cgray] (3.025,0.015) circle (1.6pt);
+  \fill[cgray] (3.300,0.008) circle (1.6pt);
+  \fill[cgray] (3.575,0.008) circle (1.6pt);
+  \fill[cgray] (3.850,0.008) circle (1.6pt);
+  \fill[cgray] (4.125,0.008) circle (1.6pt);
+  \fill[cgray] (4.400,0.004) circle (1.6pt);
+  \fill[cgray] (4.675,0.004) circle (1.6pt);
+  \fill[cgray] (4.950,0.004) circle (1.6pt);
+  \fill[cgray] (5.225,0.004) circle (1.6pt);
+  \fill[cgray] (5.500,0.004) circle (1.6pt);
+  \fill[cgray] (5.775,0.004) circle (1.6pt);
+  \fill[cgray] (6.050,0.004) circle (1.6pt);
+  \fill[cgray] (6.325,0.004) circle (1.6pt);
+  \fill[cgray] (6.600,0.004) circle (1.6pt);
+    \draw[color=black!55,dashed] (0,3.9091) -- (6.6,3.9091);
+    \node[anchor=west,font=\scriptsize,color=black!55] at (0.1,4.0291) {$t=1$};
+  \end{scope}
+\end{tikzpicture}
+```
+
+![凸—凹博弈例（$\mathbf{R}^{100}\times\mathbf{R}^{100}$，$f(u,v)=u^{\top}Av+b^{\top}u+c^{\top}v-\log(1-u^{\top}u)+\log(1-v^{\top}v)$）中残差范数与步长随迭代次数的变化：约 5 次迭代后呈现明显的二次收敛（对应教材图 10.4、图 10.5）](infeasible-start-newton-method/tikz-src/isn-game.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \begin{scope}
+  \draw[color=black!25,very thin] (0.0000,0.0000) -- (6.6000,0.0000) (0.0000,0.2687) -- (6.6000,0.2687) (0.0000,0.5375) -- (6.6000,0.5375) (0.0000,0.8062) -- (6.6000,0.8062) (0.0000,1.0750) -- (6.6000,1.0750) (0.0000,1.3438) -- (6.6000,1.3438) (0.0000,1.6125) -- (6.6000,1.6125) (0.0000,1.8812) -- (6.6000,1.8812) (0.0000,2.1500) -- (6.6000,2.1500) (0.0000,2.4187) -- (6.6000,2.4187) (0.0000,2.6875) -- (6.6000,2.6875) (0.0000,2.9562) -- (6.6000,2.9562) (0.0000,3.2250) -- (6.6000,3.2250) (0.0000,3.4937) -- (6.6000,3.4937) (0.0000,3.7625) -- (6.6000,3.7625) (0.0000,4.0313) -- (6.6000,4.0313) (0.0000,4.3000) -- (6.6000,4.3000);
+  \draw[color=black!15,very thin] (0.0000,0.0000) -- (0.0000,4.3000) (1.1000,0.0000) -- (1.1000,4.3000) (2.2000,0.0000) -- (2.2000,4.3000) (3.3000,0.0000) -- (3.3000,4.3000) (4.4000,0.0000) -- (4.4000,4.3000) (5.5000,0.0000) -- (5.5000,4.3000) (6.6000,0.0000) -- (6.6000,4.3000);
+  \draw[->,color=black!60] (0.0000,0.0000) -- (6.9500,0.0000) node[anchor=west,xshift=2pt,yshift=-6pt] {$k$};
+  \draw[->,color=black!60] (0.0000,0.0000) -- (0.0000,4.6500) node[left=1pt] {$\|r\|$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.0000) {$10^{-13}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.2687) {$10^{-12}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.5375) {$10^{-11}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.8062) {$10^{-10}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.0750) {$10^{-9}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.3438) {$10^{-8}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.6125) {$10^{-7}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.8812) {$10^{-6}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.1500) {$10^{-5}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.4187) {$10^{-4}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.6875) {$10^{-3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.9562) {$10^{-2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.2250) {$10^{-1}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.4937) {1};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.7625) {$10$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.0313) {$10^{2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.3000) {$10^{3}$};
+  \node[below,font=\scriptsize,color=black!60] at (0.0000,0.0000) {0};
+  \node[below,font=\scriptsize,color=black!60] at (1.1000,0.0000) {1};
+  \node[below,font=\scriptsize,color=black!60] at (2.2000,0.0000) {2};
+  \node[below,font=\scriptsize,color=black!60] at (3.3000,0.0000) {3};
+  \node[below,font=\scriptsize,color=black!60] at (4.4000,0.0000) {4};
+  \node[below,font=\scriptsize,color=black!60] at (5.5000,0.0000) {5};
+  \node[below,font=\scriptsize,color=black!60] at (6.6000,0.0000) {6};
+  \draw[cblue,very thick] plot coordinates {(0.000,3.525) (1.100,3.420) (2.200,3.195) (3.300,2.779) (4.400,1.959) (5.500,0.324)};
+  \node[anchor=south east,color=cblue] at (6.6000,2.6875) {$\|\nabla f\|$};
+  \end{scope}
+  \begin{scope}[xshift=8.6000cm]
+    \draw[color=black!15,very thin] (0.0000,0) -- (0.0000,4.3) (1.3200,0) -- (1.3200,4.3) (2.6400,0) -- (2.6400,4.3) (3.9600,0) -- (3.9600,4.3) (5.2800,0) -- (5.2800,4.3) (6.6000,0) -- (6.6000,4.3) ;
+    \draw[->,color=black!60] (0,0) -- (6.8999999999999995,0) node[below] {$k$};
+    \draw[->,color=black!60] (0,0) -- (0,4.6499999999999995) node[left] {step length $t$};
+    \draw[cgray,very thick] plot coordinates {(0.000,3.909) (1.320,3.909) (2.640,3.909) (3.960,3.909) (5.280,3.909) (6.600,3.909)};
+  \fill[cgray] (0.000,3.909) circle (1.6pt);
+  \fill[cgray] (1.320,3.909) circle (1.6pt);
+  \fill[cgray] (2.640,3.909) circle (1.6pt);
+  \fill[cgray] (3.960,3.909) circle (1.6pt);
+  \fill[cgray] (5.280,3.909) circle (1.6pt);
+  \fill[cgray] (6.600,3.909) circle (1.6pt);
+    \draw[color=black!55,dashed] (0,3.9091) -- (6.6,3.9091);
+    \node[anchor=west,font=\scriptsize,color=black!55] at (0.1,4.0291) {$t=1$};
+  \end{scope}
+\end{tikzpicture}
+```\n

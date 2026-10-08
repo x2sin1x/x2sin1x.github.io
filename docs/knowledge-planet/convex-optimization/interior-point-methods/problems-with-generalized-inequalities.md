@@ -251,7 +251,142 @@ $$
 
 用障碍函数 $\phi(x) = -\sum_{i=1}^m \log\left((c_i^{\top}x + d_i)^2 - \|A_ix + b_i\|_2^2\right)$ 求解；中心点问题用 Newton 方法（参数与前面例子相同：$\alpha = 0.01$，$\beta = 0.5$，终止准则 $\lambda(x)^2/2 \leqslant 10^{-5}$）。对偶间隙随累计 Newton 步数的曲线与 LP、GP 的非常相似：每次中心点步所需 Newton 步数近似为常数，对偶间隙近似线性收敛。$\mu$ 至少为 10 左右时，$\mu$ 的取值对总步数影响不大；与 LP 和 GP 一样，$\mu$ 取 10 到 100 的合理值时总 Newton 步数约 30。
 
-> **待配图**&#8203;：对应教材图 11.15 与图 11.16 —— 小 SOCP 的对偶间隙随累计 Newton 步数的曲线，以及总 Newton 步数随 $\mu$ 变化的折中曲线。
+![小 SOCP（$x \in \mathbf{R}^{50}$，$m = 50$ 个二阶锥约束）的对偶间隙随累计 Newton 步数的曲线（$\mu = 2, 50, 150$）：每次中心点步所需 Newton 步数近似为常数，对偶间隙近似线性收敛（对应教材图 11.15）](problems-with-generalized-inequalities/tikz-src/socp-dual-gap.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \draw[color=black!25,very thin] (0.0000,0.0000) -- (7.6000,0.0000) (0.0000,0.5500) -- (7.6000,0.5500) (0.0000,1.1000) -- (7.6000,1.1000) (0.0000,1.6500) -- (7.6000,1.6500) (0.0000,2.2000) -- (7.6000,2.2000) (0.0000,2.7500) -- (7.6000,2.7500) (0.0000,3.3000) -- (7.6000,3.3000) (0.0000,3.8500) -- (7.6000,3.8500) (0.0000,4.4000) -- (7.6000,4.4000);
+  \draw[color=black!15,very thin] (0.0000,0.0000) -- (0.0000,4.4000) (0.3176,0.0000) -- (0.3176,4.4000) (0.6352,0.0000) -- (0.6352,4.4000) (0.9527,0.0000) -- (0.9527,4.4000) (1.2703,0.0000) -- (1.2703,4.4000) (1.5879,0.0000) -- (1.5879,4.4000) (1.9055,0.0000) -- (1.9055,4.4000) (2.2230,0.0000) -- (2.2230,4.4000) (2.5406,0.0000) -- (2.5406,4.4000) (2.8582,0.0000) -- (2.8582,4.4000) (3.1758,0.0000) -- (3.1758,4.4000) (3.4933,0.0000) -- (3.4933,4.4000) (3.8109,0.0000) -- (3.8109,4.4000) (4.1285,0.0000) -- (4.1285,4.4000) (4.4461,0.0000) -- (4.4461,4.4000) (4.7636,0.0000) -- (4.7636,4.4000) (5.0812,0.0000) -- (5.0812,4.4000) (5.3988,0.0000) -- (5.3988,4.4000) (5.7164,0.0000) -- (5.7164,4.4000) (6.0340,0.0000) -- (6.0340,4.4000) (6.3515,0.0000) -- (6.3515,4.4000) (6.6691,0.0000) -- (6.6691,4.4000) (6.9867,0.0000) -- (6.9867,4.4000) (7.3043,0.0000) -- (7.3043,4.4000);
+  \draw[->,color=black!60] (0.0000,0.0000) -- (7.9500,0.0000) node[anchor=west,xshift=2pt,yshift=-6pt] {cumulative Newton steps};
+  \draw[->,color=black!60] (0.0000,0.0000) -- (0.0000,4.7500) node[left=1pt] {duality gap};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.0000) {$10^{-6}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.5500) {$10^{-5}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.1000) {$10^{-4}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.6500) {$10^{-3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.2000) {$10^{-2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.7500) {$10^{-1}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.3000) {1};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.8500) {$10$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.4000) {$10^{2}$};
+  \node[below,font=\scriptsize,color=black!60] at (0.0000,0.0000) {0};
+  \node[below,font=\scriptsize,color=black!60] at (0.8469,0.0000) {64};
+  \node[below,font=\scriptsize,color=black!60] at (1.6937,0.0000) {128};
+  \node[below,font=\scriptsize,color=black!60] at (2.5406,0.0000) {192};
+  \node[below,font=\scriptsize,color=black!60] at (3.3875,0.0000) {256};
+  \node[below,font=\scriptsize,color=black!60] at (4.2344,0.0000) {320};
+  \node[below,font=\scriptsize,color=black!60] at (5.0812,0.0000) {384};
+  \node[below,font=\scriptsize,color=black!60] at (5.9281,0.0000) {448};
+  \node[below,font=\scriptsize,color=black!60] at (6.7750,0.0000) {512};
+  \draw[cblue,very thick] plot coordinates {(0.000,4.400) (0.238,4.400) (0.238,4.234) (0.450,4.234) (0.450,4.069) (0.556,4.069) (0.556,3.903) (0.609,3.903) (0.609,3.738) (0.635,3.738) (0.635,3.572) (0.701,3.572) (0.701,3.407) (0.807,3.407) (0.807,3.241) (0.847,3.241) (0.847,3.075) (0.887,3.075) (0.887,2.910) (1.006,2.910) (1.006,2.744) (1.178,2.744) (1.178,2.579) (1.376,2.579) (1.376,2.413) (1.575,2.413) (1.575,2.248) (1.707,2.248) (1.707,2.082) (1.932,2.082) (1.932,1.917) (2.355,1.917) (2.355,1.751) (3.149,1.751) (3.149,1.585) (3.943,1.585) (3.943,1.420) (4.737,1.420) (4.737,1.254) (5.531,1.254) (5.531,1.089) (6.325,1.089) (6.325,0.923) (7.119,0.923) (7.119,0.758) (7.238,0.758) (7.238,0.592)};
+  \draw[cred,very thick] plot coordinates {(0.000,4.400) (0.119,4.400) (0.119,3.466) (0.212,3.466) (0.212,2.531) (0.384,2.531) (0.384,1.597) (0.423,1.597) (0.423,0.662)};
+  \draw[cgreen,very thick] plot coordinates {(0.000,4.400) (0.132,4.400) (0.132,3.203) (0.318,3.203) (0.318,2.006) (0.490,2.006) (0.490,0.809) (0.516,0.809) (0.516,-0.387)};
+  \node[anchor=south west,color=cblue] at (0.0132,4.2780) {$\mu=2$};
+  \node[anchor=south west,color=cred] at (4.1800,4.1811) {$\mu=50$};
+  \node[anchor=south west,color=cgreen] at (2.2800,3.5624) {$\mu=150$};
+\end{tikzpicture}
+```
+![小 SOCP 中总 Newton 步数随 $\mu$ 变化的折中曲线：$\mu$ 至少为 10 左右时取值对总步数影响不大（对应教材图 11.16）](problems-with-generalized-inequalities/tikz-src/socp-mu-tradeoff.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \draw[color=black!12,very thin] (0.0000,0) -- (0.0000,4.4) (0.7589,0) -- (0.7589,4.4) (2.1200,0) -- (2.1200,4.4) (3.1497,0) -- (3.1497,4.4) (4.1794,0) -- (4.1794,4.4) (5.5406,0) -- (5.5406,4.4) (6.5703,0) -- (6.5703,4.4) (7.6000,0) -- (7.6000,4.4) (0,0.0603) -- (7.6,0.0603) (0,0.1207) -- (7.6,0.1207) (0,0.1810) -- (7.6,0.1810) (0,0.2414) -- (7.6,0.2414) (0,0.3017) -- (7.6,0.3017) (0,0.3621) -- (7.6,0.3621) (0,0.4224) -- (7.6,0.4224) (0,0.4828) -- (7.6,0.4828) (0,0.5431) -- (7.6,0.5431) (0,0.6035) -- (7.6,0.6035) (0,0.6638) -- (7.6,0.6638) (0,0.7242) -- (7.6,0.7242) (0,0.7845) -- (7.6,0.7845) (0,0.8449) -- (7.6,0.8449) (0,0.9052) -- (7.6,0.9052) (0,0.9656) -- (7.6,0.9656) (0,1.0259) -- (7.6,1.0259) (0,1.0863) -- (7.6,1.0863) (0,1.1466) -- (7.6,1.1466) (0,1.2070) -- (7.6,1.2070) (0,1.2673) -- (7.6,1.2673) (0,1.3277) -- (7.6,1.3277) (0,1.3880) -- (7.6,1.3880) (0,1.4484) -- (7.6,1.4484) (0,1.5087) -- (7.6,1.5087) (0,1.5691) -- (7.6,1.5691) (0,1.6294) -- (7.6,1.6294) (0,1.6898) -- (7.6,1.6898) (0,1.7501) -- (7.6,1.7501) (0,1.8105) -- (7.6,1.8105) (0,1.8708) -- (7.6,1.8708) (0,1.9311) -- (7.6,1.9311) (0,1.9915) -- (7.6,1.9915) (0,2.0518) -- (7.6,2.0518) (0,2.1122) -- (7.6,2.1122) (0,2.1725) -- (7.6,2.1725) (0,2.2329) -- (7.6,2.2329) (0,2.2932) -- (7.6,2.2932) (0,2.3536) -- (7.6,2.3536) (0,2.4139) -- (7.6,2.4139) (0,2.4743) -- (7.6,2.4743) (0,2.5346) -- (7.6,2.5346) (0,2.5950) -- (7.6,2.5950) (0,2.6553) -- (7.6,2.6553) (0,2.7157) -- (7.6,2.7157) (0,2.7760) -- (7.6,2.7760) (0,2.8364) -- (7.6,2.8364) (0,2.8967) -- (7.6,2.8967) (0,2.9571) -- (7.6,2.9571) (0,3.0174) -- (7.6,3.0174) (0,3.0778) -- (7.6,3.0778) (0,3.1381) -- (7.6,3.1381) (0,3.1985) -- (7.6,3.1985) (0,3.2588) -- (7.6,3.2588) (0,3.3192) -- (7.6,3.3192) (0,3.3795) -- (7.6,3.3795) (0,3.4399) -- (7.6,3.4399) (0,3.5002) -- (7.6,3.5002) (0,3.5606) -- (7.6,3.5606) (0,3.6209) -- (7.6,3.6209) (0,3.6813) -- (7.6,3.6813) (0,3.7416) -- (7.6,3.7416) (0,3.8019) -- (7.6,3.8019) (0,3.8623) -- (7.6,3.8623) (0,3.9226) -- (7.6,3.9226) (0,3.9830) -- (7.6,3.9830) (0,4.0433) -- (7.6,4.0433) (0,4.1037) -- (7.6,4.1037) (0,4.1640) -- (7.6,4.1640) (0,4.2244) -- (7.6,4.2244) (0,4.2847) -- (7.6,4.2847) (0,4.3451) -- (7.6,4.3451) ;
+  \draw[->,color=black!60] (0,0) -- (7.8999999999999995,0) node[below] {$\mu$};
+  \draw[->,color=black!60] (0,0) -- (0,4.7) node[left] {total Newton steps};
+  \draw[cblue,very thick] plot [smooth] coordinates {(0.000,3.826) (0.317,1.744) (0.633,1.382) (0.950,1.310) (1.267,0.941) (1.583,0.960) (1.900,0.422) (2.217,0.501) (2.533,0.682) (2.850,0.344) (3.167,0.211) (3.483,0.235) (3.800,0.314) (4.117,0.193) (4.433,0.199) (4.750,0.193) (5.067,0.519) (5.383,0.567) (5.700,0.163) (6.017,0.266) (6.333,0.175) (6.650,0.501) (6.967,0.139) (7.283,0.217) (7.600,0.199)};
+  \fill[cblue] (0.000,3.826) circle (1.5pt);
+  \fill[cblue] (0.317,1.744) circle (1.5pt);
+  \fill[cblue] (0.633,1.382) circle (1.5pt);
+  \fill[cblue] (0.950,1.310) circle (1.5pt);
+  \fill[cblue] (1.267,0.941) circle (1.5pt);
+  \fill[cblue] (1.583,0.960) circle (1.5pt);
+  \fill[cblue] (1.900,0.422) circle (1.5pt);
+  \fill[cblue] (2.217,0.501) circle (1.5pt);
+  \fill[cblue] (2.533,0.682) circle (1.5pt);
+  \fill[cblue] (2.850,0.344) circle (1.5pt);
+  \fill[cblue] (3.167,0.211) circle (1.5pt);
+  \fill[cblue] (3.483,0.235) circle (1.5pt);
+  \fill[cblue] (3.800,0.314) circle (1.5pt);
+  \fill[cblue] (4.117,0.193) circle (1.5pt);
+  \fill[cblue] (4.433,0.199) circle (1.5pt);
+  \fill[cblue] (4.750,0.193) circle (1.5pt);
+  \fill[cblue] (5.067,0.519) circle (1.5pt);
+  \fill[cblue] (5.383,0.567) circle (1.5pt);
+  \fill[cblue] (5.700,0.163) circle (1.5pt);
+  \fill[cblue] (6.017,0.266) circle (1.5pt);
+  \fill[cblue] (6.333,0.175) circle (1.5pt);
+  \fill[cblue] (6.650,0.501) circle (1.5pt);
+  \fill[cblue] (6.967,0.139) circle (1.5pt);
+  \fill[cblue] (7.283,0.217) circle (1.5pt);
+  \fill[cblue] (7.600,0.199) circle (1.5pt);
+  \node[below,color=black!60] at (0.0000,0) {1.2};
+  \node[below,color=black!60] at (0.7589,0) {2};
+  \node[below,color=black!60] at (2.1200,0) {5};
+  \node[below,color=black!60] at (3.1497,0) {10};
+  \node[below,color=black!60] at (4.1794,0) {20};
+  \node[below,color=black!60] at (5.5406,0) {50};
+  \node[below,color=black!60] at (6.5703,0) {100};
+  \node[below,color=black!60] at (7.6000,0) {200};
+  \node[left,color=black!60] at (0,0.0603) {10};
+  \node[left,color=black!60] at (0,0.1810) {30};
+  \node[left,color=black!60] at (0,0.3017) {50};
+  \node[left,color=black!60] at (0,0.4224) {70};
+  \node[left,color=black!60] at (0,0.5431) {90};
+  \node[left,color=black!60] at (0,0.6638) {110};
+  \node[left,color=black!60] at (0,0.7845) {130};
+  \node[left,color=black!60] at (0,0.9052) {150};
+  \node[left,color=black!60] at (0,1.0259) {170};
+  \node[left,color=black!60] at (0,1.1466) {190};
+  \node[left,color=black!60] at (0,1.2673) {210};
+  \node[left,color=black!60] at (0,1.3880) {230};
+  \node[left,color=black!60] at (0,1.5087) {250};
+  \node[left,color=black!60] at (0,1.6294) {270};
+  \node[left,color=black!60] at (0,1.7501) {290};
+  \node[left,color=black!60] at (0,1.8708) {310};
+  \node[left,color=black!60] at (0,1.9915) {330};
+  \node[left,color=black!60] at (0,2.1122) {350};
+  \node[left,color=black!60] at (0,2.2329) {370};
+  \node[left,color=black!60] at (0,2.3536) {390};
+  \node[left,color=black!60] at (0,2.4743) {410};
+  \node[left,color=black!60] at (0,2.5950) {430};
+  \node[left,color=black!60] at (0,2.7157) {450};
+  \node[left,color=black!60] at (0,2.8364) {470};
+  \node[left,color=black!60] at (0,2.9571) {490};
+  \node[left,color=black!60] at (0,3.0778) {510};
+  \node[left,color=black!60] at (0,3.1985) {530};
+  \node[left,color=black!60] at (0,3.3192) {550};
+  \node[left,color=black!60] at (0,3.4399) {570};
+  \node[left,color=black!60] at (0,3.5606) {590};
+  \node[left,color=black!60] at (0,3.6813) {610};
+  \node[left,color=black!60] at (0,3.8019) {630};
+  \node[left,color=black!60] at (0,3.9226) {650};
+  \node[left,color=black!60] at (0,4.0433) {670};
+  \node[left,color=black!60] at (0,4.1640) {690};
+  \node[left,color=black!60] at (0,4.2847) {710};
+\end{tikzpicture}
+```
+
 
 ### 一个小型 SDP
 
@@ -269,7 +404,116 @@ $$
 
 的障碍方法。$\mu = 2, 50, 150$ 三种取值下的进展曲线与 LP、GP、SOCP 的非常相似；同样，只要 $\mu$ 不太小，参数 $\mu$ 对效率的影响就很小。
 
-> **待配图**&#8203;：对应教材图 11.17 与图 11.18 —— 小 SDP 的对偶间隙曲线与 $\mu$ 折中曲线。
+![小型 SDP 的对偶间隙随累计 Newton 步数的曲线（$\mu = 2, 50, 150$）：与 LP、GP、SOCP 的进展曲线非常相似（对应教材图 11.17）](problems-with-generalized-inequalities/tikz-src/sdp-dual-gap.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \draw[color=black!25,very thin] (0.0000,0.0000) -- (7.6000,0.0000) (0.0000,0.5500) -- (7.6000,0.5500) (0.0000,1.1000) -- (7.6000,1.1000) (0.0000,1.6500) -- (7.6000,1.6500) (0.0000,2.2000) -- (7.6000,2.2000) (0.0000,2.7500) -- (7.6000,2.7500) (0.0000,3.3000) -- (7.6000,3.3000) (0.0000,3.8500) -- (7.6000,3.8500) (0.0000,4.4000) -- (7.6000,4.4000);
+  \draw[color=black!15,very thin] (0.0000,0.0000) -- (0.0000,4.4000) (0.3966,0.0000) -- (0.3966,4.4000) (0.7932,0.0000) -- (0.7932,4.4000) (1.1898,0.0000) -- (1.1898,4.4000) (1.5864,0.0000) -- (1.5864,4.4000) (1.9830,0.0000) -- (1.9830,4.4000) (2.3796,0.0000) -- (2.3796,4.4000) (2.7763,0.0000) -- (2.7763,4.4000) (3.1729,0.0000) -- (3.1729,4.4000) (3.5695,0.0000) -- (3.5695,4.4000) (3.9661,0.0000) -- (3.9661,4.4000) (4.3627,0.0000) -- (4.3627,4.4000) (4.7593,0.0000) -- (4.7593,4.4000) (5.1559,0.0000) -- (5.1559,4.4000) (5.5525,0.0000) -- (5.5525,4.4000) (5.9491,0.0000) -- (5.9491,4.4000) (6.3457,0.0000) -- (6.3457,4.4000) (6.7423,0.0000) -- (6.7423,4.4000) (7.1389,0.0000) -- (7.1389,4.4000) (7.5356,0.0000) -- (7.5356,4.4000);
+  \draw[->,color=black!60] (0.0000,0.0000) -- (7.9500,0.0000) node[anchor=west,xshift=2pt,yshift=-6pt] {cumulative Newton steps};
+  \draw[->,color=black!60] (0.0000,0.0000) -- (0.0000,4.7500) node[left=1pt] {duality gap};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.0000) {$10^{-6}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.5500) {$10^{-5}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.1000) {$10^{-4}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.6500) {$10^{-3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.2000) {$10^{-2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.7500) {$10^{-1}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.3000) {1};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.8500) {$10$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.4000) {$10^{2}$};
+  \node[below,font=\scriptsize,color=black!60] at (0.0000,0.0000) {0};
+  \node[below,font=\scriptsize,color=black!60] at (0.8924,0.0000) {9};
+  \node[below,font=\scriptsize,color=black!60] at (1.7847,0.0000) {18};
+  \node[below,font=\scriptsize,color=black!60] at (2.6771,0.0000) {27};
+  \node[below,font=\scriptsize,color=black!60] at (3.5695,0.0000) {36};
+  \node[below,font=\scriptsize,color=black!60] at (4.4618,0.0000) {45};
+  \node[below,font=\scriptsize,color=black!60] at (5.3542,0.0000) {54};
+  \node[below,font=\scriptsize,color=black!60] at (6.2466,0.0000) {63};
+  \node[below,font=\scriptsize,color=black!60] at (7.1389,0.0000) {72};
+  \draw[cblue,very thick] plot coordinates {(0.000,4.400) (0.099,4.400) (0.099,4.234) (0.198,4.234) (0.198,4.069) (0.397,4.069) (0.397,3.903) (1.487,3.903) (1.487,3.738) (2.280,3.738) (2.280,3.572) (2.776,3.572) (2.776,3.407) (3.074,3.407) (3.074,3.241) (3.272,3.241) (3.272,3.075) (3.470,3.075) (3.470,2.910) (3.669,2.910) (3.669,2.744) (3.867,2.744) (3.867,2.579) (4.164,2.579) (4.164,2.413) (4.363,2.413) (4.363,2.248) (4.561,2.248) (4.561,2.082) (4.759,2.082) (4.759,1.917) (5.057,1.917) (5.057,1.751) (5.255,1.751) (5.255,1.585) (5.453,1.585) (5.453,1.420) (5.751,1.420) (5.751,1.254) (5.949,1.254) (5.949,1.089) (6.147,1.089) (6.147,0.923) (6.346,0.923) (6.346,0.758) (6.544,0.758) (6.544,0.592) (6.742,0.592) (6.742,0.426) (6.941,0.426) (6.941,0.261) (7.040,0.261) (7.040,0.095) (7.238,0.095) (7.238,-0.070)};
+  \draw[cred,very thick] plot coordinates {(0.000,4.400) (1.091,4.400) (1.091,3.466) (1.884,3.466) (1.884,2.531) (2.380,2.531) (2.380,1.597) (2.578,1.597) (2.578,0.662) (2.776,0.662) (2.776,-0.272)};
+  \draw[cgreen,very thick] plot coordinates {(0.000,4.400) (0.595,4.400) (0.595,3.203) (1.091,3.203) (1.091,2.006) (1.686,2.006) (1.686,0.809) (2.082,0.809) (2.082,-0.387)};
+  \node[anchor=south west,color=cblue] at (0.0992,4.2780) {$\mu=2$};
+  \node[anchor=south west,color=cred] at (4.1800,4.1811) {$\mu=50$};
+  \node[anchor=south west,color=cgreen] at (2.2800,3.5624) {$\mu=150$};
+\end{tikzpicture}
+```
+![小型 SDP 中总 Newton 步数随 $\mu$ 变化的折中曲线：只要 $\mu$ 不太小，参数 $\mu$ 对效率的影响就很小（对应教材图 11.18）](problems-with-generalized-inequalities/tikz-src/sdp-mu-tradeoff.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \draw[color=black!12,very thin] (0.0000,0) -- (0.0000,4.4) (0.7589,0) -- (0.7589,4.4) (2.1200,0) -- (2.1200,4.4) (3.1497,0) -- (3.1497,4.4) (4.1794,0) -- (4.1794,4.4) (5.5406,0) -- (5.5406,4.4) (6.5703,0) -- (6.5703,4.4) (7.6000,0) -- (7.6000,4.4) (0,0.2174) -- (7.6,0.2174) (0,0.4348) -- (7.6,0.4348) (0,0.6522) -- (7.6,0.6522) (0,0.8696) -- (7.6,0.8696) (0,1.0870) -- (7.6,1.0870) (0,1.3043) -- (7.6,1.3043) (0,1.5217) -- (7.6,1.5217) (0,1.7391) -- (7.6,1.7391) (0,1.9565) -- (7.6,1.9565) (0,2.1739) -- (7.6,2.1739) (0,2.3913) -- (7.6,2.3913) (0,2.6087) -- (7.6,2.6087) (0,2.8261) -- (7.6,2.8261) (0,3.0435) -- (7.6,3.0435) (0,3.2609) -- (7.6,3.2609) (0,3.4783) -- (7.6,3.4783) (0,3.6957) -- (7.6,3.6957) (0,3.9130) -- (7.6,3.9130) (0,4.1304) -- (7.6,4.1304) (0,4.3478) -- (7.6,4.3478) ;
+  \draw[->,color=black!60] (0,0) -- (7.8999999999999995,0) node[below] {$\mu$};
+  \draw[->,color=black!60] (0,0) -- (0,4.7) node[left] {total Newton steps};
+  \draw[cblue,very thick] plot [smooth] coordinates {(0.000,3.826) (0.317,2.000) (0.633,1.326) (0.950,1.130) (1.267,0.913) (1.583,0.826) (1.900,0.652) (2.217,0.630) (2.533,0.652) (2.850,0.696) (3.167,0.500) (3.483,0.609) (3.800,0.587) (4.117,0.565) (4.433,0.522) (4.750,0.565) (5.067,0.587) (5.383,0.500) (5.700,0.348) (6.017,0.435) (6.333,0.435) (6.650,0.413) (6.967,0.413) (7.283,0.370) (7.600,0.500)};
+  \fill[cblue] (0.000,3.826) circle (1.5pt);
+  \fill[cblue] (0.317,2.000) circle (1.5pt);
+  \fill[cblue] (0.633,1.326) circle (1.5pt);
+  \fill[cblue] (0.950,1.130) circle (1.5pt);
+  \fill[cblue] (1.267,0.913) circle (1.5pt);
+  \fill[cblue] (1.583,0.826) circle (1.5pt);
+  \fill[cblue] (1.900,0.652) circle (1.5pt);
+  \fill[cblue] (2.217,0.630) circle (1.5pt);
+  \fill[cblue] (2.533,0.652) circle (1.5pt);
+  \fill[cblue] (2.850,0.696) circle (1.5pt);
+  \fill[cblue] (3.167,0.500) circle (1.5pt);
+  \fill[cblue] (3.483,0.609) circle (1.5pt);
+  \fill[cblue] (3.800,0.587) circle (1.5pt);
+  \fill[cblue] (4.117,0.565) circle (1.5pt);
+  \fill[cblue] (4.433,0.522) circle (1.5pt);
+  \fill[cblue] (4.750,0.565) circle (1.5pt);
+  \fill[cblue] (5.067,0.587) circle (1.5pt);
+  \fill[cblue] (5.383,0.500) circle (1.5pt);
+  \fill[cblue] (5.700,0.348) circle (1.5pt);
+  \fill[cblue] (6.017,0.435) circle (1.5pt);
+  \fill[cblue] (6.333,0.435) circle (1.5pt);
+  \fill[cblue] (6.650,0.413) circle (1.5pt);
+  \fill[cblue] (6.967,0.413) circle (1.5pt);
+  \fill[cblue] (7.283,0.370) circle (1.5pt);
+  \fill[cblue] (7.600,0.500) circle (1.5pt);
+  \node[below,color=black!60] at (0.0000,0) {1.2};
+  \node[below,color=black!60] at (0.7589,0) {2};
+  \node[below,color=black!60] at (2.1200,0) {5};
+  \node[below,color=black!60] at (3.1497,0) {10};
+  \node[below,color=black!60] at (4.1794,0) {20};
+  \node[below,color=black!60] at (5.5406,0) {50};
+  \node[below,color=black!60] at (6.5703,0) {100};
+  \node[below,color=black!60] at (7.6000,0) {200};
+  \node[left,color=black!60] at (0,0.2174) {10};
+  \node[left,color=black!60] at (0,0.6522) {30};
+  \node[left,color=black!60] at (0,1.0870) {50};
+  \node[left,color=black!60] at (0,1.5217) {70};
+  \node[left,color=black!60] at (0,1.9565) {90};
+  \node[left,color=black!60] at (0,2.3913) {110};
+  \node[left,color=black!60] at (0,2.8261) {130};
+  \node[left,color=black!60] at (0,3.2609) {150};
+  \node[left,color=black!60] at (0,3.6957) {170};
+  \node[left,color=black!60] at (0,4.1304) {190};
+\end{tikzpicture}
+```
+
 
 ### 一族 SDP
 
@@ -283,7 +527,125 @@ $$
 
 $n = 50$、$n = 500$、$n = 1000$ 三个实例的曲线与 LP 的非常相似。对 20 个 $n$ 值（从 10 到 1000）各 100 个实例共 2000 个问题的统计表明：所需 Newton 步数随问题维数增大 100 倍只从约 20 增长到约 26——与 LP 的情形非常相像。
 
-> **待配图**&#8203;：对应教材图 11.19 与图 11.20 —— 三个不同维数 SDP 的对偶间隙曲线，以及平均 Newton 步数随 $n$ 的变化（含标准差误差条）。
+![一族 SDP（$A + \operatorname{diag}(x) \succeq 0$，$n = 50, 500, 1000$）的对偶间隙随累计 Newton 步数的曲线：所需 Newton 步数随问题维数增长极慢（对应教材图 11.19）](problems-with-generalized-inequalities/tikz-src/sdp-family-dims.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \draw[color=black!25,very thin] (0.0000,0.0000) -- (7.6000,0.0000) (0.0000,0.7333) -- (7.6000,0.7333) (0.0000,1.4667) -- (7.6000,1.4667) (0.0000,2.2000) -- (7.6000,2.2000) (0.0000,2.9333) -- (7.6000,2.9333) (0.0000,3.6667) -- (7.6000,3.6667) (0.0000,4.4000) -- (7.6000,4.4000);
+  \draw[color=black!15,very thin] (0.0000,0.0000) -- (0.0000,4.4000) (0.6580,0.0000) -- (0.6580,4.4000) (1.3160,0.0000) -- (1.3160,4.4000) (1.9740,0.0000) -- (1.9740,4.4000) (2.6320,0.0000) -- (2.6320,4.4000) (3.2900,0.0000) -- (3.2900,4.4000) (3.9481,0.0000) -- (3.9481,4.4000) (4.6061,0.0000) -- (4.6061,4.4000) (5.2641,0.0000) -- (5.2641,4.4000) (5.9221,0.0000) -- (5.9221,4.4000) (6.5801,0.0000) -- (6.5801,4.4000) (7.2381,0.0000) -- (7.2381,4.4000);
+  \draw[->,color=black!60] (0.0000,0.0000) -- (7.9500,0.0000) node[anchor=west,xshift=2pt,yshift=-6pt] {cumulative Newton steps};
+  \draw[->,color=black!60] (0.0000,0.0000) -- (0.0000,4.7500) node[left=1pt] {duality gap};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.0000) {$10^{-3}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,0.7333) {$10^{-2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,1.4667) {$10^{-1}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.2000) {1};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,2.9333) {$10$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,3.6667) {$10^{2}$};
+  \node[left,font=\scriptsize,color=black!60] at (0.0000,4.4000) {$10^{3}$};
+  \node[below,font=\scriptsize,color=black!60] at (0.0000,0.0000) {0};
+  \node[below,font=\scriptsize,color=black!60] at (1.3160,0.0000) {2};
+  \node[below,font=\scriptsize,color=black!60] at (2.6320,0.0000) {4};
+  \node[below,font=\scriptsize,color=black!60] at (3.9481,0.0000) {6};
+  \node[below,font=\scriptsize,color=black!60] at (5.2641,0.0000) {8};
+  \node[below,font=\scriptsize,color=black!60] at (6.5801,0.0000) {10};
+  \draw[cblue,very thick] plot coordinates {(0.000,3.446) (1.974,2.492) (4.606,1.538) (5.264,0.584)};
+  \node[anchor=west,color=cblue] at (5.4141,0.5836) {$n{=}50$};
+  \draw[cred,very thick] plot coordinates {(0.000,4.179) (4.606,3.225) (6.580,2.271) (7.238,1.317)};
+  \node[anchor=west,color=cred] at (7.3881,1.3170) {$n{=}500$};
+  \draw[cgreen,very thick] plot coordinates {(0.000,4.400) (1.974,3.446) (4.606,2.492) (5.264,1.538)};
+  \node[anchor=west,color=cgreen] at (5.4141,1.5377) {$n{=}1000$};
+\end{tikzpicture}
+```
+![对角 SDP 族中平均 Newton 步数随 $n$ 的变化（含标准差误差条）：问题维数增大 100 倍所需 Newton 步数只从约 20 增长到约 26（对应教材图 11.20）](problems-with-generalized-inequalities/tikz-src/sdp-steps-vs-n.webp)
+
+上图由下面的 TikZ 代码编译而来：
+
+```tex
+
+  \definecolor{cblue}{RGB}{31,119,180}
+  \definecolor{cred}{RGB}{214,39,40}
+  \definecolor{cgreen}{RGB}{44,160,44}
+  \definecolor{corange}{RGB}{255,127,14}
+  \definecolor{cpurple}{RGB}{148,103,189}
+  \definecolor{cbrown}{RGB}{140,86,75}
+  \definecolor{cpink}{RGB}{227,119,194}
+  \definecolor{cgray}{RGB}{127,127,127}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,line cap=round,line join=round]
+  \draw[color=black!12,very thin] (0.0000,0) -- (0.0000,4.4) (1.1439,0) -- (1.1439,4.4) (2.6561,0) -- (2.6561,4.4) (3.8000,0) -- (3.8000,4.4) (4.9439,0) -- (4.9439,4.4) (6.4561,0) -- (6.4561,4.4) (7.6000,0) -- (7.6000,4.4) ;
+  \draw[cblue,thick] (0.0000,2.8530) -- (0.0000,3.8261);
+  \draw[cblue,thick] (-0.0700,2.8530) -- (0.0700,2.8530);
+  \draw[cblue,thick] (-0.0700,3.8261) -- (0.0700,3.8261);
+  \fill[cblue] (0.0000,3.3396) circle (1.6pt);
+  \draw[cblue,thick] (0.6691,2.2273) -- (0.6691,3.3068);
+  \draw[cblue,thick] (0.5991,2.2273) -- (0.7391,2.2273);
+  \draw[cblue,thick] (0.5991,3.3068) -- (0.7391,3.3068);
+  \fill[cblue] (0.6691,2.7671) circle (1.6pt);
+  \draw[cblue,thick] (1.3746,2.4100) -- (1.3746,3.1241);
+  \draw[cblue,thick] (1.3046,2.4100) -- (1.4446,2.4100);
+  \draw[cblue,thick] (1.3046,3.1241) -- (1.4446,3.1241);
+  \fill[cblue] (1.3746,2.7671) circle (1.6pt);
+  \draw[cblue,thick] (2.0675,2.0596) -- (2.0675,2.3295);
+  \draw[cblue,thick] (1.9975,2.0596) -- (2.1375,2.0596);
+  \draw[cblue,thick] (1.9975,2.3295) -- (2.1375,2.3295);
+  \fill[cblue] (2.0675,2.1946) circle (1.6pt);
+  \draw[cblue,thick] (2.7522,2.4100) -- (2.7522,3.1241);
+  \draw[cblue,thick] (2.6822,2.4100) -- (2.8222,2.4100);
+  \draw[cblue,thick] (2.6822,3.1241) -- (2.8222,3.1241);
+  \fill[cblue] (2.7522,2.7671) circle (1.6pt);
+  \draw[cblue,thick] (3.4522,2.7834) -- (3.4522,3.3232);
+  \draw[cblue,thick] (3.3822,2.7834) -- (3.5222,2.7834);
+  \draw[cblue,thick] (3.3822,3.3232) -- (3.5222,3.3232);
+  \fill[cblue] (3.4522,3.0533) circle (1.6pt);
+  \draw[cblue,thick] (4.1416,2.3425) -- (4.1416,2.8100);
+  \draw[cblue,thick] (4.0716,2.3425) -- (4.2116,2.3425);
+  \draw[cblue,thick] (4.0716,2.8100) -- (4.2116,2.8100);
+  \fill[cblue] (4.1416,2.5762) circle (1.6pt);
+  \draw[cblue,thick] (4.8330,2.5367) -- (4.8330,2.8066);
+  \draw[cblue,thick] (4.7630,2.5367) -- (4.9030,2.5367);
+  \draw[cblue,thick] (4.7630,2.8066) -- (4.9030,2.8066);
+  \fill[cblue] (4.8330,2.6716) circle (1.6pt);
+  \draw[cblue,thick] (5.5284,2.3425) -- (5.5284,2.8100);
+  \draw[cblue,thick] (5.4584,2.3425) -- (5.5984,2.3425);
+  \draw[cblue,thick] (5.4584,2.8100) -- (5.5984,2.8100);
+  \fill[cblue] (5.5284,2.5762) circle (1.6pt);
+  \draw[cblue,thick] (6.2187,2.4577) -- (6.2187,3.2673);
+  \draw[cblue,thick] (6.1487,2.4577) -- (6.2887,2.4577);
+  \draw[cblue,thick] (6.1487,3.2673) -- (6.2887,3.2673);
+  \fill[cblue] (6.2187,2.8625) circle (1.6pt);
+  \draw[cblue,thick] (6.9093,2.6288) -- (6.9093,3.0962);
+  \draw[cblue,thick] (6.8393,2.6288) -- (6.9793,2.6288);
+  \draw[cblue,thick] (6.8393,3.0962) -- (6.9793,3.0962);
+  \fill[cblue] (6.9093,2.8625) circle (1.6pt);
+  \draw[cblue,thick] (7.6000,2.8625) -- (7.6000,3.1487);
+  \draw[cblue,thick] (7.5300,2.8625) -- (7.6700,2.8625);
+  \draw[cblue,thick] (7.5300,3.1487) -- (7.6700,3.1487);
+  \fill[cblue] (7.6000,3.0056) circle (1.6pt);
+  \draw[->,color=black!60] (0,0) -- (7.8999999999999995,0) node[below] {$n$};
+  \draw[->,color=black!60] (0,0) -- (0,4.7) node[left] {mean Newton steps};
+  \node[below,color=black!60] at (0.0000,0) {10};
+  \node[below,color=black!60] at (1.1439,0) {20};
+  \node[below,color=black!60] at (2.6561,0) {50};
+  \node[below,color=black!60] at (3.8000,0) {100};
+  \node[below,color=black!60] at (4.9439,0) {200};
+  \node[below,color=black!60] at (6.4561,0) {500};
+  \node[below,color=black!60] at (7.6000,0) {1000};
+  \node[left,color=black!60] at (0,1.4312) {5};
+  \node[left,color=black!60] at (0,2.8625) {10};
+  \node[left,color=black!60] at (0,4.2937) {15};
+\end{tikzpicture}
+```
+
 
 ## 基于自和谐的复杂度分析
 
