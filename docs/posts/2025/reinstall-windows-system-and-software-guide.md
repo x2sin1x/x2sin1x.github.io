@@ -144,55 +144,39 @@ sudo apt install zsh
 chsh -s $(which zsh)
 ```
 
-然后安装 Oh My Zsh：
+然后安装 Oh My Zsh
 
-1. 使用 curl 安装：
-
-```bash
+::: code-group
+```bash [cURL]
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-2. 使用 wget 安装：
-
-```bash
+```bash [WGet]
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-```
-
-::: tip 💡 最新更新：插件已内置
-在 Oh My Zsh 的最新更新中，`zsh-syntax-highlighting` 和 `zsh-autosuggestions` 已被正式收录为官方插件，无需再从 GitHub 手动下载，直接在 `~/.zshrc` 的插件列表中启用即可：
-
-```bash
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
-```
-
-最后，重新加载 Zsh 配置：
-
-```bash
-source ~/.zshrc
 ```
 :::
 
-~~安装 `zsh-syntax-highlighting` 插件以实现语法高亮：~~
+安装 `zsh-syntax-highlighting` 插件以实现语法高亮：
 
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
 ${ZSH:-~/.oh-my-zsh}/plugins/zsh-syntax-highlighting
 ```
 
-~~安装 `zsh-autosuggestions` 插件以实现命令自动补全：~~
+安装 `zsh-autosuggestions` 插件以实现命令自动补全：
 
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions.git \
 ${ZSH:-~/.oh-my-zsh}/plugins/zsh-autosuggestions
 ```
 
-~~编辑 `~/.zshrc` 文件，将它们都添加到插件列表中：~~
+编辑 `~/.zshrc` 文件，将它们都添加到插件列表中：
 
 ```bash
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 ```
 
-~~最后，重新加载 Zsh 配置：~~
+最后，重新加载 Zsh 配置：
 
 ```bash
 source ~/.zshrc
@@ -306,41 +290,31 @@ cat ./.ssh/id_rsa.pub
 
 由于通过 SSH 协议连接 Github 仓库不会走系统的 HTTP 代理，需要手动配置。编辑 `~/.ssh/config` 文件（若没有则新建）：
 
-#### WSL
-
-```bash
-vim ~/.ssh/config
-```
-
-写入内容
-
-```powershell
+::: code-group
+```bash [WSL]
 Host github.com
     HostName ssh.github.com
     Port 443
     User git
-    # 如果你的 7890 是 SOCKS5 代理（Clash 等通常 7890 是混合端口或 HTTP，7891 是 SOCKS5，请按需修改）
-    ProxyCommand nc -X 5 -x 127.0.0.1:7890 %h %p
-    
-    # 如果你的 7890 纯粹是 HTTP 代理，改用这行：
     ProxyCommand nc -X connect -x 127.0.0.1:7890 %h %p
 ```
 
-#### Windows
-
-```powershell
-notepad ~/.ssh/config
-```
-
-写入内容
-
-```
+```powershell [Windows]
 Host github.com
     HostName ssh.github.com
     Port 443
     User git
     ProxyCommand connect -S 127.0.0.1:7890 %h %p
 ```
+:::
+
+::: warning
+如果你的 7890 是 SOCKS5 代理（Clash 等通常 7890 是混合端口或 HTTP，7891 是 SOCKS5，请按需修改），改用这行
+
+```bash
+ProxyCommand nc -X 5 -x 127.0.0.1:7890 %h %p
+```
+:::
 
 最后，测试 SSH 连接是否正常
 
@@ -362,11 +336,21 @@ Hi USERNAME! You've successfully authenticated, but GitHub does not provide shel
 
 ### Codex
 
-OpenAI 官方推荐使用 `npm` 安装 [Codex CLI](https://developers.openai.com/codex/quickstart?setup=cli)。
+OpenAI 官方现已推出 [CodexCLI](https://learn.chatgpt.com/docs/codex/cli) 的官方安装脚本。
 
-```bash
-npm i -g @openai/codex
+::: code-group
+```bash [WSL]
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
 ```
+
+```powershell [Windows]
+powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
+```
+
+```bash [npm]
+npm install -g @openai/codex
+```
+:::
 
 如要通过 API Key 接入非 OpenAI 模型，配置 `~/.codex/auth.json`
 
@@ -415,17 +399,15 @@ curl -fsSL https://opencode.ai/install | bash
 
 [Pi](https://pi.dev) 是践行了“**一切皆插件**”的极简 Coding Agent，理念是“让 Pi 适配你的工作流，而不是反过来”——默认只给模型 `read`、`write`、`edit`、`bash` 四个工具。
 
-Linux & WSL
-
-```bash
+::: code-group
+```bash [WSL]
 curl -fsSL https://pi.dev/install.sh | sh
 ```
 
-Windows PowerShell
-
-```powershell
+```powershell [Windows]
 powershell -c "irm https://pi.dev/install.ps1 | iex"
 ```
+:::
 
 ### Skills
 
@@ -441,23 +423,39 @@ npx skills add git@gitee.com:x2sin1x/myskills.git -a AGENT
 
 推荐使用 [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/main) 作为 Python 包管理器。
 
-#### WSL
-
-```bash
+::: code-group
+```bash [WSL]
 curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 ```
 
+```powershell [Windows]
+Invoke-WebRequest -Uri "https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe" -OutFile ".\Miniconda3-latest-Windows-x86_64.exe"
+```
+:::
+
 使用以下命令激活 Conda 的 `base` 环境：
 
-```bash
+::: code-group
+```bash [WSL]
 source ~/miniconda3/bin/activate
 ```
 
+```powershell [Windows]
+& ~/miniconda3/Scripts/activate.ps1
+```
+:::
+
 使用以下命令激活使用 Conda 但不进入 `base` 环境：
 
-```bash
+::: code-group
+```bash [WSL]
 source ~/miniconda3/etc/profile.d/conda.sh
 ```
+
+```powershell [Windows]
+& ~/miniconda3/etc/profile.d/conda.ps1
+```
+:::
 
 如果希望每次打开终端时自动激活 Conda，可以在安装成功后的问询中选择 `yes`，或者手动执行以下命令：
 
@@ -466,35 +464,27 @@ conda init          # 对当前 shell 生效
 conda init --all    # 对所有 shell 生效
 ```
 
-#### Windows
-
-```powershell
-Invoke-WebRequest -Uri "https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe" -OutFile ".\Miniconda3-latest-Windows-x86_64.exe"
-```
-
 ### uv
 
 [uv](https://docs.astral.sh/uv/) 是一个快速的 Python 包管理器，推荐使用它来安装 Python 包。
 
-#### WSL
-
-```bash
+::: code-group
+```bash [WSL]
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-#### Windows
-
-一键安装脚本
-
-```powershell
+```powershell [Windows]
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
+:::
 
+::: warning
 Windows 系统不会自带 Python 环境，因此可以通过 uv 安装一个用户级别的 Python 环境。
 
 ```powershell
 uv python install 3.14 --default
 ```
+:::
 
 ## Node.js
 
@@ -613,17 +603,17 @@ gvm use go1.4 [--default]
 
 一般来说，需要安装 `extended` 版本。Linux / WSL 系统通过 APT 安装的 Hugo 已经包含了 `extended` 版本。
 
-```bash
+::: code-group
+```bash [WSL]
 sudo apt install hugo
 ```
 
-当然，也可以直接前往 [GitHub](https://github.com/gohugoio/hugo/releases) 发行版页面下载安装包。有些主题对于 Hugo 的版本有要求，建议安装最新版本。
-
-Windows 系统可以通过 WinGet 安装。
-
-```powershell
+```powershell [Windows]
 winget install Hugo.Hugo.Extended
 ```
+:::
+
+当然，也可以直接前往 [GitHub](https://github.com/gohugoio/hugo/releases) 发行版页面下载安装包。有些主题对于 Hugo 的版本有要求，建议安装最新版本。
 
 ## Tex
 
@@ -639,11 +629,15 @@ sudo apt install texlive-full
 
 1. 下载安装脚本
 
-```bash
-wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-# Or
+::: code-group
+```bash [WSL]
 curl -L -o install-tl-unx.tar.gz https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 ```
+
+```bash [Wget]
+wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+```
+:::
 
 2. 解压
 
@@ -677,25 +671,3 @@ export PATH=/usr/local/texlive/2026/bin/x86_64-linux:$PATH
 ::: danger
 不推荐使用 Ubuntu Server 的安装方式在 WSL 中安装 Docker，因为这种方式需要额外配置 Docker 的守护进程，且不如 Docker Desktop 方便。
 :::
-
-## 编曲
-
-- Cubase 专业 DAW（数字音频工作站）
-
-  - Prism 音频转 MIDI 插件
-  - Song Master Pro 音频分析
-- Sibelius 专业打谱软件
-
-  - NotePerformer 5 高质量替换音源
-
-### 插件
-
-- [VoiceMeeter Banana](https://vb-audio.com/Voicemeeter/banana.htm) 专业虚拟音频混音软件
-- [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html) 提供虚拟 MIDI 输入输出
-
-### 音源
-
-- [Pianoteq](https://www.modartt.com/pianoteq_overview) 物理建模钢琴音源
-- [BBC Symphony Orchestra](https://www.spitfireaudio.com/en-us/collections/bbc-symphony-orchestra) 专业管弦音源
-- ~~Keyscape 四巨头之钢琴音源~~
-- Ample 系列民族乐器音源
