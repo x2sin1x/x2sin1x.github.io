@@ -56,6 +56,26 @@ html {
   scrollbar-gutter: stable;
 }
 
+.vp-doc .section-recent-updates > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vp-doc .section-recent-updates > ul > li + li {
+  margin-top: 0;
+}
+
+.vp-doc .section-recent-updates a:not(:hover) {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+.vp-doc .section-recent-updates a:hover {
+  color: var(--tk-theme-color);
+}
+
 :root {
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);

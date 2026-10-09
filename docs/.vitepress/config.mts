@@ -237,6 +237,10 @@ function buildPapersSidebar(stacks: DefaultTheme.SidebarItem[]): DefaultTheme.Si
 
 // Teek 主题配置
 const teekConfig = defineTeekConfig({
+  // 主题默认列表读取博客全站数据；最近更新由全局 doc-after 插槽按板块渲染
+  articleUpdate: {
+    enabled: false,
+  },
   // 博主信息（首页 Banner 中的头像与昵称）：暂用站点 Logo 作为头像，
   // 替换为个人头像时把图片放入 docs/public/ 后修改 avatar 路径即可
   blogger: {

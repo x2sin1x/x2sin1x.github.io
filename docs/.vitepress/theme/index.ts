@@ -17,6 +17,7 @@ import PapersArchives from "./components/PapersArchives.vue";
 import PapersOverview from "./components/PapersOverview.vue";
 import SiteFooter from "./components/SiteFooter.vue";
 import PermalinkRedirect from "./components/PermalinkRedirect.vue";
+import SectionRecentUpdates from "./components/SectionRecentUpdates.vue";
 
 export default {
   extends: Teek,
@@ -31,7 +32,7 @@ export default {
       "teek-article-analyze-before": () => h(ArticleBreadcrumb),
       // 全站页脚：主题 FooterInfo / FooterGroup 仅在 layout: home 页面渲染，
       // 故经 VitePress 的 layout-bottom 插槽全站注入自建页脚（见 SiteFooter.vue 与 config.mts 注释）
-      "layout-bottom": () => h(SiteFooter),
+      "layout-bottom": () => [h(SectionRecentUpdates), h(SiteFooter)],
     }),
   enhanceApp({ app }) {
     app.component("AbcScore", AbcScore);
