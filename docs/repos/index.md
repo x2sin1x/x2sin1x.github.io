@@ -27,3 +27,5 @@ data:
     desc: 高性能 LLM 推理引擎——RadixCache 前缀缓存、chunked prefill 与重叠调度的 SRT 运行时源码解读
 ```
 :::
+
+新近源码解读：[DeepEP：从 V1 的 NVSHMEM 双路径到 V2 的 NCCL Gin、DeepJIT 与统一 EPBuffer](/repos/deepep/)。

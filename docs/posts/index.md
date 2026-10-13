@@ -6,7 +6,6 @@ description: "博客栏目首页，按最后更新时间由新到旧分页展示
 layout: page
 sidebar: false
 comment: false
-articleUpdate: false
 ---
 
 <PostsHome />

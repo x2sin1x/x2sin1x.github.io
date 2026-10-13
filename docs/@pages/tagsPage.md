@@ -4,7 +4,6 @@ permalink: /posts/tags
 article: false
 sidebar: false
 comment: false
-articleUpdate: false
 ---
 
 # 标签

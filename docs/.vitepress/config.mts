@@ -237,7 +237,7 @@ function buildPapersSidebar(stacks: DefaultTheme.SidebarItem[]): DefaultTheme.Si
 
 // Teek 主题配置
 const teekConfig = defineTeekConfig({
-  // 主题默认列表读取博客全站数据；最近更新由全局 doc-after 插槽按板块渲染
+  // 关闭主题内置文章更新列表
   articleUpdate: {
     enabled: false,
   },
@@ -465,6 +465,7 @@ export default defineConfig({
           items: [
             { text: "Mooncake", link: "/repos/mooncake/" },
             { text: "vLLM", link: "/repos/vllm/" },
+            { text: "DeepEP", link: "/repos/deepep/" },
           ],
         },
       },

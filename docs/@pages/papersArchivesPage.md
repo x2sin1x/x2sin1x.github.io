@@ -4,7 +4,6 @@ permalink: /papers/archives
 article: false
 sidebar: false
 comment: false
-articleUpdate: false
 ---
 
 <PapersArchives />

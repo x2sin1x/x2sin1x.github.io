@@ -6,7 +6,6 @@ description: "论文栏目首页，展示论文列表与独立的标签 / 分类
 layout: page
 sidebar: false
 comment: false
-articleUpdate: false
 ---
 
 <PapersHome />

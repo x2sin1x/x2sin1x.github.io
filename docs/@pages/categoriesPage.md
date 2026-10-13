@@ -4,7 +4,6 @@ permalink: /posts/categories
 article: false
 sidebar: false
 comment: false
-articleUpdate: false
 ---
 
 # 分类
