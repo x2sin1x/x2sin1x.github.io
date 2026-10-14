@@ -23,7 +23,7 @@ import { buildGroups } from "./taxonomy";
  */
 const toPost = (post: PostItem) => ({
   url: post.url,
-  relativePath: `${post.url.replace(/^\//, "").replace(/\/$/, "")}.md`,
+  relativePath: `${post.url.replace(/^\//, "").replace(/\/$/, "")}/index.md`,
   title: post.title || post.url,
   frontmatter: {},
 });

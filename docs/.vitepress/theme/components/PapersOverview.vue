@@ -41,7 +41,12 @@ const papers = computed(() => papersData.filter((paper) => paper.url !== "/paper
 const wordsMap = computed(() => {
   const config = theme.value as DefaultTheme.Config & { docAnalysisInfo?: DocAnalysisData };
   const list: FileWords[] = config.docAnalysisInfo?.eachFileWords ?? [];
-  return new Map(list.map((info) => [`/${info.fileInfo.relativePath.replace(/\.md$/, "")}`, info]));
+  return new Map(
+    list.map((info) => [
+      `/${info.fileInfo.relativePath.replace(/\/index\.md$/, "").replace(/\.md$/, "")}`,
+      info,
+    ])
+  );
 });
 
 const wordsOf = (paper: PaperItem): FileWords | undefined => wordsMap.value.get(paper.url);

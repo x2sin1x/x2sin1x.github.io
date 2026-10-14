@@ -22,7 +22,7 @@ import { buildGroups } from "./taxonomy";
  */
 const toPost = (paper: (typeof papersData)[number]) => ({
   url: paper.url,
-  relativePath: `${paper.url.replace(/^\//, "").replace(/\/$/, "")}.md`,
+  relativePath: `${paper.url.replace(/^\//, "").replace(/\/$/, "")}/index.md`,
   title: paper.title || paper.url,
   frontmatter: {},
 });
