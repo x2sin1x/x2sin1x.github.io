@@ -1,6 +1,6 @@
 ---
 title: "DFlash 2"
-date: 2026-09-23
+date: 2026-08-18
 tags:
   - Speculative Decoding
 categories:

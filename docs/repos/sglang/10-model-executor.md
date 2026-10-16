@@ -1,5 +1,6 @@
 ---
 title: "第 10 章 ModelRunner 与模型执行"
+weight: 100
 ---
 
 # 第 10 章 ModelRunner 与模型执行
@@ -8,10 +9,9 @@ title: "第 10 章 ModelRunner 与模型执行"
 
 ## 10.1 入口与主干
 
-`ModelRunner`（`srt/model_executor/model_runner.py`）是「一个 GPU 进程内模型执行」的门面，由 `TpModelWorker` 持有（`srt/managers/tp_worker.py`，第 6 章 `run_batch` → `model_worker.forward_batch_generation`）。主前向入口在 `srt/model_executor/model_runner.py:1706`：
+`ModelRunner`（`srt/model_executor/model_runner.py`）是「一个 GPU 进程内模型执行」的门面，由 `TpModelWorker` 持有（`srt/managers/tp_worker.py`，第 6 章 `run_batch` → `model_worker.forward_batch_generation`）。主前向入口如下：
 
 ```python
-# srt/model_executor/model_runner.py:1706（节选）
 def forward(
     self,
     forward_batch: ForwardBatch,
@@ -41,10 +41,9 @@ def forward(
 
 ## 10.2 注意力后端：注册表与选择
 
-注意力后端是 SGLang 最主要的硬件适配面。注册表在 `srt/layers/attention/attention_registry.py:40`：
+注意力后端是 SGLang 最主要的硬件适配面。注册表通过以下装饰器维护：
 
 ```python
-# srt/layers/attention/attention_registry.py:40
 ATTENTION_BACKENDS = {}
 
 def register_attention_backend(name):

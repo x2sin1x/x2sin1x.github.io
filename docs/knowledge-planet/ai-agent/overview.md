@@ -47,6 +47,18 @@ while not task_done:
     context.append(result)
 ```
 
+::: mermaid
+flowchart TD
+    task[接收任务] --> observe[观察环境]
+    observe --> context[观察结果写入上下文]
+    context --> think[LLM 推理并决定下一步]
+    think --> done{任务完成？}
+    done -->|是| answer[整理并返回答案]
+    done -->|否，调用工具| act[执行工具行动]
+    act --> result[结果写回上下文]
+    result --> observe
+:::
+
 这个循环里有三个容易低估的难点，它们分别催生了后续的三个主题：
 
 - **上下文是稀缺资源**。每一轮观察和结果都会挤占有限的窗口，塞多了模型会“看不过来”。如何管理这个不断膨胀的上下文，是[上下文工程](/knowledge-planet/ai-agent/context/)的主题。

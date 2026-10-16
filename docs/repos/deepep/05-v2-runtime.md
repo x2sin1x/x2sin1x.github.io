@@ -1,5 +1,6 @@
 ---
 title: "第 5 章 V2：Python API、C++ 扩展与 DeepJIT"
+weight: 50
 ---
 
 # 第 5 章 V2：Python API、C++ 扩展与 DeepJIT

@@ -18,6 +18,22 @@ weight: 30
 - **P/D 分离**：QPS 高且 prompt 长的服务几乎必选（见[P/D 分离]篇）——prefill 实例池与 decode 实例池独立扩缩容，是不同资源形态（计算型 vs 带宽型）的分池。
 - **GPU 共享与虚拟化（题库 135/238）**：多模型混部小模型时用 MIG/时间片/MPS 做 GPU 切分，换来利用率；代价是隔离性（显存 OOM 串扰、性能噪声）。原则：**SLO 硬的服务独占，best-effort 的才共享**。
 
+::: mermaid
+flowchart LR
+    client[客户端请求] --> gateway[网关：鉴权与租户限流]
+    gateway --> route[前缀亲和与实时负载路由]
+    route --> admission{准入检查：队列与预测 KV 水位}
+    admission -->|超限| reject[429 + Retry-After]
+    admission -->|通过| mode{部署模式}
+    mode -->|同实例| shared[推理实例：Prefill + Decode]
+    mode -->|P/D 分离| prefill[Prefill 实例池]
+    prefill --> transfer[KV Cache 传输]
+    transfer --> decode[Decode 实例池]
+    shared --> stream[流式返回 Token]
+    decode --> stream
+    stream --> client
+:::
+
 ## 第二步：路由与准入
 
 **请求路由（题库 239）**的层级：网关 → 负载均衡 → 实例选择。LLM 特有的一层是**会话/前缀亲和**：同一会话的请求打到同一实例可命中 prefix cache（省掉整段 prompt 重算），但会让负载倾斜（长会话粘住实例）。工程解法是**前缀感知路由**：按最长公共前缀哈希选实例池，池内再按实时负载调度——SGLang/vLLM 生态的路由器都实现了这一层。

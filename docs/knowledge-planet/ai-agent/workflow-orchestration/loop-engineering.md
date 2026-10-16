@@ -30,6 +30,30 @@ while True:
     checkpoint(context)
 ```
 
+::: mermaid
+flowchart TD
+    start([开始一轮]) --> stop{完成、超限或用户中断？}
+    stop -->|是| saveStop[保存状态并报告进度]
+    saveStop --> endNode([结束])
+    stop -->|否| tokens{上下文超过压缩阈值？}
+    tokens -->|是| compact[压缩上下文]
+    tokens -->|否| model[调用模型]
+    compact --> model
+    model --> tools{模型请求调用工具？}
+    tools -->|是| permission{权限策略放行？}
+    permission -->|否| denied[记录拒绝结果]
+    permission -->|是| execute[执行工具]
+    execute --> result[工具结果或错误写回上下文]
+    denied --> checkpoint[保存检查点]
+    result --> checkpoint
+    checkpoint --> start
+    tools -->|否，模型给出完成答复| accept{机器验收通过？}
+    accept -->|是| saveDone[保存最终状态]
+    saveDone --> finish([交付结果])
+    accept -->|否| feedback[将验收失败写回上下文]
+    feedback --> checkpoint
+:::
+
 逐项展开其中最要紧的三个。
 
 ## 终止：循环出口的三重门

@@ -1,5 +1,6 @@
 ---
 title: "第 10 章 V2：EP 之外的 Buffer 与扩展能力"
+weight: 100
 ---
 
 # 第 10 章 V2：EP 之外的 Buffer 与扩展能力

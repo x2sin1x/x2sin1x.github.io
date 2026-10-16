@@ -1,5 +1,6 @@
 ---
 title: "第 9 章 RadixCache 与 KV 内存池"
+weight: 90
 ---
 
 # 第 9 章 RadixCache 与 KV 内存池
@@ -17,10 +18,9 @@ KV 内存层由两个独立组件组成，Scheduler 同时持有：
 
 ## 9.2 命中：match_prefix
 
-`srt/mem_cache/radix_cache.py:354`：
+关键匹配逻辑如下：
 
 ```python
-# srt/mem_cache/radix_cache.py:354（节选，docstring 摘要）
 def match_prefix(self, params: MatchPrefixParams) -> MatchResult:
     """Find the longest cached prefix of ``key`` in the radix tree.
 
@@ -41,10 +41,9 @@ def match_prefix(self, params: MatchPrefixParams) -> MatchResult:
 
 ## 9.3 写回与锁定
 
-请求结束或 chunk 完成时，Scheduler 调 `cache_unfinished_req`（`srt/mem_cache/radix_cache.py:502`；chunked 调用点在 `srt/managers/scheduler.py:3535`，批处理组件中的调用在 `srt/managers/scheduler_components/batch_result_processor.py:383`）：
+请求结束或 chunk 完成时，Scheduler 调用 `cache_unfinished_req`，将尚未完成请求的前缀纳入缓存：
 
 ```python
-# srt/mem_cache/radix_cache.py:502（节选）
 def cache_unfinished_req(self, req: Req, chunked=False):
     """Cache request when it is unfinished."""
     ...
@@ -62,10 +61,9 @@ def cache_unfinished_req(self, req: Req, chunked=False):
 
 ## 9.4 淘汰：evict
 
-KV 池不足时（第 7 章预算、第 6 章 retract 的压力来源），`evict`（`srt/mem_cache/radix_cache.py:553`）回收缓存：
+KV 池不足时（第 7 章预算、第 6 章 retract 的压力来源），`evict` 回收缓存：
 
 ```python
-# srt/mem_cache/radix_cache.py:553（节选）
 def evict(self, params: EvictParams) -> EvictResult:
     ...
     leaves = list(self.evictable_leaves)

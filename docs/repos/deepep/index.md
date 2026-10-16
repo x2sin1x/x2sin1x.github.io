@@ -5,6 +5,8 @@ weight: 10
 
 # DeepEP 源码解读：从 NVSHMEM 双路径到 NCCL Gin
 
+![](cover.webp)
+
 > 本书把 DeepEP V1 与 EPv2 放在一条演进线上解释：V1 如何用 NVLink IPC、NVSHMEM 和两种通信模式完成专家分发与回收；V2 如何围绕 NCCL Gin、DeepJIT 和统一的 `EPBuffer` 重组执行路径。分析范围覆盖 V1 `v1.2.1` 与当前仓库 `main` 的 V2.5 快照，两代实现始终分开追踪。
 
 ## 版本快照

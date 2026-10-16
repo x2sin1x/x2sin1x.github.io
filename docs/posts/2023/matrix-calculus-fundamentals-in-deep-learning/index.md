@@ -702,16 +702,16 @@ $$
 
 ::: mermaid
 flowchart TD
-    X["$$\mathbf{x}$$（输入）"] --> G["$$\mathbf{g} = \mathbf{W}_{in}\mathbf{x} + \mathbf{b}_{in}$$"] --> H["$$\mathbf{h} = \mathrm{ReLU}(\mathbf{g})$$"] --> Y["$$\mathbf{y} = \mathbf{W}_{out}\mathbf{h} + \mathbf{b}_{out}$$"] --> L["$$L$$（损失）"]
+    X("$$\mathbf{x}$$（输入）") --> G("$$\mathbf{g} = \mathbf{W}_{in}\mathbf{x} + \mathbf{b}_{in}$$") --> H("$$\mathbf{h} = \mathrm{ReLU}(\mathbf{g})$$") --> Y("$$\mathbf{y} = \mathbf{W}_{out}\mathbf{h} + \mathbf{b}_{out}$$") --> L("$$L$$（损失）")
 
     L -.->|"$$\dfrac{\partial L}{\partial \mathbf{y}} = \mathbf{y} - \mathbf{t}$$"| Y
-    Y -.->|"$$\dfrac{\partial L}{\partial \mathbf{W}_{out}} = \dfrac{\partial L}{\partial \mathbf{y}}\mathbf{h}^{\top}$$"| WO["$$\mathbf{W}_{out}$$、$$\mathbf{b}_{out}$$（终点站）"]
+    Y -.->|"$$\dfrac{\partial L}{\partial \mathbf{W}_{out}} = \dfrac{\partial L}{\partial \mathbf{y}}\mathbf{h}^{\top}$$"| WO("$$\mathbf{W}_{out}$$、$$\mathbf{b}_{out}$$（终点站）")
     Y -.->|"$$\dfrac{\partial L}{\partial \mathbf{h}} = \mathbf{W}_{out}^{\top}\dfrac{\partial L}{\partial \mathbf{y}}$$"| H
     H -.->|"$$\dfrac{\partial L}{\partial \mathbf{g}} = \mathrm{diag}(\mathbf{g} > \mathbf{0})\dfrac{\partial L}{\partial \mathbf{h}}$$"| G
-    G -.->|"$$\dfrac{\partial L}{\partial \mathbf{W}_{in}} = \dfrac{\partial L}{\partial \mathbf{g}}\mathbf{x}^{\top}$$"| WI["$$\mathbf{W}_{in}$$、$$\mathbf{b}_{in}$$（终点站）"]
+    G -.->|"$$\dfrac{\partial L}{\partial \mathbf{W}_{in}} = \dfrac{\partial L}{\partial \mathbf{g}}\mathbf{x}^{\top}$$"| WI("$$\mathbf{W}_{in}$$、$$\mathbf{b}_{in}$$（终点站）")
 
-    classDef terminal fill:#ffe6cc,stroke:#d79b00,color:#333;
-    classDef conduit fill:#dae8fc,stroke:#6c8ebf,color:#333;
+    classDef terminal fill:#e7e5f5,stroke:#8175b4,color:#33285f;
+    classDef conduit fill:#dcecfb,stroke:#468ac2,color:#183a58;
     class WO,WI terminal;
     class G,H,Y conduit;
 :::
@@ -805,8 +805,8 @@ flowchart TB
     K -.->|"$$\dfrac{\partial L}{\partial \mathbf{K}}\mathbf{W}_{K}^{\top}$$"| X
     V -.->|"$$\dfrac{\partial L}{\partial \mathbf{V}}\mathbf{W}_{V}^{\top}$$"| X
 
-    classDef terminal fill:#ffe6cc,stroke:#d79b00,color:#333;
-    classDef conduit fill:#dae8fc,stroke:#6c8ebf,color:#333;
+    classDef terminal fill:#e7e5f5,stroke:#8175b4,color:#33285f;
+    classDef conduit fill:#dcecfb,stroke:#468ac2,color:#183a58;
     class WQ,WK,WV terminal;
     class X,Q,K,V,S,A,O conduit;
 :::

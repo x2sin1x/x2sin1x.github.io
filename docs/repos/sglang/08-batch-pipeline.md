@@ -1,5 +1,6 @@
 ---
 title: "第 8 章 从 Req 到 ForwardBatch：批数据流水线"
+weight: 80
 ---
 
 # 第 8 章 从 Req 到 ForwardBatch：批数据流水线
@@ -37,10 +38,9 @@ class ForwardMode(IntEnum):
 
 ## 8.3 prefill 路径：prepare_for_extend
 
-`srt/managers/schedule_batch.py:2722` 的 `prepare_for_extend` 把 prefill 批张量化：
+`prepare_for_extend` 把 prefill 批张量化：
 
 ```python
-# srt/managers/schedule_batch.py:2722（节选）
 def prepare_for_extend(self):
     self.forward_mode = ForwardMode.EXTEND
     ...

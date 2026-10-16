@@ -16,7 +16,7 @@ weight: 190
 
 入口 `vllm`（console script 指向 `vllm.entrypoints.cli.main:main`）注册 8 个顶级子命令，全部经 `FlexibleArgumentParser` 解析：
 
-```mermaid
+::: mermaid
 flowchart TD
     V["vllm"] --> A["serve — OpenAI 兼容 HTTP/gRPC 服务"]
     V --> B["launch — 组件级启动器"]
@@ -29,7 +29,7 @@ flowchart TD
     B --> B1["render — 无 GPU 渲染服务"]
     C --> C1["serve / throughput / latency<br/>startup / mm-processor / sweep"]
     G --> G1["create / inspect / restore"]
-```
+:::
 
 | 命令 | 用途 | 参数定义位置 |
 |---|---|---|

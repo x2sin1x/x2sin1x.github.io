@@ -1,5 +1,6 @@
 ---
 title: "第 7 章 PrefillAdder 与 chunked prefill"
+weight: 70
 ---
 
 # 第 7 章 PrefillAdder 与 chunked prefill
@@ -14,10 +15,9 @@ title: "第 7 章 PrefillAdder 与 chunked prefill"
 - `get_num_allocatable_reqs`（`:3794`）综合 `req_to_token_pool.available_size()` 与 pipeline 并行预算，若 ≤ 0 且无 chunked_req → 置 `batch_is_full` 返回；
 - 调 `policy.calc_priority` 按调度策略（默认 `fcfs`，可选 `lpm` 等）重排等待队列。
 
-随后构造 **PrefillAdder**&#8203;（`srt/managers/schedule_policy.py:621`），把决定权交给它：
+随后构造 **PrefillAdder**&#8203;，把决定权交给它：
 
 ```python
-# srt/managers/scheduler.py:3907 附近（节选）
 adder = PrefillAdder(
     self.page_size,
     self.tree_cache,
@@ -35,10 +35,9 @@ adder = PrefillAdder(
 
 ## 7.2 预算模型
 
-`srt/managers/schedule_policy.py:1347` 的 `add_one_req` 对每个候选请求计算：
+`add_one_req` 对每个候选请求计算：
 
 ```python
-# srt/managers/schedule_policy.py:1360 附近（节选）
 max_new = min(
     max(req.sampling_params.max_new_tokens - len(req.output_ids), 0),
     CLIP_MAX_NEW_TOKENS,

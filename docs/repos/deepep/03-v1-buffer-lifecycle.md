@@ -1,5 +1,6 @@
 ---
 title: "第 3 章 V1：Buffer 初始化与通信域建立"
+weight: 30
 ---
 
 # 第 3 章 V1：Buffer 初始化与通信域建立

@@ -190,8 +190,8 @@ function sortTreeByWeight(items: DefaultTheme.SidebarItem[]): DefaultTheme.Sideb
 const postsKey = "/posts/";
 
 /**
- * 博客侧边栏：<year>/<slug>.md 扁平结构下，插件直接生成
- * <year> 分组 + 文章链接的两级结构，这里仅收起年份分组并按年份倒序（最新在前）
+ * 博客侧边栏：将 <year>/<slug>/index.md 的标题合并到 slug 分组，避免显示 slug 目录名；
+ * 同时收起年份分组并按年份倒序（最新在前）
  */
 function buildPostsSidebar(items: DefaultTheme.SidebarItem[]): DefaultTheme.SidebarItem[] {
   const [wrapper] = items;
@@ -201,7 +201,10 @@ function buildPostsSidebar(items: DefaultTheme.SidebarItem[]): DefaultTheme.Side
   return yearGroups
     .filter((year) => !year.link && year.items?.length)
     .map((year) => {
-      const yearItem: DefaultTheme.SidebarItem = { collapsed: true, items: year.items ?? [] };
+      const yearItem: DefaultTheme.SidebarItem = {
+        collapsed: true,
+        items: mergeIndexIntoGroups(year.items ?? []),
+      };
       if (year.text) yearItem.text = year.text;
       return yearItem;
     })

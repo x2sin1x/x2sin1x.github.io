@@ -1,5 +1,6 @@
 ---
 title: "第 11 章 采样"
+weight: 110
 ---
 
 # 第 11 章 采样
@@ -34,10 +35,9 @@ title: "第 11 章 采样"
 
 ## 11.4 延迟采样：把采样推迟一拍
 
-`TpModelWorker.forward_batch_generation` 中有一条专门路径（`srt/managers/tp_worker.py:668` 起的条件分支）：
+`TpModelWorker.forward_batch_generation` 在 overlap 模式下会将采样封装为延迟回调：
 
 ```python
-# srt/managers/tp_worker.py:645 附近（节选）
 if (
     self.enable_overlap
     and not self.enable_spec

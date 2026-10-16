@@ -48,17 +48,19 @@ pip install "feapder[all]"        # 完整版
 
 ## 二、架构与工作流程
 
-```text
- start_requests → request_buffer（请求缓冲队列） → 任务队列数据库
-                                                      ↑↓
-                     collector（任务收集器，批量取任务到内存）
-                                                      ↓
-                     parser_control（模板控制器，多线程） → request（下载器） → response
-                                                      ↓
-                     parser（解析函数）→ item / 新 request
-                                                      ↓
-                     item_buffer（数据缓冲队列） → 批量入库
-```
+::: mermaid
+flowchart TD
+    start[start_requests] --> requestBuffer[request_buffer]
+    requestBuffer -->|批量写入| taskQueue[(任务队列数据库)]
+    taskQueue -->|批量取任务| collector[collector]
+    collector --> parserControl[parser_control：多线程调度]
+    parserControl --> download[request 下载器]
+    download --> response[response]
+    response --> parser[parser 解析函数]
+    parser -->|Item| itemBuffer[item_buffer]
+    itemBuffer -->|批量写入| database[(业务数据库)]
+    parser -->|新 Request| requestBuffer
+:::
 
 模块职责：
 

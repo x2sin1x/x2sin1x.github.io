@@ -1,5 +1,6 @@
 ---
 title: "第 4 章 HTTP 入口与 OpenAI 兼容层"
+weight: 40
 ---
 
 # 第 4 章 HTTP 入口与 OpenAI 兼容层

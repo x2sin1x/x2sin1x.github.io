@@ -1,5 +1,6 @@
 ---
 title: "第 4 章 V1：布局、dispatch 与 combine"
+weight: 40
 ---
 
 # 第 4 章 V1：布局、dispatch 与 combine

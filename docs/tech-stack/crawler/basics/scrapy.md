@@ -54,20 +54,21 @@ myspider/
 
 ## 二、架构与工作流程
 
-```text
-                        ┌──────────┐
-        ┌── 请求队列 ──→│  调度器   │
-        │               └──────────┘
-        │                    ↑↓
-   ┌─────────┐   请求    ┌──────┐   响应   ┌─────────┐
-   │  引擎    │ ←──────→ │ 下载器 │ ──────→ │ Spider  │
-   └─────────┘           └──────┘           └─────────┘
-        ↑                                       │
-        │            Item 数据                   ↓
-   ┌─────────┐  ←──────────────────────  (下载中间件/爬虫中间件)
-   │ Pipeline │
-   └─────────┘
-```
+::: mermaid
+flowchart LR
+    spider[Spider] -->|Request / Item| spiderMW[爬虫中间件]
+    spiderMW -->|Request / Item| engine[Engine]
+    engine -->|待调度 Request| scheduler[Scheduler]
+    scheduler -->|出队 Request| engine
+    engine -->|Request| downloadMW[下载中间件]
+    downloadMW --> downloader[Downloader]
+    downloader -->|Response| downloadMW
+    downloadMW -->|Response| engine
+    engine -->|Response| spiderMW
+    spiderMW -->|Response| spider
+    engine -->|Item| pipeline[Item Pipeline]
+    pipeline --> store[(持久化存储)]
+:::
 
 核心组件：
 

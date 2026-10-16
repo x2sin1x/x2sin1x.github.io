@@ -1,5 +1,6 @@
 ---
 title: "第 12 章 结果处理与 Detokenizer"
+weight: 120
 ---
 
 # 第 12 章 结果处理与 Detokenizer
@@ -39,10 +40,9 @@ prefill 路径（`process_batch_result_prefill`）多做一件事：从 logits �
 
 ## 12.4 增量反分词
 
-DetokenizerManager（`srt/managers/detokenizer_manager.py:102`）的事件循环极简（`:179`）：
+DetokenizerManager 的事件循环极简：
 
 ```python
-# srt/managers/detokenizer_manager.py:179（节选）
 def event_loop(self):
     """The event loop that handles requests"""
     while True:

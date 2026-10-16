@@ -1,5 +1,6 @@
 ---
 title: "第 6 章 Scheduler 主循环与重叠调度"
+weight: 60
 ---
 
 # 第 6 章 Scheduler 主循环与重叠调度
@@ -10,10 +11,9 @@ title: "第 6 章 Scheduler 主循环与重叠调度"
 
 Scheduler 是本书最核心的一个类（`srt/managers/scheduler.py:436` 起，单文件 6100+ 行）。它有两个主循环实现，按启动参数择一运行：
 
-**普通循环**&#8203;（`srt/managers/scheduler.py:1906`）：
+**普通循环**&#8203;：
 
 ```python
-# srt/managers/scheduler.py:1906（节选）
 def event_loop_normal(self):
     """A normal scheduler loop."""
     while True:
@@ -57,10 +57,9 @@ def event_loop_normal(self):
 
 ## 6.3 decode 批的维护与 retract
 
-`srt/managers/scheduler.py:4191` 的 `update_running_batch` 维护 decode 批，核心分支是&#8203;**内存压力检查**&#8203;：
+`update_running_batch` 维护 decode 批，核心分支是&#8203;**内存压力检查**&#8203;：
 
 ```python
-# srt/managers/scheduler.py:4191（节选）
 # Check if decode out of memory
 if (kv_full_retract_flag := not batch.check_decode_mem()) or (...):
     ...

@@ -1,5 +1,6 @@
 ---
 title: "第 6 章 V2：NCCL Gin 与对称内存"
+weight: 60
 ---
 
 # 第 6 章 V2：NCCL Gin 与对称内存

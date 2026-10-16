@@ -1,5 +1,6 @@
 ---
 title: "第 7 章 V2：dispatch 如何构造专家输入"
+weight: 70
 ---
 
 # 第 7 章 V2：dispatch 如何构造专家输入

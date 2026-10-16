@@ -12,13 +12,16 @@ weight: 116
 
 最常用、也最简单的形状。一个编排者把任务拆成子任务，分派给多个 Worker，汇总结果：
 
-```text
-        ┌──────────────┐
-        │ Orchestrator │  拆解任务 / 汇总结论
-        └──┬────┬────┬─┘
-           ▼    ▼    ▼
-       [Worker][Worker][Worker]   并行执行，互不通信
-```
+::: mermaid
+flowchart TD
+    task[接收任务] --> orchestrator[Orchestrator 拆解任务]
+    orchestrator --> workerA[Worker A]
+    orchestrator --> workerB[Worker B]
+    orchestrator --> workerC[Worker C]
+    workerA --> aggregate[Orchestrator 汇总结果]
+    workerB --> aggregate
+    workerC --> aggregate
+:::
 
 - **适用**：子任务可独立、可并行的场景——多源资料调研、批量文件处理、多模块分析。Anthropic 的多智能体研究系统就是典型的 Orchestrator-Worker：主 Agent 拆出研究方向，若干并行子 Agent 分头搜索，主 Agent 汇总成报告。
 - **关键点**：Worker 之间不说话，所有协调发生在 Orchestrator。拆分质量决定一切——拆出依赖冲突的子任务，并行就变成事故。
@@ -27,6 +30,18 @@ weight: 116
 
 Supervisor 在主从结构上加了一层**流程状态管理**：它不一次性派完全部任务，而是逐派、逐验、再决定下一步。Worker 产出后 Supervisor 审查质量，不合格打回重做，全部合格才进入下一阶段。
 
+::: mermaid
+flowchart TD
+    start([开始]) --> assign[Supervisor 分派当前任务]
+    assign --> worker[Worker 执行]
+    worker --> review[Supervisor 审查产出]
+    review --> pass{质量合格？}
+    pass -->|否，反馈并重做| assign
+    pass -->|是| more{还有依赖任务？}
+    more -->|是| assign
+    more -->|否| done[汇总并交付]
+:::
+
 - **适用**：质量敏感、步骤间有依赖的流水线，如“起草 → 事实核查 → 润色”的内容生产。
 - **与 Orchestrator-Worker 的区别**：后者是一次性分发 + 汇总；Supervisor 持有流程状态，Worker 只是可替换的手。代价是 Supervisor 成为串行瓶颈。
 
@@ -34,10 +49,11 @@ Supervisor 在主从结构上加了一层**流程状态管理**：它不一次�
 
 没有常驻的主管，Agent 之间**直接移交控制权**（handoff）：客服 Agent 判断这是退款问题，连同上下文把对话移交给退款专员 Agent，此后由它接管。
 
-```text
-[前台 Agent] --handoff--> [退款 Agent] --handoff--> [物流 Agent]
-   （每个 Agent 独立窗口，移交时打包必要上下文）
-```
+::: mermaid
+flowchart LR
+    front[前台 Agent] -->|移交控制权与上下文| refund[退款 Agent]
+    refund -->|移交控制权与上下文| shipping[物流 Agent]
+:::
 
 - **适用**：业务像“流水道岔”一样按类型分流——客服路由、多领域咨询。OpenAI 的 Agents SDK 把 handoff 作为一等原语，LangGraph 也支持 swarm 拓扑。
 - **关键点**：移交的是**控制权和上下文包**，移交后原 Agent 退出循环。没有全局协调者意味着没有全局视图，复杂任务容易在移交链中丢上下文。

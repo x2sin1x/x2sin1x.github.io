@@ -1,5 +1,6 @@
 ---
 title: "第 5 章 TokenizerManager：请求的第一站"
+weight: 50
 ---
 
 # 第 5 章 TokenizerManager：请求的第一站
@@ -8,10 +9,9 @@ title: "第 5 章 TokenizerManager：请求的第一站"
 
 ## 5.1 职责与位置
 
-TokenizerManager（下称 TM）运行在主进程，是 HTTP 层与 Scheduler 之间的翻译与状态保持者。`srt/managers/tokenizer_manager.py:854` 的 `generate_request` 是所有生成类请求的总入口：
+TokenizerManager（下称 TM）运行在主进程，是 HTTP 层与 Scheduler 之间的翻译与状态保持者。`generate_request` 是所有生成类请求的总入口：
 
 ```python
-# srt/managers/tokenizer_manager.py:854（节选）
 async def generate_request(
     self,
     obj: Union[GenerateReqInput, EmbeddingReqInput],
@@ -50,10 +50,9 @@ TM 维护 `rid_to_state`：每个请求在 TM 侧的状态（原始请求对象�
 
 ## 5.4 上行：结果事件循环
 
-TM 有一个常驻的 asyncio 任务 `handle_loop`（`tokenizer_manager.py:2332`）：
+TM 有一个常驻的 asyncio 任务 `handle_loop`：
 
 ```python
-# srt/managers/tokenizer_manager.py:2332
 async def handle_loop(self):
     """The event loop that handles requests"""
     while True:

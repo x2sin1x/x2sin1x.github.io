@@ -1,5 +1,6 @@
 ---
 title: "第 15 章 Rust 路由网关"
+weight: 150
 ---
 
 # 第 15 章 Rust 路由网关（sgl-model-gateway）

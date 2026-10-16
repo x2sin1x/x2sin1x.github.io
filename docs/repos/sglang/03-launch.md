@@ -1,5 +1,6 @@
 ---
 title: "第 3 章 启动与进程拓扑"
+weight: 30
 ---
 
 # 第 3 章 启动与进程拓扑
@@ -8,10 +9,9 @@ title: "第 3 章 启动与进程拓扑"
 
 ## 3.1 入口分派
 
-CLI 入口最终落到 `python/sglang/launch_server.py:19` 的 `run_server`。它按配置分派四种模式：
+CLI 入口最终落到 `run_server`。它按配置分派四种模式：
 
 ```python
-# python/sglang/launch_server.py:19 起（节选）
 def run_server(server_args):
     """Run the server based on the gRPC flags and server_args.encoder_only."""
     ...

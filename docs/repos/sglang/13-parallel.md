@@ -1,5 +1,6 @@
 ---
 title: "第 13 章 并行体系：DP / TP / PP / EP"
+weight: 130
 ---
 
 # 第 13 章 并行体系：DP / TP / PP / EP
@@ -21,10 +22,9 @@ title: "第 13 章 并行体系：DP / TP / PP / EP"
 
 ## 13.2 DP：DataParallelController
 
-`srt/managers/managers/data_parallel_controller.py` 的类文档一句话：*A controller that dispatches requests to multiple data parallel workers*（`:140`）。它持有到各 DP rank scheduler 的 ZMQ 连接，按 `LoadBalanceMethod`（`:87` 的枚举）分发：
+DataParallelController 将请求分发给多个 DP worker。它持有到各 DP rank scheduler 的 ZMQ 连接，并按 `LoadBalanceMethod` 分发：
 
 ```python
-# srt/managers/data_parallel_controller.py:172 附近（节选）
 dispatch_lookup = {
     LoadBalanceMethod.ROUND_ROBIN: self.round_robin_scheduler,
     LoadBalanceMethod.FOLLOW_BOOTSTRAP_ROOM: self.follow_bootstrap_room_scheduler,
