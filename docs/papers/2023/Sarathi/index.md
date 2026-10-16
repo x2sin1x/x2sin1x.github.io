@@ -55,11 +55,11 @@ chunk 大小还决定"车"能装多少：chunk 越小，同样长度的 prefill 
 
 同一设计还解决多机部署的另一笔账。Pipeline parallelism 通信开销远低于 tensor parallelism，适合跨节点部署，但每个迭代的执行时间取决于其中 prefill/decode 的构成——论文识别出三类气泡：相邻微批 prefill token 数不同、prefill 与 decode 执行时间不同、各请求累积上下文长度不同。Orca 式迭代级调度并不消除这些气泡。chunked-prefills 恰好把所有微批变成等计算量的单元，每个阶段的等待时间随之坍缩。
 
-![Figure 1：两阶段流水线调度对比——Orca 式调度因微批计算量不均而频繁出现气泡、解码独立成批时每 token 成本高出一个数量级；Sarathi 的均匀混合批次同时消掉这两个开销](https://ar5iv.labs.arxiv.org/html/2308.16369/assets/figures/intro_fig.png)
+![Figure 1：两阶段流水线调度对比——Orca 式调度因微批计算量不均而频繁出现气泡、解码独立成批时每 token 成本高出一个数量级；Sarathi 的均匀混合批次同时消掉这两个开销](intro_fig.png)
 
 > 来源：原论文 Figure 1。读图重点：上图与下图的差异不是某个 kernel 变快，而是每个迭代承载的计算量变得均匀——这是 bubble 与解码效率同时改善的原因。
 
-![Figure 5：一个 2 路流水线、4 条请求的调度时间线，标注出三类气泡 PB1/PB2/PB3 的具体位置与成因](https://ar5iv.labs.arxiv.org/html/2308.16369/assets/figures/bubbles.png)
+![Figure 5：一个 2 路流水线、4 条请求的调度时间线，标注出三类气泡 PB1/PB2/PB3 的具体位置与成因](bubbles.png)
 
 > 来源：原论文 Figure 5。读图重点：三类气泡对应三种微批间计算量失配，都是"迭代执行时间不均匀"这一个根因的不同表现。
 

@@ -73,7 +73,7 @@ $$
 
 ### 设计
 
-![DFlash 推理管线：target model 的多层 hidden features 融合后，作为持久条件注入每一层 drafter 的 KV cache，drafter 以单步 block diffusion 并行预测一个 token block](https://z-lab.ai/assets/projects/dflash/method.png)
+![DFlash 推理管线：target model 的多层 hidden features 融合后，作为持久条件注入每一层 drafter 的 KV cache，drafter 以单步 block diffusion 并行预测一个 token block](method.png)
 
 > 来源：DFlash 官方项目页，对应论文 Figure 2。读图重点：target context 不是只在 drafter 入口出现一次，而是进入每一层的 Key/Value；这保证了“加深 drafter”时信号不被稀释。
 
@@ -87,7 +87,7 @@ $$
 
 比较在公平预算下进行：Qwen3-4B/8B、LLaMA-3.1-8B 等模型，数学（GSM8K、MATH-500、AIME25）、代码（HumanEval、MBPP、LiveCodeBench）与对话（MT-Bench）任务；Transformers 主实验在 NVIDIA H200 上运行。DFlash 使用 block size 16 与单步去噪；EAGLE-3 同时报告 tree size 16（与 DFlash 对齐 drafting budget）和 60（原论文设置，draft steps 7、top-k 10），Qwen3 使用 AngelSlim 发布的 checkpoint。
 
-![Qwen3-8B 的数学、代码与对话任务上，DFlash 相对自回归 baseline 的加速全面高于 EAGLE-3](https://arxiv.org/html/2602.06036v2/dflash_speedup.svg)
+![Qwen3-8B 的数学、代码与对话任务上，DFlash 相对自回归 baseline 的加速全面高于 EAGLE-3](dflash_speedup.svg)
 
 > 来源：原论文 v2 Figure 1。读图重点：在 Qwen3-8B 与 Transformers 设置中，DFlash 的端到端加速在所有任务上高于 EAGLE-3；对话任务（MT-Bench）收益明显小于数学与代码，说明开放式生成的接受长度更难做高。此图不覆盖其他模型、硬件或 serving 后端。
 

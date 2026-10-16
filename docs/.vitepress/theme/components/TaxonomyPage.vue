@@ -54,9 +54,9 @@ const chipStyle = (index: number) => {
   if (!color) return {};
   // --chip-bg 供 active 态的投影复用（同主题 --tk-home-tag-bg-color 的用法）
   return {
-    backgroundColor: color.bg,
-    color: color.text,
-    borderColor: color.border,
+    "--tag-bg": color.bg,
+    "--tag-text": color.text,
+    "--tag-border": color.border,
     "--chip-bg": color.bg,
   };
 };
@@ -227,7 +227,9 @@ onBeforeUnmount(() => window.removeEventListener("popstate", onPopState));
   padding: 0 9px;
   border: 1px solid transparent;
   border-radius: 3px;
-  color: inherit;
+  background-color: var(--tag-bg);
+  border-color: var(--tag-border);
+  color: var(--tag-text);
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -253,11 +255,6 @@ onBeforeUnmount(() => window.removeEventListener("popstate", onPopState));
   top: -1px;
   font-size: 12px;
   opacity: 0.75;
-}
-
-/* 暗色模式下柔和降低彩签亮度，避免过曝 */
-:global(.dark) .chip {
-  opacity: 0.88;
 }
 
 /* ---------- 分类列表（tk-category__list 风格） ---------- */

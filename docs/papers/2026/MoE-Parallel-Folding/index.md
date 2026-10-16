@@ -50,7 +50,7 @@ bash examples/mixtral/train_mixtral_8x7b_distributed.sh <checkpoint> <tokenizer_
 
 ### 设计
 
-![Figure 1：并行映射对比。以往方案中 EP 组嵌套在 Attention 的 DP 组内，度数被 DP 封顶；MoE Parallel Folding 把 MoE 层的模型并行维度（EP/ETP）折叠到 Attention 层的任意子组上，两层各自组网](https://arxiv.org/html/2504.14960v3/images/MoE_Parallel_Folding-mapping-switch.png)
+![Figure 1：并行映射对比。以往方案中 EP 组嵌套在 Attention 的 DP 组内，度数被 DP 封顶；MoE Parallel Folding 把 MoE 层的模型并行维度（EP/ETP）折叠到 Attention 层的任意子组上，两层各自组网](MoE_Parallel_Folding-mapping-switch.png)
 
 > 来源：论文 Figure 1。读图重点：EP 的度数上限不再由 DP 决定，MoE 层的模型并行可以与 Attention 的 TP/CP/DP 任意子组重叠——"折叠"指的就是这种组关系的重写。
 
@@ -58,7 +58,7 @@ bash examples/mixtral/train_mixtral_8x7b_distributed.sh <checkpoint> <tokenizer_
 2. **统一 token dispatcher：** 任意折叠组合下的数值正确性由它兜底。前向流程为：路由 permutation → EP 组 All-to-All-V → ETP 组 AllGather-V（组内共享激活）→ 专家 FFN 计算 → ETP 组 ReduceScatter-V → EP 组 All-to-All-V → 逆 permutation；反向以 RS/AG 镜像。它同时支持 token-dropping 与 token-dropless 两种范式，张量形状动态、与序列长度解耦。dropping 策略上，论文用子序列级 dropping 替代全序列级——不必跨卡 gather 全序列 logits，省通信还缓解负载不均，且经验上不伤收敛。
 3. **与现有栈的组合：** dispatcher 消除了序列长度依赖，CP/SP、PP、分布式优化器都能照常叠加；论文附录 A 给出每个实验模型调出的最优映射，可直接当配置参考。
 
-![Figure 2：TP=2、ETP=2 的四卡示例中 token dispatcher 的前向数据流：All-to-All-V 跨 EP 组换 token，AllGather-V/ReduceScatter-V 在 ETP 组内聚散激活](https://arxiv.org/html/2504.14960v3/images/dispatcher.excalidraw.png)
+![Figure 2：TP=2、ETP=2 的四卡示例中 token dispatcher 的前向数据流：All-to-All-V 跨 EP 组换 token，AllGather-V/ReduceScatter-V 在 ETP 组内聚散激活](dispatcher.excalidraw.png)
 
 > 来源：论文 Figure 2。读图重点：GPU (0,1)(2,3) 是 ETP 组、(0,2)(1,3) 是 EP 组——同一批 GPU 在 MoE 层内同时身兼两种身份，这正是折叠后的组形态。
 
@@ -79,7 +79,7 @@ bash examples/mixtral/train_mixtral_8x7b_distributed.sh <checkpoint> <tokenizer_
 
 Folding 对细粒度 MoE 的收益最醒目：G8T8 上相对 MCore 基线从 17.1% 提到 28.8%。消融给出了原因——细粒度 MoE 激活专家多、dispatch 通信量大、专家 hidden size 小导致 GEMM 效率低，当 ETP×EP 超过 8（跨节点）时通信占 MoE 层时延的 70% 以上，此时"EP 优先于 ETP、模型并行尽量小"的策略收益最大；折叠还让 CP×EP 组贴回 NVLink 域，避免 All-to-All 摔进节点间网络。
 
-![Figure 3：强扩展实验，GPU 数增至 1024；各并行策略的 MFU 随规模变化，Folding 配置在所有规模下保持最高](https://arxiv.org/html/2504.14960v3/images/scaling.png)
+![Figure 3：强扩展实验，GPU 数增至 1024；各并行策略的 MFU 随规模变化，Folding 配置在所有规模下保持最高](scaling.png)
 
 > 来源：论文 Figure 3。读图重点：Llama3-8x70B 从 128 卡扩到 16 倍规模，Folding 的 MFU 仅从 43.7% 降到 41.5%——扩展性瓶颈被压平是折叠的核心价值。
 

@@ -481,6 +481,8 @@ export default defineConfig({
           link: "/tech-stack/",
           activeMatch: "/tech-stack/",
           items: [
+            { text: "JavaScript", link: "/tech-stack/javascript/" },
+            { text: "Rust", link: "/tech-stack/rust/" },
             { text: "Python", link: "/tech-stack/python/" },
             { text: "Git", link: "/tech-stack/git/" },
             { text: "Linux", link: "/tech-stack/linux/" },
@@ -502,6 +504,7 @@ export default defineConfig({
           items: [
             { text: "算法分析与设计", link: "/knowledge-planet/algorithm/" },
             { text: "凸优化", link: "/knowledge-planet/convex-optimization/" },
+            { text: "排队论", link: "/knowledge-planet/queueing-theory/" },
             { text: "CS336", link: "/knowledge-planet/cs336/" },
             { text: "AI Infra", link: "/knowledge-planet/ai-infra/" },
             { text: "AI Agent", link: "/knowledge-planet/ai-agent/" },

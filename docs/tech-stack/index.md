@@ -30,6 +30,24 @@ data:
 ```
 :::
 
+## 编程语言
+
+::: imgCard
+```yaml
+config:
+  target: _self
+data:
+  - img: ./javascript/cover.webp
+    link: /tech-stack/javascript/
+    name: JavaScript
+    desc: 语言基础、浏览器开发与 Node.js
+  - img: /tech-stack/rust/cover.webp
+    link: /tech-stack/rust/
+    name: Rust
+    desc: 所有权、类型系统与命令行实战
+```
+:::
+
 ## 前端
 
 ::: imgCard

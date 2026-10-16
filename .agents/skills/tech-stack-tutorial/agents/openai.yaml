@@ -1,0 +1,4 @@
+interface:
+  display_name: "技术栈教程生成器"
+  short_description: "为指定技术栈生成章节化、示例驱动的新手友好学习教程与实践指南"
+  default_prompt: "Use $tech-stack-tutorial to create a structured, beginner-friendly tutorial for the technology stack I specify."

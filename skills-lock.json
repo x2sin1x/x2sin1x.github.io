@@ -35,6 +35,13 @@
       "sourceType": "git",
       "skillPath": "skills/tech-stack-quickstart/SKILL.md",
       "computedHash": "d7714d3915be7448c1663e2ff04b911245d200e809e772b707f5031e84f171f9"
+    },
+    "tech-stack-tutorial": {
+      "source": "git@gitee.com:x2sin1x/myskills.git",
+      "sourceUrl": "git@gitee.com:x2sin1x/myskills.git",
+      "sourceType": "git",
+      "skillPath": "skills/tech-stack-tutorial/SKILL.md",
+      "computedHash": "bd550dd501ea236113ee504078df637bc0abeb494e9c6cf0b1319453e2e5b76c"
     }
   }
 }

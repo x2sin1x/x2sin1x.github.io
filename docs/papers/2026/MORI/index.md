@@ -28,7 +28,7 @@ MORI（Memory Offloader with Relative Idleness）的出发点是一个重新表�
 
 那么退一步，用更粗的粒度呢？MORI 的 trace 分析给出了一个可利用的结构：532 个 Claude Code 程序呈现出清晰的两相行为——busy phase 是一连串几百毫秒的短调用，idle phase 则阻塞在秒级到分钟级的长调用上。以 2 秒为短长分界，87% 的调用是短调用，但剩下 13% 的长调用吃掉了 58% 的墙钟工具时间；busy phase 的中位时长约 20 秒（p90 约 81 秒），相位足够持久，调度器来得及利用。看起来一个二元 busy/idle 标签就能解决问题。
 
-![agentic 程序的三类 idle phase 示例：长测试套件、等待人类输入、等待 subagent 返回；红框为 busy phase，绿框为 idle phase](https://arxiv.org/html/2606.00866v1/idle-phase-example.svg)
+![agentic 程序的三类 idle phase 示例：长测试套件、等待人类输入、等待 subagent 返回；红框为 busy phase，绿框为 idle phase](idle-phase-example.svg)
 
 > 来源：原论文 Figure 4。读图重点：idle phase 由少数长调用触发且持续整段空窗，父 agent 等 subagent 时自己也是 idle 的——这正是可以被卸载利用的窗口。
 
@@ -54,7 +54,7 @@ $k=5$。直觉上，ι 越接近 1，这个程序的 KV cache 待在 HBM 里被�
 
 ### 设计
 
-![MORI 总览：按连续 idleness 谱给程序排序，busy 进 GPU HBM、idle 进 CPU DRAM，两层各有准入控制，多副本时由亲和感知的负载均衡器路由](https://arxiv.org/html/2606.00866v1/teaser.svg)
+![MORI 总览：按连续 idleness 谱给程序排序，busy 进 GPU HBM、idle 进 CPU DRAM，两层各有准入控制，多副本时由亲和感知的负载均衡器路由](teaser.svg)
 
 > 来源：原论文 Figure 1。读图重点：程序按 ι 排成一条谱，GPU/CPU 的分区切在这条谱上并可移动，而不是切在某个固定的"busy/idle"分类线上。
 
@@ -70,7 +70,7 @@ $k=5$。直觉上，ι 越接近 1，这个程序的 KV cache 待在 HBM 里被�
 
 实验将 186 条完整的 Claude Code trace（跑 SWE-bench Pro 测试集、claude-sonnet-4-6 采集）重放到四种配置上：H200（限至 80 GB，模拟 H100 级容量）配 Qwen-2.5-7B、H200 配 Qwen-3-30B-A3B（DP=1 与 DP=3）、B200（TP=2）配 Llama-3.1-70B；CPU:GPU 容量比各测 1× 与 2×。基线为 SGLang Model Gateway（SMG）、ThunderAgent（TA）与 TA+O（TA 加上不经协调的 HiCache offloading）。客户端是闭环回放，每档并发 20/50/80，每场一小时。
 
-![B200 + Llama-3.1-70B、DP=1 下的吞吐与 TTFT：80 并发时 MORI 达到 213 tokens/s，TA+O 只有 124 tokens/s](https://arxiv.org/html/2606.00866v1/b200-dp1-70b.svg)
+![B200 + Llama-3.1-70B、DP=1 下的吞吐与 TTFT：80 并发时 MORI 达到 213 tokens/s，TA+O 只有 124 tokens/s](b200-dp1-70b.svg)
 
 > 来源：原论文 Figure 9。读图重点：内存最紧张的 B200 配置差距最大——TA+O 的吞吐在 80 并发时不升反降，MORI 保持单调增长；这直接验证相位感知放置在高内存压力下的价值。
 

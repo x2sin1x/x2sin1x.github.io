@@ -45,6 +45,10 @@ data:
     link: /knowledge-planet/convex-optimization/
     name: 凸优化
     desc: 凸集、凸函数与优化问题
+  - img: /knowledge-planet/queueing-theory/cover.webp
+    link: /knowledge-planet/queueing-theory/
+    name: 排队论
+    desc: 随机到达、服务系统与拥堵分析
 ```
 :::
 

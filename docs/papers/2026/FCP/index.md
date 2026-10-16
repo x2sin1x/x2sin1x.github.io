@@ -29,7 +29,7 @@ FCP 换了一种切法和一种放法：把每条序列切成固定大小的块�
 
 第二是负载不均衡。attention 的计算量随序列长度二次增长，而按长度分组的方案（以 ByteScale 为代表）只按长度线性地给每组分配 GPU 数量。一条 64K 序列的计算量是 4K 序列的 256 倍，却只分到 16 倍的计算资源——组内没有别的序列可以帮它摊平，落后者的长度就是整个集群的长度。这类方案在论文的真实分布下测得最高 70% 的负载不均衡。WLB-LLM 干脆在两种策略之间按在线性能模型切换，但这只是在一口锅里二选一，没有扩大搜索空间：计算效率和负载均衡依然是一个非此即彼的权衡。
 
-![Figure 5：两类现有 CP 设计。(a) balance-optimized 的 ring attention 把每条序列切成固定块数、Zig-Zag 配对，负载完美均衡但短序列被切成碎块；(b) efficiency-optimized 的方案按长度把序列分给不同 GPU 组，组内计算高效但组间失衡](https://arxiv.org/html/2605.08524v1/existing-pattern.drawio.svg)
+![Figure 5：两类现有 CP 设计。(a) balance-optimized 的 ring attention 把每条序列切成固定块数、Zig-Zag 配对，负载完美均衡但短序列被切成碎块；(b) efficiency-optimized 的方案按长度把序列分给不同 GPU 组，组内计算高效但组间失衡](existing-pattern.drawio.svg)
 
 > 来源：论文 Figure 5。读图重点：两种设计分别在 G（怎么切）和 M（怎么放）两个自由度上做了简化，代价分别落在计算效率和负载均衡上——这是同一枚硬币的两面。
 
@@ -49,7 +49,7 @@ ring 拓扑之所以无处不在，是因为它的通信模式对称、邻居固
 
 ### 设计
 
-![Figure 6：FCP 系统总览。Block Distributor 决定块的切分与放置，Communication Planner 依据块间依赖构建二部图并求解无拥塞的通信计划，Transparent Reshuffler 在 attention 模块边界处现场重排数据布局](https://arxiv.org/html/2605.08524v1/fcp-design.drawio.png)
+![Figure 6：FCP 系统总览。Block Distributor 决定块的切分与放置，Communication Planner 依据块间依赖构建二部图并求解无拥塞的通信计划，Transparent Reshuffler 在 attention 模块边界处现场重排数据布局](fcp-design.drawio.png)
 
 > 来源：论文 Figure 6。读图重点：三个组件分别对应"放哪里、按什么顺序传、如何不打扰现有并行方案"三个问题，缺一环灵活性都无法落地。
 
@@ -57,7 +57,7 @@ ring 拓扑之所以无处不在，是因为它的通信模式对称、邻居固
 2. **Communication Planner（通信规划器）：** 任意放置意味着任意 GPU 之间都可能要传块，无序的拉取会让多张 GPU 同时涌向同一个源节点。FCP 把每次传输建模成二部图上的一条边（N 个发送节点对 N 个接收节点），一轮"每张 GPU 至多发一块、至多收一块"的无拥塞通信恰好对应图上的一个匹配；由二部图边着色理论，整个图可以分解成 Δ 个匹配（Δ 是最大度），这就是最优的子阶段数。论文用 Hopcroft-Karp 算法在 O(N^2.5) 时间内求解，每 batch 只算一次，数百 worker 规模下秒级完成、可在 CPU 上大规模并行。在此之上，块级的拉-算-推三个阶段被拆成交错的子阶段流水，让通信始终有计算可以隐藏。
 3. **Bottom-up coalescer 与 Transparent Reshuffler（合并器与透明重排器）：** 前者把连续若干个块级子阶段（默认 16 个）合并成更大的执行单元——调度粒度和执行粒度就此解耦，块可以小到适合装箱，kernel 可以大到适合跑满。后者负责部署透明性：进入 attention 模块前把用户提供的序列布局现场重排成 FCP 需要的布局，退出后还原，dataloader、RoPE 和 FSDP、TP、EP、SP 等现有并行方式都不用改；重排通信被安排在流水线首尾、与不依赖远端块的本地计算重叠。
 
-![Figure 8：无拥塞求解器示例。依据块放置得到的跨 GPU 依赖构建二部图（如序列 B 的第 1 块要从 GPU 2 传到 GPU 0 和 GPU 1，产生 2→0、2→1 两条边），每次最大匹配即一轮无拥塞通信](https://arxiv.org/html/2605.08524v1/fcp-communicate.drawio.svg)
+![Figure 8：无拥塞求解器示例。依据块放置得到的跨 GPU 依赖构建二部图（如序列 B 的第 1 块要从 GPU 2 传到 GPU 0 和 GPU 1，产生 2→0、2→1 两条边），每次最大匹配即一轮无拥塞通信](fcp-communicate.drawio.svg)
 
 > 来源：论文 Figure 8。读图重点：每一轮匹配里每张 GPU 恰好进出各一个块，网络永远不会有热点；最大度 Δ 决定轮数下界，分解恰好达到这个下界。
 
@@ -69,7 +69,7 @@ ring 拓扑之所以无处不在，是因为它的通信模式对称、邻居固
 
 证据分三层。负载均衡层：FCP 把计算与通信的不均衡率始终压在 5% 以内，而 ByteScale 在长尾分布下最高 70%，MagiAttention 因只优化计算、通信不均衡最高 17%。单卡效率层：假设负载完全均衡时，FCP 的 attention MFU 稳定在 90% 以上（其中已扣除让给通信的那几个 SM）。合起来的最终结果如下图：
 
-![Figure 11：真实长尾数据集上 attention 模块级 MFU 的弱扩展（每 GPU 32K token）；FCP 在所有 GPU 规模下高于全部四个基线，且随规模扩大差距拉开](https://arxiv.org/html/2605.08524v1/fig-eval-mfu.svg)
+![Figure 11：真实长尾数据集上 attention 模块级 MFU 的弱扩展（每 GPU 32K token）；FCP 在所有 GPU 规模下高于全部四个基线，且随规模扩大差距拉开](fig-eval-mfu.svg)
 
 > 来源：论文 Figure 11。读图重点：16 卡时各方案差距很小——规模小时没有多少调度余地；随着 CP 度数增大，Ring Attention 因短序列过度切分而下滑，ByteScale 因组间失衡下滑更快，FCP 保持近线性。这也是全文 1.13x-2.21x MFU 提升的出处。
 

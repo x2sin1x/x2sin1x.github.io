@@ -55,7 +55,7 @@ python ./start_up.py \
 
 论文在 8 实例集群、Qwen2.5-7B 上量化了这条鸿沟：Conversation 数据集上 Cache Affinity 的缓存命中率是 Least Loaded 的 1.21x；在 Tool&Agent 数据集上，前者逼近理论上界，后者贴近下界。而作为中间路线的 Min TTFT（Mooncake 的调度策略）和 Preble 也只是落在两者之间——它们在单一映射空间内，对一部分请求走 prompt-aware、对另一部分走 load-aware，无法同时逼近两个坐标轴的最好值。
 
-![Figure 1：Tool&Agent 数据集上各调度策略的缓存命中率与负载均衡系数（CV）的 Pareto 分布，Cache Affinity 与 Least Loaded 分居两端，Min TTFT 与 Preble 只能取中间点](https://arxiv.org/html/2602.06502v1/motivation_pareto-cache-loadbalance-toolagent.svg)
+![Figure 1：Tool&Agent 数据集上各调度策略的缓存命中率与负载均衡系数（CV）的 Pareto 分布，Cache Affinity 与 Least Loaded 分居两端，Min TTFT 与 Preble 只能取中间点](motivation_pareto-cache-loadbalance-toolagent.svg)
 
 > 根据原论文 Figure 1(b) 重制引用。读图重点：横纵两轴分别是负载均衡与缓存命中，所有单映射策略只能在这条 Pareto 曲线上移动，没有谁能逼近右上角。
 
@@ -74,7 +74,7 @@ DualMap 对每个请求的前缀用两个独立哈希函数 $f_1$、$f_2$ 各算
 
 而 $d$ 也不是越大越好：$d=3, 4$ 对偏离项的改善已经边际递减，候选集每扩一位，共享前缀的请求就多一处被分散的去向，缓存局部性被稀释——"全局收集所有实例信息再选最优"等价于 $d=n$，负载上几乎不再改善，缓存复用却退化成 Least Loaded。**$d=2$ 是这个问题的甜点。**
 
-![DualMap 系统总览：全局调度器对每个请求做双重哈希得到两个候选实例，经 SLO-aware routing 选定其一；热点实例通过 hotspot-aware rebalancing 把排队请求迁移到各自的备份候选；扩缩容由 dual-hash ring 支持局部重映射](https://arxiv.org/html/2602.06502v1/DaulMap-overview.svg)
+![DualMap 系统总览：全局调度器对每个请求做双重哈希得到两个候选实例，经 SLO-aware routing 选定其一；热点实例通过 hotspot-aware rebalancing 把排队请求迁移到各自的备份候选；扩缩容由 dual-hash ring 支持局部重映射](DaulMap-overview.svg)
 
 > 来源：论文 Figure 2。读图重点：每个请求的可行域从"全集群"收缩到"一对候选"，调度器的全部决策——路由、迁移、扩缩——都只发生在这对候选之内。
 
@@ -98,7 +98,7 @@ PoTC 均衡的前提是请求近似随机，前缀倾斜会击穿这个假设。
 
 主结果：
 
-![Figure 3：四种负载下各策略的 effective request capacity 与 goodput；DualMap 在含倾斜前缀的 Tool&Agent 工作负载上优势最大](https://arxiv.org/html/2602.06502v1/slo_satisfaction_ttft_5_big.svg)
+![Figure 3：四种负载下各策略的 effective request capacity 与 goodput；DualMap 在含倾斜前缀的 Tool&Agent 工作负载上优势最大](slo_satisfaction_ttft_5_big.svg)
 
 > 来源：论文 Figure 3。读图重点：横轴 QPS 增大时，各 baseline 的 SLO 达标率快速滑落，DualMap 的曲线最平缓——缓存复用减少了总计算量，负载均衡又消掉了热点排队，两个收益叠加。
 

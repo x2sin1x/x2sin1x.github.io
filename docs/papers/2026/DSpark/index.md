@@ -40,7 +40,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python eval.py \
 
 自回归 drafter 知道自己刚刚生成了什么，因此候选序列较连贯，代价是 draft latency 随 $\gamma$ 近似线性增长。Parallel drafter 只做一次前向，能够用更深的网络同时预测整块 token，却付出了独立性代价：当上下文同时允许 “of course” 和 “no problem” 时，两个位置各自对多种延续取平均，可能拼出 “of problem” 或 “no course”。单个位置看似合理，组合起来却不是任何一种合理模式。
 
-![Qwen3-4B 上 Eagle3、DFlash 与 DSpark 在数学、代码和对话任务中的逐位置条件接受率；DFlash 的后缀衰减明显，而 DSpark 缓解了下降](https://arxiv.org/html/2607.05147v1/position_cond_accept.svg)
+![Qwen3-4B 上 Eagle3、DFlash 与 DSpark 在数学、代码和对话任务中的逐位置条件接受率；DFlash 的后缀衰减明显，而 DSpark 缓解了下降](position_cond_accept.svg)
 
 > 来源：原论文 v1 Figure 2。图中是“给定此前位置已通过后的当前位置接受率”，不是整个前缀存活率；它隔离出了各位置本身的预测质量。读图重点：parallel DFlash 的速度优势伴随明显 suffix decay，DSpark 用少量顺序依赖缓解了这一问题。
 
@@ -64,7 +64,7 @@ $$
 
 ### 设计
 
-![DSpark 解码周期：并行 backbone 产生整块表示，轻量顺序 head 生成候选与置信度，调度器裁掉低价值后缀后交给 target model 验证](https://arxiv.org/html/2607.05147v1/model_arch.svg)
+![DSpark 解码周期：并行 backbone 产生整块表示，轻量顺序 head 生成候选与置信度，调度器裁掉低价值后缀后交给 target model 验证](model_arch.svg)
 
 > 来源：原论文 v1 Figure 1。读图重点：DSpark 总是先生成完整 draft block，再由 scheduler 选择要送进 target model 的前缀；调度节省的是验证算力，并不消除整块 drafting 的固定成本。
 
@@ -99,7 +99,7 @@ $$
 
 论文将最大 draft length 为 5 的 DSpark-5 部署到 DeepSeek-V4-Flash（preview）与 DeepSeek-V4-Pro（preview）的生产 serving engine，并用实时用户流量与原生产方案 MTP-1 比较。MTP-1 每轮只预测一个额外 token；静态 MTP-3/5 虽能提高单请求速度，却会因验证开销在高并发下损害总吞吐，因此没有成为此前的生产默认方案。
 
-![DeepSeek-V4-Flash 与 V4-Pro 实时流量下，DSpark-5 和 MTP-1 的总输出吞吐与单用户生成速度 Pareto 前沿](https://arxiv.org/html/2607.05147v1/online_service.png)
+![DeepSeek-V4-Flash 与 V4-Pro 实时流量下，DSpark-5 和 MTP-1 的总输出吞吐与单用户生成速度 Pareto 前沿](online_service.png)
 
 > 来源：原论文 v1 Figure 7。散点是实时生产流量遥测，实线是拟合后的 performance frontier。读图重点：DSpark 把总吞吐与单用户速度的权衡曲线整体向外推；该结论限定于论文所用 DeepSeek-V4 preview 引擎、流量与配置。
 

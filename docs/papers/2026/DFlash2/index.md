@@ -97,7 +97,7 @@ $$
 
 ### 设计
 
-![DFlash 2 架构：并行起草 backbone 之上加入候选路径选择器与两抽头动态卷积](https://raw.githubusercontent.com/jianc99/jianc99.github.io/master/images/dflash2_system.png)
+![DFlash 2 架构：并行起草 backbone 之上加入候选路径选择器与两抽头动态卷积](dflash2_system.png)
 
 > 来源：官方仓库 README 引用的 DFlash 2 架构图。读图重点：selector 与卷积都不改变 one-pass 起草与验证接口，两个模块叠加后 cycle latency 总开销为 1.3%。
 

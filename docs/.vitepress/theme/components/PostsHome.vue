@@ -102,9 +102,9 @@ const chipStyle = (name: string) => {
   // 与主题 HomeCardTag 的 getTagStyle 一致：同步设置主题 CSS 变量供 active 态投影使用
   return {
     "--tk-home-tag-bg-color": color.bg,
-    backgroundColor: color.bg,
-    color: color.text,
-    borderColor: color.border,
+    "--tag-bg": color.bg,
+    "--tag-text": color.text,
+    "--tag-border": color.border,
   };
 };
 
@@ -298,4 +298,5 @@ const pagedPosts = computed(() => posts.value.slice((pageNum.value - 1) * pageSi
   font-size: 14px;
   text-align: center;
 }
+
 </style>

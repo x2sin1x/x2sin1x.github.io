@@ -67,7 +67,7 @@ RadixAttention 的运行时围绕四个动作循环：
 3. **分裂：** 当新请求与某个已有节点共享前缀但在此分叉时，节点被一分为二，两边各自共享公共祖先的缓存。
 4. **逐出：** 显存有限，缓存采用 LRU 策略且优先逐出叶子——祖先节点因此能活到自己也变成叶子为止，公共前缀获得最长寿命。关键在于缓存与运行请求共享同一块显存池：等待的请求足够多时，系统宁可全部逐出缓存去扩大 batch size，缓存永远不挤占运行内存。
 
-![RadixAttention 的九个时刻：新请求沿树匹配前缀直接复用缓存，在分歧处分裂节点，内存不足时优先逐出叶子节点](https://arxiv.org/html/2312.07104v2/example_radix_attn.svg)
+![RadixAttention 的九个时刻：新请求沿树匹配前缀直接复用缓存，在分歧处分裂节点，内存不足时优先逐出叶子节点](example_radix_attn.svg)
 
 > 来源：原论文 Figure 3。读图重点：两级聊天会话共享 system prompt、few-shot 批量提问共享题干、self-consistency 共享问题前缀——这些不同形态的共享都被同一棵树自动接住。
 
@@ -91,13 +91,13 @@ RadixAttention 解决复用，SGLang 的另外两个部件解决"机会从哪来
 
 实验设置决定了这组对比的口径：模型为 Llama-2 7B/70B、Mixtral-8x7B、LLaVA-v1.5-7B（图像）与 LLaVA-NeXT-34B（视频），float16；主硬件是 AWS G5 实例的 NVIDIA A10G（24GB），7B 单卡、大模型张量并行，另有 A100（80GB）实验。基线分两层：编程系统 Guidance v0.1.8（llama.cpp 后端）与 LMQL v0.7.3（Hugging Face Transformers 后端），以及推理引擎 vLLM v0.2.5（论文脚注说明：因 RadixAttention 已作为实验特性部分合入新版 vLLM，故选用较早版本对比）；除非特别说明，所有系统都关闭会改变计算结果的优化，保证输出一致。吞吐口径是"程序实例/秒"，即批处理下单位时间完成的完整程序数。
 
-![Llama-2-7B 上九类工作负载的端到端吞吐：SGLang 在 agent、few-shot、JSON 解码等多调用任务上明显高于 vLLM、Guidance、LMQL](https://arxiv.org/html/2312.07104v2/e2e_throughput_llama_7b.svg)
+![Llama-2-7B 上九类工作负载的端到端吞吐：SGLang 在 agent、few-shot、JSON 解码等多调用任务上明显高于 vLLM、Guidance、LMQL](e2e_throughput_llama_7b.svg)
 
 > 来源：原论文 Figure 5。读图重点：收益集中在存在前缀共享或多调用并行的任务上，直接验证 RadixAttention"利用多调用结构"的主张。
 
 结果上，SGLang 把端到端吞吐最高提高 6.4x、延迟最高降低 3.7x。收益来源与任务结构一一对应：MMLU 复用 5-shot 示例的缓存，HellaSwag 复用"few-shot 示例 + 题干"两级前缀，agent 类任务复用模板与历史调用，多轮对话复用对话历史，多模态下 SGLang 直接以输入图像的哈希作为树键，复用对同一图片多次提问的缓存。这些基准上的缓存命中率在 50%-99% 之间，缓存感知调度平均达到理论最优命中率的 96%。
 
-![RadixAttention 消融：去掉树结构、改回先来先到或随机调度、关闭前端并行或 hint，任一部件缺失都会掉性能](https://arxiv.org/html/2312.07104v2/cache_hit_and_ablation.svg)
+![RadixAttention 消融：去掉树结构、改回先来先到或随机调度、关闭前端并行或 hint，任一部件缺失都会掉性能](cache_hit_and_ablation.svg)
 
 > 来源：原论文 Figure 8(c)。读图重点：完整优化与任一单项退化之间的差距，把收益归因到 RadixAttention 的每个组成部分，而非笼统的"加缓存"。
 

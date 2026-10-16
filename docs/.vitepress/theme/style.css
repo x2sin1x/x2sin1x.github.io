@@ -373,3 +373,46 @@ pre.mermaid svg {
     transform: none;
   }
 }
+
+/* 博客与论文首页右侧标签卡片沿用标签筛选云的尺寸、间距和计数排版。 */
+.posts-home .tk-tag__list,
+.papers-home .tk-tag__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.posts-home .tk-tag__list a,
+.papers-home .tk-tag__list a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  height: 26px;
+  margin: 0;
+  padding: 0 9px;
+  border: 1px solid var(--tag-border);
+  border-radius: 3px;
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  font-size: 14px;
+  line-height: 24px;
+  text-align: left;
+  text-decoration: none;
+}
+
+.posts-home .tk-tag__list a .num,
+.papers-home .tk-tag__list a .num {
+  position: static;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* Teek 的默认标签色板面向浅色背景；暗色模式下压低底色并提亮文字、边框。 */
+.dark .taxonomy .chip,
+.dark .posts-home .tk-tag__list a,
+.dark .papers-home .tk-tag__list a {
+  background-color: color-mix(in srgb, var(--tag-text) 12%, var(--vp-c-bg));
+  border-color: color-mix(in srgb, var(--tag-text) 30%, var(--vp-c-bg));
+  color: color-mix(in srgb, var(--tag-text), white 34%);
+}
