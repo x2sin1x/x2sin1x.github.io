@@ -45,6 +45,10 @@ data:
     link: /tech-stack/rust/
     name: Rust
     desc: 所有权、类型系统与命令行实战
+  - img: /tech-stack/typescript/cover.webp
+    link: /tech-stack/typescript/
+    name: TypeScript
+    desc: 官方 Handbook 主线与静态类型系统
 ```
 :::
 

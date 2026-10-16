@@ -482,6 +482,7 @@ export default defineConfig({
           activeMatch: "/tech-stack/",
           items: [
             { text: "JavaScript", link: "/tech-stack/javascript/" },
+            { text: "TypeScript", link: "/tech-stack/typescript/" },
             { text: "Rust", link: "/tech-stack/rust/" },
             { text: "Python", link: "/tech-stack/python/" },
             { text: "Git", link: "/tech-stack/git/" },
