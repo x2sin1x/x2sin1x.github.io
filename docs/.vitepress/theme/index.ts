@@ -36,7 +36,7 @@ export default {
   enhanceApp({ app }) {
     app.component("AbcScore", AbcScore);
     // ```mermaid 图表组件（config.mts 围栏映射）：
-    // 组件输出官方约定的 <pre class="mermaid">，挂载后用 mermaid.run() 渲染
+    // 组件挂载后由 Mermaid.js 渲染，并根据站点明暗模式切换 Redux 配色
     app.component("Mermaid", Mermaid);
     // 可点击的导航下拉（右上角“技术栈”/“知识星球”/“论文”）：
     // 单击标题进入总览页，hover 展开子菜单，配合 nav 中的 component 项使用

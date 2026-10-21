@@ -54,6 +54,7 @@
 
 - **数学公式**：启用 MathJax3（`markdown-it-mathjax3`），支持行内 `$...$` 与块级 `$$...$$`
 - **乐谱**：` ```abcjs ` 代码块
+- **Mermaid 图表**：由 Mermaid.js 渲染，自动跟随站点明暗模式使用 `redux-color` / `redux-dark-color` 主题。
 
 ### 其他
 
