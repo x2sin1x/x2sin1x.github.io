@@ -2,11 +2,13 @@
 
 ## Project Structure & Module Organization
 
-This is a pnpm-managed VitePress site. Dated articles live in `docs/blogs/`, technical notes in `docs/tech-stack/`, and subject collections in `docs/knowledge-planet/`. Site configuration is in `docs/.vitepress/config.mts`; theme extensions, Vue components, and CSS belong under `docs/.vitepress/theme/`. Put files requiring stable root-relative URLs in `docs/public/`; keep article-specific images beside their article. Do not edit or commit generated `docs/.vitepress/cache/` or `docs/.vitepress/dist/` content.
+This is a pnpm-managed VitePress site. Dated blog articles live in `docs/posts/`, technical notes in `docs/tech-stack/`, and subject collections in `docs/knowledge-planet/`. Site configuration is in `docs/.vitepress/config.mts`; theme extensions, Vue components, and CSS belong under `docs/.vitepress/theme/`. Put files requiring stable root-relative URLs in `docs/public/`; keep article-specific images beside their article. Do not edit or commit generated `docs/.vitepress/cache/` or `docs/.vitepress/dist/` content.
 
-Page layout constraint: if a page has no subpages, create it as a single file `<slug>.md`; if it has subpages, create it as a directory `<slug>/index.md`. Do not create a `<slug>/index.md` for pages that will never contain subpages.
+Article path constraint: new blog and paper articles must use `docs/posts/<year>/<slug>/index.md` and `docs/papers/<year>/<slug>/index.md`, respectively, even when they have no subpages. Do not create `docs/posts/<year>/<slug>.md` or `docs/papers/<year>/<slug>.md`. Keep article-specific images in the same `<slug>/` directory and reference them relative to `index.md` (for example, `concurrency.png`). For paper articles, preserve the official system or method name exactly in `<slug>`, including capitalization and hyphens (for example, `docs/papers/2026/EAGLE-4/index.md`); do not normalize paper directory names to lowercase kebab-case. This article-specific rule takes precedence over the general page layout and local image constraints below.
 
-Local image constraint: if an article needs to reference local images, put them in a `<slug>/` folder next to `<slug>.md` (e.g., `docs/papers/2025/CloudMatrix384.md` with images in `docs/papers/2025/CloudMatrix384/`), and reference them with the relative path `<slug>/...`. This keeps the relative paths from the article as simple as possible.
+Page layout constraint (outside `docs/posts/` and `docs/papers/`): if a page has no subpages, create it as a single file `<slug>.md`; if it has subpages, create it as a directory `<slug>/index.md`. Do not create a `<slug>/index.md` for pages that will never contain subpages.
+
+Local image constraint (outside `docs/posts/` and `docs/papers/`): if an article needs to reference local images, put them in a `<slug>/` folder next to `<slug>.md`, and reference them with the relative path `<slug>/...`.
 
 Paper blog date constraint: when creating a paper blog under `docs/papers/`, the front matter `date` must be the paper's publication date or the date it was first posted to arXiv, not the current date. Use the date of the version the article is based on when the paper has multiple arXiv versions (the verification date still belongs in the article body, not in `date`).
 

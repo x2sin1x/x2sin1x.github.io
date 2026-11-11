@@ -10,7 +10,7 @@ sidebar: false
 
 ## 站点总览
 
-站点由「一个博客」「一个论文板块」与「两大笔记板块」构成，外加一组全站功能页：
+站点包含博客、论文、技术栈、知识星球与开源仓库源码解读五个内容板块，另有一组全站功能页：
 
 | 板块 | 入口 | 内容定位 |
 |------|------|----------|
@@ -19,6 +19,7 @@ sidebar: false
 | 论文 | [/papers/](/papers/) | 前沿论文与官方技术博客的独立解读，按论文发表年份归档 |
 | 技术栈 | [/tech-stack/](/tech-stack/) | 工具与技术的学习笔记、教程与速查手册 |
 | 知识星球 | [/knowledge-planet/](/knowledge-planet/) | 各领域的系统性专栏笔记，按合集组织 |
+| 仓库 | [/repos/](/repos/) | GitHub 开源项目源码解读，按仓库组织 |
 
 ## 顶层目录结构
 
@@ -32,6 +33,7 @@ docs/
 │   └── <year>/<slug>.md # 每篇论文一个 md 文件
 ├── tech-stack/         # 技术栈笔记（按技术分目录）
 ├── knowledge-planet/   # 知识星球合集（按合集分目录）
+├── repos/              # 开源仓库源码解读（按项目分目录）
 ├── @pages/             # 全站功能页源文件（归档、清单、分类、标签等）
 ├── public/             # 需要稳定根路径 URL 的静态资源（favicon 等）
 └── .vitepress/         # 站点配置、主题扩展与构建产物（cache/、dist/ 不入库）
@@ -74,13 +76,16 @@ frontmatter 约定：`title` 为论文（或官方博客）名称，`date` 用�
 
 ## 技术栈：`docs/tech-stack/`
 
-技术栈收录工具与技术的系统性学习笔记，每个技术一个子目录，子目录中的 `index.md` 是该技术的落地页（含学习目标、推荐阅读顺序与参考资料）。当前收录九个方向：
+技术栈收录工具与技术的系统性学习笔记，每个技术一个子目录，子目录中的 `index.md` 是该技术的落地页（含学习目标、推荐阅读顺序与参考资料）。当前收录十二个方向：
 
 | 目录 | 内容 | 组织方式 |
 |------|------|----------|
 | [python](/tech-stack/python/) | Python 语言基础：列表、字典、函数、面向对象、多线程、正则等 | 按语法主题逐页讲解 |
+| [javascript](/tech-stack/javascript/) | JavaScript 语言与运行机制：语法、异步、模块、浏览器等 | 按语言主题逐页讲解 |
+| [typescript](/tech-stack/typescript/) | TypeScript 类型系统与语言特性 | 按核心概念逐页讲解 |
 | [git](/tech-stack/git/) | Git 版本控制：基础概念、常用命令与工作流 | 命令卡片式速查 |
 | [linux](/tech-stack/linux/) | Linux 常用操作：文件、权限、Shell 等 | 按使用场景分页 |
+| [rust](/tech-stack/rust/) | Rust 程序设计语言：所有权、类型、并发、异步与 Web 服务 | 按章节组织的系统教程 |
 | [mongo](/tech-stack/mongo/) | MongoDB 8.0 入门教程：`mongosh` 增删改查、聚合与 PyMongo | 任务管理示例贯穿全书 |
 | [redis](/tech-stack/redis/) | Redis 8.10 入门教程：五大数据类型、键与过期、管道事务与 redis-py | 同一套任务管理示例，与 MongoDB 教程呼应 |
 | [crawler](/tech-stack/crawler/) | Web 爬虫与逆向：从基础爬虫到 Web 逆向 | 基础与逆向两个部分 |
@@ -92,14 +97,16 @@ MongoDB 与 Redis 两个教程结构对齐：概念 → 基础操作 → 进阶�
 
 ## 知识星球：`docs/knowledge-planet/`
 
-知识星球按「合集」组织，每个合集是一个独立子目录，系统性地记录一个领域的完整学习过程。当前共 16 个合集，可按主题分为四组：
+知识星球按「合集」组织，每个合集是一个独立子目录，系统性地记录一个领域的学习过程。当前共 17 个合集，可按主题分为四组：
 
 **计算机与数学**
 
 - [算法分析与设计](/knowledge-planet/algorithm/)
 - [凸优化](/knowledge-planet/convex-optimization/)
 - [CS336：从零开始的语言模型](/knowledge-planet/cs336/)
-- [深入理解 AI Infra](/knowledge-planet/ai-infra-book/)
+- [AI Infra](/knowledge-planet/ai-infra/)
+- [AI Agent](/knowledge-planet/ai-agent/)
+- [排队论](/knowledge-planet/queueing-theory/)
 
 **政治理论**
 
@@ -114,6 +121,17 @@ MongoDB 与 Redis 两个教程结构对齐：概念 → 基础操作 → 进阶�
 - [金融学](/knowledge-planet/finance/)、[恋爱心理学](/knowledge-planet/love-psychology/)、[沈奕斐的社会学爱情思维课](/knowledge-planet/sociology-love/)
 
 合集内部通常按章节顺序编号（如 `ch01`、`ch02`），配图与讲义随章节目录存放。
+
+## 仓库源码解读：`docs/repos/`
+
+仓库板块按开源项目组织，每个项目一个子目录，`index.md` 是项目导读与阅读入口。目前收录四个项目：
+
+- [DeepEP](/repos/deepep/)：围绕 NVSHMEM 双路径与 NCCL Gin 的源码解读。
+- [Mooncake](/repos/mooncake/)：覆盖传输引擎、拓扑、存储层与集成路径。
+- [SGLang](/repos/sglang/)：从请求入口到调度、缓存、并行与输出路径逐章梳理。
+- [vLLM](/repos/vllm/)：围绕核心执行链路与推测解码等主题展开。
+
+该板块与技术栈、知识星球和论文一样，从博客文章数据集中排除；侧边栏按项目拆分，项目内页面依据 `weight` 排序。
 
 ## 功能页：`docs/@pages/`
 
@@ -146,6 +164,6 @@ MongoDB 与 Redis 两个教程结构对齐：概念 → 基础操作 → 进阶�
 - **命名**：目录与英文文件名使用 kebab-case，合集与教程的落地页命名为 `index.md`。
 - **frontmatter**：需要排序的页面写 `title`、`date` 与 `weight`；侧边栏顺序由 `weight` 决定，与文件名无关。
 - **链接**：站内链接一律使用根相对路径（如 `/tech-stack/redis/`），图片与文章同目录存放。
-- **板块隔离**：`tech-stack/`、`knowledge-planet/` 与 `papers/` 已从博客文章数据集中排除，新建板块若不希望出现在博客列表，需要同步更新 `fileContentLoaderIgnore` 配置。
+- **板块隔离**：`tech-stack/`、`knowledge-planet/`、`papers/` 与 `repos/` 已从博客文章数据集中排除，新建板块若不希望出现在博客列表，需要同步更新 `fileContentLoaderIgnore` 配置。
 - **论文年份**：新增论文放入以其**发表或挂到 arXiv 的年份**命名的目录（而非写作时间），`date` 字段用于站内排序。
 - **校验**：改动配置、主题或新增板块后，运行 `pnpm typecheck` 与 `pnpm docs:build` 验证；涉及布局的改动还需在桌面与移动宽度下预览确认。

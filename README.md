@@ -86,9 +86,11 @@ pnpm docs:preview
 ### 写作约定
 
 - 新博客文章放在 `docs/posts/<year>/<slug>/index.md`
+- 新论文文章放在 `docs/papers/<year>/<slug>/index.md`；两个栏目均不使用 `<year>/<slug>.md`
+- 论文文章的 `<slug>` 保留官方系统或方法名的大小写与连字符格式，例如 `docs/papers/2026/EAGLE-4/index.md`
 - frontmatter 中的 `weight` 字段控制侧边栏排序（越小越靠前）
 - `tech-stack/`、`knowledge-planet/` 目录下的内容不进入博客文章数据集，各自通过 `index.md` 落地页组织
-- 图片等站点级静态资源放 `docs/public/`，文章专属图片放在文章目录旁
+- 图片等站点级静态资源放 `docs/public/`；博客和论文专属图片分别放在 `docs/posts/<year>/<slug>/` 和 `docs/papers/<year>/<slug>/` 内，与 `index.md` 同级，并使用相对路径引用
 
 ## 参考文档
 
